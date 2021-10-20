@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -21,8 +22,8 @@ public class Foreignlang {
     private String name;
     @Column
     private String score;
-    @Column
-    private String certified_date;
+    @Column(name = "certified_date")
+    private LocalDateTime certifiedDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "resume_id")
@@ -32,12 +33,12 @@ public class Foreignlang {
 
     @Builder
 
-    public Foreignlang(Long id, String language, String name, String score, String certified_date, Resume resume) {
+    public Foreignlang(Long id, String language, String name, String score, LocalDateTime certifiedDate, Resume resume) {
         this.id = id;
         this.language = language;
         this.name = name;
         this.score = score;
-        this.certified_date = certified_date;
+        this.certifiedDate = certifiedDate;
         this.resume = resume;
     }
 }

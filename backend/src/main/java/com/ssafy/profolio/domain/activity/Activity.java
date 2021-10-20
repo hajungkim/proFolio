@@ -3,8 +3,10 @@ package com.ssafy.profolio.domain.activity;
 import com.ssafy.profolio.domain.resume.Resume;
 import lombok.Builder;
 import lombok.Getter;
+import org.apache.tomcat.jni.Local;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -19,10 +21,10 @@ public class Activity {
     private String name;
     @Column
     private String organization;
-    @Column
-    private String start_date;
-    @Column
-    private String end_date;
+    @Column(name = "start_date")
+    private LocalDateTime startDate;
+    @Column(name = "end_date")
+    private LocalDateTime endDate;
     @Column
     private String description;
 
@@ -33,12 +35,12 @@ public class Activity {
     public Activity() {}
 
     @Builder
-    public Activity(Long id, String name, String organization, String start_date, String end_date, String description, Resume resume) {
+    public Activity(Long id, String name, String organization, LocalDateTime startDate, LocalDateTime endDate, String description, Resume resume) {
         this.id = id;
         this.name = name;
         this.organization = organization;
-        this.start_date = start_date;
-        this.end_date = end_date;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.description = description;
         this.resume = resume;
     }
