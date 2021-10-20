@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="sections-menu">
+    <div v-bind:class="[ hamburger ? hidden : hamburgerClass]">
       <span
          class="menu-point"
          v-bind:class="{active: activeSection == index}"
@@ -9,26 +9,23 @@
          v-bind:key="index">
       </span>
     </div>
-    <section class="fullpage blue">
-      <h1>Vue.js Fullpage Scroll</h1>
-      <p>by <a href="https://webdeasy.de/?referer=cp-NVOEBL" target="_blank">WebDEasy</a></p>
+    <section class="fullpage purple">
+      <h1>Section 1</h1>
     </section>
     <section class="fullpage black">
       <h1>Section 2</h1>
-      <p>made with <a href="https://vuejs.org/" target="_blank">Vue.js</a></p>
     </section>
-    <section class="fullpage red">
+    <section class="fullpage blue">
       <h1>Section 3</h1>
-      <p>works on <b>desktop & mobile</b></p>
     </section>
     <section class="fullpage green">
       <h1>Section 4</h1>
-      <p>Tutorial <a href="https://webdeasy.de/en/programming-vue-js-fullpage-scroll/?referer=cp-NVOEBL" target="_blank">here</a></p>
     </section>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 // @ is an alias to /src
 
 export default {
@@ -40,7 +37,14 @@ export default {
       offsets: [],
       touchStartY: 0,
       index: 0,
+      hidden: 'sections-menu-hidden',
+      hamburgerClass: 'sections-menu',
     };
+  },
+  computed: {
+    ...mapState([
+      'hamburger',
+    ]),
   },
   methods: {
     calculateSectionOffsets() {
@@ -94,6 +98,9 @@ export default {
       }, 400);
       return true;
     },
+  },
+  created() {
+    this.$store.dispatch('changeHamburger', true);
   },
   mounted() {
     this.calculateSectionOffsets();

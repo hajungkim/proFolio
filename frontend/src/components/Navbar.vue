@@ -3,19 +3,22 @@
     <div class="logo">
       proFolio
     </div>
-    <div class="nav-right">
-      <div class="nav-item">
-        증명사진생성
-      </div>
-      <div v-if="isLogin" class="nav-item-last dropdown">
-        <img src="../assets/images/defaultProfile.png" class="profile-image" style="width: 30px;">
-        <ul class="dropdown-menu">
-          <li>마이페이지</li>
-          <li>로그아웃</li>
+    <div>
+      <input type="checkbox" id="active">
+      <label for="active" class="menu-btn" @click="changeHamburger"><span></span></label>
+      <label for="active" class="close"></label>
+      <div v-if="isLogin" class="wrapper">
+        <ul>
+          <li><a href="#">증명사진</a></li>
+          <li><a href="#">마이페이지</a></li>
+          <li><a href="#">로그아웃</a></li>
         </ul>
       </div>
-      <div v-else class="nav-item-last">
-        로그인
+      <div v-else class="wrapper">
+        <ul>
+          <li><a href="#">증명사진</a></li>
+          <li><a href="#">로그인</a></li>
+        </ul>
       </div>
     </div>
   </div>
@@ -29,7 +32,13 @@ export default {
   computed: {
     ...mapState([
       'isLogin',
+      'hamburger',
     ]),
+  },
+  methods: {
+    changeHamburger() {
+      this.$store.dispatch('changeHamburger', this.hamburger);
+    },
   },
 };
 </script>
