@@ -1,0 +1,112 @@
+<template>
+  <div>
+    <div class="sections-menu">
+      <span
+         class="menu-point"
+         v-bind:class="{active: activeSection == index}"
+         v-on:click="scrollToSection(index)"
+         v-for="(offset, index) in offsets"
+         v-bind:key="index">
+      </span>
+    </div>
+    <section class="fullpage blue">
+      <h1>Vue.js Fullpage Scroll</h1>
+      <p>by <a href="https://webdeasy.de/?referer=cp-NVOEBL" target="_blank">WebDEasy</a></p>
+    </section>
+    <section class="fullpage black">
+      <h1>Section 2</h1>
+      <p>made with <a href="https://vuejs.org/" target="_blank">Vue.js</a></p>
+    </section>
+    <section class="fullpage red">
+      <h1>Section 3</h1>
+      <p>works on <b>desktop & mobile</b></p>
+    </section>
+    <section class="fullpage green">
+      <h1>Section 4</h1>
+      <p>Tutorial <a href="https://webdeasy.de/en/programming-vue-js-fullpage-scroll/?referer=cp-NVOEBL" target="_blank">here</a></p>
+    </section>
+  </div>
+</template>
+
+<script>
+// @ is an alias to /src
+
+export default {
+  name: 'Main',
+  data() {
+    return {
+      inMove: false,
+      activeSection: 0,
+      offsets: [],
+      touchStartY: 0,
+      index: 0,
+    };
+  },
+  methods: {
+    calculateSectionOffsets() {
+      const sections = document.getElementsByTagName('section');
+      const length = [sections.length];
+      // console.log(sections);
+      // console.log(length);
+      for (let i = 0; i < length; i += 1) {
+        const sectionOffset = sections[i].offsetTop;
+        this.offsets.push(sectionOffset);
+        // console.log(this.offsets);
+      }
+    },
+    handleMouseWheel(e) {
+      if (e.wheelDelta < 30 && !this.inMove) {
+        this.moveUp();
+      } else if (e.wheelDelta > 30 && !this.inMove) {
+        this.moveDown();
+      }
+      e.preventDefault();
+      return false;
+    },
+    handleMouseWheelDOM(e) {
+      if (e.detail > 0 && !this.inMove) {
+        this.moveUp();
+      } else if (e.detail < 0 && !this.inMove) {
+        this.moveDown();
+      }
+      return false;
+    },
+    moveDown() {
+      this.inMove = true;
+      this.activeSection -= 1;
+      if (this.activeSection < 0) this.activeSection = this.offsets.length - 1;
+      this.scrollToSection(this.activeSection, true);
+    },
+    moveUp() {
+      this.inMove = true;
+      this.activeSection += 1;
+      if (this.activeSection > this.offsets.length - 1) this.activeSection = 0;
+      this.scrollToSection(this.activeSection, true);
+    },
+    scrollToSection(id, force = false) {
+      if (this.inMove && !force) return false;
+      this.activeSection = id;
+      this.inMove = true;
+      document.getElementsByTagName('section')[id].scrollIntoView({ behavior: 'smooth' });
+      // console.log(document.getElementsByTagName('section')[id]);
+      setTimeout(() => {
+        this.inMove = false;
+      }, 400);
+      return true;
+    },
+  },
+  mounted() {
+    this.calculateSectionOffsets();
+    window.addEventListener('DOMMouseScroll', this.handleMouseWheelDOM);
+    window.addEventListener('mousewheel', this.handleMouseWheel, { passive: false });
+  },
+  destroyed() {
+    window.removeEventListener('mousewheel', this.handleMouseWheel, { passive: false });
+    window.removeEventListener('DOMMouseScroll', this.handleMouseWheelDOM);
+  },
+};
+
+</script>
+<style>
+@import '../assets/styles/Main.css';
+</style>
