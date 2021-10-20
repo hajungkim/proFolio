@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -19,8 +20,8 @@ public class Certificate {
     private String name;
     @Column
     private String organization;
-    @Column
-    private String certified_date;
+    @Column(name = "certified_date")
+    private LocalDateTime certifiedDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "resume_id")
@@ -29,11 +30,11 @@ public class Certificate {
     public Certificate() {}
 
     @Builder
-    public Certificate(Long id, String name, String organization, String certified_date, Resume resume) {
+    public Certificate(Long id, String name, String organization, LocalDateTime certifiedDate, Resume resume) {
         this.id = id;
         this.name = name;
         this.organization = organization;
-        this.certified_date = certified_date;
+        this.certifiedDate = certifiedDate;
         this.resume = resume;
     }
 }

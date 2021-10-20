@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -19,10 +20,10 @@ public class Career {
     private String field;
     @Column
     private String duty;
-    @Column
-    private String start_date;
-    @Column
-    private String end_date;
+    @Column(name = "start_date")
+    private LocalDateTime startDate;
+    @Column(name = "end_date")
+    private LocalDateTime endDate;
     @Column
     private String description;
 
@@ -33,12 +34,12 @@ public class Career {
     public Career() {}
 
     @Builder
-    public Career(Long id, String field, String duty, String start_date, String end_date, String description, Resume resume) {
+    public Career(Long id, String field, String duty, LocalDateTime startDate, LocalDateTime endDate, String description, Resume resume) {
         this.id = id;
         this.field = field;
         this.duty = duty;
-        this.start_date = start_date;
-        this.end_date = end_date;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.description = description;
         this.resume = resume;
     }
