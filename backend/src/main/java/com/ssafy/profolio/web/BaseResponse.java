@@ -13,8 +13,15 @@ public class BaseResponse<T> {
     private String message;
     private T data;
 
-    public BaseResponse(T data, String message) {
+    // 성공일 경우 응답
+    public BaseResponse(T data) {
         this.code = BaseResponseCode.SUCCESS;
         this.data = data;
+    }
+
+    // 예외처리할 경우 응답
+    public BaseResponse(BaseResponseCode code, String message) {
+        this.code = code;
+        this.message = message;
     }
 }
