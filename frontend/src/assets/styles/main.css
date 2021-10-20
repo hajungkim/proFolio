@@ -25,10 +25,6 @@ h1 {
   padding: 0 1rem;
 }
 
-p {
-  font-size: 1em;
-}
-
 .fullpage a {
   text-decoration: none;
   font-weight: 600;
@@ -38,8 +34,8 @@ p {
   margin-left: 5px;
 }
 
-.red {
-  background-color: #ab4545;
+.purple {
+  background-color: #C1C5E5;
 }
 
 section.black {
@@ -47,11 +43,11 @@ section.black {
 }
 
 .blue {
-  background-color: #237ad4;
+  background-color: #519ff1;
 }
 
 .green {
-  background-color: #68c368;
+  background-color: #8ae28a;
 }
 
 h1.black {
@@ -64,7 +60,9 @@ h1.black {
   top: 50%;
   transform: translateY(-50%);
 }
-
+.sections-menu-hidden {
+  display: hidden;
+}
 .sections-menu .menu-point {
   width: 10px;
   height: 10px;
