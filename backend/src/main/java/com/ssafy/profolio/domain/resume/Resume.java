@@ -13,7 +13,7 @@ public class Resume {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "resume_id")
-    private Long resume_id;
+    private Long id;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
@@ -23,7 +23,7 @@ public class Resume {
 
     @Builder
     public Resume(Long id, User user){
-        this.resume_id = id;
+        this.id = id;
         this.user = user;
     }
 }

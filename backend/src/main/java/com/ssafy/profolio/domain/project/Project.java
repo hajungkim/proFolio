@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -21,18 +22,18 @@ public class Project {
     private String summary;
     @Column
     private String description;
-    @Column
-    private int member_cnt;
-    @Column
-    private String technology_stack;
+    @Column(name = "member_cnt")
+    private Integer memberCnt;
+    @Column(name = "technology_stack")
+    private String technologyStack;
     @Column
     private String role;
     @Column
     private String link;
-    @Column
-    private String start_date;
-    @Column
-    private String end_date;
+    @Column(name = "start_date")
+    private LocalDateTime startDate;
+    @Column(name = "end_date")
+    private LocalDateTime endDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "resume_id")
@@ -41,18 +42,18 @@ public class Project {
     public Project() {}
 
     @Builder
-    public Project(Long id, String title, String summary, String description, int member_cnt, String technology_stack, String role,
-                   String link, String start_date, String end_date, Resume resume){
+    public Project(Long id, String title, String summary, String description, Integer memberCnt, String technologyStack, String role,
+                   String link, LocalDateTime startDate, LocalDateTime endDate, Resume resume){
         this.id = id;
         this.title = title;
         this.summary = summary;
         this.description = description;
-        this.member_cnt = member_cnt;
-        this.technology_stack = technology_stack;
+        this.memberCnt = memberCnt;
+        this.technologyStack = technologyStack;
         this.role = role;
         this.link = link;
-        this.start_date = start_date;
-        this.end_date = end_date;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.resume = resume;
     }
 }

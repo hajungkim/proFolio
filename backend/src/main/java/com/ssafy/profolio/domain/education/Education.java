@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -23,16 +24,16 @@ public class Education {
     private String major;
     @Column
     private String minor;
-    @Column
-    private String admission_day;
-    @Column
-    private String graduation_day;
+    @Column(name = "admission_day")
+    private LocalDateTime admissionDay;
+    @Column(name = "graduation_day")
+    private LocalDateTime graduationDay;
     @Column
     private String graduation;
     @Column
     private String score;
-    @Column
-    private String total_score;
+    @Column(name = "total_score")
+    private Long totalScore;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "resume_id")
@@ -41,17 +42,17 @@ public class Education {
     public Education() {}
 
     @Builder
-    public Education(Long id, String university, String field4, String major, String minor, String admission_day, String graduation_day, String graduation, String score, String total_score, Resume resume) {
+    public Education(Long id, String university, String field4, String major, String minor, LocalDateTime admissionDay, LocalDateTime graduationDay, String graduation, String score, Long totalScore, Resume resume) {
         this.id = id;
         this.university = university;
         Field4 = field4;
         this.major = major;
         this.minor = minor;
-        this.admission_day = admission_day;
-        this.graduation_day = graduation_day;
+        this.admissionDay = admissionDay;
+        this.graduationDay = graduationDay;
         this.graduation = graduation;
         this.score = score;
-        this.total_score = total_score;
+        this.totalScore = totalScore;
         this.resume = resume;
     }
 }
