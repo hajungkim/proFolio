@@ -1,6 +1,6 @@
 <template>
   <div class="nav">
-    <div class="logo">
+    <div class="logo" @click="goToMain">
       proFolio
     </div>
     <div>
@@ -17,7 +17,7 @@
       <div v-else class="wrapper">
         <ul>
           <li><a href="#">증명사진</a></li>
-          <li><a href="#">로그인</a></li>
+          <li><a href="#" @click="goToLogin">로그인</a></li>
         </ul>
       </div>
     </div>
@@ -38,6 +38,13 @@ export default {
   methods: {
     changeHamburger() {
       this.$store.dispatch('changeHamburger', this.hamburger);
+    },
+    goToLogin() {
+      this.$router.push({ name: 'Login' });
+      this.$router.go();
+    },
+    goToMain() {
+      this.$router.push({ name: 'Main' });
     },
   },
 };
