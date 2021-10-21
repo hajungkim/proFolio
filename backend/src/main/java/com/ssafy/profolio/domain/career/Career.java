@@ -34,8 +34,7 @@ public class Career {
     public Career() {}
 
     @Builder
-    public Career(Long id, String field, String duty, LocalDateTime startDate, LocalDateTime endDate, String description, Resume resume) {
-        this.id = id;
+    public Career(String field, String duty, LocalDateTime startDate, LocalDateTime endDate, String description, Resume resume) {
         this.field = field;
         this.duty = duty;
         this.startDate = startDate;

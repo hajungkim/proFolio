@@ -29,8 +29,7 @@ public class TechnologyStack {
     public TechnologyStack() {}
 
     @Builder
-    public TechnologyStack(Long id, String name, String level, String description, Resume resume){
-        this.id = id;
+    public TechnologyStack(String name, String level, String description, Resume resume){
         this.name = name;
         this.level = level;
         this.description = description;

@@ -52,8 +52,7 @@ public class Resume {
     public Resume() {}
 
     @Builder
-    public Resume(Long id, User user){
-        this.id = id;
+    public Resume(User user){
         this.user = user;
     }
 }
