@@ -6,7 +6,6 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     isLogin: true,
-    hamburger: false,
     resume: {
       user: {
         profile_path: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-DjoQ3H0LFCWXLurl6qeHzGnbox2_cJTAmg&usqp=CAU', name: '아무개', birth: '2000.01.01', phone: '010-0000-0000', email: 'qwer@qwer.com',
