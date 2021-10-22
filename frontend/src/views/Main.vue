@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-bind:class="[ hamburger ? hidden : hamburgerClass]">
+    <div class="sections-menu">
       <span
          class="menu-point"
          v-bind:class="{active: activeSection == index}"
@@ -25,7 +25,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
 // @ is an alias to /src
 
 export default {
@@ -37,14 +36,7 @@ export default {
       offsets: [],
       touchStartY: 0,
       index: 0,
-      hidden: 'sections-menu-hidden',
-      hamburgerClass: 'sections-menu',
     };
-  },
-  computed: {
-    ...mapState([
-      'hamburger',
-    ]),
   },
   methods: {
     calculateSectionOffsets() {

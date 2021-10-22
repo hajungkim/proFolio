@@ -11,15 +11,18 @@
 .logo {
   font-size: 30px;
   margin-left: 30px;
+  cursor: pointer;
 }
 .wrapper{
   position: fixed;
   top: 0;
   right: -100%;
-  height: 100%;
-  width: 100%;
-  background: #000;
-  transition: all 0.6s ease-in-out;
+  height: 500px;
+  width: 500px;
+  background: #9ba4e4;
+  border-radius: 250px;
+	transform: translate(50%, -50%);
+  transition: all 0.8s ease-in-out;
 }
 #active:checked ~ .wrapper{
   right:0;
@@ -27,8 +30,8 @@
 .menu-btn{
   position: absolute;
   z-index: 2;
-  right: 10px;
-  top: 10px;
+  right: 5vh;
+  top: 8px;
   height: 50px;
   width: 50px;
   text-align: center;
@@ -60,7 +63,7 @@
 	width: 100%;
 	height: 100%;
 	pointer-events: none;
-	transition: background .6s;
+	transition: background .8s;
 }
 
 /* closing animation */
@@ -77,33 +80,27 @@
 }
 .wrapper ul{
   position: absolute;
-  top: 80%;
-  left: 50%;
+  top: 100%;
+  left: 30%;
   height: 90%;
   transform: translate(-50%, -50%);
   list-style: none;
-  text-align: center;
 }
 .wrapper ul li{
-  height: 10%;
-  margin: 15px 0;
+  height: 8%;
 }
 .wrapper ul li a{
+  font-weight: 560;
   text-decoration: none;
-  font-size: 30px;
-  font-weight: 500;
-  padding: 5px 30px;
-  color: #fff;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.781);
   line-height: 50px;
-  margin: 5px 30px;
   opacity: 0;
   transition: all 0.3s ease;
   transition: transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 .wrapper ul li a:hover{
-  background-color: #8d8d8d59;
-  border-radius: 30px;
-  padding: 18px 15px;
+  color: #fff;
 }
 .wrapper ul li a:hover:after{
   transform: scaleY(1);
