@@ -42,8 +42,7 @@ public class Education {
     public Education() {}
 
     @Builder
-    public Education(Long id, String university, String field4, String major, String minor, LocalDateTime admissionDay, LocalDateTime graduationDay, String graduation, String score, Long totalScore, Resume resume) {
-        this.id = id;
+    public Education(String university, String field4, String major, String minor, LocalDateTime admissionDay, LocalDateTime graduationDay, String graduation, String score, Long totalScore, Resume resume) {
         this.university = university;
         Field4 = field4;
         this.major = major;

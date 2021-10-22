@@ -34,8 +34,7 @@ public class Awards {
 
     @Builder
 
-    public Awards(Long id, String name, String prize, String description, LocalDateTime awardsDate, Resume resume) {
-        this.id = id;
+    public Awards(String name, String prize, String description, LocalDateTime awardsDate, Resume resume) {
         this.name = name;
         this.prize = prize;
         this.description = description;

@@ -25,8 +25,7 @@ public class Portfolio {
     public Portfolio() {}
 
     @Builder
-    public Portfolio(Long id, String url, User user) {
-        this.id = id;
+    public Portfolio(String url, User user) {
         this.url = url;
         this.user = user;
     }

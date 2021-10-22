@@ -33,8 +33,7 @@ public class Foreignlang {
 
     @Builder
 
-    public Foreignlang(Long id, String language, String name, String score, LocalDateTime certifiedDate, Resume resume) {
-        this.id = id;
+    public Foreignlang(String language, String name, String score, LocalDateTime certifiedDate, Resume resume) {
         this.language = language;
         this.name = name;
         this.score = score;

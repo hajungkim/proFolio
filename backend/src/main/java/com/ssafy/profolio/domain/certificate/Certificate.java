@@ -30,8 +30,7 @@ public class Certificate {
     public Certificate() {}
 
     @Builder
-    public Certificate(Long id, String name, String organization, LocalDateTime certifiedDate, Resume resume) {
-        this.id = id;
+    public Certificate(String name, String organization, LocalDateTime certifiedDate, Resume resume) {
         this.name = name;
         this.organization = organization;
         this.certifiedDate = certifiedDate;

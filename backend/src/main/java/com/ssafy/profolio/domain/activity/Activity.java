@@ -35,8 +35,7 @@ public class Activity {
     public Activity() {}
 
     @Builder
-    public Activity(Long id, String name, String organization, LocalDateTime startDate, LocalDateTime endDate, String description, Resume resume) {
-        this.id = id;
+    public Activity(String name, String organization, LocalDateTime startDate, LocalDateTime endDate, String description, Resume resume) {
         this.name = name;
         this.organization = organization;
         this.startDate = startDate;

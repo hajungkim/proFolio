@@ -42,9 +42,8 @@ public class Project {
     public Project() {}
 
     @Builder
-    public Project(Long id, String title, String summary, String description, Integer memberCnt, String technologyStack, String role,
+    public Project(String title, String summary, String description, Integer memberCnt, String technologyStack, String role,
                    String link, LocalDateTime startDate, LocalDateTime endDate, Resume resume){
-        this.id = id;
         this.title = title;
         this.summary = summary;
         this.description = description;
