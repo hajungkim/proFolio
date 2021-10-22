@@ -47,7 +47,7 @@ public class PortfolioService {
         }
     }
 
-    public Object getPortfolioList(Long userId){
+    public List<PortfolioDto> getPortfolioList(Long userId){
         List<Portfolio> portfolios = portfolioRepository.getByUser(userRepository.getById(userId));
         List<PortfolioDto> results = new ArrayList<>();
         for(Portfolio portfolio : portfolios){
@@ -56,9 +56,9 @@ public class PortfolioService {
         return results;
     }
 
-    public Portfolio putPortfolio(String name, String url){
+    public PortfolioDto putPortfolio(PortfolioDto param, String url){
         Portfolio portfolio = portfolioRepository.save(Portfolio.builder()
-            .name(name).url(url).build());
-        return portfolio;
+            .name(param.getName()).url(url).user(userRepository.getById(param.getUserId())).build());
+        return portfolio.entityToDto();
     }
 }
