@@ -3,14 +3,14 @@
     <div class="logo" @click="goToMain">
       proFolio
     </div>
-    <div>
+    <div class="wrapper-box">
       <input type="checkbox" id="active">
       <label for="active" class="menu-btn" @click="changeHamburger"><span></span></label>
       <label for="active" class="close"></label>
       <div v-if="isLogin" class="wrapper">
         <ul>
-          <li><a href="#">증명사진</a></li>
-          <li><a href="#">마이페이지</a></li>
+          <li style="margin-top: 20px"><a href="#">증명사진</a></li>
+          <li><a href="#" @click="goToMyPage">마이페이지</a></li>
           <li><a href="#">로그아웃</a></li>
         </ul>
       </div>
@@ -45,6 +45,10 @@ export default {
     },
     goToMain() {
       this.$router.push({ name: 'Main' });
+    },
+    goToMyPage() {
+      this.$router.push({ name: 'MyPage' });
+      this.$router.go();
     },
   },
 };

@@ -1,6 +1,7 @@
 package com.ssafy.profolio.domain.portfolio;
 
 import com.ssafy.profolio.domain.user.User;
+import com.ssafy.profolio.web.dto.PortfolioDto;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -18,6 +19,9 @@ public class Portfolio {
     @Column
     private String url;
 
+    @Column
+    private String name;
+
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
@@ -25,9 +29,13 @@ public class Portfolio {
     public Portfolio() {}
 
     @Builder
-    public Portfolio(Long id, String url, User user) {
-        this.id = id;
+    public Portfolio(String url, String name, User user) {
         this.url = url;
+        this.name = name;
         this.user = user;
+    }
+
+    public PortfolioDto entityToDto(){
+        return PortfolioDto.builder().id(id).name(name).url(url).userId(user.getId()).build();
     }
 }
