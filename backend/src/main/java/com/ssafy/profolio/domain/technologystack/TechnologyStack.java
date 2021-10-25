@@ -26,15 +26,19 @@ public class TechnologyStack {
     @Column(length = 500)
     private String description;
 
+    @Column
+    private int kind;       // 기술스택 종류 1:언어 2:프레임워크 3:DB
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
     @Builder
-    public TechnologyStack(String name, String level, String description, User user){
+    public TechnologyStack(String name, String level, String description, int kind, User user){
         this.name = name;
         this.level = level;
         this.description = description;
+        this.kind = kind;
         this.user = user;
     }
 }

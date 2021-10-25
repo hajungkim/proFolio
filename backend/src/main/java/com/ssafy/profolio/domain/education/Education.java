@@ -37,7 +37,7 @@ public class Education {
     private String graduationDate;
 
     @Column
-    private String graduation;
+    private boolean graduation;
 
     @Column
     private String score;
@@ -50,7 +50,7 @@ public class Education {
     private User user;
 
     @Builder
-    public Education(String university, boolean mainSchool, String major, String minor, String admissionDate, String graduationDate, String graduation, String score, Long totalScore, User user) {
+    public Education(String university, boolean mainSchool, String major, String minor, String admissionDate, String graduationDate, boolean graduation, String score, Long totalScore, User user) {
         this.university = university;
         this.mainSchool = mainSchool;
         this.major = major;
