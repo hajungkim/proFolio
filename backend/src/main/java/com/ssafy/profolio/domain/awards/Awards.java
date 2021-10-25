@@ -1,17 +1,18 @@
 package com.ssafy.profolio.domain.awards;
 
-import com.ssafy.profolio.domain.resume.Resume;
+import com.ssafy.profolio.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
-import org.apache.tomcat.jni.Local;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Getter
+@NoArgsConstructor
 @Table(name = "awards")
 public class Awards {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "awards_id")
@@ -19,26 +20,26 @@ public class Awards {
 
     @Column
     private String name;
+
     @Column
     private String prize;
-    @Column
+
+    @Column(length = 500)
     private String description;
+
     @Column(name = "awards_date")
-    private LocalDateTime awardsDate;
+    private String awardsDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "resume_id")
-    private Resume resume;
-
-    public Awards() {}
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Builder
-
-    public Awards(String name, String prize, String description, LocalDateTime awardsDate, Resume resume) {
+    public Awards(String name, String prize, String description, String awardsDate, User user) {
         this.name = name;
         this.prize = prize;
         this.description = description;
         this.awardsDate = awardsDate;
-        this.resume = resume;
+        this.user = user;
     }
 }

@@ -1,19 +1,16 @@
 package com.ssafy.profolio.web;
 
+import com.ssafy.profolio.exception.BaseException;
 import com.ssafy.profolio.service.ResumeService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = { "*" }, maxAge = 6000)
 @RequiredArgsConstructor
 @RestController
-@RequestMapping
+@RequestMapping("/resume")
 public class ResumeController {
 
     private final ResumeService resumeService;
-
-
 
 }
