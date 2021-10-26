@@ -1,16 +1,19 @@
 package com.ssafy.profolio.domain.project;
 
-import com.ssafy.profolio.domain.resume.Resume;
+import com.ssafy.profolio.domain.user.User;
+import com.ssafy.profolio.web.dto.ResumeDto;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Getter
+@NoArgsConstructor
 @Table(name = "project")
 public class Project {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "project_id")
@@ -18,32 +21,38 @@ public class Project {
 
     @Column
     private String title;
+
     @Column
     private String summary;
+
     @Column
     private String description;
+
     @Column(name = "member_cnt")
     private Integer memberCnt;
+
     @Column(name = "technology_stack")
     private String technologyStack;
+
     @Column
     private String role;
+
     @Column
     private String link;
+
     @Column(name = "start_date")
-    private LocalDateTime startDate;
+    private String startDate;
+
     @Column(name = "end_date")
-    private LocalDateTime endDate;
+    private String endDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "resume_id")
-    private Resume resume;
-
-    public Project() {}
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Builder
     public Project(String title, String summary, String description, Integer memberCnt, String technologyStack, String role,
-                   String link, LocalDateTime startDate, LocalDateTime endDate, Resume resume){
+                   String link, String startDate, String endDate, User user){
         this.title = title;
         this.summary = summary;
         this.description = description;
@@ -53,6 +62,18 @@ public class Project {
         this.link = link;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.resume = resume;
+        this.user = user;
+    }
+
+    public void updateProject(ResumeDto.ProjectRequest request) {
+        this.title = request.getTitle();
+        this.summary = request.getSummary();
+        this.description = request.getDescription();
+        this.memberCnt = request.getMemberCnt();
+        this.technologyStack = request.getTechnologyStack();
+        this.role = request.getRole();
+        this.link = request.getLink();
+        this.startDate = request.getStartDate();
+        this.endDate = request.getEndDate();
     }
 }

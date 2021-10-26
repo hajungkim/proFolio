@@ -1,16 +1,19 @@
 package com.ssafy.profolio.domain.certificate;
 
-import com.ssafy.profolio.domain.resume.Resume;
+import com.ssafy.profolio.domain.user.User;
+import com.ssafy.profolio.web.dto.ResumeDto;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Getter
+@NoArgsConstructor
 @Table(name = "certificate")
 public class Certificate {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "certificate_id")
@@ -18,22 +21,28 @@ public class Certificate {
 
     @Column
     private String name;
+
     @Column
     private String organization;
+
     @Column(name = "certified_date")
-    private LocalDateTime certifiedDate;
+    private String certifiedDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "resume_id")
-    private Resume resume;
-
-    public Certificate() {}
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Builder
-    public Certificate(String name, String organization, LocalDateTime certifiedDate, Resume resume) {
+    public Certificate(String name, String organization, String certifiedDate, User user) {
         this.name = name;
         this.organization = organization;
         this.certifiedDate = certifiedDate;
-        this.resume = resume;
+        this.user = user;
+    }
+
+    public void updateCertificate(ResumeDto.CertificateRequest request) {
+        this.name = request.getName();
+        this.organization = request.getOrganization();
+        this.certifiedDate = request.getCertifiedDate();
     }
 }

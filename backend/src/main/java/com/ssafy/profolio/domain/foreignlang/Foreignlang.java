@@ -1,16 +1,19 @@
 package com.ssafy.profolio.domain.foreignlang;
 
-import com.ssafy.profolio.domain.resume.Resume;
+import com.ssafy.profolio.domain.user.User;
+import com.ssafy.profolio.web.dto.ResumeDto;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Getter
+@NoArgsConstructor
 @Table(name = "foreign_lang")
 public class Foreignlang {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "foreign_lang_id")
@@ -18,26 +21,33 @@ public class Foreignlang {
 
     @Column
     private String language;
+
     @Column
     private String name;
+
     @Column
     private String score;
+
     @Column(name = "certified_date")
-    private LocalDateTime certifiedDate;
+    private String certifiedDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "resume_id")
-    private Resume resume;
-
-    public Foreignlang() {}
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Builder
-
-    public Foreignlang(String language, String name, String score, LocalDateTime certifiedDate, Resume resume) {
+    public Foreignlang(String language, String name, String score, String certifiedDate, User user) {
         this.language = language;
         this.name = name;
         this.score = score;
         this.certifiedDate = certifiedDate;
-        this.resume = resume;
+        this.user = user;
+    }
+
+    public void updateForeignLang(ResumeDto.ForeignLangRequest request) {
+        this.language = request.getLanguage();
+        this.name = request.getName();
+        this.score = request.getScore();
+        this.certifiedDate = request.getCertifiedDate();
     }
 }

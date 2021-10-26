@@ -1,17 +1,19 @@
 package com.ssafy.profolio.domain.activity;
 
-import com.ssafy.profolio.domain.resume.Resume;
+import com.ssafy.profolio.domain.user.User;
+import com.ssafy.profolio.web.dto.ResumeDto;
 import lombok.Builder;
 import lombok.Getter;
-import org.apache.tomcat.jni.Local;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Getter
+@NoArgsConstructor
 @Table(name = "activity")
 public class Activity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "activity_id")
@@ -19,28 +21,38 @@ public class Activity {
 
     @Column
     private String name;
+
     @Column
     private String organization;
+
     @Column(name = "start_date")
-    private LocalDateTime startDate;
+    private String startDate;
+
     @Column(name = "end_date")
-    private LocalDateTime endDate;
-    @Column
+    private String endDate;
+
+    @Column(length = 500)
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "resume_id")
-    private Resume resume;
-
-    public Activity() {}
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Builder
-    public Activity(String name, String organization, LocalDateTime startDate, LocalDateTime endDate, String description, Resume resume) {
+    public Activity(String name, String organization, String startDate, String endDate, String description, User user) {
         this.name = name;
         this.organization = organization;
         this.startDate = startDate;
         this.endDate = endDate;
         this.description = description;
-        this.resume = resume;
+        this.user = user;
+    }
+
+    public void updateActivity(ResumeDto.ActivityRequest request) {
+        this.name = request.getName();
+        this.organization = request.getOrganization();
+        this.startDate = request.getStartDate();
+        this.endDate = request.getEndDate();
+        this.description = request.getDescription();
     }
 }

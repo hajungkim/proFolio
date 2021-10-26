@@ -36,6 +36,6 @@ public class Portfolio {
     }
 
     public PortfolioDto entityToDto(){
-        return PortfolioDto.builder().id(id).name(name).url(url).userId(user.getUser_id()).build();
+        return PortfolioDto.builder().id(id).name(name).url(url).userId(user.getId()).build();
     }
 }
