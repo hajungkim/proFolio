@@ -5,7 +5,7 @@
         <img :src="resume.user.profile_path" class="read-resume-image">
         <div class="font-30">About</div>
         <div class="mt-15 ml-15">
-          <table>
+          <table class="read-resume-profile-table">
             <tr>
               <th>name</th>
               <td>{{ resume.user.name }}</td>
@@ -25,7 +25,7 @@
           </table>
         </div>
       </div>
-      <div class="resume-edit-btn">
+      <div class="resume-edit-btn" @click="goToResume">
         <div>수정</div>
       </div>
     </div>
@@ -35,7 +35,7 @@
         <div>{{ resume.education.university }}</div>
         <table class="read-resume-table">
           <tr>
-            <th>{{ resume.education.admission_day }} ~ {{ resume.education.graduation_day }}</th>
+            <th>{{ resume.education.admission_date }} ~ {{ resume.education.graduation_date }}</th>
             <td>{{ resume.education.graduation }}</td>
           </tr>
           <tr>
@@ -134,6 +134,11 @@ export default {
     ...mapState([
       'resume',
     ]),
+  },
+  methods: {
+    goToResume() {
+      this.$router.push({ name: 'Resume' });
+    },
   },
 };
 </script>

@@ -4,13 +4,47 @@
   padding-top: 8vh;
   height: 92vh;
 }
-.resume-wrapper {
-  margin: 0 auto;
-  width: 200px;
-  font-size: 14px;
-  grid-column: 1 / 3;
-  margin-top: 50px;
-  margin-left: 20px;
+@media screen and (max-width: 1200px) {
+  .resume-part {
+    grid-column: 3 / 13;
+    padding: 50px 80px 0px;
+  }
+  .resume-wrapper {
+    margin: 0 auto;
+    width: 200px;
+    font-size: 14px;
+    grid-column: 1 / 3;
+    margin-top: 50px;
+    margin-left: 80px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .resume-part {
+    grid-column: 4 / 13;
+    padding: 50px 150px;
+  }
+  .resume-wrapper {
+    margin: 0 auto;
+    width: 200px;
+    font-size: 14px;
+    grid-column: 2 / 4;
+    margin-top: 50px;
+    margin-left: 20px;
+  }
+}
+@media screen and (min-width: 1400px) {
+  .resume-part {
+    grid-column: 5 / 13;
+    padding: 50px 120px;
+  }
+  .resume-wrapper {
+    margin: 0 auto;
+    width: 200px;
+    font-size: 14px;
+    grid-column: 3 / 5;
+    margin-top: 50px;
+    margin-left: 20px;
+  }
 }
 .step-progress {
   position: relative;
@@ -87,8 +121,4 @@
 }
 .step-progress strong {
   display: block;
-}
-
-.resume-part {
-  grid-column: 3 / 13;
 }
