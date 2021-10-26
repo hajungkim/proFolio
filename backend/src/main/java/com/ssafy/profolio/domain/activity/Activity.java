@@ -1,6 +1,7 @@
 package com.ssafy.profolio.domain.activity;
 
 import com.ssafy.profolio.domain.user.User;
+import com.ssafy.profolio.web.dto.ResumeDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -45,5 +46,13 @@ public class Activity {
         this.endDate = endDate;
         this.description = description;
         this.user = user;
+    }
+
+    public void updateActivity(ResumeDto.ActivityRequest request) {
+        this.name = request.getName();
+        this.organization = request.getOrganization();
+        this.startDate = request.getStartDate();
+        this.endDate = request.getEndDate();
+        this.description = request.getDescription();
     }
 }
