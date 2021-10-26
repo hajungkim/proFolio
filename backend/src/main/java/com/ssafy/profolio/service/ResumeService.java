@@ -235,4 +235,54 @@ public class ResumeService {
                 .user(user).build();
         technologyStackRepository.save(technologyStack);
     }
+
+    @Transactional
+    public void updateActivity(Long id, ResumeDto.ActivityRequest request) {
+        Activity activity = activityRepository.getById(id);
+        activity.updateActivity(request);
+    }
+
+    @Transactional
+    public void updateAwards(Long id, ResumeDto.AwardsRequest request) {
+        Awards awards = awardsRepository.getById(id);
+        awards.updateAwards(request);
+    }
+
+    @Transactional
+    public void updateCareer(Long id, ResumeDto.CareerRequest request) {
+        Career career = careerRepository.getById(id);
+        career.updateCareer(request);
+    }
+
+    @Transactional
+    public void updateCertificate(Long id, ResumeDto.CertificateRequest request) {
+        Certificate certificate = certificateRepository.getById(id);
+        certificate.updateCertificate(request);
+    }
+
+    @Transactional
+    public void updateEducation(Long id, ResumeDto.EducationRequest request) {
+        Education education = educationRepository.findByUserId(id);
+        education.updateEducation(request);
+    }
+
+    @Transactional
+    public void updateForeignLang(Long id, ResumeDto.ForeignLangRequest request) {
+        Foreignlang foreignlang = foreignlangRepository.getById(id);
+        foreignlang.updateForeignLang(request);
+    }
+
+    @Transactional
+    public void updateProject(Long id, ResumeDto.ProjectRequest request) {
+        Project project = projectRepository.getById(id);
+        project.updateProject(request);
+    }
+
+    @Transactional
+    public void updateTechnologyStack(Long id, ResumeDto.TechnologyStackRequest request) {
+        TechnologyStack technologyStack = technologyStackRepository.getById(id);
+        technologyStack.updateTechnologyStack(request);
+    }
+
+
 }

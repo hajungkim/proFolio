@@ -119,4 +119,52 @@ public class ResumeController {
         return new BaseResponse<>("저장 완료");
     }
 
+    @PutMapping("/activity/{id}")
+    public BaseResponse<String> updateActivity(@PathVariable Long id, @RequestBody ResumeDto.ActivityRequest request) {
+        resumeService.updateActivity(id, request);
+        return new BaseResponse<>("수정 완료");
+    }
+
+    @PutMapping("/awards/{id}")
+    public BaseResponse<String> updateAwards(@PathVariable Long id, @RequestBody ResumeDto.AwardsRequest request) {
+        resumeService.updateAwards(id, request);
+        return new BaseResponse<>("수정 완료");
+    }
+
+    @PutMapping("/career/{id}")
+    public BaseResponse<String> updateCareer(@PathVariable Long id, @RequestBody ResumeDto.CareerRequest request) {
+        resumeService.updateCareer(id, request);
+        return new BaseResponse<>("수정 완료");
+    }
+
+    @PutMapping("/certificate/{id}")
+    public BaseResponse<String> updateCertificate(@PathVariable Long id, @RequestBody ResumeDto.CertificateRequest request) {
+        resumeService.updateCertificate(id, request);
+        return new BaseResponse<>("수정 완료");
+    }
+
+    @PutMapping("/education/{id}")
+    public BaseResponse<String> updateEducation(@PathVariable Long id, @RequestBody ResumeDto.EducationRequest request) {
+        resumeService.updateEducation(id, request);
+        return new BaseResponse<>("수정 완료");
+    }
+
+    @PutMapping("/foreign/{id}")
+    public BaseResponse<String> updateForeignLang(@PathVariable Long id, @RequestBody ResumeDto.ForeignLangRequest request) {
+        resumeService.updateForeignLang(id, request);
+        return new BaseResponse<>("수정 완료");
+    }
+
+    @PutMapping("/project/{id}")
+    public BaseResponse<String> updateProject(@PathVariable Long id, @RequestBody ResumeDto.ProjectRequest request) {
+        resumeService.updateProject(id, request);
+        return new BaseResponse<>("수정 완료");
+    }
+
+    @PutMapping("/technology/{id}")
+    public BaseResponse<String> updateTechnologyStack(@PathVariable Long id, @RequestBody ResumeDto.TechnologyStackRequest request) {
+        resumeService.updateTechnologyStack(id, request);
+        return new BaseResponse<>("수정 완료");
+    }
+
 }
