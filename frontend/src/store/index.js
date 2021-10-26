@@ -13,10 +13,10 @@ export default new Vuex.Store({
       education: {
         university: '싸피대학교',
         graduation: '졸업',
-        admission_day: '2020.03',
-        graduation_day: '2023.02',
+        admission_date: '2020.03',
+        graduation_date: '2023.02',
         score: '4.0',
-        total_score: '142',
+        total_score: '4.5',
         major: '컴공',
         minor: '',
       },
@@ -41,7 +41,7 @@ export default new Vuex.Store({
       career: [
         {
           id: '1',
-          name: '삼성청년SW아카데미',
+          company: '삼성청년SW아카데미',
           duty: '교육생111',
           description: 'Java, DB, 알고리즘에 대해 배우고 해당 내용을 바탕으로 다수의 프로젝트를 진행함',
           start_date: '2021.01',
@@ -49,7 +49,7 @@ export default new Vuex.Store({
         },
         {
           id: '2',
-          name: '삼성청년SW아카데미',
+          company: '삼성청년SW아카데미',
           duty: '교육생222',
           description: 'Python, Javascript, 알고리즘에 대해 배우고 해당 내용을 바탕으로 다수의 프로젝트를 진행함',
           start_date: '2021.01',
@@ -60,13 +60,11 @@ export default new Vuex.Store({
         {
           id: '1',
           name: '정보처리기사',
-          organization: '한국산업인력공단',
           certified_date: '2021.10.23',
         },
         {
           id: '2',
           name: 'SQLD',
-          organization: '한국산업인력공단',
           certified_date: '2021.02.23',
         },
       ],
@@ -75,7 +73,6 @@ export default new Vuex.Store({
           id: '1',
           language: '영어',
           name: '토익',
-          organization: '한국토익위원회',
           score: '900',
           certified_date: '2021.10.23',
         },
