@@ -1,6 +1,7 @@
 package com.ssafy.profolio.domain.awards;
 
 import com.ssafy.profolio.domain.user.User;
+import com.ssafy.profolio.web.dto.ResumeDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,5 +42,12 @@ public class Awards {
         this.description = description;
         this.awardsDate = awardsDate;
         this.user = user;
+    }
+
+    public void updateAwards(ResumeDto.AwardsRequest request) {
+        this.name = request.getName();
+        this.prize = request.getPrize();
+        this.description = request.getDescription();
+        this.awardsDate = request.getAwardsDate();
     }
 }

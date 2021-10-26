@@ -1,6 +1,7 @@
 package com.ssafy.profolio.domain.certificate;
 
 import com.ssafy.profolio.domain.user.User;
+import com.ssafy.profolio.web.dto.ResumeDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,5 +38,11 @@ public class Certificate {
         this.organization = organization;
         this.certifiedDate = certifiedDate;
         this.user = user;
+    }
+
+    public void updateCertificate(ResumeDto.CertificateRequest request) {
+        this.name = request.getName();
+        this.organization = request.getOrganization();
+        this.certifiedDate = request.getCertifiedDate();
     }
 }
