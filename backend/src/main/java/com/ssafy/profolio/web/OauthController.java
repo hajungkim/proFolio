@@ -2,6 +2,7 @@ package com.ssafy.profolio.web;
 
 import com.ssafy.profolio.helper.constants.SocialLoginType;
 import com.ssafy.profolio.service.OauthService;
+import com.ssafy.profolio.web.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.configurationprocessor.json.JSONException;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/auth")
 @Slf4j
 public class OauthController {
-    private static final String GOOGLE_SNS_CLIENT_ID = "445988236737-ik5gc4cdm5j2rnd5gtphq6sk6omi29oe.apps.googleusercontent.com";
+
     private final OauthService oauthService;
 
     /**
@@ -29,18 +30,27 @@ public class OauthController {
 
     /**
      * Social Login API Server 요청에 의한 callback 을 처리
-     * @param socialLoginType (GOOGLE, FACEBOOK, NAVER, KAKAO)
+     * socialLoginType (GOOGLE, FACEBOOK, NAVER, KAKAO)
      * @param code API Server 로부터 넘어노는 code
      * @return SNS Login 요청 결과로 받은 Json 형태의 String 문자열 (access_token, refresh_token 등)
     */
-    @GetMapping(value = "/{socialLoginType}/callback")
+    @GetMapping(value = "/google/callback")
     public void callback(
-            @PathVariable(name = "socialLoginType") SocialLoginType socialLoginType,
             @RequestParam(name = "code") String code) throws JSONException {
-        log.info(">> 소셜 로그인 API 서버로부터 받은 code :: {}", code);
+        log.info(">> GOOGLE 소셜 로그인 API 서버로부터 받은 code :: {}", code);
 
-        oauthService.requestAccessToken(socialLoginType, code);
+        SocialLoginType socialLoginType = SocialLoginType.GOOGLE;
+        UserDto userDto= oauthService.requestAccessToken(socialLoginType, code, code);
     }
+    @GetMapping(value = "/naver/callback")
+    public void callback_naver(
+            @RequestParam(name = "code") String code,
+            @RequestParam(name = "state") String state) throws JSONException {
+        log.info(">> NAVER 소셜 로그인 API 서버로부터 받은 code :: {}", code);
+        log.info(">> NAVER 소셜 로그인 API 서버로부터 받은 state :: {}", state);
 
+        SocialLoginType socialLoginType = SocialLoginType.NAVER;
+        UserDto userDto= oauthService.requestAccessToken(socialLoginType, code, state);
+    }
 
 }

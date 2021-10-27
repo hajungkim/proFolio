@@ -1,7 +1,11 @@
 package com.ssafy.profolio.service.social;
 
+import com.ssafy.profolio.web.dto.UserDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -12,6 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class GoogleOauth implements SocialOauth {
@@ -45,7 +50,7 @@ public class GoogleOauth implements SocialOauth {
     }
 
     @Override
-    public String requestAccessToken(String code) {
+    public String requestAccessToken(String state, String code) {
         RestTemplate restTemplate = new RestTemplate();
 
         Map<String, Object> params = new HashMap<>();
@@ -64,6 +69,15 @@ public class GoogleOauth implements SocialOauth {
         return "구글 로그인 요청 처리 실패";
     }
 
+    @Override
+    public String getToken(String result) throws JSONException {
+        JSONObject jObject = new JSONObject(result);
+        String access_token = jObject.getString("access_token");
+        //System.out.println(access_token);
+        return access_token;
+    }
+
+    @Override
     public String getUserInfo(String access_token) {
         try {
             RestTemplate restTemplate = new RestTemplate();
@@ -74,10 +88,27 @@ public class GoogleOauth implements SocialOauth {
                 return responseEntity.getBody();
             }
         } catch (HttpClientErrorException e) {
+            log.info(">>>>>>>> getUserInfo GOOGLE API 인증 실패 에러");
             e.printStackTrace();
         } catch (Exception e) {
+            log.info(">>>>>>>> GOOGLE API 에러");
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public UserDto makeUserDto(String response) throws JSONException {
+        JSONObject jObject = new JSONObject(response);
+
+        String socailId = "GOOGLE-"+jObject.getString("id");
+        String email = jObject.getString("email");
+        String picture = jObject.getString("picture");
+        String name = jObject.getString("name");
+
+        System.out.println(">>>>>GOOGLE : " + socailId);
+
+        UserDto result = new UserDto(socailId, email,name,null,picture);
+        return result;
     }
 }

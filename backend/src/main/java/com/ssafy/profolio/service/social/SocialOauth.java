@@ -1,6 +1,8 @@
 package com.ssafy.profolio.service.social;
 
 import com.ssafy.profolio.helper.constants.SocialLoginType;
+import com.ssafy.profolio.web.dto.UserDto;
+import org.springframework.boot.configurationprocessor.json.JSONException;
 
 public interface SocialOauth {
     /**
@@ -11,10 +13,12 @@ public interface SocialOauth {
 
     /**
      * API Server로부터 받은 code를 활용하여 사용자 인증 정보 요청
+     *
+     * @param s
      * @param code API Server 에서 받아온 code
      * @return API 서버로 부터 응답받은 Json 형태의 결과를 string으로 반
      */
-    String requestAccessToken(String code);
+    String requestAccessToken(String s, String code);
 
     default SocialLoginType type() {
         if (this instanceof GoogleOauth) {
@@ -25,4 +29,10 @@ public interface SocialOauth {
             return null;
         }
     }
+
+    String getToken(String result) throws JSONException;
+
+    String getUserInfo(String access_token);
+
+    UserDto makeUserDto(String response) throws JSONException;
 }

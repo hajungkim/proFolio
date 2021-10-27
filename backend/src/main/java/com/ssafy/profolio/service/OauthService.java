@@ -1,17 +1,17 @@
 package com.ssafy.profolio.service;
 
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.json.JsonFactory;
-import com.google.api.client.json.jackson2.JacksonFactory;
+import com.ssafy.profolio.domain.user.User;
+import com.ssafy.profolio.domain.user.UserRepository;
 import com.ssafy.profolio.helper.constants.SocialLoginType;
 import com.ssafy.profolio.service.social.GoogleOauth;
 import com.ssafy.profolio.service.social.NaverOauth;
 import com.ssafy.profolio.service.social.SocialOauth;
+import com.ssafy.profolio.web.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -21,11 +21,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OauthService {
 
-    private final GoogleOauth googleOauth;
-    private final NaverOauth naverOauth;
     private final HttpServletResponse response;
     private final List<SocialOauth> socialOauthList;
 
+    private final UserRepository userRepository;
 
     public void request(SocialLoginType socialLoginType) {
         SocialOauth socialOauth = this.findSocialOauthByType(socialLoginType);
@@ -37,30 +36,39 @@ public class OauthService {
         }
     }
 
-    public String requestAccessToken(SocialLoginType socialLoginType, String code) throws JSONException {
+    @Transactional
+    public UserDto requestAccessToken(SocialLoginType socialLoginType, String code, String state) throws JSONException {
         SocialOauth socialOauth = this.findSocialOauthByType(socialLoginType);
-        String result = socialOauth.requestAccessToken(code);
 
-        JSONObject jObject = new JSONObject(result);
-        String access_token = jObject.getString("access_token");
+        //받아온 code 값을 이용해서 access token 발급을 요청
+        String accessResult = socialOauth.requestAccessToken(code, state);
 
-        HttpTransport transport = new NetHttpTransport();
-        JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
+        //access_token parsing
+        String access_token = socialOauth.getToken(accessResult);
 
-        String result2 = googleOauth.getUserInfo(access_token);
-        System.out.println(result2);
-        jObject = new JSONObject(result2);
-        String userId = jObject.getString("id");
-        String email = jObject.getString("email");
-        String picture = jObject.getString("picture");
-        String name = jObject.getString("name");
+        //파싱한 access token을 이용해서 userinfo 프로필 정보 받아오기
+        String userinfo = socialOauth.getUserInfo(access_token);
+
+        UserDto userDto = socialOauth.makeUserDto(userinfo);
+
+        User user = userRepository.findBySocialId(userDto.getSocial_id()).orElseGet(
+                () -> {
+                    User newUser = User.builder()
+                            .social_id(userDto.getSocial_id())
+                            .email(userDto.getEmail())
+                            .name(userDto.getName())
+                            .phone(userDto.getPhone())
+                            .profile_path(userDto.getProfile_path())
+                            .build();
+                    userRepository.save(newUser);
+                    return newUser;
+                }
+        );
 
 
-        System.out.println(userId);
-        System.out.println(email);
-        System.out.println(name);
-        System.out.println(picture);
-        return "";
+
+
+        return userDto;
     }
 
     private SocialOauth findSocialOauthByType(SocialLoginType socialLoginType) {
