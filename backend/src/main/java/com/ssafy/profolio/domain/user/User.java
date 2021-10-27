@@ -30,7 +30,7 @@ public class User {
     @Column(name = "social_id", nullable = false)
     private String socialId;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String email;
 
     @Column(nullable = false)

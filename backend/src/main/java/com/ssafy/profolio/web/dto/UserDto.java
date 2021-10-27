@@ -1,10 +1,7 @@
 package com.ssafy.profolio.web.dto;
 
-import com.ssafy.profolio.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
-
-import javax.persistence.Column;
 
 @Getter
 public class UserDto {
