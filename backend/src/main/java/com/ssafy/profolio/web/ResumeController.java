@@ -167,4 +167,52 @@ public class ResumeController {
         return new BaseResponse<>("수정 완료");
     }
 
+    @DeleteMapping("/activity/{id}")
+    public BaseResponse<String> deleteActivity(@PathVariable Long id) {
+        resumeService.deleteActivity(id);
+        return new BaseResponse<>("삭제 완료");
+    }
+
+    @DeleteMapping("/awards/{id}")
+    public BaseResponse<String> deleteAwards(@PathVariable Long id) {
+        resumeService.deleteAwards(id);
+        return new BaseResponse<>("삭제 완료");
+    }
+
+    @DeleteMapping("/career/{id}")
+    public BaseResponse<String> deleteCareer(@PathVariable Long id) {
+        resumeService.deleteCareer(id);
+        return new BaseResponse<>("삭제 완료");
+    }
+
+    @DeleteMapping("/certificate/{id}")
+    public BaseResponse<String> deleteCertificate(@PathVariable Long id) {
+        resumeService.deleteCertificate(id);
+        return new BaseResponse<>("삭제 완료");
+    }
+
+    @DeleteMapping("/education/{id}")
+    public BaseResponse<String> deleteEducation(@PathVariable Long id) {
+        resumeService.deleteEducation(id);
+        return new BaseResponse<>("삭제 완료");
+    }
+
+    @DeleteMapping("/foreign/{id}")
+    public BaseResponse<String> deleteForeignLang(@PathVariable Long id) {
+        resumeService.deleteForeignLang(id);
+        return new BaseResponse<>("삭제 완료");
+    }
+
+    @DeleteMapping("/project/{id}")
+    public BaseResponse<String> deleteProject(@PathVariable Long id) {
+        resumeService.deleteProject(id);
+        return new BaseResponse<>("삭제 완료");
+    }
+
+    @DeleteMapping("/technology/{id}")
+    public BaseResponse<String> deleteTechnologyStack(@PathVariable Long id) {
+        resumeService.deleteTechnologyStack(id);
+        return new BaseResponse<>("삭제 완료");
+    }
+
 }
