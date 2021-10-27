@@ -1,7 +1,20 @@
+@font-face {
+    font-family: 'GongGothicMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ELAND_Choice_M';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/ELAND_Choice_M.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 .them1{
     display: grid;
     padding-top: 8vh;
     height: 92vh;
+    font-family: 'ELAND_Choice_M';
 }
 .them1 .menu{
     position: fixed;
@@ -46,6 +59,7 @@
 }
 .info{
     display: grid;
+    font-family: 'GongGothicMedium';
     grid-template-columns: repeat(7, 1fr);
     border-bottom: 1px solid #c4c4c4;
     margin-top: 2%;
@@ -93,6 +107,7 @@
     border-bottom: 1px solid #c4c4c4;
 }
 .name{
+    font-family: 'GongGothicMedium';
     color: #7B61FF;
     font-size: 2vw;
 }
@@ -105,8 +120,8 @@
     padding-top: 0;
 }
 .university{
-    font-weight:bold;
     margin: 5% 0;
+    font-size: 20px;
 }
 .sub{
     color: #756666;
@@ -143,5 +158,33 @@
     box-sizing: border-box;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
-
+}
+.mini-card{
+    width: 50%;
+    margin: 30px 0;
+    padding: 15px 40px;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+}
+.projects{
+    margin-right: 5%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.project-card{
+    margin: 20px;
+    padding: 30px 40px;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+}
+.summary{
+    font-weight: bold;
+    margin: 3% 0;
+}
+.subtitle{
+    color: #7B61FF;
+    font-weight: bold;
+    margin-top: 10%;
 }

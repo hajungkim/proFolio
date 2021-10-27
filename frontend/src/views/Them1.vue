@@ -16,7 +16,9 @@
           <Them1Info/>
           <Them1Skill/>
           <Them1Exp/>
+          <Them1Certi/>
           <Them1Awards/>
+          <Them1Project/>
       </div>
   </div>
 </template>
@@ -26,6 +28,8 @@ import Them1Info from '../components/Them1Info.vue';
 import Them1Skill from '../components/Them1Skill.vue';
 import Them1Exp from '../components/Them1Exp.vue';
 import Them1Awards from '../components/Them1Awards.vue';
+import Them1Certi from '../components/Them1Certi.vue';
+import Them1Project from '../components/Them1Project.vue';
 
 export default {
   name: 'Them1',
@@ -34,6 +38,8 @@ export default {
     Them1Skill,
     Them1Exp,
     Them1Awards,
+    Them1Certi,
+    Them1Project,
   },
 };
 </script>
