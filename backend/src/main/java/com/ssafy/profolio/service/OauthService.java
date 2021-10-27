@@ -8,6 +8,7 @@ import com.ssafy.profolio.service.social.NaverOauth;
 import com.ssafy.profolio.service.social.SocialOauth;
 import com.ssafy.profolio.web.dto.UserDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class OauthService {
@@ -42,12 +44,15 @@ public class OauthService {
 
         //받아온 code 값을 이용해서 access token 발급을 요청
         String accessResult = socialOauth.requestAccessToken(code, state);
+        log.info("\n>>>>> access token 요청 결과 : "+accessResult);
 
         //access_token parsing
         String access_token = socialOauth.getToken(accessResult);
+        log.info("\n>>>>> access token 값 : "+accessResult);
 
         //파싱한 access token을 이용해서 userinfo 프로필 정보 받아오기
         String userinfo = socialOauth.getUserInfo(access_token);
+        log.info("\n>>>>> 받아온 유저 정보 : " + userinfo);
 
         UserDto userDto = socialOauth.makeUserDto(userinfo);
 
