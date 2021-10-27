@@ -86,7 +86,7 @@ public class NaverOauth implements SocialOauth {
         if (responseEntity.getStatusCode() == HttpStatus.OK) {
             return responseEntity.getBody();
         }
-        return "네이버버 로그인 요청처리 실패";
+        return "네이버 로그인 요청처리 실패";
     }
 
     @Override
@@ -135,7 +135,7 @@ public class NaverOauth implements SocialOauth {
         String phone = response.getAsJsonObject().get("mobile").getAsString();
 
 
-        System.out.println(">>>>>NAVE : "+socailId);
+        log.info(">>>>>NAVE social Id: "+socailId);
         UserDto result = new UserDto(socailId, email,name,phone, picture);
         return result;
     }

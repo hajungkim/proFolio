@@ -52,5 +52,13 @@ public class OauthController {
         SocialLoginType socialLoginType = SocialLoginType.NAVER;
         UserDto userDto= oauthService.requestAccessToken(socialLoginType, code, state);
     }
+    @GetMapping(value = "/github/callback")
+    public void callback_github(
+            @RequestParam(name = "code") String code) throws JSONException {
+        log.info(">> GITHUB 소셜 로그인 API 서버로부터 받은 code :: {}", code);
+
+        SocialLoginType socialLoginType = SocialLoginType.GITHUB;
+        UserDto userDto= oauthService.requestAccessToken(socialLoginType, code, code);
+    }
 
 }

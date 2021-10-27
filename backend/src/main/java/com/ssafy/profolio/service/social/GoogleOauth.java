@@ -106,7 +106,7 @@ public class GoogleOauth implements SocialOauth {
         String picture = jObject.getString("picture");
         String name = jObject.getString("name");
 
-        System.out.println(">>>>>GOOGLE : " + socailId);
+        log.info(">>>>>GOOGLE social Id: " + socailId);
 
         UserDto result = new UserDto(socailId, email,name,null,picture);
         return result;
