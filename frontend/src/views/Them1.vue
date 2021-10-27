@@ -14,17 +14,26 @@
       </div>
       <div class="content">
           <Them1Info/>
+          <Them1Skill/>
+          <Them1Exp/>
+          <Them1Awards/>
       </div>
   </div>
 </template>
 
 <script>
 import Them1Info from '../components/Them1Info.vue';
+import Them1Skill from '../components/Them1Skill.vue';
+import Them1Exp from '../components/Them1Exp.vue';
+import Them1Awards from '../components/Them1Awards.vue';
 
 export default {
   name: 'Them1',
   components: {
     Them1Info,
+    Them1Skill,
+    Them1Exp,
+    Them1Awards,
   },
 };
 </script>
