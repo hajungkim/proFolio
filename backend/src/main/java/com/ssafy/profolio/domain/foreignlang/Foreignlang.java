@@ -1,6 +1,7 @@
 package com.ssafy.profolio.domain.foreignlang;
 
 import com.ssafy.profolio.domain.user.User;
+import com.ssafy.profolio.web.dto.ResumeDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,5 +42,12 @@ public class Foreignlang {
         this.score = score;
         this.certifiedDate = certifiedDate;
         this.user = user;
+    }
+
+    public void updateForeignLang(ResumeDto.ForeignLangRequest request) {
+        this.language = request.getLanguage();
+        this.name = request.getName();
+        this.score = request.getScore();
+        this.certifiedDate = request.getCertifiedDate();
     }
 }

@@ -128,4 +128,200 @@ public class ResumeService {
                 education.getMajor(), education.getMinor(), education.getAdmissionDate(), education.getGraduationDate(),
                 education.isGraduation(), education.getScore(), education.getTotalScore());
     }
+
+    @Transactional
+    public void saveActivity(ResumeDto.ActivityRequest request) {
+        User user = userRepository.getById(request.getUserId());
+        Activity activity = Activity.builder()
+                .name(request.getName())
+                .organization(request.getOrganization())
+                .startDate(request.getStartDate())
+                .endDate(request.getEndDate())
+                .description(request.getDescription())
+                .user(user).build();
+        activityRepository.save(activity);
+    }
+
+    @Transactional
+    public void saveAwards(ResumeDto.AwardsRequest request) {
+        User user = userRepository.getById(request.getUserId());
+        Awards awards = Awards.builder()
+                .name(request.getName())
+                .prize(request.getPrize())
+                .description(request.getDescription())
+                .awardsDate(request.getAwardsDate())
+                .user(user).build();
+        awardsRepository.save(awards);
+    }
+
+    @Transactional
+    public void saveCareer(ResumeDto.CareerRequest request) {
+        User user = userRepository.getById(request.getUserId());
+        Career career = Career.builder()
+                .company(request.getCompany())
+                .duty(request.getDuty())
+                .startDate(request.getStartDate())
+                .endDate(request.getEndDate())
+                .description(request.getDescription())
+                .user(user).build();
+        careerRepository.save(career);
+    }
+
+    @Transactional
+    public void saveCertificate(ResumeDto.CertificateRequest request) {
+        User user = userRepository.getById(request.getUserId());
+        Certificate certificate = Certificate.builder()
+                .name(request.getName())
+                .organization(request.getOrganization())
+                .certifiedDate(request.getCertifiedDate())
+                .user(user).build();
+        certificateRepository.save(certificate);
+    }
+
+    @Transactional
+    public void saveEducation(ResumeDto.EducationRequest request) {
+        User user = userRepository.getById(request.getUserId());
+        Education education = Education.builder()
+                .university(request.getUniversity())
+                .mainSchool(request.isMainSchool())
+                .major(request.getMajor())
+                .minor(request.getMinor())
+                .admissionDate(request.getAdmissionDate())
+                .graduationDate(request.getGraduationDate())
+                .graduation(request.isGraduation())
+                .score(request.getScore())
+                .totalScore(request.getTotalScore())
+                .user(user).build();
+        educationRepository.save(education);
+    }
+
+    @Transactional
+    public void saveForeignLang(ResumeDto.ForeignLangRequest request) {
+        User user = userRepository.getById(request.getUserId());
+        Foreignlang foreignlang = Foreignlang.builder()
+                .language(request.getLanguage())
+                .name(request.getName())
+                .score(request.getScore())
+                .certifiedDate(request.getCertifiedDate())
+                .user(user).build();
+        foreignlangRepository.save(foreignlang);
+    }
+
+    @Transactional
+    public void saveProject(ResumeDto.ProjectRequest request) {
+        User user = userRepository.getById(request.getUserId());
+        Project project = Project.builder()
+                .title(request.getTitle())
+                .summary(request.getSummary())
+                .description(request.getDescription())
+                .memberCnt(request.getMemberCnt())
+                .technologyStack(request.getTechnologyStack())
+                .role(request.getRole())
+                .link(request.getLink())
+                .startDate(request.getStartDate())
+                .endDate(request.getEndDate())
+                .user(user).build();
+        projectRepository.save(project);
+    }
+
+    @Transactional
+    public void saveTechnologyStack(ResumeDto.TechnologyStackRequest request) {
+        User user = userRepository.getById(request.getUserId());
+        TechnologyStack technologyStack = TechnologyStack.builder()
+                .name(request.getName())
+                .level(request.getLevel())
+                .description(request.getDescription())
+                .kind(request.getKind())
+                .user(user).build();
+        technologyStackRepository.save(technologyStack);
+    }
+
+    @Transactional
+    public void updateActivity(Long id, ResumeDto.ActivityRequest request) {
+        Activity activity = activityRepository.getById(id);
+        activity.updateActivity(request);
+    }
+
+    @Transactional
+    public void updateAwards(Long id, ResumeDto.AwardsRequest request) {
+        Awards awards = awardsRepository.getById(id);
+        awards.updateAwards(request);
+    }
+
+    @Transactional
+    public void updateCareer(Long id, ResumeDto.CareerRequest request) {
+        Career career = careerRepository.getById(id);
+        career.updateCareer(request);
+    }
+
+    @Transactional
+    public void updateCertificate(Long id, ResumeDto.CertificateRequest request) {
+        Certificate certificate = certificateRepository.getById(id);
+        certificate.updateCertificate(request);
+    }
+
+    @Transactional
+    public void updateEducation(Long id, ResumeDto.EducationRequest request) {
+        Education education = educationRepository.findByUserId(id);
+        education.updateEducation(request);
+    }
+
+    @Transactional
+    public void updateForeignLang(Long id, ResumeDto.ForeignLangRequest request) {
+        Foreignlang foreignlang = foreignlangRepository.getById(id);
+        foreignlang.updateForeignLang(request);
+    }
+
+    @Transactional
+    public void updateProject(Long id, ResumeDto.ProjectRequest request) {
+        Project project = projectRepository.getById(id);
+        project.updateProject(request);
+    }
+
+    @Transactional
+    public void updateTechnologyStack(Long id, ResumeDto.TechnologyStackRequest request) {
+        TechnologyStack technologyStack = technologyStackRepository.getById(id);
+        technologyStack.updateTechnologyStack(request);
+    }
+
+    @Transactional
+    public void deleteActivity(Long id) {
+        activityRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void deleteAwards(Long id) {
+        awardsRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void deleteCareer(Long id) {
+        careerRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void deleteCertificate(Long id) {
+        certificateRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void deleteEducation(Long id) {
+        educationRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void deleteForeignLang(Long id) {
+        foreignlangRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void deleteProject(Long id) {
+        projectRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void deleteTechnologyStack(Long id) {
+        technologyStackRepository.deleteById(id);
+    }
+
 }

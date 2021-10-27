@@ -1,6 +1,7 @@
 package com.ssafy.profolio.domain.project;
 
 import com.ssafy.profolio.domain.user.User;
+import com.ssafy.profolio.web.dto.ResumeDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -62,5 +63,17 @@ public class Project {
         this.startDate = startDate;
         this.endDate = endDate;
         this.user = user;
+    }
+
+    public void updateProject(ResumeDto.ProjectRequest request) {
+        this.title = request.getTitle();
+        this.summary = request.getSummary();
+        this.description = request.getDescription();
+        this.memberCnt = request.getMemberCnt();
+        this.technologyStack = request.getTechnologyStack();
+        this.role = request.getRole();
+        this.link = request.getLink();
+        this.startDate = request.getStartDate();
+        this.endDate = request.getEndDate();
     }
 }
