@@ -22,6 +22,7 @@
         <Them3Exp/>
         <Them3Skill/>
         <Them3Awards/>
+        <Them3Project/>
       </div>
   </div>
 </template>
@@ -32,6 +33,7 @@ import Them3Certi from '../components/Them3Certi.vue';
 import Them3Edu from '../components/Them3Edu.vue';
 import Them3Exp from '../components/Them3Exp.vue';
 import Them3Info from '../components/Them3Info.vue';
+import Them3Project from '../components/Them3Project.vue';
 import Them3Skill from '../components/Them3Skill.vue';
 
 export default {
@@ -43,6 +45,7 @@ export default {
     Them3Exp,
     Them3Skill,
     Them3Awards,
+    Them3Project,
   },
   data() {
     return {

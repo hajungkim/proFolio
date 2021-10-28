@@ -1,7 +1,18 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
 .them3{
+    font-family: 'Pretendard-Regular';
     background-color: #EFF1FF;
     min-height: 100vh;
     padding-top: 5%;
+}
+.them3 .name{
+    font-family: 'Pretendard-Regular';
+    font-weight: bold;
 }
 .them3-content{
     padding-left: 20%;
@@ -64,6 +75,7 @@
     margin-left: 20%;
 }
 .user-name{
+    font-family: 'GongGothicMedium';
     margin-left: 5%;
     font-size: 4vw;
     color: #7B61FF
@@ -107,4 +119,16 @@
     background-color: white;
     margin-right: 16%;
     padding: 10% 10% 5% 10%;
+}
+.them3-projects{
+    grid-column: 1 / span 2;
+}
+.them3-card{
+    background-color: white;
+    padding: 5%;
+    margin: 4% 8% 5% 5%;
+}
+.grid2{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 }
