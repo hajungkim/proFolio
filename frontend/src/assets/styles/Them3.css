@@ -1,0 +1,76 @@
+.them3{
+    background-color: #EFF1FF;
+    padding-top: 5%;
+}
+.them3-content{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+.them3 .menu{
+    grid-column: 1 / span 1;
+    background-color: white;
+    margin-left: 30%;
+    padding-top: 1%;
+    height: 70vh;
+    width: 15vw;
+}
+.them3 .menu li{
+    list-style: none;
+    padding: 7%;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.them3 .menu li:hover{
+    color: #3e317c;
+}
+.itmes{
+    color: #7B61FF;
+    text-align: center;
+    margin: 10%;
+    padding: 0;
+}
+.menu-buttons{
+    position: relative;
+    bottom: 0;
+    left: 0;
+    margin-top: 30%;
+}
+.menu-buttons div{
+    margin: 5% auto;
+}
+.box{
+    margin: 0;
+    position: absolute;
+    left: 15vw;
+    top: 22vh;
+    width: 15vw;
+    height: 30vh;
+}
+.them3-info{
+    margin: 3% 0;
+}
+.info-box{
+    background-color: white;
+    width: 53vw;
+    height: 30vh;
+    margin-left: 24%;
+    padding: 3% 8%;
+}
+.info-detail{
+    margin-left: 20%;
+}
+.user-name{
+    margin-left: 5%;
+    font-size: 4vw;
+    color: #7B61FF
+}
+.line{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 3%;
+    font-size: 1.3vw;
+}
+.line-title{
+    grid-column: 1;
+    font-weight: bold;
+}
