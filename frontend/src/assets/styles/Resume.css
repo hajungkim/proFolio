@@ -34,14 +34,14 @@
 }
 @media screen and (min-width: 1400px) {
   .resume-part {
-    grid-column: 5 / 13;
-    padding: 50px 120px;
+    grid-column: 4 / 13;
+    padding: 50px 130px;
   }
   .resume-wrapper {
     margin: 0 auto;
     width: 200px;
     font-size: 14px;
-    grid-column: 3 / 5;
+    grid-column: 2 / 4;
     margin-top: 50px;
     margin-left: 20px;
   }
