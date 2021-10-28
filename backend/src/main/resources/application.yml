@@ -8,14 +8,14 @@ spring:
     active: local
     include: aws, credentials, oauth
   jpa:
+    defer-datasource-initialization: true
+    generate-ddl: true
     database: mysql
-#        defer-datasource-initialization: true #DB생성관련
-#        generate-ddl: true #DB생성관련
-#    datasource:
-#        initialization-mode: always #DB생성관련
-    hibernate:
+    datasource:
       driver-class-name: com.mysql.cj.jdbc.Driver
-#          ddl-auto: create #DB생성관련
+      initialization-mode: always
+    hibernate:
+      ddl-auto: update
     show-sql: true
 
 
@@ -35,7 +35,7 @@ spring:
 spring:
   profiles: prod
   datasource:
-    url: jdbc:mysql://.p.ssafy.io:3306/?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://k5b203.p.ssafy.io:3306/profolio?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
     username: root
     password: {{password}}
     driver-class-name: com.mysql.cj.jdbc.Driver
