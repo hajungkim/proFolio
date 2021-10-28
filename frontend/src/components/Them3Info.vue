@@ -1,6 +1,6 @@
 <template>
   <div class="them3-info">
-      <div class="box">
+      <div class="them3-box">
           <img :src="resume.user.profile_path" class="profile-img"/>
       </div>
       <div class="info-box">

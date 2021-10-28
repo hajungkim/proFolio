@@ -81,7 +81,7 @@
     height: 50vh;
     grid-template-columns: repeat(2, 1fr);
 }
-.box{
+.them1-box{
     border-radius: 70%;
     width: 10vw;
     height: 20vh;

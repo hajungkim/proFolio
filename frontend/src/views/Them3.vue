@@ -1,7 +1,6 @@
 <template>
   <div class="them3">
       <Them3Info/>
-      <div class="them3-content">
         <div class="menu">
           <ul class="itmes">
             <li>Info</li>
@@ -17,15 +16,20 @@
             <div>변환</div>
           </div>
         </div>
+      <div class="them3-content">
+        <Them3Edu/>
+        <Them3Certi/>
       </div>
   </div>
 </template>
 
 <script>
+import Them3Certi from '../components/Them3Certi.vue';
+import Them3Edu from '../components/Them3Edu.vue';
 import Them3Info from '../components/Them3Info.vue';
 
 export default {
-  components: { Them3Info },
+  components: { Them3Info, Them3Edu, Them3Certi },
   name: 'Them3',
   data() {
     return {

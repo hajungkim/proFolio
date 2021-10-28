@@ -1,16 +1,18 @@
 .them3{
     background-color: #EFF1FF;
+    min-height: 100vh;
     padding-top: 5%;
 }
 .them3-content{
+    padding-left: 20%;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(2, 1fr);
 }
 .them3 .menu{
-    grid-column: 1 / span 1;
+    position: absolute;
     background-color: white;
-    margin-left: 30%;
-    padding-top: 1%;
+    left: 5%;
+    top: 59%;
     height: 70vh;
     width: 15vw;
 }
@@ -38,13 +40,15 @@
 .menu-buttons div{
     margin: 5% auto;
 }
-.box{
+.them3-box{
     margin: 0;
     position: absolute;
     left: 15vw;
     top: 22vh;
     width: 15vw;
     height: 30vh;
+    border-radius: 70%;
+    overflow: hidden;
 }
 .them3-info{
     margin: 3% 0;
@@ -73,4 +77,16 @@
 .line-title{
     grid-column: 1;
     font-weight: bold;
+}
+.them3-edu{
+    background-color: white;
+    grid-column: 1;
+    margin-left: 10%;
+    margin-right: 6%;
+    padding: 10% 10% 5% 10%;
+}
+.them3-certi{
+    background-color: white;
+    margin-right: 16%;
+    padding: 10% 10% 5% 10%;
 }
