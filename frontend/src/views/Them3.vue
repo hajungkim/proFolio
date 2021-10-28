@@ -19,18 +19,31 @@
       <div class="them3-content">
         <Them3Edu/>
         <Them3Certi/>
+        <Them3Exp/>
+        <Them3Skill/>
+        <Them3Awards/>
       </div>
   </div>
 </template>
 
 <script>
+import Them3Awards from '../components/Them3Awards.vue';
 import Them3Certi from '../components/Them3Certi.vue';
 import Them3Edu from '../components/Them3Edu.vue';
+import Them3Exp from '../components/Them3Exp.vue';
 import Them3Info from '../components/Them3Info.vue';
+import Them3Skill from '../components/Them3Skill.vue';
 
 export default {
-  components: { Them3Info, Them3Edu, Them3Certi },
   name: 'Them3',
+  components: {
+    Them3Info,
+    Them3Edu,
+    Them3Certi,
+    Them3Exp,
+    Them3Skill,
+    Them3Awards,
+  },
   data() {
     return {
     };

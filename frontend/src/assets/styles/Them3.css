@@ -11,9 +11,9 @@
 .them3 .menu{
     position: absolute;
     background-color: white;
-    left: 5%;
-    top: 59%;
-    height: 70vh;
+    left: 5vw;
+    top: 64vh;
+    height: 77vh;
     width: 15vw;
 }
 .them3 .menu li{
@@ -86,6 +86,24 @@
     padding: 10% 10% 5% 10%;
 }
 .them3-certi{
+    background-color: white;
+    margin-right: 16%;
+    padding: 10% 10% 5% 10%;
+}
+.them3-exp{
+    background-color: white;
+    grid-column: 1 / span 2;
+    padding: 5%;
+    margin: 4% 8% 5% 5%;
+}
+.them3-skill{
+    background-color: white;
+    grid-column: 1;
+    margin-left: 10%;
+    margin-right: 6%;
+    padding: 10% 10% 5% 10%;
+}
+.them3-awards{
     background-color: white;
     margin-right: 16%;
     padding: 10% 10% 5% 10%;
