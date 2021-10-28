@@ -1,0 +1,134 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+.them3{
+    font-family: 'Pretendard-Regular';
+    background-color: #EFF1FF;
+    min-height: 100vh;
+    padding-top: 5%;
+}
+.them3 .name{
+    font-family: 'Pretendard-Regular';
+    font-weight: bold;
+}
+.them3-content{
+    padding-left: 20%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.them3 .menu{
+    position: absolute;
+    background-color: white;
+    left: 5vw;
+    top: 64vh;
+    height: 77vh;
+    width: 15vw;
+}
+.them3 .menu li{
+    list-style: none;
+    padding: 7%;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.them3 .menu li:hover{
+    color: #3e317c;
+}
+.itmes{
+    color: #7B61FF;
+    text-align: center;
+    margin: 10%;
+    padding: 0;
+}
+.menu-buttons{
+    position: relative;
+    bottom: 0;
+    left: 0;
+    margin-top: 30%;
+}
+.menu-buttons div{
+    margin: 5% auto;
+}
+.them3-box{
+    margin: 0;
+    position: absolute;
+    left: 15vw;
+    top: 22vh;
+    width: 15vw;
+    height: 30vh;
+    border-radius: 70%;
+    overflow: hidden;
+}
+.them3-info{
+    margin: 3% 0;
+}
+.info-box{
+    background-color: white;
+    width: 53vw;
+    height: 30vh;
+    margin-left: 24%;
+    padding: 3% 8%;
+}
+.info-detail{
+    margin-left: 20%;
+}
+.user-name{
+    font-family: 'GongGothicMedium';
+    margin-left: 5%;
+    font-size: 4vw;
+    color: #7B61FF
+}
+.line{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 3%;
+    font-size: 1.3vw;
+}
+.line-title{
+    grid-column: 1;
+    font-weight: bold;
+}
+.them3-edu{
+    background-color: white;
+    grid-column: 1;
+    margin-left: 10%;
+    margin-right: 6%;
+    padding: 10% 10% 5% 10%;
+}
+.them3-certi{
+    background-color: white;
+    margin-right: 16%;
+    padding: 10% 10% 5% 10%;
+}
+.them3-exp{
+    background-color: white;
+    grid-column: 1 / span 2;
+    padding: 5%;
+    margin: 4% 8% 5% 5%;
+}
+.them3-skill{
+    background-color: white;
+    grid-column: 1;
+    margin-left: 10%;
+    margin-right: 6%;
+    padding: 10% 10% 5% 10%;
+}
+.them3-awards{
+    background-color: white;
+    margin-right: 16%;
+    padding: 10% 10% 5% 10%;
+}
+.them3-projects{
+    grid-column: 1 / span 2;
+}
+.them3-card{
+    background-color: white;
+    padding: 5%;
+    margin: 4% 8% 5% 5%;
+}
+.grid2{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}

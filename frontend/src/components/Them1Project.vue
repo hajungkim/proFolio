@@ -9,7 +9,7 @@
           <div class="subtitle">개발기간</div>
           <div>{{pro.start_date}} ~ {{pro.end_date}}</div>
           <div class="subtitle">역할</div>
-          <div>{{pro.summary}}</div>
+          <div>{{pro.role}}</div>
           <div class="subtitle">참여인원</div>
           <div>{{pro.member_cnt}}</div>
           <div style="float: right; font-weight:bold">{{pro.link}}</div>
@@ -21,7 +21,7 @@
 import { mapState } from 'vuex';
 
 export default {
-  name: 'Them1Certi',
+  name: 'Them1Project',
   data() {
     return {
     };
