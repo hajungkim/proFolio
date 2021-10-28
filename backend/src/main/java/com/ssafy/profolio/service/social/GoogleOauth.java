@@ -113,7 +113,7 @@ public class GoogleOauth implements SocialOauth {
 
         log.info(">>>>>GOOGLE social Id: " + socailId);
 
-        UserDto result = new UserDto(socailId, email,name,null,picture);
+        UserDto result = new UserDto(socailId, email,name,null,null,picture);
         return result;
     }
 }
