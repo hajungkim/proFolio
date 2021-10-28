@@ -1,0 +1,41 @@
+server:
+  port : 7777
+  servlet:
+    context-path: /api
+
+spring:
+  profiles:
+    active: local
+    include: aws, credentials, oauth
+  jpa:
+    database: mysql
+#        defer-datasource-initialization: true #DB생성관련
+#        generate-ddl: true #DB생성관련
+#    datasource:
+#        initialization-mode: always #DB생성관련
+    hibernate:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+#          ddl-auto: create #DB생성관련
+    show-sql: true
+
+
+---
+# 개발
+spring:
+  profiles: local
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/profolio?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
+    username: root
+    password: ssafy
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+---
+# 배포 환경
+spring:
+  profiles: prod
+  datasource:
+    url: jdbc:mysql://.p.ssafy.io:3306/?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
+    username: root
+    password: {{password}}
+    driver-class-name: com.mysql.cj.jdbc.Driver
