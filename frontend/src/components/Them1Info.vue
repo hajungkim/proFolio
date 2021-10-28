@@ -2,7 +2,9 @@
   <div class="info">
       <div class="left">
           <div class="title">
-              <div class="box"><img :src = "resume.user.profile_path" class="profile-img"></div>
+              <div class="them1-box">
+                <img :src = "resume.user.profile_path" class="profile-img">
+              </div>
               <div class="slogan">
                 <div>성장하는</div>
                 <div style="color: #7B61FF; font-size: 3vw">개발자</div>

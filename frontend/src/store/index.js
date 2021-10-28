@@ -110,6 +110,27 @@ export default new Vuex.Store({
           description: '????',
           kind: 2,
         },
+        {
+          id: '3',
+          name: 'Vue',
+          level: '4',
+          description: '????',
+          kind: 2,
+        },
+        {
+          id: '4',
+          name: 'Git',
+          level: '3',
+          description: '????',
+          kind: 3,
+        },
+        {
+          id: '5',
+          name: 'Python',
+          level: '1',
+          description: '????',
+          kind: 1,
+        },
       ],
       project: [
         {
