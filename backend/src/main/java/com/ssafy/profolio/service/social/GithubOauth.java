@@ -67,12 +67,17 @@ public class GithubOauth implements SocialOauth {
     }
 
     @Override
-    public String getToken(String result) throws JSONException {
+    public String getAccessToken(String result) throws JSONException {
         System.out.println(result);
         String[] temp = result.split("&");
         String[] temp2 = temp[0].split("=");
         String access_token = temp2[1];
         return access_token;
+    }
+
+    @Override
+    public String getRefreshToken(String result) throws JSONException {
+        return null;
     }
 
     @Override

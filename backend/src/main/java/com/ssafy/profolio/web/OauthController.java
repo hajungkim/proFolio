@@ -1,12 +1,24 @@
 package com.ssafy.profolio.web;
 
+import com.ssafy.profolio.domain.user.User;
 import com.ssafy.profolio.helper.constants.SocialLoginType;
 import com.ssafy.profolio.service.OauthService;
+import com.ssafy.profolio.service.UserService;
 import com.ssafy.profolio.web.dto.UserDto;
+import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
+import java.util.stream.DoubleStream;
 
 @RestController
 @CrossOrigin
@@ -16,6 +28,10 @@ import org.springframework.web.bind.annotation.*;
 public class OauthController {
 
     private final OauthService oauthService;
+    private final UserService userService;
+
+    private final String signature = "LOGINTOKEN";
+    private final Long expireMin = 30L;
 
     /**
      * 사용자로부터 SNS 로그인 요청을 Social Login Type 을 받아 처리
@@ -35,15 +51,21 @@ public class OauthController {
      * @return SNS Login 요청 결과로 받은 Json 형태의 String 문자열 (access_token, refresh_token 등)
     */
     @GetMapping(value = "/google/callback")
-    public void callback(
-            @RequestParam(name = "code") String code) throws JSONException {
+    public BaseResponse callback(
+            @RequestParam(name = "code") String code,
+            HttpServletResponse response) throws JSONException {
         log.info(">> GOOGLE 소셜 로그인 API 서버로부터 받은 code :: {}", code);
 
         SocialLoginType socialLoginType = SocialLoginType.GOOGLE;
         UserDto userDto= oauthService.requestAccessToken(socialLoginType, code, code);
+
+        String token = userService.createToken(userDto);
+        UserDto.loginResponse loginResponse = userService.createTokenUserId(token, userDto.getUser_id());
+
+        return new BaseResponse<>(loginResponse);
     }
     @GetMapping(value = "/naver/callback")
-    public void callback_naver(
+    public BaseResponse callback_naver(
             @RequestParam(name = "code") String code,
             @RequestParam(name = "state") String state) throws JSONException {
         log.info(">> NAVER 소셜 로그인 API 서버로부터 받은 code :: {}", code);
@@ -51,14 +73,25 @@ public class OauthController {
 
         SocialLoginType socialLoginType = SocialLoginType.NAVER;
         UserDto userDto= oauthService.requestAccessToken(socialLoginType, code, state);
+
+        String token = userService.createToken(userDto);
+        UserDto.loginResponse loginResponse = userService.createTokenUserId(token, userDto.getUser_id());
+
+        return new BaseResponse<>(loginResponse);
     }
     @GetMapping(value = "/github/callback")
-    public void callback_github(
+    public BaseResponse callback_github(
             @RequestParam(name = "code") String code) throws JSONException {
         log.info(">> GITHUB 소셜 로그인 API 서버로부터 받은 code :: {}", code);
 
         SocialLoginType socialLoginType = SocialLoginType.GITHUB;
         UserDto userDto= oauthService.requestAccessToken(socialLoginType, code, code);
+
+        String token = userService.createToken(userDto);
+        UserDto.loginResponse loginResponse = userService.createTokenUserId(token, userDto.getUser_id());
+
+        return new BaseResponse<>(loginResponse);
     }
+
 
 }

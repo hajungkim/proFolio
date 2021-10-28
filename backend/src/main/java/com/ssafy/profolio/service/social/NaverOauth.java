@@ -90,11 +90,19 @@ public class NaverOauth implements SocialOauth {
     }
 
     @Override
-    public String getToken(String result) throws JSONException {
+    public String getAccessToken(String result) throws JSONException {
         JSONObject jObject = new JSONObject(result);
         String access_token = jObject.getString("access_token");
         //System.out.println(access_token);
         return access_token;
+    }
+
+    @Override
+    public String getRefreshToken(String result) throws JSONException {
+        JSONObject jObject = new JSONObject(result);
+        String refresh_token = jObject.getString("refresh_token");
+        //System.out.println(access_token);
+        return refresh_token;
     }
 
     @Override

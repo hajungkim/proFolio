@@ -47,8 +47,12 @@ public class OauthService {
         log.info("\n>>>>> access token 요청 결과 : "+accessResult);
 
         //access_token parsing
-        String access_token = socialOauth.getToken(accessResult);
+        String access_token = socialOauth.getAccessToken(accessResult);
         log.info("\n>>>>> access token 값 : "+accessResult);
+
+        //access_token parsing
+        String refresh_token = socialOauth.getRefreshToken(accessResult);
+        log.info("\n>>>>> refresh token 값 : "+refresh_token);
 
         //파싱한 access token을 이용해서 userinfo 프로필 정보 받아오기
         String userinfo = socialOauth.getUserInfo(access_token);
@@ -56,10 +60,13 @@ public class OauthService {
 
         UserDto userDto = socialOauth.makeUserDto(userinfo);
 
+        //DB에 없는 유저일 경우, DB에 저장
         User user = userRepository.findBySocialId(userDto.getSocial_id()).orElseGet(
                 () -> {
                     User newUser = User.builder()
                             .social_id(userDto.getSocial_id())
+                            .accessToken(access_token)
+                            .refreshToken(refresh_token)
                             .email(userDto.getEmail())
                             .name(userDto.getName())
                             .phone(userDto.getPhone())
@@ -70,10 +77,7 @@ public class OauthService {
                 }
         );
 
-
-
-
-        return userDto;
+        return new UserDto(user);
     }
 
     private SocialOauth findSocialOauthByType(SocialLoginType socialLoginType) {

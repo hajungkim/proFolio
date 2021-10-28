@@ -30,6 +30,12 @@ public class User {
     @Column(name = "social_id", nullable = false)
     private String socialId;
 
+    @Column(name = "access_token", nullable = false)
+    private String accessToken;
+
+    @Column(name = "refresh_token")
+    private String refreshToken;
+
     @Column(unique = true)
     private String email;
 
@@ -67,7 +73,9 @@ public class User {
     private List<Project> projectList = new ArrayList<>();
 
     @Builder
-    public User(String social_id, String email, String name, String phone, String profile_path) {
+    public User(String accessToken, String refreshToken, String social_id, String email, String name, String phone, String profile_path) {
+        this.accessToken = accessToken;
+        this.refreshToken = refreshToken;
         this.socialId = social_id;
         this.email = email;
         this.name = name;

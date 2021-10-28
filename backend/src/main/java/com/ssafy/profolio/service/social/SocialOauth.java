@@ -33,7 +33,8 @@ public interface SocialOauth {
      */
     String requestAccessToken(String s, String code);
 
-    String getToken(String result) throws JSONException;
+    String getAccessToken(String result) throws JSONException;
+    String getRefreshToken(String result) throws JSONException;
 
     String getUserInfo(String access_token);
 
