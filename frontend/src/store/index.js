@@ -60,11 +60,13 @@ export default new Vuex.Store({
         {
           id: '1',
           name: '정보처리기사',
+          organization: '한국산업인력공단',
           certified_date: '2021.10.23',
         },
         {
           id: '2',
           name: 'SQLD',
+          organization: '한국산업인력공단',
           certified_date: '2021.02.23',
         },
       ],
@@ -99,12 +101,14 @@ export default new Vuex.Store({
           name: 'Java',
           level: '3',
           description: '????',
+          kind: 1,
         },
         {
           id: '2',
           name: 'Spring boot',
           level: '3',
           description: '????',
+          kind: 2,
         },
       ],
       project: [
@@ -113,7 +117,7 @@ export default new Vuex.Store({
           title: '포트폴리오 만들기!',
           summary: '개발자 준비생을 위한 포트폴리오 사이트',
           description: '쉬운 포트폴리오 만들기 와아아아아아아',
-          member_cnt: '5',
+          member_cnt: 5,
           technology_stack: 'Java, Django, Vue, SpringBoot',
           role: 'FE',
           link: 'https://ssafy.com',
