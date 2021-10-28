@@ -7,6 +7,7 @@ import com.ssafy.profolio.domain.certificate.Certificate;
 import com.ssafy.profolio.domain.foreignlang.Foreignlang;
 import com.ssafy.profolio.domain.project.Project;
 import com.ssafy.profolio.domain.technologystack.TechnologyStack;
+import com.ssafy.profolio.web.dto.UserDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -45,6 +46,9 @@ public class User {
     @Column
     private String phone;
 
+    @Column
+    private String birthday;
+
     @Column(length = 500)
     private String profile_path;
 
@@ -73,14 +77,23 @@ public class User {
     private List<Project> projectList = new ArrayList<>();
 
     @Builder
-    public User(String accessToken, String refreshToken, String social_id, String email, String name, String phone, String profile_path) {
+    public User(String accessToken, String refreshToken, String social_id, String email, String name, String phone, String birthday, String profile_path) {
         this.accessToken = accessToken;
         this.refreshToken = refreshToken;
         this.socialId = social_id;
         this.email = email;
         this.name = name;
         this.phone = phone;
+        this.birthday = birthday;
         this.profile_path = profile_path;
         this.join_date = LocalDateTime.now();
+    }
+
+    public void updateUser(UserDto.UserRequest request) {
+        this.email = request.getEmail();
+        this.name = request.getName();
+        this.phone = request.getPhone();
+        this.profile_path = request.getProfile_path();
+        this.birthday = request.getBirthday();
     }
 }

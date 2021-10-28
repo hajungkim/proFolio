@@ -1,6 +1,9 @@
 package com.ssafy.profolio.service;
 
 import com.ssafy.profolio.domain.user.User;
+import com.ssafy.profolio.domain.user.UserRepository;
+import com.ssafy.profolio.exception.BaseException;
+import com.ssafy.profolio.web.BaseResponseCode;
 import com.ssafy.profolio.web.dto.UserDto;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
@@ -10,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -17,6 +21,8 @@ public class UserService {
 
     private final String signature = "LOGINTOKEN";
     private final Long expireMin = 30L;
+
+    private final UserRepository userRepository;
 
     public String createToken(UserDto userDto) {
         JwtBuilder jwtBuilder = Jwts.builder();
@@ -42,4 +48,19 @@ public class UserService {
         return response;
     }
 
+    @Transactional
+    public UserDto.UserResponse findUser(Long userId) {
+        User user = userRepository.getById(userId);
+
+        if(user == null) throw new BaseException(BaseResponseCode.DATA_IS_NULL);
+
+        return new UserDto.UserResponse(user.getId(), user.getEmail(),
+                user.getName(), user.getPhone(), user.getBirthday(), user.getProfile_path());
+    }
+
+    @Transactional
+    public void updateUser(Long userId, UserDto.UserRequest request) {
+        User user = userRepository.getById(userId);
+        user.updateUser(request);
+    }
 }
