@@ -8,6 +8,15 @@
         <tr>
           <th>대학교</th>
           <td><input type="text"></td>
+          <th class="pl-15">졸업여부</th>
+          <td>
+            <div class="graduation">
+              <select class="select-graduation">
+                <option value="1">졸업 여부</option>
+                <option value="2">졸업</option>
+                <option value="3">졸업예정</option>
+              </select>
+            </div></td>
         </tr>
         <tr>
           <th>전공</th>
@@ -16,34 +25,119 @@
           <td><input type="text"></td>
         </tr>
         <tr>
-          <th>입학</th>
-          <td><input type="text"></td>
-          <th class="pl-15">졸업</th>
-          <td><input type="text"></td>
+          <th style="padding-top:10px">입학</th>
           <td>
-            <div class="graduation">
-              <select class="select-graduation">
-                <option value="1">졸업 여부</option>
-                <option value="2">졸업</option>
-                <option value="3">졸업예정</option>
-              </select>
-            </div>
+            <v-app class="date-pick">
+              <v-menu
+                ref="menu1"
+                v-model="menu1"
+                :close-on-content-click="false"
+                :return-value.sync="date1"
+                transition="scale-transition"
+                offset-y
+                min-width="auto"
+              >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-text-field
+                    v-model="date1"
+                    label="입학년월"
+                    prepend-icon="mdi-calendar"
+                    readonly
+                    v-bind="attrs"
+                    v-on="on"
+                  ></v-text-field>
+                </template>
+                <v-date-picker
+                  v-model="date1"
+                  no-title
+                  scrollable
+                  type="month"
+                >
+                  <v-spacer></v-spacer>
+                  <v-btn
+                    text
+                    color="primary"
+                    @click="menu1 = false"
+                  >
+                    Cancel
+                  </v-btn>
+                  <v-btn
+                    text
+                    color="primary"
+                    @click="$refs.menu1.save(date1)"
+                  >
+                    OK
+                  </v-btn>
+                </v-date-picker>
+              </v-menu>
+            </v-app>
+          </td>
+          <th class="pl-15" style="padding-top:10px">졸업</th>
+          <td>
+            <v-app class="date-pick">
+              <v-menu
+                ref="menu2"
+                v-model="menu2"
+                :close-on-content-click="false"
+                :return-value.sync="date2"
+                transition="scale-transition"
+                offset-y
+                min-width="auto"
+              >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-text-field
+                    v-model="date2"
+                    label="졸업년월"
+                    prepend-icon="mdi-calendar"
+                    readonly
+                    v-bind="attrs"
+                    v-on="on"
+                  ></v-text-field>
+                </template>
+                <v-date-picker
+                  v-model="date2"
+                  no-title
+                  scrollable
+                  type="month"
+                >
+                  <v-spacer></v-spacer>
+                  <v-btn
+                    text
+                    color="primary"
+                    @click="menu2 = false"
+                  >
+                    Cancel
+                  </v-btn>
+                  <v-btn
+                    text
+                    color="primary"
+                    @click="$refs.menu2.save(date2)"
+                  >
+                    OK
+                  </v-btn>
+                </v-date-picker>
+              </v-menu>
+            </v-app>
           </td>
         </tr>
       </table>
     </div>
     <div class="hr-border-m-40"></div>
     <div>
-      <strong>경력</strong>
-      <div class="plus-btn" @click="addCreateCareer">+</div>
+      <strong class="plus-btn-box">
+        <div>경력</div>
+        <div class="plus-btn" @click="addCreateCareer">+</div>
+      </strong>
       <CreateCareer
         v-for="(career) in career" :key="career.id" :career="career"
       />
     </div>
     <div class="hr-border-m-40"></div>
     <div>
-      <strong>경험</strong>
-      <div class="plus-btn" @click="addCreateExperience">+</div>
+      <strong class="plus-btn-box">
+        <div>경험</div>
+        <div class="plus-btn" @click="addCreateExperience">+</div>
+      </strong>
       <CreateExperience
         v-for="(activity) in activity" :key="activity.id" :activity="activity"
       />
@@ -66,6 +160,10 @@ export default {
     return {
       career: null,
       activity: null,
+      date1: null,
+      date2: null,
+      menu1: false,
+      menu2: false,
     };
   },
   computed: {

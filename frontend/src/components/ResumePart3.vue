@@ -3,24 +3,30 @@
     <div class="resume-part-title">part3</div>
     <div class="resume-part-sub">어학, 자격증, 수상 내역을을 입력해주세요</div>
     <div>
-      <strong>어학</strong>
-      <div class="plus-btn" @click="addCreateLanguage">+</div>
+      <strong  class="plus-btn-box">
+        <div>어학</div>
+        <div class="plus-btn" @click="addCreateLanguage">+</div>
+      </strong>
       <CreateLanguage
        v-for="(language) in language" :key="language.id" :language="language"
        />
     </div>
     <div class="hr-border-m-40"></div>
     <div>
-      <strong>자격증</strong>
-      <div class="plus-btn" @click="addCreateCert">+</div>
+      <strong  class="plus-btn-box">
+        <div>자격증</div>
+        <div class="plus-btn" @click="addCreateCert">+</div>
+      </strong>
       <CreateCertificate
        v-for="(certificate) in certificate" :key="certificate.id" :certificate="certificate"
        />
     </div>
     <div class="hr-border-m-40"></div>
     <div>
-      <strong>수상</strong>
-      <div class="plus-btn" @click="addCreateAward">+</div>
+      <strong  class="plus-btn-box">
+        <div>수상</div>
+        <div class="plus-btn" @click="addCreateAward">+</div>
+      </strong>
       <CreateAward
        v-for="(award) in awards" :key="award.id" :award="award"
        />
