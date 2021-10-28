@@ -12,6 +12,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,20 +27,29 @@ public class User {
     @Column(name = "user_id")
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "social_id", nullable = false)
+    private String socialId;
+
+    @Column(name = "access_token", nullable = false)
+    private String accessToken;
+
+    @Column(name = "refresh_token")
+    private String refreshToken;
+
+    @Column(unique = true)
     private String email;
 
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    @Column
     private String phone;
 
     @Column(length = 500)
     private String profile_path;
 
-    @Column(nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private String join_date;
+    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private LocalDateTime join_date;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<TechnologyStack> technologyStackList = new ArrayList<>();
@@ -63,11 +73,14 @@ public class User {
     private List<Project> projectList = new ArrayList<>();
 
     @Builder
-    public User(String email, String name, String phone, String profile_path, String join_date) {
+    public User(String accessToken, String refreshToken, String social_id, String email, String name, String phone, String profile_path) {
+        this.accessToken = accessToken;
+        this.refreshToken = refreshToken;
+        this.socialId = social_id;
         this.email = email;
         this.name = name;
         this.phone = phone;
         this.profile_path = profile_path;
-        this.join_date = join_date;
+        this.join_date = LocalDateTime.now();
     }
 }
