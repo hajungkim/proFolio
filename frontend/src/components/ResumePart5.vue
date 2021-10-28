@@ -3,8 +3,10 @@
     <div class="resume-part-title">part5</div>
     <div class="resume-part-sub">프로젝트를 입력해주세요.</div>
     <div>
-      <strong>프로젝트</strong>
-      <div class="plus-btn" @click="addCreateProject">+</div>
+      <strong  class="plus-btn-box">
+        <div>프로젝트</div>
+        <div class="plus-btn" @click="addCreateProject">+</div>
+      </strong>
       <CreateProject
       v-for="(project) in project" :key="project.id" :project="project"
       />
