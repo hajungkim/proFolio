@@ -4,12 +4,30 @@
       <div class="skill-content">
           <div class="language">
               <div class="content-title">Language</div>
+              <div v-for="(skill) in resume.technology_stack" :key="skill.id">
+                <div style="display: flex" v-if="skill.kind == 1">
+                  <div>{{skill.name}}</div>
+                  <div>{{skill.level}}</div>
+                </div>
+              </div>
           </div>
-          <div class="database">
-              <div class="content-title">DataBase</div>
+          <div class="management">
+              <div class="content-title">Management</div>
+              <div v-for="(skill) in resume.technology_stack" :key="skill.id">
+                <div style="display: flex" v-if="skill.kind == 3">
+                  <div>{{skill.name}}</div>
+                  <div>{{skill.level}}</div>
+                </div>
+              </div>
           </div>
           <div class="framework">
               <div class="content-title">Framework</div>
+              <div v-for="(skill) in resume.technology_stack" :key="skill.id">
+                <div style="display: flex" v-if="skill.kind == 2">
+                  <div>{{skill.name}}</div>
+                  <div>{{skill.level}}</div>
+                </div>
+              </div>
           </div>
       </div>
   </div>

@@ -13,6 +13,7 @@
 .them3 .name{
     font-family: 'Pretendard-Regular';
     font-weight: bold;
+    margin-bottom: 5%;
 }
 .them3-content{
     padding-left: 20%;
@@ -70,6 +71,7 @@
     height: 30vh;
     margin-left: 24%;
     padding: 3% 8%;
+    box-sizing: content-box;
 }
 .info-detail{
     margin-left: 20%;
@@ -131,4 +133,19 @@
 .grid2{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+}
+.skill-level{
+    margin: 3% 0;
+    width: 2.5vw;
+    height: 5vh;
+    line-height: 5vh;
+    text-align: center;
+    border-radius: 70%;
+    background-color: #7B61FF;
+    color: white;
+}
+.skill-name{
+    margin: 3% 10%;
+    height: 5vh;
+    line-height: 5vh;
 }
