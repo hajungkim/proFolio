@@ -70,6 +70,7 @@ public class OauthService {
                             .email(userDto.getEmail())
                             .name(userDto.getName())
                             .phone(userDto.getPhone())
+                            .birthday(userDto.getBirthday())
                             .profile_path(userDto.getProfile_path())
                             .build();
                     userRepository.save(newUser);
