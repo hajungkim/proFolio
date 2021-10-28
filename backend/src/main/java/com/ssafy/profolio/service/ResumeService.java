@@ -284,5 +284,44 @@ public class ResumeService {
         technologyStack.updateTechnologyStack(request);
     }
 
+    @Transactional
+    public void deleteActivity(Long id) {
+        activityRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void deleteAwards(Long id) {
+        awardsRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void deleteCareer(Long id) {
+        careerRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void deleteCertificate(Long id) {
+        certificateRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void deleteEducation(Long id) {
+        educationRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void deleteForeignLang(Long id) {
+        foreignlangRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void deleteProject(Long id) {
+        projectRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void deleteTechnologyStack(Long id) {
+        technologyStackRepository.deleteById(id);
+    }
 
 }
