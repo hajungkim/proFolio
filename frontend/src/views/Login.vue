@@ -8,19 +8,19 @@
       </div>
       <div class="social-outer-box">
         <div>
-          <div class="social-box">
+          <div class="social-box" @click="googleLogin">
             <div class="inline-block">
               <img src="../assets/images/google.png" alt="" class="social-logo">
             </div>
             <div class="inline-block padding-l">Login in with Google</div>
           </div>
-          <div class="social-box naver">
+          <div class="social-box naver" @click="naverLogin">
             <div class="inline-block">
               <span class="social-logo-letter">N</span>
             </div>
             <div class="inline-block padding-l">Login in with Naver</div>
           </div>
-          <div class="social-box github">
+          <div class="social-box github" @click="githubLogin">
             <div class="inline-block">
               <img src="../assets/images/github.png" alt="" class="social-logo">
             </div>
@@ -33,8 +33,21 @@
 </template>
 
 <script>
+import login from '../store/modules/UserAPI';
+
 export default {
   name: 'Login',
+  methods: {
+    googleLogin() {
+      login('GOOGLE');
+    },
+    naverLogin() {
+      login('NAVER');
+    },
+    githubLogin() {
+      login('GITHUB');
+    },
+  },
 };
 </script>
 
