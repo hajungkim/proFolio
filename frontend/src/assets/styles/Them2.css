@@ -107,3 +107,34 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }
+.them2-card{
+    border: 2px solid #ececec;
+    border-radius: 20px;
+    padding: 3%;
+    font-size: 1.3rem;
+    margin: 3% 0;
+}
+.them2-cardname{
+    font-size: 2rem;
+    color: #0014BC;
+    font-weight: bold;
+    margin-right: 1%;
+}
+.them2-grayfont{
+    color: #959595;
+}
+.them2-summary{
+    font-weight: bold;
+    margin: 0.5% 0;
+}
+.margin{
+    margin: 2% 0;
+}
+.padding{
+    padding: 0 3%;
+}
+.them2-bluefont{
+    color: #0014BC;
+    font-weight: bold;
+    margin: 5%;
+}
