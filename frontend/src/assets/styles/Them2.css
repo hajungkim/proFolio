@@ -1,0 +1,52 @@
+.them2{
+    min-height: 100vh;
+    padding-top: 5%;
+    font-size: 1.5rem;
+}
+.them2-title{
+    font-size: 4rem;
+    font-weight: bold;
+    text-align: center;
+}
+.them2-info{
+    margin: 5% 10%;
+}
+.them2-subtitle{
+    margin: 5% 0;
+    font-weight: bold;
+    font-size: 3rem;
+}
+.them2-info-box{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.them2-username{
+    font-weight: bold;
+    font-size: 2rem;
+}
+.line2{
+    display: flex;
+    margin: 7% 0;
+}
+.line-title2{
+    width: 8vw;
+    height: 5vh;
+    background-color: #E5EAFF;
+    color: #0014BC;
+    border-radius: 15px;
+    text-align: center;
+    font-weight: bold;
+    margin-right: 10%;
+}
+.blue_box{
+    margin: 5% 0;
+    border: 2px solid #0014BC;
+    color: #0014BC;
+    width: 30vw;
+    height: 5vh;
+    font-weight: bold;
+    text-align: center;
+}
+.introduce{
+    font-weight: bold;
+}

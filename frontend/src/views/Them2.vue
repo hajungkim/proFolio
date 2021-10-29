@@ -1,12 +1,16 @@
 <template>
-  <div>
+  <div class="them2">
+    <div class="them2-title">Portfolio</div>
+    <Them2Info/>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
+import Them2Info from '../components/Them2Info.vue';
 
 export default {
+  components: { Them2Info },
   name: 'Them2',
   data() {
     return {
