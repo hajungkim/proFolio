@@ -8,7 +8,7 @@
     font-weight: bold;
     text-align: center;
 }
-.them2-info{
+.them2-box{
     margin: 5% 10%;
 }
 .them2-subtitle{
@@ -19,6 +19,9 @@
 .them2-info-box{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+}
+.user-profile-img{
+    width: 20vw;
 }
 .them2-username{
     font-weight: bold;
@@ -49,4 +52,58 @@
 }
 .introduce{
     font-weight: bold;
+}
+.skill-desc{
+    background-color: #F8F8F8;
+    border-left: 15px solid #DCDCDC;
+    font-size: 1rem;
+    padding: 1%;
+    margin: 5% 0;
+}
+.flex{
+    display: flex;
+    margin: 1%;
+}
+.level-color{
+    width: 5vw;
+    height: 4vh;
+    border-radius: 15px;
+    text-align: center;
+    margin: 0 2%;
+    font-weight: bold;
+}
+.level-circle{
+    text-align: center;
+    font-weight: bold;
+    line-height: 4vh;
+    width: 2.5vw;
+    height: 5vh;
+    border-radius: 70%;
+    margin: 0 2%;
+}
+.red{
+    color: #FF0000;
+    background-color: #FFE7E7;
+    border: 2px solid #FF0000;
+}
+.green{
+    color: #009A2B;
+    background-color: #E1FFE4;
+    border: 2px solid #009A2B;
+}
+.yellow{
+    color: #FFA800;
+    background-color: #FFF4CB;
+    border: 2px solid #FFA800;
+}
+.blue-line{
+    text-decoration: underline;
+    text-decoration-color: #0014BC;
+    font-weight: bold;
+    font-size: 2rem;
+}
+.skill-item{
+    margin: 3% 5%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }

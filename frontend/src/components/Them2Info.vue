@@ -1,5 +1,5 @@
 <template>
-  <div class="them2-info">
+  <div class="them2-box">
       <div class="them2-subtitle">About Me</div>
       <div class="them2-info-box">
           <div class="user-img">
