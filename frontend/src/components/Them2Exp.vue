@@ -1,20 +1,13 @@
 <template>
   <div class="them2-box">
       <div class="them2-subtitle">Education &amp; Experience</div>
-      <div v-for="(exp) in resume.activity" :key="exp.id" class="card">
-          <div style="margin-bottom: 20px">
-              <span style="font-weight: bold; margin-right: 15px">{{exp.name}}</span>
-              <span style="color: #656060">{{exp.start_date}} ~ {{exp.end_date}}</span>
-          </div>
-          <div style="display: flex">
-              <div style="color: #656060; margin-right: 15px">활동 기관</div>
-              <div>{{exp.organization}}</div>
-          </div>
-          <div style="display: flex">
-              <div style="color: #656060; margin-right: 15px">활동 내용</div>
-              {{exp.description}}
-          </div>
-      </div>
+      <ul class="tl">
+        <li v-for="(exp) in resume.activity" :key="exp.id" class="tl-item">
+          <div class="timestamp">{{exp.start_date}} ~ {{exp.end_date}}</div>
+          <div class="item-title">{{exp.name}}</div>
+          <div class="item-detail">{{exp.description}}</div>
+        </li>
+      </ul>
   </div>
 </template>
 
@@ -22,7 +15,7 @@
 import { mapState } from 'vuex';
 
 export default {
-  name: 'Them3Exp',
+  name: 'Them2Exp',
   data() {
     return {
     };
@@ -36,5 +29,5 @@ export default {
 </script>
 
 <style>
-@import '../assets/styles/Them3.css';
+@import '../assets/styles/Them2.css';
 </style>

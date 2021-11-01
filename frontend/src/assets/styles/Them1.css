@@ -139,6 +139,7 @@
 .skill-content{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 5%;
 }
 .language{
     grid-column: 1 / span 1;
@@ -188,4 +189,20 @@
     color: #7B61FF;
     font-weight: bold;
     margin-top: 10%;
+}
+.skill-gray{
+    width: 2vw;
+    background-color: #656060;
+    border: 1px solid #494747;
+}
+.skill-purple{
+    width: 2vw;
+    background-color: #7B61FF;
+    border: 1px solid #5743b6;
+}
+.them1-skill-name{
+    margin: 2% 5% 2% 0;
+}
+.them1-skill{
+    margin: 2% 0;
 }

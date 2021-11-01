@@ -4,7 +4,7 @@
         <div class="skill-item">
             <div v-for="(skill) in list" :key="skill.id">
             <div style="display: flex; margin: 3% 0">
-                <div>{{skill.name}}</div>
+                <div style="line-height: 5vh">{{skill.name}}</div>
                 <div class="level-circle"
                 :class="{
                     red: skill.level==5,
@@ -32,6 +32,9 @@ export default {
   data() {
     return {
     };
+  },
+  mounted() {
+    // console.log(this.list);
   },
 };
 </script>
