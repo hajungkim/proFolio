@@ -17,7 +17,11 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 
 @RestController
@@ -29,6 +33,7 @@ public class OauthController {
 
     private final OauthService oauthService;
     private final UserService userService;
+    HttpServletResponse response;
 
     private final String signature = "LOGINTOKEN";
     private final Long expireMin = 30L;
@@ -52,7 +57,7 @@ public class OauthController {
     */
     @GetMapping(value = "/google/callback")
     public BaseResponse callback(
-            @RequestParam(name = "code") String code,
+            @ModelAttribute(name = "code") String code,
             HttpServletResponse response) throws JSONException {
         log.info(">> GOOGLE 소셜 로그인 API 서버로부터 받은 code :: {}", code);
 
@@ -60,7 +65,7 @@ public class OauthController {
         UserDto userDto= oauthService.requestAccessToken(socialLoginType, code, code);
 
         String token = userService.createToken(userDto);
-        UserDto.loginResponse loginResponse = userService.createTokenUserId(token, userDto.getUser_id());
+        UserDto.loginResponse loginResponse = userService.createTokenUserId(token, userDto.getUserId());
 
         return new BaseResponse<>(loginResponse);
     }
@@ -75,7 +80,7 @@ public class OauthController {
         UserDto userDto= oauthService.requestAccessToken(socialLoginType, code, state);
 
         String token = userService.createToken(userDto);
-        UserDto.loginResponse loginResponse = userService.createTokenUserId(token, userDto.getUser_id());
+        UserDto.loginResponse loginResponse = userService.createTokenUserId(token, userDto.getUserId());
 
         return new BaseResponse<>(loginResponse);
     }
@@ -88,7 +93,7 @@ public class OauthController {
         UserDto userDto= oauthService.requestAccessToken(socialLoginType, code, code);
 
         String token = userService.createToken(userDto);
-        UserDto.loginResponse loginResponse = userService.createTokenUserId(token, userDto.getUser_id());
+        UserDto.loginResponse loginResponse = userService.createTokenUserId(token, userDto.getUserId());
 
         return new BaseResponse<>(loginResponse);
     }
