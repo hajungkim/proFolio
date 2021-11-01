@@ -1,6 +1,6 @@
 <template>
   <div class="them2-box">
-      <div class="them2-subtitle" @click="classify">Tech Stack</div>
+      <div class="them2-subtitle">Tech Stack</div>
       <div class="skill-desc">
           <div class="flex">
                 <div class="red level-color">5</div>
@@ -16,9 +16,9 @@
           </div>
       </div>
       <div>
-          <Them2SkillContent :title="Language" :list="resume.technology_stack"/>
-          <Them2SkillContent :title="Framework" :list="resume.technology_stack"/>
-          <Them2SkillContent :title="Management" :list="resume.technology_stack"/>
+          <Them2SkillContent :title="Language" :list="lang_arr"/>
+          <Them2SkillContent :title="Framework" :list="frame_arr"/>
+          <Them2SkillContent :title="Management" :list="mana_arr"/>
       </div>
   </div>
 </template>
@@ -37,12 +37,24 @@ export default {
       Language: 'Language',
       Framework: 'Framework',
       Management: 'Management',
+      lang_arr: [],
+      frame_arr: [],
+      mana_arr: [],
     };
   },
   computed: {
     ...mapState([
       'resume',
     ]),
+  },
+  mounted() {
+    const list = this.resume.technology_stack;
+    let i;
+    for (i = 0; i < list.length; i += 1) {
+      if (list[i].kind === 1) this.lang_arr.push(list[i]);
+      if (list[i].kind === 2) this.frame_arr.push(list[i]);
+      if (list[i].kind === 3) this.mana_arr.push(list[i]);
+    }
   },
 };
 </script>
