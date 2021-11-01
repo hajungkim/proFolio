@@ -50,10 +50,10 @@ public class User {
     private String birthday;
 
     @Column(length = 500)
-    private String profile_path;
+    private String profilePath;
 
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private LocalDateTime join_date;
+    private LocalDateTime joinDate;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<TechnologyStack> technologyStackList = new ArrayList<>();
@@ -77,7 +77,7 @@ public class User {
     private List<Project> projectList = new ArrayList<>();
 
     @Builder
-    public User(String accessToken, String refreshToken, String social_id, String email, String name, String phone, String birthday, String profile_path) {
+    public User(String accessToken, String refreshToken, String social_id, String email, String name, String phone, String birthday, String profilePath) {
         this.accessToken = accessToken;
         this.refreshToken = refreshToken;
         this.socialId = social_id;
@@ -85,15 +85,15 @@ public class User {
         this.name = name;
         this.phone = phone;
         this.birthday = birthday;
-        this.profile_path = profile_path;
-        this.join_date = LocalDateTime.now();
+        this.profilePath = profilePath;
+        this.joinDate = LocalDateTime.now();
     }
 
     public void updateUser(UserDto.UserRequest request) {
         this.email = request.getEmail();
         this.name = request.getName();
         this.phone = request.getPhone();
-        this.profile_path = request.getProfile_path();
+        this.profilePath = request.getProfile_path();
         this.birthday = request.getBirthday();
     }
 }

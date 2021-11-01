@@ -61,17 +61,17 @@ public class OauthService {
         UserDto userDto = socialOauth.makeUserDto(userinfo);
 
         //DB에 없는 유저일 경우, DB에 저장
-        User user = userRepository.findBySocialId(userDto.getSocial_id()).orElseGet(
+        User user = userRepository.findBySocialId(userDto.getSocialId()).orElseGet(
                 () -> {
                     User newUser = User.builder()
-                            .social_id(userDto.getSocial_id())
+                            .social_id(userDto.getSocialId())
                             .accessToken(access_token)
                             .refreshToken(refresh_token)
                             .email(userDto.getEmail())
                             .name(userDto.getName())
                             .phone(userDto.getPhone())
                             .birthday(userDto.getBirthday())
-                            .profile_path(userDto.getProfile_path())
+                            .profilePath(userDto.getProfilePath())
                             .build();
                     userRepository.save(newUser);
                     return newUser;
