@@ -10,25 +10,35 @@
       </span>
     </div>
     <section class="fullpage purple">
-      <h1>Section 1</h1>
+      <MainSection1 />
     </section>
-    <section class="fullpage black">
-      <h1>Section 2</h1>
+    <section class="fullpage beige">
+      <MainSection2 />
     </section>
     <section class="fullpage blue">
-      <h1>Section 3</h1>
+      <MainSection3 />
     </section>
     <section class="fullpage green">
-      <h1>Section 4</h1>
+      <MainSection4 />
     </section>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import MainSection1 from '../components/MainSection1.vue';
+import MainSection2 from '../components/MainSection2.vue';
+import MainSection3 from '../components/MainSection3.vue';
+import MainSection4 from '../components/MainSection4.vue';
 
 export default {
   name: 'Main',
+  components: {
+    MainSection1,
+    MainSection2,
+    MainSection3,
+    MainSection4,
+  },
   data() {
     return {
       inMove: false,
