@@ -5,15 +5,9 @@
     <div>
       <strong class="plus-btn-box">
         <div>학력</div>
-        <div class="plus-btn" @click="addCreateEdu">+</div>
       </strong>
-      <CreateEducation
-      v-for="(education) in educationCreate" :key="education.id" :education="education"
-      @createEducation="createEducation"
-      />
       <UpdateEducation
-      v-for="(education) in educationUpdate" :key="education.id" :education="education"
-      @updateEducation="updateEducation"
+      :education="educationUpdate" @updateEducation="updateEducation"
       />
     </div>
     <div class="hr-border-m-40"></div>
@@ -42,7 +36,6 @@
 <script>
 import CreateCareer from './CreateCareer.vue';
 import CreateExperience from './CreateExperience.vue';
-import CreateEducation from './CreateEducation.vue';
 import UpdateEducation from './UpdateEducation.vue';
 
 export default {
@@ -50,7 +43,6 @@ export default {
   components: {
     CreateCareer,
     CreateExperience,
-    CreateEducation,
     UpdateEducation,
   },
   props: {
@@ -62,7 +54,7 @@ export default {
     return {
       career: this.resumeEdit.career,
       activity: this.resumeEdit.activity,
-      educationUpdate: this.resumeEdit.education,
+      educationUpdate: null,
       educationCreate: [],
     };
   },
@@ -79,35 +71,23 @@ export default {
       };
       this.activity.unshift(newExp);
     },
-    addCreateEdu() {
-      const newEdu = {
-        university: '', graduation: '', admissionDate: '', graduationDate: '', score: '', totalScore: '', major: '', minor: '', mainSchool: false,
-      };
-      if (this.educationCreate.length === 0) newEdu.id = this.educationCreate.length;
-      else newEdu.id = this.educationCreate[-1].id + 1;
-      this.educationCreate.unshift(newEdu);
-    },
-    createEducation(createEducation) {
-      if (createEducation.isDeleted) {
-        let sliceIndex = null;
-        const idx = createEducation.education.id;
-        Object.entries(this.educationCreate).forEach((education) => {
-          if (Object.keys(education[1]).find((key) => education[1][key] === idx)) {
-            [sliceIndex] = education;
-          }
-        });
-        this.educationCreate.splice(sliceIndex, 1);
-      } else {
-        this.$emit('createEducationData', createEducation.education);
-      }
-    },
     updateEducation(updateEducation) {
-      if (updateEducation.isDeleted) {
-        this.$emit('deleteEducation', updateEducation.education.id);
+      if (updateEducation.isCreated) {
+        this.$emit('createEducationData', updateEducation.education);
       } else if (updateEducation.isUpdated) {
         this.$emit('updateEducationData', updateEducation.education);
       }
     },
+  },
+  beforeMount() {
+    if (this.resumeEdit.education.id === undefined) {
+      this.educationUpdate = {
+        id: 'create', university: '', graduation: null, admissionDate: '', graduationDate: '', score: '', totalScore: '', major: '', minor: '', mainSchool: false, isCreated: true,
+      };
+    } else {
+      this.educationUpdate = this.resumeEdit.education;
+      this.educationUpdate.isCreated = false;
+    }
   },
 };
 </script>
