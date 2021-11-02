@@ -188,12 +188,12 @@ export default {
       this.dataUpdate();
     },
     admissionDateUpdate() {
-      this.$refs.menu1.save(this.educationUpdate.education.admissiondate);
+      this.$refs.menu1.save(this.educationUpdate.education.admissionDate);
       this.educationUpdate.isUpdated = true;
       this.dataUpdate();
     },
     graduationDateUpdate() {
-      this.$refs.menu2.save(this.educationUpdate.education.graduationdate);
+      this.$refs.menu2.save(this.educationUpdate.education.graduationDate);
       this.educationUpdate.isUpdated = true;
       this.dataUpdate();
     },
