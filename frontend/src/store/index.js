@@ -1,7 +1,9 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { getUserInfo } from './modules/UserAPI';
-import { getEducation, putEducation, postEducation } from './modules/ResumeAPI';
+import {
+  putEducation, getEducation, postEducation, postCareer, getCareer, deleteCareer, putCareer,
+} from './modules/ResumeAPI';
 
 Vue.use(Vuex);
 
@@ -14,6 +16,16 @@ export default new Vuex.Store({
         profilePath: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-DjoQ3H0LFCWXLurl6qeHzGnbox2_cJTAmg&usqp=CAU', name: '아무개', birthday: '2000.01.01', phone: '010-0000-0000', email: 'qwer@qwer.com',
       },
       education: {
+        id: 1,
+        university: '싸피대학교',
+        graduation: true,
+        admissionDate: '2020.03',
+        graduationDate: '2023.02',
+        score: '4.0',
+        totalScore: 4.5,
+        major: '컴공',
+        minor: '',
+        mainSchool: false,
       },
       activity: [
         {
@@ -162,6 +174,9 @@ export default new Vuex.Store({
     EDUCATION_INFO(state, education) {
       state.resume.education = education;
     },
+    CAREER_INFO(state, career) {
+      state.resume.career = career;
+    },
   },
   actions: {
     getUser(context, userId) {
@@ -169,18 +184,38 @@ export default new Vuex.Store({
         context.commit('GET_USER_INFO', res.data.data);
       });
     },
-    updateEducation(context, eduInfo) {
-      putEducation(eduInfo.id, eduInfo.data).then(() => {
-        getEducation(context.state.userId).then((res) => {
-          console.log(res.data.data);
-          context.commit('EDUCATION_INFO', res.data.data);
+    updateEducation(context, data) {
+      putEducation(data.id, data.data).then(() => {
+        getEducation(context.state.userId).then((response) => {
+          context.commit('EDUCATION_INFO', response.data.data);
         });
       });
     },
-    createEducation(context, data) {
+    educationCreate(context, data) {
       postEducation(data).then(() => {
-        getEducation(context.state.userId).then((res) => {
-          context.commit('EDUCATION_INFO', res.data.data);
+        getEducation(context.state.userId).then((response) => {
+          context.commit('EDUCATION_INFO', response.data.data);
+        });
+      });
+    },
+    careerCreate(context, data) {
+      postCareer(data).then(() => {
+        getCareer(context.state.userId).then((response) => {
+          context.commit('CAREER_INFO', response.data.data);
+        });
+      });
+    },
+    careerDelete(context, data) {
+      deleteCareer(data).then(() => {
+        getCareer(context.state.userId).then((response) => {
+          context.commit('CAREER_INFO', response.data.data);
+        });
+      });
+    },
+    careerUpdate(context, data) {
+      putCareer(data.id, data).then(() => {
+        getCareer(context.state.userId).then((response) => {
+          context.commit('CAREER_INFO', response.data.data);
         });
       });
     },

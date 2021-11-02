@@ -27,9 +27,11 @@
     </div>
     <div class="resume-part">
       <ResumePart1 v-if="resumePart==0" @part1Data="part1Data"/>
-      <ResumePart2 v-if="resumePart==1" :resumeEdit="resumeEdit"
+      <ResumePart2 v-if="resumePart==1"
        @updateEducationData="updateEducationData"
-       @createEducationData="createEducationData"/>
+       @createEducationData="createEducationData"
+       @createCareerData="createCareerData" @deleteCareer="deleteCareer"
+       @updateCareerData="updateCareerData"/>
       <ResumePart3 v-if="resumePart==2"/>
       <ResumePart4 v-if="resumePart==3"/>
       <ResumePart5 v-if="resumePart==4"/>
@@ -58,9 +60,11 @@ export default {
   data() {
     return {
       resumePart: 0,
-      resumeEdit: null,
       educationUpdate: [],
       educationCreate: [],
+      careerCreate: [],
+      careerUpdate: [],
+      careerDelete: new Set(),
     };
   },
   computed: {
@@ -110,10 +114,23 @@ export default {
           this.$store.dispatch('updateEducation', { id: educationInfo.id, data: educationInfo.data });
         });
         Object.values(this.educationCreate).forEach((educationInfo) => {
-          this.$store.dispatch('createEducation', educationInfo.data);
+          this.$store.dispatch('educationCreate', educationInfo.data);
+        });
+        Object.values(this.careerCreate).forEach((careerInfo) => {
+          this.$store.dispatch('careerCreate', careerInfo.data);
+        });
+        Object.values(this.careerUpdate).forEach((careerInfo) => {
+          this.$store.dispatch('careerUpdate', careerInfo.data);
+        });
+        Object.values([...this.careerDelete]).forEach((careerInfo) => {
+          console.log(careerInfo);
+          this.$store.dispatch('careerDelete', careerInfo);
         });
         this.educationUpdate = [];
         this.educationCreate = [];
+        this.careerCreate = [];
+        this.careerUpdate = [];
+        this.careerDelete = new Set();
       }
     },
     updateEducationData(updateEducationData) {
@@ -152,9 +169,44 @@ export default {
         this.educationCreate.push(createData);
       }
     },
-  },
-  beforeMount() {
-    this.resumeEdit = JSON.parse(JSON.stringify(this.resume));
+    createCareerData(createCareerData) {
+      const createData = {};
+      createData.id = createCareerData.id;
+      createCareerData.userId = this.userId;
+      createData.data = createCareerData;
+      let flag = false;
+      Object.values(this.careerCreate).forEach((create) => {
+        if (create.id === createData.id) {
+          // 있으면 내용 대체
+          this.careerCreate.splice(create[0], 1, createData);
+          flag = true;
+        }
+      });
+      // 없으면 추가
+      if (!flag) {
+        this.careerCreate.push(createData);
+      }
+    },
+    deleteCareer(deleteCareer) {
+      this.careerDelete.add(deleteCareer);
+    },
+    updateCareerData(updateCareerData) {
+      const updateData = {};
+      updateData.id = updateCareerData.id;
+      updateCareerData.userId = this.userId;
+      updateData.data = updateCareerData;
+      let flag = false;
+      Object.values(this.careerUpdate).forEach((update) => {
+        if (update.id === updateData.id) {
+          this.careerUpdate.splice(update[0], 1, updateData);
+          flag = true;
+        }
+      });
+      if (!flag) {
+        this.careerUpdate.push(updateData);
+      }
+      console.log(this.careerUpdate);
+    },
   },
 };
 </script>
