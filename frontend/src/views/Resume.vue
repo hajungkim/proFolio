@@ -31,7 +31,10 @@
        @updateEducationData="updateEducationData"
        @createEducationData="createEducationData"
        @createCareerData="createCareerData" @deleteCareer="deleteCareer"
-       @updateCareerData="updateCareerData"/>
+       @updateCareerData="updateCareerData"
+       @createActivityData="createActivityData" @updateActivityData="updateActivityData"
+       @deleteActivity="deleteActivity"
+       />
       <ResumePart3 v-if="resumePart==2"/>
       <ResumePart4 v-if="resumePart==3"/>
       <ResumePart5 v-if="resumePart==4"/>
@@ -65,6 +68,9 @@ export default {
       careerCreate: [],
       careerUpdate: [],
       careerDelete: new Set(),
+      activityCreate: [],
+      activityUpdate: [],
+      activityDelete: new Set(),
     };
   },
   computed: {
@@ -123,14 +129,25 @@ export default {
           this.$store.dispatch('careerUpdate', careerInfo.data);
         });
         Object.values([...this.careerDelete]).forEach((careerInfo) => {
-          console.log(careerInfo);
           this.$store.dispatch('careerDelete', careerInfo);
+        });
+        Object.values(this.activityCreate).forEach((activityInfo) => {
+          this.$store.dispatch('activityCreate', activityInfo.data);
+        });
+        Object.values(this.activityUpdate).forEach((activityInfo) => {
+          this.$store.dispatch('activityUpdate', activityInfo.data);
+        });
+        Object.values([...this.activityDelete]).forEach((activityInfo) => {
+          this.$store.dispatch('activityrDelete', activityInfo);
         });
         this.educationUpdate = [];
         this.educationCreate = [];
         this.careerCreate = [];
         this.careerUpdate = [];
         this.careerDelete = new Set();
+        this.activityCreate = [];
+        this.activityUpdate = [];
+        this.activityDelete = new Set();
       }
     },
     updateEducationData(updateEducationData) {
@@ -205,7 +222,43 @@ export default {
       if (!flag) {
         this.careerUpdate.push(updateData);
       }
-      console.log(this.careerUpdate);
+    },
+    createActivityData(createActivityData) {
+      const createData = {};
+      createData.id = createActivityData.id;
+      createActivityData.userId = this.userId;
+      createData.data = createActivityData;
+      let flag = false;
+      Object.values(this.activityCreate).forEach((create) => {
+        if (create.id === createData.id) {
+          // 있으면 내용 대체
+          this.careerCreate.splice(create[0], 1, createData);
+          flag = true;
+        }
+      });
+      // 없으면 추가
+      if (!flag) {
+        this.activityCreate.push(createData);
+      }
+    },
+    updateActivityData(updateActivityData) {
+      const updateData = {};
+      updateData.id = updateActivityData.id;
+      updateActivityData.userId = this.userId;
+      updateData.data = updateActivityData;
+      let flag = false;
+      Object.values(this.activityUpdate).forEach((update) => {
+        if (update.id === updateData.id) {
+          this.activityUpdate.splice(update[0], 1, updateData);
+          flag = true;
+        }
+      });
+      if (!flag) {
+        this.activityUpdate.push(updateData);
+      }
+    },
+    deleteActivity(deleteActivity) {
+      this.activityDelete.add(deleteActivity);
     },
   },
 };
