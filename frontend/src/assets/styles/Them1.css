@@ -10,6 +10,12 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'S-CoreDream-6Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-6Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 .them1{
     display: grid;
     padding-top: 8vh;
@@ -19,28 +25,92 @@
 .them1 .menu{
     position: fixed;
     margin-left: 5%;
-    margin-top: 2%;
-    height: 70vh;
+    margin-top: 5%;
+    height: 20vh;
     width: 200px;
-    border: 1px solid #c4c4c4;
 }
-.them1 .menu-item{
+.checkmark {
+    width: 40px;
+    height: 40px;
+    margin: auto;
+  } 
+  .path { 
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: dash 500ms ease-in-out forwards;
+    -webkit-animation: dash 900ms ease-in-out forwards; 
+  }
+  .check {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: dash 500ms ease-in-out forwards;
+    -webkit-animation: dash 900ms ease-in-out forwards;
+    animation-delay: 200ms; 
+    -webkit-animation-delay: 200ms;   
+  } 
+  @-webkit-keyframes dash {
+    0% {  
+      stroke-dashoffset: -1000;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+  @keyframes dash {
+    0% {
+      stroke-dashoffset: -1000;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+.menu > h4 {
     text-align: center;
-    line-height: 7vh;
-    margin: 0 10%;
-    height: 7vh;
-    color: #656060;
-    border-bottom: 1px solid #c4c4c4;
-    cursor: pointer;
-}
-.them1 .menu-item:hover{
-    color: black;
+    color: rgb(50, 126, 14);
 }
 .content{
     z-index: 1;
     width: 75vw;
     position: absolute;
     right: 0;
+}
+.buttons {
+    margin: 10%;
+    margin-top: 30px;
+    text-align: center;
+}
+.btn-hover {
+    width: 120px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 10px;
+    height: 50px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+
+    border-radius: 50px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover:hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+.btn-hover:focus {
+    outline: none;
+}
+.btn-hover.color-9 {
+    background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+    box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
 }
 .menu-buttons{
     position: absolute;
@@ -59,16 +129,17 @@
 }
 .info{
     display: grid;
-    font-family: 'GongGothicMedium';
+    font-family: 'S-CoreDream-6Bold';
     grid-template-columns: repeat(7, 1fr);
-    border-bottom: 1px solid #c4c4c4;
-    margin-top: 2%;
+    border-bottom: 1px solid #dfdfdf;
+    margin-top: 3%;
     margin-right: 5%;
 }
 .left{
     grid-column: 1 / span 4;
-    border-right: 1px solid #c4c4c4;
-    margin: 7%;
+    border-right: 1px solid #dfdfdf;
+    margin-top: 8%;
+    margin-right: 8%;
 }
 .right{
     grid-column: 5 / span 3;
@@ -101,14 +172,15 @@
     font-size: 2vw;
 }
 .detail{
-    height: 20vh;
+    height: 15vh;
     grid-row: 1;
-    padding: 10% 5% 5% 5%;
-    border-bottom: 1px solid #c4c4c4;
+    margin-top: 15%;
+    padding-left: 5%;
+    border-bottom: 1px solid #dfdfdf;
     box-sizing: content-box;
 }
 .name{
-    font-family: 'GongGothicMedium';
+    font-family: 'S-CoreDream-6Bold';
     color: #7B61FF;
     font-size: 2vw;
 }
@@ -134,7 +206,7 @@
 }
 .skill{
     margin: 5% 5% 5% 0;
-    border-bottom: 1px solid #c4c4c4;
+    border-bottom: 1px solid #dfdfdf;
 }
 .skill-content{
     display: grid;
@@ -157,7 +229,7 @@
     margin: 30px 0;
     padding: 30px 40px;
     box-sizing: border-box;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(0, 0, 0, 0.25);
     border-radius: 20px;
 }
 .mini-card{
@@ -165,7 +237,7 @@
     margin: 30px 0;
     padding: 15px 40px;
     box-sizing: border-box;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(0, 0, 0, 0.25);
     border-radius: 20px;
 }
 .projects{
@@ -174,7 +246,7 @@
     grid-template-columns: repeat(2, 1fr);
 }
 .project-card{
-    margin: 20px;
+    margin: 10px;
     padding: 30px 40px;
     box-sizing: border-box;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);

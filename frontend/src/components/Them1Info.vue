@@ -15,7 +15,6 @@
       <div class="right">
         <div class="detail">
             <div class="name">{{resume.user.name}}</div>
-            <div class="birth">{{resume.user.birth}}</div>
             <div class="tel">Tel. {{resume.user.phone}}</div>
             <div class="email">Email. {{resume.user.email}}</div>
 
