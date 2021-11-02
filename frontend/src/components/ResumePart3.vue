@@ -62,25 +62,25 @@ export default {
   methods: {
     addCreateLanguage() {
       const newLang = {
-        id: this.language.length + 1, language: '', name: '', score: '', certified_date: '',
+        id: this.language.length + 1, language: '', name: '', score: '', certifieddate: '',
       };
       this.language.unshift(newLang);
     },
     addCreateCert() {
       const newCert = {
-        id: this.certificate.length + 1, organization: '', name: '', score: '', certified_date: '',
+        id: this.certificate.length + 1, organization: '', name: '', score: '', certifieddate: '',
       };
       this.certificate.unshift(newCert);
     },
     addCreateAward() {
       const newAward = {
-        id: this.awards.length + 1, description: '', name: '', prize: '', awards_date: '',
+        id: this.awards.length + 1, description: '', name: '', prize: '', awardsdate: '',
       };
       this.awards.unshift(newAward);
     },
   },
   beforeMount() {
-    this.language = JSON.parse(JSON.stringify(this.resume.foreign_lang));
+    this.language = JSON.parse(JSON.stringify(this.resume.foreignLang));
     this.certificate = JSON.parse(JSON.stringify(this.resume.certificate));
     this.awards = JSON.parse(JSON.stringify(this.resume.awards));
   },

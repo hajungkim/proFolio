@@ -2,7 +2,7 @@
   <div class="resume-exp">
     <div>
       <span class="font-weight-b font-20">{{ career.company }}</span>
-      <span class="ml-15">{{ career.start_date }} ~ {{ career.end_date }}</span>
+      <span class="ml-15">{{ career.startDate }} ~ {{ career.endDate }}</span>
     </div>
     <table class="read-resume-table">
       <tr>

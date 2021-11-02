@@ -1,7 +1,7 @@
 <template>
   <div class="them3-skill">
       <div class="name">Skills</div>
-      <div v-for="(skill) in resume.technology_stack" :key="skill.id" style="display: flex">
+      <div v-for="(skill) in resume.technologyStack" :key="skill.id" style="display: flex">
         <div class="skill-level">{{skill.level}}</div>
         <div class="skill-name">{{skill.name}}</div>
       </div>

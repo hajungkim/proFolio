@@ -3,19 +3,19 @@
       <div class="left">
           <div class="title">
               <div class="them1-box">
-                <img :src = "resume.user.profile_path" class="profile-img">
+                <img :src = "resume.user.profilePath" class="profile-img">
               </div>
               <div class="slogan">
-                <div>성장하는</div>
-                <div style="color: #7B61FF; font-size: 3vw">개발자</div>
-                <div>{{resume.user.name}}입니다</div>
+                <h3>안녕하세요👋<br>
+                    프론트엔드 개발자를 꿈꾸는 김싸피입니다.<br>
+                    React, TypeScript와 같은 JS분야에 관심이 있습니다.<br>
+                    항상 성장하기 위해 새로운 것들을 많이 접하고 배우고 있습니다.</h3>
               </div>
           </div>
       </div>
       <div class="right">
         <div class="detail">
             <div class="name">{{resume.user.name}}</div>
-            <div class="birth">{{resume.user.birth}}</div>
             <div class="tel">Tel. {{resume.user.phone}}</div>
             <div class="email">Email. {{resume.user.email}}</div>
 
@@ -25,9 +25,9 @@
             <div class="university">{{resume.education.university}}</div>
             <div class="raw">
                 <div class="sub">
-                    {{resume.education.admission_date}} ~ {{resume.education.graduation_date}}
+                    {{resume.education.admissionDate}} ~ {{resume.education.graduationDate}}
                 </div>
-                    {{resume.education.graduation}}
+                    <div v-if="resume.education.graduation">졸업</div>
             </div>
             <div class="raw">
                 <div class="sub">전공</div>

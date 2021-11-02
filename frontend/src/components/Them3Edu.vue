@@ -4,9 +4,9 @@
             <div class="university">{{resume.education.university}}</div>
             <div class="raw">
                 <div class="sub">
-                    {{resume.education.admission_date}} ~ {{resume.education.graduation_date}}
+                    {{resume.education.admissionDate}} ~ {{resume.education.graduationDate}}
                 </div>
-                    {{resume.education.graduation}}
+                    <div v-if="resume.education.graduation">졸업</div>
             </div>
             <div class="raw">
                 <div class="sub">전공</div>

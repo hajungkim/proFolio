@@ -71,7 +71,7 @@ export default {
     return {
       date1: null,
       menu1: false,
-      cert_date: this.certificate.certified_date,
+      cert_date: this.certificate.certifieddate,
     };
   },
 };

@@ -12,15 +12,15 @@
             </div>
             <div>
                 <div class="subtitle">기술스택</div>
-                <div>{{pro.technology_stack}}</div>
+                <div>{{pro.technologyStack}}</div>
             </div>
             <div>
                 <div class="subtitle">개발기간</div>
-                <div>{{pro.start_date}} ~ {{pro.end_date}}</div>
+                <div>{{pro.startDate}} ~ {{pro.endDate}}</div>
             </div>
             <div>
                 <div class="subtitle">참여인원</div>
-                <div>{{pro.member_cnt}}명</div>
+                <div>{{pro.memberCnt}}명</div>
             </div>
           </div>
       </div>

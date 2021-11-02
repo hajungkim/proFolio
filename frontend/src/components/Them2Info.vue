@@ -3,7 +3,7 @@
       <div class="them2-subtitle">About Me</div>
       <div class="them2-info-box">
           <div class="user-img">
-              <img :src = "resume.user.profile_path" class="user-profile-img">
+              <img :src = "resume.user.profilePath" class="user-profile-img">
           </div>
           <div class="them2-detail">
             <div class="them2-username">{{resume.user.name}}</div>
@@ -27,7 +27,7 @@
       <div class="introduce">
           <div>안녕하세요~</div>
           <div>백엔드 개발자를 꿈꾸는 {{resume.user.name}}입니다.</div>
-          <div>{{resume.technology_stack[0].name}}, {{resume.technology_stack[1].name}}
+          <div>{{resume.technologyStack[0].name}}, {{resume.technologyStack[1].name}}
               와 같은 분야에 관심이 있습니다.
           </div>
           <div>항상 성장하기 위해 새로운 것들을 많이 접하고 배우고 있습니다.</div>

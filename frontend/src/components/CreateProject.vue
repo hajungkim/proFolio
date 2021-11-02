@@ -151,8 +151,8 @@ export default {
       date2: null,
       menu1: false,
       menu2: false,
-      start: this.project.start_date,
-      end: this.project.end_date,
+      start: this.project.startDate,
+      end: this.project.endDate,
     };
   },
 };
