@@ -75,7 +75,7 @@ export default new Vuex.Store({
           certifiedDate: '2021.02.23',
         },
       ],
-      foreignlang: [
+      foreignLang: [
         {
           id: '1',
           language: '영어',

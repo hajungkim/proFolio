@@ -67,7 +67,7 @@
           <th>{{ cert.certifieddate }}</th>
           <td class="font-weight-b">{{ cert.name }}</td>
         </tr>
-        <tr v-for="(lang) in resume.foreignlang" :key="lang.id">
+        <tr v-for="(lang) in resume.foreignLang" :key="lang.id">
           <th>{{ lang.certifieddate }}</th>
           <td class="font-weight-b">{{ lang.name }}</td>
           <td>{{ lang.score }}점</td>
