@@ -7,7 +7,7 @@
                 <div>대규모 프로그램 및 시스템을 참고사항(책/인터넷)없이 개발할 수 있음</div>
           </div>
           <div class="flex">
-                <div class="green level-color">3 - 4</div>
+                <div class="levelgreen level-color">3 - 4</div>
                 <div>중간 규모 프로그램 및 시스템을 개발할 수 있으며, 능숙하게 다룰 수 있음</div>
           </div>
           <div class="flex">

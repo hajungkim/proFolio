@@ -7,10 +7,12 @@
           <div class="item-title">{{exp.name}}</div>
           <div class="item-detail">{{exp.description}}</div>
         </li>
-          <li v-for="(edu) in resume.education" :key="edu.id" class="tl-item">
-          <div class="timestamp">{{edu.admissionDate}} ~ {{edu.graduationDate}}</div>
-          <div class="item-title">{{edu.university}}</div>
-          <div class="item-detail">전공 : {{edu.major}}</div>
+          <li class="tl-item">
+          <div class="timestamp">
+            {{resume.education.admissionDate}} ~
+            {{resume.education.graduationDate}}</div>
+          <div class="item-title">{{resume.education.university}}</div>
+          <div class="item-detail">전공 : {{resume.education.major}}</div>
         </li>
       </ul>
   </div>

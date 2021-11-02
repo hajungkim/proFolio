@@ -8,7 +8,7 @@
                 <div class="level-circle"
                 :class="{
                     red: skill.level==5,
-                    green: skill.level == 3 || skill.level == 4,
+                    levelgreen: skill.level == 3 || skill.level == 4,
                     yellow: skill.level == 1 || skill.level == 2
                 }">{{skill.level}}</div>
             </div>
