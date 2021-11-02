@@ -7,6 +7,7 @@ import com.ssafy.profolio.web.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
@@ -28,6 +29,9 @@ public class OauthController {
 
     private final String signature = "LOGINTOKEN";
     private final Long expireMin = 30L;
+
+    @Value("${spring.front.url}")
+    private String front_url;
 
     /**
      * 사용자로부터 SNS 로그인 요청을 Social Login Type 을 받아 처리
@@ -65,7 +69,7 @@ public class OauthController {
         cookie.setPath("/");
         response.addCookie(cookie);
 
-        response.sendRedirect("http://localhost:3000/");
+        response.sendRedirect(front_url);
     }
     @GetMapping(value = "/naver/callback")
     public void callback_naver(
@@ -88,7 +92,7 @@ public class OauthController {
         cookie.setPath("/");
         response.addCookie(cookie);
 
-        response.sendRedirect("http://localhost:3000/");
+        response.sendRedirect(front_url);
     }
     @GetMapping(value = "/github/callback")
     public void callback_github(
@@ -109,6 +113,6 @@ public class OauthController {
         cookie.setPath("/");
         response.addCookie(cookie);
 
-        response.sendRedirect("http://localhost:3000/");
+        response.sendRedirect(front_url);
     }
 }
