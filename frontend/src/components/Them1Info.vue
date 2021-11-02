@@ -3,7 +3,7 @@
       <div class="left">
           <div class="title">
               <div class="them1-box">
-                <img :src = "resume.user.profile_path" class="profile-img">
+                <img :src = "resume.user.profilePath" class="profile-img">
               </div>
               <div class="slogan">
                 <div>성장하는</div>
@@ -21,20 +21,23 @@
         </div>
         <div class="education">
             <div class="name">EDUCATION</div>
-            <div class="university">{{resume.education.university}}</div>
-            <div class="raw">
-                <div class="sub">
-                    {{resume.education.admissiondate}} ~ {{resume.education.graduationdate}}
-                </div>
-                    {{resume.education.graduation}}
-            </div>
-            <div class="raw">
-                <div class="sub">전공</div>
-                {{resume.education.major}}
-            </div>
-            <div class="raw">
-                <div class="sub">부전공</div>
-                {{resume.education.minor}}
+            <div v-for="(edu) in resume.education" :key="edu.id">
+              <div class="university">{{edu.university}}</div>
+              <div class="raw">
+                  <div class="sub">
+                      {{edu.admissionDate}} ~ {{edu.graduationDate}}
+                  </div>
+                      <div v-if="edu.graduation">졸업</div>
+              </div>
+              <div class="raw">
+                  <div class="sub">전공</div>
+                  {{edu.major}}
+              </div>
+              <div class="raw">
+                  <div class="sub">부전공</div>
+                  {{edu.minor}}
+              </div>
+
             </div>
         </div>
       </div>

@@ -3,7 +3,7 @@
       <div class="them2-subtitle">Awards</div>
       <div v-for="(award) in resume.awards" :key="award.id" class="them2-card">
           <span class="them2-cardname">{{award.name}}</span>
-          <span class="them2-grayfont">({{award.awards_date}})</span>
+          <span class="them2-grayfont">({{award.awardsDate}})</span>
           <div class="them2-summary">{{award.prize}}</div>
           <div class="them2-grayfont">{{award.description}}</div>
       </div>

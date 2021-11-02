@@ -7,7 +7,7 @@
 .them3{
     font-family: 'Pretendard-Regular';
     background-color: #EFF1FF;
-    min-height: 100vh;
+    height: 300vh;
     padding-top: 5%;
 }
 .them3 .name{
@@ -16,16 +16,22 @@
     margin-bottom: 5%;
 }
 .them3-content{
-    padding-left: 20%;
+    background-color: #EFF1FF;
+    width: 80vw;
+    right: 0;
+    position: absolute;
+}
+#them3-pdf{
+    background-color: #EFF1FF;
+    font-family: 'Pretendard-Regular';
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 }
 .them3 .menu{
-    position: absolute;
-    background-color: white;
+    position: fixed;
     left: 5vw;
-    top: 64vh;
-    height: 77vh;
+    top: 15vh;
+    height: 30vh;
     width: 15vw;
 }
 .them3 .menu li{
@@ -53,25 +59,25 @@
     margin: 5% auto;
 }
 .them3-box{
-    margin: 0;
-    position: absolute;
-    left: 15vw;
-    top: 22vh;
     width: 15vw;
-    height: 30vh;
     border-radius: 70%;
     overflow: hidden;
 }
 .them3-info{
-    margin: 3% 0;
+    grid-column: 1 / span 2;
+    display: flex;
 }
 .info-box{
     background-color: white;
-    width: 53vw;
-    height: 30vh;
-    margin-left: 24%;
-    padding: 3% 8%;
+    width: 61vw;
     box-sizing: content-box;
+    padding: 5%;
+    margin: 5%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.them3-info-detail{
+    grid-column: 2 / span 2;
 }
 .info-detail{
     margin-left: 20%;
