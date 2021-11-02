@@ -1,28 +1,15 @@
 package com.ssafy.profolio.web;
 
-import com.ssafy.profolio.domain.user.User;
 import com.ssafy.profolio.helper.constants.SocialLoginType;
 import com.ssafy.profolio.service.OauthService;
 import com.ssafy.profolio.service.UserService;
 import com.ssafy.profolio.web.dto.UserDto;
-import io.jsonwebtoken.JwtBuilder;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.configurationprocessor.json.JSONException;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.json.JSONException;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.DoubleStream;
 
 @RestController
 @CrossOrigin
@@ -41,7 +28,7 @@ public class OauthController {
     /**
      * 사용자로부터 SNS 로그인 요청을 Social Login Type 을 받아 처리
      * @param socialLoginType (GOOGLE, FACEBOOK, NAVER, KAKAO)
-    */
+     */
     @GetMapping(value = "/{socialLoginType}")
     public void socialLoginType(
             @PathVariable(name = "socialLoginType") SocialLoginType socialLoginType) {
@@ -54,7 +41,7 @@ public class OauthController {
      * socialLoginType (GOOGLE, FACEBOOK, NAVER, KAKAO)
      * @param code API Server 로부터 넘어노는 code
      * @return SNS Login 요청 결과로 받은 Json 형태의 String 문자열 (access_token, refresh_token 등)
-    */
+     */
     @GetMapping(value = "/google/callback")
     public BaseResponse callback(
             @ModelAttribute(name = "code") String code,
