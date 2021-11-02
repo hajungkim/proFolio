@@ -7,6 +7,7 @@ import Resume from '../views/Resume.vue';
 import Them1 from '../views/Them1.vue';
 import Them2 from '../views/Them2.vue';
 import Them3 from '../views/Them3.vue';
+import Convert from '../views/Convert.vue';
 
 Vue.use(VueRouter);
 
@@ -46,9 +47,15 @@ const routes = [
     name: 'Them3',
     component: Them3,
   },
+  {
+    path: '/convert',
+    name: 'Convert',
+    component: Convert,
+  },
 ];
 
 const router = new VueRouter({
+  mode: 'history',
   routes,
 });
 
