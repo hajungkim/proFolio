@@ -110,14 +110,19 @@ public class GithubOauth implements SocialOauth {
 
         JSONObject jObject = new JSONObject(response);
 
-        String socailId = "GITHUB-"+jObject.getString("id");
-        String email = jObject.getString("email");
-        String picture = jObject.getString("avatar_url");
-        String name = jObject.getString("name");
+        String socailId = "GITHUB-"+jObject.getInt("id");
+
+        String email = null;
+        String picture = null;
+        String name = null;
+
+        if(!jObject.isNull("email"))  email = (String) jObject.get("email");
+        if(!jObject.isNull("avatar_url")) picture = jObject.getString("avatar_url");
+        if(!jObject.isNull("name")) name = jObject.getString("name");
 
         log.info(">>>>>GITHUB social Id: " + socailId);
 
-        UserDto result = new UserDto(socailId, email,name,null,null,picture);
+        UserDto result = new UserDto(socailId, email, name,null,null,picture);
         return result;
     }
 }

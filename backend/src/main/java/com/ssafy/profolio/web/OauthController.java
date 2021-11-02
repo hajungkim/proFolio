@@ -9,7 +9,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.json.JSONException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin
@@ -20,7 +25,6 @@ public class OauthController {
 
     private final OauthService oauthService;
     private final UserService userService;
-    HttpServletResponse response;
 
     private final String signature = "LOGINTOKEN";
     private final Long expireMin = 30L;
@@ -43,9 +47,9 @@ public class OauthController {
      * @return SNS Login 요청 결과로 받은 Json 형태의 String 문자열 (access_token, refresh_token 등)
      */
     @GetMapping(value = "/google/callback")
-    public BaseResponse callback(
-            @ModelAttribute(name = "code") String code,
-            HttpServletResponse response) throws JSONException {
+    public void callback(
+            @RequestParam(name = "code") String code,
+            HttpServletResponse response) throws JSONException, IOException {
         log.info(">> GOOGLE 소셜 로그인 API 서버로부터 받은 code :: {}", code);
 
         SocialLoginType socialLoginType = SocialLoginType.GOOGLE;
@@ -54,12 +58,20 @@ public class OauthController {
         String token = userService.createToken(userDto);
         UserDto.loginResponse loginResponse = userService.createTokenUserId(token, userDto.getUserId());
 
-        return new BaseResponse<>(loginResponse);
+        Cookie cookie = new Cookie("userId", String.valueOf(userDto.getUserId()));
+        cookie.setMaxAge(7 * 24 * 60 * 60); // expires in 7 days
+        cookie.setSecure(true);
+        //cookie.setHttpOnly(true);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+
+        response.sendRedirect("http://localhost:3000/");
     }
     @GetMapping(value = "/naver/callback")
-    public BaseResponse callback_naver(
+    public void callback_naver(
             @RequestParam(name = "code") String code,
-            @RequestParam(name = "state") String state) throws JSONException {
+            @RequestParam(name = "state") String state,
+            HttpServletResponse response) throws JSONException, IOException {
         log.info(">> NAVER 소셜 로그인 API 서버로부터 받은 code :: {}", code);
         log.info(">> NAVER 소셜 로그인 API 서버로부터 받은 state :: {}", state);
 
@@ -69,11 +81,19 @@ public class OauthController {
         String token = userService.createToken(userDto);
         UserDto.loginResponse loginResponse = userService.createTokenUserId(token, userDto.getUserId());
 
-        return new BaseResponse<>(loginResponse);
+        Cookie cookie = new Cookie("userId", String.valueOf(userDto.getUserId()));
+        cookie.setMaxAge(7 * 24 * 60 * 60); // expires in 7 days
+        cookie.setSecure(true);
+        cookie.setHttpOnly(true);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+
+        response.sendRedirect("http://localhost:3000/");
     }
     @GetMapping(value = "/github/callback")
-    public BaseResponse callback_github(
-            @RequestParam(name = "code") String code) throws JSONException {
+    public void callback_github(
+            @RequestParam(name = "code") String code,
+            HttpServletResponse response) throws JSONException, IOException {
         log.info(">> GITHUB 소셜 로그인 API 서버로부터 받은 code :: {}", code);
 
         SocialLoginType socialLoginType = SocialLoginType.GITHUB;
@@ -82,8 +102,13 @@ public class OauthController {
         String token = userService.createToken(userDto);
         UserDto.loginResponse loginResponse = userService.createTokenUserId(token, userDto.getUserId());
 
-        return new BaseResponse<>(loginResponse);
+        Cookie cookie = new Cookie("userId", String.valueOf(userDto.getUserId()));
+        cookie.setMaxAge(7 * 24 * 60 * 60); // expires in 7 days
+        cookie.setSecure(true);
+        cookie.setHttpOnly(true);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+
+        response.sendRedirect("http://localhost:3000/");
     }
-
-
 }
