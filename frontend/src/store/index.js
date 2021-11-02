@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import { getUserInfo } from './modules/UserAPI';
 import {
   putEducation, getEducation, postEducation, postCareer, getCareer, deleteCareer, putCareer,
+  postActivity, getActivity, putActivity, deleteActivity,
 } from './modules/ResumeAPI';
 
 Vue.use(Vuex);
@@ -177,6 +178,9 @@ export default new Vuex.Store({
     CAREER_INFO(state, career) {
       state.resume.career = career;
     },
+    ACTIVITY_INFO(state, activity) {
+      state.resume.activity = activity;
+    },
   },
   actions: {
     getUser(context, userId) {
@@ -216,6 +220,27 @@ export default new Vuex.Store({
       putCareer(data.id, data).then(() => {
         getCareer(context.state.userId).then((response) => {
           context.commit('CAREER_INFO', response.data.data);
+        });
+      });
+    },
+    activityCreate(context, data) {
+      postActivity(data).then(() => {
+        getActivity(context.state.userId).then((response) => {
+          context.commit('ACTIVITY_INFO', response.data.data);
+        });
+      });
+    },
+    activityUpdate(context, data) {
+      putActivity(data.id, data).then(() => {
+        getActivity(context.state.userId).then((response) => {
+          context.commit('ACTIVITY_INFO', response.data.data);
+        });
+      });
+    },
+    activityrDelete(context, data) {
+      deleteActivity(data).then(() => {
+        getActivity(context.state.userId).then((response) => {
+          context.commit('ACTIVITY_INFO', response.data.data);
         });
       });
     },

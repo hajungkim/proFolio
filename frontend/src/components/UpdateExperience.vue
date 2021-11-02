@@ -3,9 +3,10 @@
     <table class="resume-part2-input">
       <tr>
         <th>활동명</th>
-        <td><input type="text" @change="activityName"></td>
+        <td><input type="text" @change="activityName" :placeholder="activity.name"></td>
         <th class="pl-15">활동기관</th>
-        <td><input type="text" @change="activityOrganization"></td>
+        <td><input type="text" @change="activityOrganization"
+        :placeholder="activity.organization"></td>
       </tr>
       <tr>
         <th>시작일</th>
@@ -15,14 +16,14 @@
               ref="menu1"
               v-model="menu1"
               :close-on-content-click="false"
-              :return-value.sync="activityCreate.activity.startDate"
+              :return-value.sync="activityUpdate.activity.startDate"
               transition="scale-transition"
               offset-y
               min-width="auto"
             >
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
-                  v-model="activityCreate.activity.startDate"
+                  v-model="activityUpdate.activity.startDate"
                   label="시작일"
                   prepend-icon="mdi-calendar"
                   readonly
@@ -31,7 +32,7 @@
                 ></v-text-field>
               </template>
               <v-date-picker
-                v-model="activityCreate.activity.startDate"
+                v-model="activityUpdate.activity.startDate"
                 no-title
                 scrollable
                 type="month"
@@ -62,14 +63,14 @@
               ref="menu2"
               v-model="menu2"
               :close-on-content-click="false"
-              :return-value.sync="activityCreate.activity.endDate"
+              :return-value.sync="activityUpdate.activity.endDate"
               transition="scale-transition"
               offset-y
               min-width="auto"
             >
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
-                  v-model="activityCreate.activity.endDate"
+                  v-model="activityUpdate.activity.endDate"
                   label="종료일"
                   prepend-icon="mdi-calendar"
                   readonly
@@ -78,7 +79,7 @@
                 ></v-text-field>
               </template>
               <v-date-picker
-                v-model="activityCreate.activity.endDate"
+                v-model="activityUpdate.activity.endDate"
                 no-title
                 scrollable
                 type="month"
@@ -106,7 +107,8 @@
       <tr>
         <th>활동내용</th>
         <td colspan="4">
-          <textarea class="resume-p2-exp" @change="activityDescription"></textarea>
+          <textarea class="resume-p2-exp" @change="activityDescription"
+          :placeholder="activity.description"></textarea>
         </td>
       </tr>
     </table>
@@ -116,7 +118,7 @@
 
 <script>
 export default {
-  name: 'CreateExperience',
+  name: 'UpdateExperience',
   props: {
     activity: {
       type: Object,
@@ -126,41 +128,47 @@ export default {
     return {
       menu1: false,
       menu2: false,
-      activityCreate: {},
+      activityUpdate: {},
     };
   },
   methods: {
     dataUpdate() {
-      this.$emit('createActivity', this.activityCreate);
+      this.$emit('updateActivity', this.activityUpdate);
     },
     startDateUpdate() {
-      this.$refs.menu1.save(this.activityCreate.activity.startDate);
+      this.$refs.menu1.save(this.activityUpdate.activity.startDate);
+      this.activityUpdate.isUpdated = true;
       this.dataUpdate();
     },
     endDateUpdate() {
-      this.$refs.menu2.save(this.activityCreate.activity.endDate);
+      this.$refs.menu2.save(this.activityUpdate.activity.endDate);
+      this.activityUpdate.isUpdated = true;
       this.dataUpdate();
     },
     activityName(event) {
-      this.activityCreate.activity.name = event.target.value;
+      this.activityUpdate.activity.name = event.target.value;
+      this.activityUpdate.isUpdated = true;
       this.dataUpdate();
     },
     activityOrganization(event) {
-      this.activityCreate.activity.organizagion = event.target.value;
+      this.activityUpdate.activity.organizagion = event.target.value;
+      this.activityUpdate.isUpdated = true;
       this.dataUpdate();
     },
     activityDescription(event) {
-      this.activityCreate.activity.description = event.target.value;
+      this.activityUpdate.activity.description = event.target.value;
+      this.activityUpdate.isUpdated = true;
       this.dataUpdate();
     },
     deleteActivity() {
-      this.activityCreate.isDeleted = true;
+      this.activityUpdate.isDeleted = true;
       this.dataUpdate();
     },
   },
   beforeMount() {
-    this.activityCreate.activity = this.activity;
-    this.activityCreate.isDeleted = false;
+    this.activityUpdate.activity = this.activity;
+    this.activityUpdate.isDeleted = false;
+    this.activityUpdate.isUpdated = false;
   },
 };
 </script>

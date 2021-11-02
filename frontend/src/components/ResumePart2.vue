@@ -32,7 +32,12 @@
         <div class="plus-btn" @click="addCreateExperience">+</div>
       </strong>
       <CreateExperience
-        v-for="(activity) in activity" :key="activity.id" :activity="activity"
+        v-for="(activity) in activityCreate" :key="activity.id" :activity="activity"
+        @createActivity="createActivity"
+      />
+      <UpdateExperience
+        v-for="(activity) in activityUpdate" :key="activity.id" :activity="activity"
+        @updateActivity="updateActivity"
       />
     </div>
   </div>
@@ -43,6 +48,7 @@ import { mapState } from 'vuex';
 import CreateCareer from './CreateCareer.vue';
 import UpdateCareer from './UpdateCareer.vue';
 import CreateExperience from './CreateExperience.vue';
+import UpdateExperience from './UpdateExperience.vue';
 import UpdateEducation from './UpdateEducation.vue';
 
 export default {
@@ -52,6 +58,7 @@ export default {
     CreateExperience,
     UpdateEducation,
     UpdateCareer,
+    UpdateExperience,
   },
   computed: {
     ...mapState([
@@ -60,12 +67,12 @@ export default {
   },
   data() {
     return {
-      // career: this.resumeEdit.career,
-      activity: null,
       educationUpdate: null,
       educationCreate: [],
       careerCreate: [],
       careerUpdate: null,
+      activityCreate: [],
+      activityUpdate: null,
     };
   },
   methods: {
@@ -77,9 +84,9 @@ export default {
     },
     addCreateExperience() {
       const newExp = {
-        id: this.activity.length + 1, name: '', organization: '', description: '', startDate: '', endDate: '',
+        id: `create${Math.random()}`, name: '', organization: '', description: '', startDate: '', endDate: '',
       };
-      this.activity.unshift(newExp);
+      this.activityCreate.unshift(newExp);
     },
     updateEducation(updateEducation) {
       if (updateEducation.isCreated) {
@@ -117,6 +124,35 @@ export default {
         this.$emit('updateCareerData', updateCareer.career);
       }
     },
+    createActivity(createActivity) {
+      if (createActivity.isDeleted) {
+        let sliceIndex = null;
+        const idx = createActivity.activity.id;
+        Object.entries(this.activityCreate).forEach((activity) => {
+          if (Object.keys(activity[1]).find((key) => activity[1][key] === idx)) {
+            [sliceIndex] = activity;
+          }
+        });
+        this.activityCreate.splice(sliceIndex, 1);
+      } else {
+        this.$emit('createActivityData', createActivity.activity);
+      }
+    },
+    updateActivity(updateActivity) {
+      if (updateActivity.isDeleted) {
+        let sliceIndex = null;
+        const idx = updateActivity.activity.id;
+        Object.entries(this.activityUpdate).forEach((activity) => {
+          if (Object.keys(activity[1]).find((key) => activity[1][key] === idx)) {
+            [sliceIndex] = activity;
+          }
+        });
+        this.activityUpdate.splice(sliceIndex, 1);
+        this.$emit('deleteActivity', updateActivity.activity.id);
+      } else if (updateActivity.isUpdated) {
+        this.$emit('updateActivityData', updateActivity.activity);
+      }
+    },
   },
   beforeMount() {
     if (this.resume.education.id === undefined) {
@@ -128,6 +164,7 @@ export default {
       this.educationUpdate.isCreated = false;
     }
     this.careerUpdate = JSON.parse(JSON.stringify(this.resume.career));
+    this.activityUpdate = JSON.parse(JSON.stringify(this.resume.activity));
   },
 };
 </script>
