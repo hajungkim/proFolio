@@ -2,11 +2,11 @@
   <div class="them3-certi">
       <div class="name">Certificate / Language</div>
       <div v-for="(cer) in resume.certificate" :key="cer.id" style="margin: 5% 0">
-          <span>{{cer.certifieddate}}</span>
+          <span>{{cer.certifiedDate}}</span>
           <span  style="margin: 10%">{{cer.name}}</span>
       </div>
       <div v-for="(lag) in resume.foreignLang" :key="lag.id">
-          <span>{{lag.certifieddate}}</span>
+          <span>{{lag.certifiedDate}}</span>
           <span style="margin: 10%">{{lag.name}}</span>
           <span style="margin: 10%">{{lag.score}}</span>
       </div>

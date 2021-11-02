@@ -55,7 +55,7 @@ public class UserService {
         if(user == null) throw new BaseException(BaseResponseCode.DATA_IS_NULL);
 
         return new UserDto.UserResponse(user.getId(), user.getEmail(),
-                user.getName(), user.getPhone(), user.getBirthday(), user.getProfile_path());
+                user.getName(), user.getPhone(), user.getBirthday(), user.getProfilePath());
     }
 
     @Transactional

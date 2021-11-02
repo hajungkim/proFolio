@@ -1,0 +1,207 @@
+@font-face {
+    font-family: 'NanumBarunGothic';
+    font-style: normal;
+    font-weight: 400;
+    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
+    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype');
+   }
+.them2{
+    font-family: 'NanumBarunGothic';
+    min-height: 100vh;
+    padding-top: 5%;
+    font-size: 1.5rem;
+}
+.them2-title{
+    font-size: 4rem;
+    font-weight: bold;
+    text-align: center;
+}
+.them2-box{
+    margin: 5% 10%;
+}
+.them2-subtitle{
+    margin: 5% 0;
+    font-weight: bold;
+    font-size: 3rem;
+}
+.them2-info-box{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.user-profile-img{
+    width: 20vw;
+}
+.them2-username{
+    font-weight: bold;
+    font-size: 2rem;
+}
+.line2{
+    display: flex;
+    margin: 7% 0;
+}
+.line-title2{
+    width: 8vw;
+    height: 5vh;
+    line-height: 5vh;
+    background-color: #E5EAFF;
+    color: #0014BC;
+    border-radius: 15px;
+    text-align: center;
+    font-weight: bold;
+    margin-right: 10%;
+}
+.blue_box{
+    margin: 5% 0;
+    border: 2px solid #0014BC;
+    color: #0014BC;
+    width: 30vw;
+    height: 5vh;
+    line-height: 5vh;
+    font-weight: bold;
+    text-align: center;
+}
+.introduce{
+    font-weight: bold;
+}
+.skill-desc{
+    background-color: #F8F8F8;
+    border-left: 15px solid #DCDCDC;
+    font-size: 1rem;
+    padding: 1%;
+    margin: 5% 0;
+}
+.flex{
+    display: flex;
+    margin: 1%;
+}
+.level-color{
+    width: 5vw;
+    height: 4vh;
+    line-height: 4vh;
+    border-radius: 15px;
+    text-align: center;
+    margin: 0 2%;
+    font-weight: bold;
+}
+.level-circle{
+    text-align: center;
+    font-weight: bold;
+    line-height: 5vh;
+    width: 2.5vw;
+    height: 5vh;
+    border-radius: 70%;
+    margin: 0 2%;
+}
+.red{
+    color: #FF0000;
+    background-color: #FFE7E7;
+    border: 2px solid #FF0000;
+}
+.levelgreen{
+    color: #009A2B;
+    background-color: #E1FFE4;
+    border: 2px solid #009A2B;
+}
+.yellow{
+    color: #FFA800;
+    background-color: #FFF4CB;
+    border: 2px solid #FFA800;
+}
+.blue-line{
+    text-decoration: underline;
+    text-decoration-color: #0014BC;
+    font-weight: bold;
+    font-size: 2rem;
+}
+.skill-item{
+    margin: 3% 5%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.them2-card{
+    border: 2px solid #ececec;
+    border-radius: 20px;
+    padding: 3%;
+    font-size: 1.3rem;
+    margin: 3% 0;
+}
+.them2-cardname{
+    font-size: 2rem;
+    color: #0014BC;
+    font-weight: bold;
+    margin-right: 1%;
+}
+.them2-grayfont{
+    color: #959595;
+}
+.them2-summary{
+    font-weight: bold;
+    margin: 0.5% 0;
+}
+.margin{
+    margin: 2% 0;
+}
+.padding{
+    padding: 0 3%;
+}
+.them2-bluefont{
+    color: #0014BC;
+    font-weight: bold;
+    margin: 5%;
+}
+.them2-box ul.tl{
+    padding:0;
+    display:inline-block;
+}
+.them2-box ul.tl li{
+    list-style: none;
+    margin-left:15vw;
+    min-height: 20vh;
+    border-left: 4px dashed #3c47ad;
+    padding:0 0 10vw 5vh;
+    position:relative;
+}
+.them2-box li.tl-tiem{
+    margin: 0;
+}
+.them2-box ul.tl li:last-child{ border-left:0;}
+.them2-box ul.tl li::before{
+    position: absolute;
+    left: -1.3vw;
+    top: 0;
+    content: " ";
+    border: 0.6vw solid rgba(255, 255, 255, 0.74);
+    border-radius: 500%;
+    background: #0014BC;
+    height: 5vh;
+    width: 2.5vw;
+    transition: all 500ms ease-in-out;
+
+}
+.them2-box ul.tl li:hover::before{
+    border-color:  #0014BC;
+    transition: all 1000ms ease-in-out;
+}
+ul.tl li .item-title{
+    font-size: 2rem;
+    font-weight: bold;
+    color: #0014BC;
+}
+ul.tl li .item-detail{
+    color:rgba(0,0,0,0.5);
+}
+ul.tl li .timestamp{
+    color: #8D8D8D;
+    position: absolute;
+    width: 11vw;
+    left: -15vw;
+    top: 1vh;
+    text-align: right;
+}
+.them2-card .project-skill{
+    border: 1px solid #a1a1a1;
+    color: #a1a1a1;
+    border-radius: 15px;
+    padding: 0 1%;
+    margin: 0 0.5%;
+}

@@ -3,7 +3,7 @@
       <div class="left">
           <div class="title">
               <div class="them1-box">
-                <img :src = "resume.user.profile_path" class="profile-img">
+                <img :src = "resume.user.profilePath" class="profile-img">
               </div>
               <div class="slogan">
                 <div>성장하는</div>
@@ -15,7 +15,6 @@
       <div class="right">
         <div class="detail">
             <div class="name">{{resume.user.name}}</div>
-            <div class="birth">{{resume.user.birth}}</div>
             <div class="tel">Tel. {{resume.user.phone}}</div>
             <div class="email">Email. {{resume.user.email}}</div>
 
@@ -27,7 +26,7 @@
                 <div class="sub">
                     {{resume.education.admissionDate}} ~ {{resume.education.graduationDate}}
                 </div>
-                    {{resume.education.graduation}}
+                    <div v-if="resume.education.graduation">졸업</div>
             </div>
             <div class="raw">
                 <div class="sub">전공</div>
