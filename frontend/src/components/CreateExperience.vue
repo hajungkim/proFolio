@@ -127,8 +127,8 @@ export default {
       date2: null,
       menu1: false,
       menu2: false,
-      start: this.activity.startdate,
-      end: this.activity.enddate,
+      start: this.activity.startDate,
+      end: this.activity.endDate,
     };
   },
 };

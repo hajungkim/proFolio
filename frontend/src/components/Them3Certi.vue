@@ -5,7 +5,7 @@
           <span>{{cer.certifieddate}}</span>
           <span  style="margin: 10%">{{cer.name}}</span>
       </div>
-      <div v-for="(lag) in resume.foreignlang" :key="lag.id">
+      <div v-for="(lag) in resume.foreignLang" :key="lag.id">
           <span>{{lag.certifieddate}}</span>
           <span style="margin: 10%">{{lag.name}}</span>
           <span style="margin: 10%">{{lag.score}}</span>

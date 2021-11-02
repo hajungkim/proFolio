@@ -4,7 +4,7 @@
       <div class="skill-content">
           <div class="language">
               <div class="content-title">Language</div>
-              <div v-for="(skill) in resume.technologystack" :key="skill.id">
+              <div v-for="(skill) in resume.technologyStack" :key="skill.id">
                 <div style="display: flex" v-if="skill.kind == 1">
                   <div class="them1-skill-name">{{skill.name}}</div>
                   <div v-for="i in 5" :key=i class="them1-skill">
@@ -16,7 +16,7 @@
           </div>
           <div class="management">
               <div class="content-title">Management</div>
-              <div v-for="(skill) in resume.technologystack" :key="skill.id">
+              <div v-for="(skill) in resume.technologyStack" :key="skill.id">
                 <div style="display: flex" v-if="skill.kind == 3">
                   <div class="them1-skill-name">{{skill.name}}</div>
                   <div v-for="i in 5" :key=i class="them1-skill">
@@ -28,7 +28,7 @@
           </div>
           <div class="framework">
               <div class="content-title">Framework</div>
-              <div v-for="(skill) in resume.technologystack" :key="skill.id">
+              <div v-for="(skill) in resume.technologyStack" :key="skill.id">
                 <div style="display: flex" v-if="skill.kind == 2">
                   <div class="them1-skill-name">{{skill.name}}</div>
                   <div v-for="i in 5" :key=i class="them1-skill">

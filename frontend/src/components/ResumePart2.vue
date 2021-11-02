@@ -69,13 +69,13 @@ export default {
   methods: {
     addCreateCareer() {
       const newCareer = {
-        id: this.career.length + 1, company: '', duty: '', description: '', startdate: '', enddate: '',
+        id: this.career.length + 1, company: '', duty: '', description: '', startDate: '', endDate: '',
       };
       this.career.unshift(newCareer);
     },
     addCreateExperience() {
       const newExp = {
-        id: this.activity.length + 1, name: '', organization: '', description: '', startdate: '', enddate: '',
+        id: this.activity.length + 1, name: '', organization: '', description: '', startDate: '', endDate: '',
       };
       this.activity.unshift(newExp);
     },

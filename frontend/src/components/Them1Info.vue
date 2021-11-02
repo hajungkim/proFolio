@@ -24,7 +24,7 @@
             <div class="university">{{resume.education.university}}</div>
             <div class="raw">
                 <div class="sub">
-                    {{resume.education.admissiondate}} ~ {{resume.education.graduationdate}}
+                    {{resume.education.admissionDate}} ~ {{resume.education.graduationDate}}
                 </div>
                     {{resume.education.graduation}}
             </div>

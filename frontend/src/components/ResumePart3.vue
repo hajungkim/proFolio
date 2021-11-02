@@ -80,7 +80,7 @@ export default {
     },
   },
   beforeMount() {
-    this.language = JSON.parse(JSON.stringify(this.resume.foreignlang));
+    this.language = JSON.parse(JSON.stringify(this.resume.foreignLang));
     this.certificate = JSON.parse(JSON.stringify(this.resume.certificate));
     this.awards = JSON.parse(JSON.stringify(this.resume.awards));
   },
