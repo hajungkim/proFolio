@@ -28,7 +28,19 @@ function getCareer(userId) {
 function postCareer(data) {
   return axiosService.post('resume/career', data);
 }
+function putActivity(id, data) {
+  return axiosService.put(`resume/activity/${id}`, data);
+}
+function deleteActivity(id) {
+  return axiosService.delete(`resume/activity/${id}`);
+}
+function getActivity(userId) {
+  return axiosService.get(`resume/activity/${userId}`);
+}
+function postActivity(data) {
+  return axiosService.post('resume/activity', data);
+}
 export {
   putEducation, deleteEducation, getEducation, postEducation, putCareer, deleteCareer,
-  getCareer, postCareer,
+  getCareer, postCareer, putActivity, deleteActivity, getActivity, postActivity,
 };
