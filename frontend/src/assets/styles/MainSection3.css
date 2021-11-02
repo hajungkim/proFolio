@@ -1,0 +1,17 @@
+.main-section3 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8rem;
+  /* text-align: center; */
+  /* min-height: 300px; */
+}
+
+.sec3 {
+  width: 650px;
+}
+
+.pdf-img {
+  position: relative;
+  top: 3.8rem;
+  right: 8.2rem;
+}
