@@ -73,7 +73,7 @@ export default {
     return {
       date1: null,
       menu1: false,
-      cert_date: this.language.certified_date,
+      cert_date: this.language.certifieddate,
     };
   },
 };

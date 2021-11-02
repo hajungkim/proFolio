@@ -5,9 +5,9 @@
           <div class="summary">{{pro.summary}}</div>
           <div style="color: #656060">{{pro.description}}</div>
           <div class="subtitle">사용한 기술스택</div>
-          <div>{{pro.technology_stack}}</div>
+          <div>{{pro.technologystack}}</div>
           <div class="subtitle">개발기간</div>
-          <div>{{pro.start_date}} ~ {{pro.end_date}}</div>
+          <div>{{pro.startdate}} ~ {{pro.enddate}}</div>
           <div class="subtitle">역할</div>
           <div>{{pro.role}}</div>
           <div class="subtitle">참여인원</div>

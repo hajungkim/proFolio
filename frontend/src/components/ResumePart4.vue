@@ -7,8 +7,8 @@
         <div>기술스택</div>
         <div class="plus-btn" @click="addCreateStack">+</div>
       </strong>
-      <CreateTechStack v-for="(technology_stack, index) in technology_stack"
-      :key="index" :technology_stack="technology_stack" :index="index"/>
+      <CreateTechStack v-for="(technologystack, index) in technologystack"
+      :key="index" :technologystack="technologystack" :index="index"/>
     </div>
   </div>
 </template>
@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-      technology_stack: null,
+      technologystack: null,
     };
   },
   computed: {
@@ -35,13 +35,13 @@ export default {
   methods: {
     addCreateStack() {
       const newStack = {
-        id: this.technology_stack.length + 1, name: '', level: '', description: '', kind: '1',
+        id: this.technologystack.length + 1, name: '', level: '', description: '', kind: '1',
       };
-      this.technology_stack.push(newStack);
+      this.technologystack.push(newStack);
     },
   },
   beforeMount() {
-    this.technology_stack = JSON.parse(JSON.stringify(this.resume.technology_stack));
+    this.technologystack = JSON.parse(JSON.stringify(this.resume.technologystack));
   },
 };
 </script>

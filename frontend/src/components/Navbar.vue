@@ -1,11 +1,11 @@
 <template>
   <div class="nav">
     <div class="logo" @click="goToMain">
-      proFolio
+      <img src="../assets/images/logo1.png" style="width:120px; margin-top:15px">
     </div>
     <div class="wrapper-box">
       <input type="checkbox" id="active">
-      <label for="active" class="menu-btn" @click="changeHamburger"><span></span></label>
+      <label for="active" class="menu-btn"><span></span></label>
       <label for="active" class="close"></label>
       <div v-if="isLogin" class="wrapper">
         <ul>
@@ -32,13 +32,9 @@ export default {
   computed: {
     ...mapState([
       'isLogin',
-      'hamburger',
     ]),
   },
   methods: {
-    changeHamburger() {
-      this.$store.dispatch('changeHamburger', this.hamburger);
-    },
     goToLogin() {
       this.$router.push({ name: 'Login' });
       this.$router.go();

@@ -10,4 +10,12 @@ function login(social) {
   });
 }
 
-export default login;
+function getUserInfo(userId) {
+  return axiosService.get(`user/${userId}`);
+}
+
+function putUserInfo(userId, userInfo) {
+  return axiosService.put(`user/${userId}`, userInfo);
+}
+
+export { login, getUserInfo, putUserInfo };

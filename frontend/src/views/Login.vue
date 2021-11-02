@@ -6,6 +6,7 @@
         <div>proFolio로</div>
         <div>쉽게 포트폴리오를 완성해보세요</div>
       </div>
+      <a href="http://localhost:7777/api/auth/GOOGLE">dkdk</a>
       <div class="social-outer-box">
         <div>
           <div class="social-box" @click="googleLogin">
@@ -33,7 +34,7 @@
 </template>
 
 <script>
-import login from '../store/modules/UserAPI';
+import { login } from '../store/modules/UserAPI';
 
 export default {
   name: 'Login',
