@@ -2,7 +2,7 @@
   <div class="read-resume-project">
     <div>
       <span class="font-weight-b font-20">{{ project.title }}</span>
-      <span class="ml-15">{{ project.start_date }} ~ {{ project.end_date }}</span>
+      <span class="ml-15">{{ project.startdate }} ~ {{ project.enddate }}</span>
       <div class="font-weight-b mt-15">{{ project.summary }}</div>
     </div>
     <table class="read-resume-table">
@@ -16,7 +16,7 @@
       </tr>
       <tr>
         <th>사용스택</th>
-        <td>{{ project.technology_stack }}</td>
+        <td>{{ project.technologystack }}</td>
       </tr>
       <tr>
         <th>link</th>
