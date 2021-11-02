@@ -12,7 +12,7 @@
             </tr>
             <tr>
               <th>date of birth</th>
-              <td>{{ resume.user.birth }}</td>
+              <td>{{ resume.user.birthday }}</td>
             </tr>
             <tr>
               <th>contact</th>
@@ -35,7 +35,7 @@
         <div>{{ resume.education.university }}</div>
         <table class="read-resume-table">
           <tr>
-            <th>{{ resume.education.admissiondate }} ~ {{ resume.education.graduationdate }}</th>
+            <th>{{ resume.education.admissionDate }} ~ {{ resume.education.graduationDate }}</th>
             <td>{{ resume.education.graduation }}</td>
           </tr>
           <tr>
@@ -95,7 +95,7 @@
       <table class="read-resume-table">
         <tr>
           <th>Language</th>
-          <td v-for="(lang) in resume.technologystack" :key="lang.id">
+          <td v-for="(lang) in resume.technologyStack" :key="lang.id">
             <span>{{ lang.name }} </span>
             <div class="lang-level">{{ lang.level }}</div>
           </td>

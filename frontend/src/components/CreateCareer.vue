@@ -130,8 +130,8 @@ export default {
       date2: null,
       menu1: false,
       menu2: false,
-      start: this.career.startdate,
-      end: this.career.enddate,
+      start: this.career.startDate,
+      end: this.career.endDate,
     };
   },
 };

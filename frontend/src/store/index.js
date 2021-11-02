@@ -13,32 +13,18 @@ export default new Vuex.Store({
       user: {
         profilePath: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-DjoQ3H0LFCWXLurl6qeHzGnbox2_cJTAmg&usqp=CAU', name: '아무개', birthday: '2000.01.01', phone: '010-0000-0000', email: 'qwer@qwer.com',
       },
-      education: [
-        {
-          id: 1,
-          university: '싸피대학교',
-          graduation: true,
-          admissionDate: '2020.03',
-          graduationDate: '2023.02',
-          score: '4.0',
-          totalScore: 4.5,
-          major: '컴공',
-          minor: '',
-          mainSchool: false,
-        },
-        {
-          id: 2,
-          university: '싸피',
-          graduation: false,
-          admissionDate: '2020.03',
-          graduationDate: '2023.02',
-          score: '4.0',
-          totalScore: 4.5,
-          major: '컴공',
-          minor: '',
-          mainSchool: false,
-        },
-      ],
+      education: {
+        id: 1,
+        university: '싸피대학교',
+        graduation: true,
+        admissionDate: '2020.03',
+        graduationDate: '2023.02',
+        score: '4.0',
+        totalScore: 4.5,
+        major: '컴공',
+        minor: '',
+        mainSchool: false,
+      },
       activity: [
         {
           id: '1',
@@ -114,7 +100,7 @@ export default new Vuex.Store({
           awardsDate: '2021.10.23',
         },
       ],
-      technologystack: [
+      technologyStack: [
         {
           id: '1',
           name: 'Java',
