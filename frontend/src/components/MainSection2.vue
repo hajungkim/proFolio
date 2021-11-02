@@ -20,24 +20,5 @@ export default {
 </script>
 
 <style>
-.main-container {
-  /* margin: 10%; */
-}
-
-.main-section2 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 8rem;
-  /* text-align: center; */
-}
-
-.main-header {
-  font-size: 4rem;
-}
-
-.section-text {
-  margin-top: 1rem;
-  margin-left: 5%;
-  font-size: 1.5rem;
-}
+@import '../assets/styles/MainSection2.css';
 </style>
