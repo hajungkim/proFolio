@@ -11,7 +11,7 @@
           <div class="subtitle">역할</div>
           <div>{{pro.role}}</div>
           <div class="subtitle">참여인원</div>
-          <div>{{pro.member_cnt}}</div>
+          <div>{{pro.memberCnt}}</div>
           <div style="float: right; font-weight:bold">{{pro.link}}</div>
       </div>
   </div>

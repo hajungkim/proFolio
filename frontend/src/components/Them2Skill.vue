@@ -16,9 +16,9 @@
           </div>
       </div>
       <div>
-          <Them2SkillContent :title="Language" :list="lang_arr"/>
-          <Them2SkillContent :title="Framework" :list="frame_arr"/>
-          <Them2SkillContent :title="Management" :list="mana_arr"/>
+          <Them2SkillContent :title="Language" :list="langArr"/>
+          <Them2SkillContent :title="Framework" :list="frameArr"/>
+          <Them2SkillContent :title="Management" :list="manaArr"/>
       </div>
   </div>
 </template>
@@ -37,9 +37,9 @@ export default {
       Language: 'Language',
       Framework: 'Framework',
       Management: 'Management',
-      lang_arr: [],
-      frame_arr: [],
-      mana_arr: [],
+      langArr: [],
+      frameArr: [],
+      manaArr: [],
     };
   },
   computed: {
@@ -48,12 +48,12 @@ export default {
     ]),
   },
   mounted() {
-    const list = this.resume.technology_stack;
+    const list = this.resume.technologyStack;
     let i;
     for (i = 0; i < list.length; i += 1) {
-      if (list[i].kind === 1) this.lang_arr.push(list[i]);
-      if (list[i].kind === 2) this.frame_arr.push(list[i]);
-      if (list[i].kind === 3) this.mana_arr.push(list[i]);
+      if (list[i].kind === 1) this.langArr.push(list[i]);
+      if (list[i].kind === 2) this.frameArr.push(list[i]);
+      if (list[i].kind === 3) this.manaArr.push(list[i]);
     }
   },
 };

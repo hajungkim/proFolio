@@ -1,21 +1,23 @@
 <template>
   <div class="them3-edu">
         <div class="name">Education</div>
-            <div class="university">{{resume.education.university}}</div>
+          <div v-for="(edu) in resume.education" :key="edu.id">
+            <div class="university">{{edu.university}}</div>
             <div class="raw">
                 <div class="sub">
-                    {{resume.education.admissionDate}} ~ {{resume.education.graduationDate}}
+                    {{edu.admissionDate}} ~ {{edu.graduationDate}}
                 </div>
-                    {{resume.education.graduation}}
+                    <div v-if="edu.graduation">졸업</div>
             </div>
             <div class="raw">
                 <div class="sub">전공</div>
-                {{resume.education.major}}
+                {{edu.major}}
             </div>
             <div class="raw">
                 <div class="sub">부전공</div>
-                {{resume.education.minor}}
+                {{edu.minor}}
             </div>
+          </div>
   </div>
 </template>
 
