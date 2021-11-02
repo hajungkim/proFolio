@@ -8,7 +8,7 @@
                 style="font-weight: bold; margin-right: 15px; color: #656060">
                 {{award.prize}}
               </span>
-              <span style="color: #656060">{{award.awards_date}}</span>
+              <span style="color: #656060">{{award.awardsdate}}</span>
           </div>
           <div style="display:flex">
               <div style="color: #656060; margin-right: 15px; width:100px">수상 내용</div>

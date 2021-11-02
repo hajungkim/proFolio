@@ -1,14 +1,24 @@
 package com.ssafy.profolio.web;
 
+import com.ssafy.profolio.domain.user.User;
 import com.ssafy.profolio.helper.constants.SocialLoginType;
 import com.ssafy.profolio.service.OauthService;
 import com.ssafy.profolio.service.UserService;
 import com.ssafy.profolio.web.dto.UserDto;
+import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.json.JSONException;
+import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
+import java.util.stream.DoubleStream;
 
 @RestController
 @CrossOrigin

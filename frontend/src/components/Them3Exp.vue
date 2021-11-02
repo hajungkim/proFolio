@@ -4,7 +4,7 @@
       <div v-for="(exp) in resume.activity" :key="exp.id" class="card">
           <div style="margin-bottom: 20px">
               <span style="font-weight: bold; margin-right: 15px">{{exp.name}}</span>
-              <span style="color: #656060">{{exp.start_date}} ~ {{exp.end_date}}</span>
+              <span style="color: #656060">{{exp.startdate}} ~ {{exp.enddate}}</span>
           </div>
           <div style="display: flex">
               <div style="color: #656060; margin-right: 15px">활동 기관</div>

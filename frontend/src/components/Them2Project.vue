@@ -18,7 +18,9 @@
             </div>
           </div>
           <div>
-              {{pro.technology_stack}}
+            <span v-for="(skill) in skills" :key="skill.id" class="project-skill">
+                {{skill}}
+            </span>
           </div>
       </div>
   </div>
@@ -31,12 +33,18 @@ export default {
   name: 'Them2Project',
   data() {
     return {
+      skills: [],
     };
   },
   computed: {
     ...mapState([
       'resume',
     ]),
+  },
+  mounted() {
+    const skills = this.resume.project[0].technology_stack;
+    const arr = skills.split(',');
+    this.skills = arr;
   },
 };
 </script>

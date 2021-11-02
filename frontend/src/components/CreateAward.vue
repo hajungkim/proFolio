@@ -77,7 +77,7 @@ export default {
     return {
       date1: null,
       menu1: false,
-      award_date: this.award.awards_date,
+      award_date: this.award.awardsdate,
     };
   },
 };
