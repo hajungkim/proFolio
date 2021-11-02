@@ -8,7 +8,7 @@
                 style="font-weight: bold; margin-right: 15px; color: #656060">
                 {{award.prize}}
               </span>
-              <div style="color: #656060; margin: 5% 0">{{award.awardsdate}}</div>
+              <div style="color: #656060; margin: 5% 0">{{award.awardsDate}}</div>
           </div>
       </div>
   </div>

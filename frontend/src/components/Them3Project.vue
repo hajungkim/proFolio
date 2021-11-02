@@ -20,7 +20,7 @@
             </div>
             <div>
                 <div class="subtitle">참여인원</div>
-                <div>{{pro.member_cnt}}명</div>
+                <div>{{pro.memberCnt}}명</div>
             </div>
           </div>
       </div>
