@@ -37,7 +37,7 @@ export default {
   methods: {
     addCreateProject() {
       const newPjt = {
-        id: this.project.length + 1, title: '', summary: '', description: '', member_cnt: null, technology_stack: '', role: '', link: '', start_date: '', end_date: '',
+        id: this.project.length + 1, title: '', summary: '', description: '', member_cnt: null, technologyStack: '', role: '', link: '', startDate: '', endDate: '',
       };
       this.project.unshift(newPjt);
     },

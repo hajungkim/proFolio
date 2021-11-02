@@ -15,7 +15,6 @@
       <div class="right">
         <div class="detail">
             <div class="name">{{resume.user.name}}</div>
-            <div class="birth">{{resume.user.birth}}</div>
             <div class="tel">Tel. {{resume.user.phone}}</div>
             <div class="email">Email. {{resume.user.email}}</div>
 
@@ -25,7 +24,7 @@
             <div class="university">{{resume.education.university}}</div>
             <div class="raw">
                 <div class="sub">
-                    {{resume.education.admission_date}} ~ {{resume.education.graduation_date}}
+                    {{resume.education.admissionDate}} ~ {{resume.education.graduationDate}}
                 </div>
                     {{resume.education.graduation}}
             </div>

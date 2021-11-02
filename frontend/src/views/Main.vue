@@ -101,9 +101,6 @@ export default {
       return true;
     },
   },
-  created() {
-    this.$store.dispatch('changeHamburger', true);
-  },
   mounted() {
     this.calculateSectionOffsets();
     window.addEventListener('DOMMouseScroll', this.handleMouseWheelDOM);

@@ -12,7 +12,7 @@
             </tr>
             <tr>
               <th>date of birth</th>
-              <td>{{ resume.user.birth }}</td>
+              <td>{{ resume.user.birthday }}</td>
             </tr>
             <tr>
               <th>contact</th>
@@ -35,7 +35,7 @@
         <div>{{ resume.education.university }}</div>
         <table class="read-resume-table">
           <tr>
-            <th>{{ resume.education.admission_date }} ~ {{ resume.education.graduation_date }}</th>
+            <th>{{ resume.education.admissionDate }} ~ {{ resume.education.graduationDate }}</th>
             <td>{{ resume.education.graduation }}</td>
           </tr>
           <tr>
@@ -64,11 +64,11 @@
       <div class="font-30 font-weight-b mb-20">Certificate / Language</div>
       <table class="read-resume-table">
         <tr v-for="(cert) in resume.certificate" :key="cert.id">
-          <th>{{ cert.certified_date }}</th>
+          <th>{{ cert.certifieddate }}</th>
           <td class="font-weight-b">{{ cert.name }}</td>
         </tr>
-        <tr v-for="(lang) in resume.foreign_lang" :key="lang.id">
-          <th>{{ lang.certified_date }}</th>
+        <tr v-for="(lang) in resume.foreignLang" :key="lang.id">
+          <th>{{ lang.certifieddate }}</th>
           <td class="font-weight-b">{{ lang.name }}</td>
           <td>{{ lang.score }}점</td>
         </tr>
@@ -79,7 +79,7 @@
       <div class="font-30 font-weight-b mb-20">Awards</div>
       <table class="read-resume-table">
         <tr v-for="(award) in resume.awards" :key="award.id">
-          <th style="line-height: 250%;">{{ award.awards_date }}</th>
+          <th style="line-height: 250%;">{{ award.awardsdate }}</th>
           <td>
             <span class="font-weight-b" style="line-height: 250%;">{{ award.name }}</span>
              {{ award.prize }}
@@ -95,7 +95,7 @@
       <table class="read-resume-table">
         <tr>
           <th>Language</th>
-          <td v-for="(lang) in resume.technology_stack" :key="lang.id">
+          <td v-for="(lang) in resume.technologyStack" :key="lang.id">
             <span>{{ lang.name }} </span>
             <div class="lang-level">{{ lang.level }}</div>
           </td>

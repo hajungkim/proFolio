@@ -2,7 +2,7 @@ package com.ssafy.profolio.service.social;
 
 import com.ssafy.profolio.helper.constants.SocialLoginType;
 import com.ssafy.profolio.web.dto.UserDto;
-import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.json.JSONException;
 
 public interface SocialOauth {
 

@@ -3,14 +3,11 @@ package com.ssafy.profolio.service;
 import com.ssafy.profolio.domain.user.User;
 import com.ssafy.profolio.domain.user.UserRepository;
 import com.ssafy.profolio.helper.constants.SocialLoginType;
-import com.ssafy.profolio.service.social.GoogleOauth;
-import com.ssafy.profolio.service.social.NaverOauth;
 import com.ssafy.profolio.service.social.SocialOauth;
 import com.ssafy.profolio.web.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.configurationprocessor.json.JSONException;
-import org.springframework.boot.configurationprocessor.json.JSONObject;
+import org.json.JSONException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -61,17 +58,17 @@ public class OauthService {
         UserDto userDto = socialOauth.makeUserDto(userinfo);
 
         //DB에 없는 유저일 경우, DB에 저장
-        User user = userRepository.findBySocialId(userDto.getSocial_id()).orElseGet(
+        User user = userRepository.findBySocialId(userDto.getSocialId()).orElseGet(
                 () -> {
                     User newUser = User.builder()
-                            .social_id(userDto.getSocial_id())
+                            .social_id(userDto.getSocialId())
                             .accessToken(access_token)
                             .refreshToken(refresh_token)
                             .email(userDto.getEmail())
                             .name(userDto.getName())
                             .phone(userDto.getPhone())
                             .birthday(userDto.getBirthday())
-                            .profile_path(userDto.getProfile_path())
+                            .profilePath(userDto.getProfilePath())
                             .build();
                     userRepository.save(newUser);
                     return newUser;

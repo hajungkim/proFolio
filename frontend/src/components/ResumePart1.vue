@@ -5,7 +5,7 @@
     <div class="resume-part-box">
       <form enctype="multipart/form-data">
         <label for="imageInput" class="image-label">
-          <img v-if="uploadFile" :src="uploadFile" alt="" class="image-file-size">
+          <img v-if="user.profile_path" :src="user.profile_path" alt="" class="image-file-size">
           <img v-else src="../assets/images/gallery.png" alt="" class="gallery-icon">
         </label>
         <input type="file" id="imageInput" @change="loadFile">
@@ -13,19 +13,19 @@
       <table class="resume-part-table">
         <tr>
           <th><label for="name">이름</label></th>
-          <td><input type="text" :placeholder="resume.user.name" v-model="name"></td>
+          <td><input type="text" :placeholder="resume.user.name" @input="userName"></td>
         </tr>
         <tr>
           <th><label for="name">생년월일</label></th>
-          <td><input type="text" :placeholder="resume.user.birth" v-model="birth"></td>
+          <td><input type="text" :placeholder="resume.user.birthday" @input="userBirth"></td>
         </tr>
         <tr>
           <th><label for="name">연락처</label></th>
-          <td><input type="text" :placeholder="resume.user.phone" v-model="phone"></td>
+          <td><input type="text" :placeholder="resume.user.phone" @input="userPhone"></td>
         </tr>
         <tr>
           <th><label for="name">이메일</label></th>
-          <td><input type="text" :placeholder="resume.user.email" v-model="email"></td>
+          <td><input type="text" :placeholder="resume.user.email" @input="userEmail"></td>
         </tr>
       </table>
     </div>
@@ -39,11 +39,7 @@ export default {
   name: 'ResumePart1',
   data() {
     return {
-      uploadFile: '',
-      name: '',
-      birth: '',
-      phone: '',
-      email: '',
+      user: null,
     };
   },
   computed: {
@@ -54,9 +50,29 @@ export default {
   methods: {
     loadFile() {
       const fileInput = document.querySelector('#imageInput');
-      this.uploadFile = URL.createObjectURL(fileInput.files[0]);
+      this.user.profile_path = URL.createObjectURL(fileInput.files[0]);
       URL.revokeObjectURL(fileInput.files[0]);
+      this.$emit('part1Data', this.user);
     },
+    userName(event) {
+      this.user.name = event.target.value;
+      this.$emit('part1Data', this.user);
+    },
+    userBirth(event) {
+      this.user.birthday = event.target.value;
+      this.$emit('part1Data', this.user);
+    },
+    userPhone(event) {
+      this.user.phone = event.target.value;
+      this.$emit('part1Data', this.user);
+    },
+    userEmail(event) {
+      this.user.email = event.target.value;
+      this.$emit('part1Data', this.user);
+    },
+  },
+  beforeMount() {
+    this.user = JSON.parse(JSON.stringify(this.resume.user));
   },
 };
 </script>

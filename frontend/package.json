@@ -10,7 +10,15 @@
   "dependencies": {
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
+<<<<<<< HEAD
     "notosans-fontface": "^1.2.2",
+=======
+    "html2canvas": "^1.3.2",
+    "html2pdf.js": "^0.10.1",
+    "jspdf": "^2.4.0",
+    "node-sass": "^6.0.1",
+    "sass-loader": "^10.2.0",
+>>>>>>> e71224b42309bf7b3cb88353586d1c345be2796b
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuetify": "^2.5.10",
