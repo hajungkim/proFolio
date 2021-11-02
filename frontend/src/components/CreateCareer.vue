@@ -113,6 +113,7 @@
         </td>
       </tr>
     </table>
+    <div class="delete-btn">X</div>
   </div>
 </template>
 

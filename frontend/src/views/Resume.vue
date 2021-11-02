@@ -28,7 +28,7 @@
     <div class="resume-part">
       <ResumePart1 v-if="resumePart==0" @part1Data="part1Data"/>
       <ResumePart2 v-if="resumePart==1" :resumeEdit="resumeEdit"
-       @deleteEducation="deleteEducation" @updateEducationData="updateEducationData"
+       @updateEducationData="updateEducationData"
        @createEducationData="createEducationData"/>
       <ResumePart3 v-if="resumePart==2"/>
       <ResumePart4 v-if="resumePart==3"/>
@@ -59,7 +59,6 @@ export default {
     return {
       resumePart: 0,
       resumeEdit: null,
-      educationDelete: [],
       educationUpdate: [],
       educationCreate: [],
     };
@@ -111,31 +110,19 @@ export default {
           this.$store.dispatch('updateEducation', { id: educationInfo.id, data: educationInfo.data });
         });
         Object.values(this.educationCreate).forEach((educationInfo) => {
-          this.$store.dispatch('educationCreate', educationInfo.data);
+          this.$store.dispatch('createEducation', educationInfo.data);
         });
+        this.educationUpdate = [];
+        this.educationCreate = [];
       }
     },
-    deleteEducation(deleteEducation) {
-      // api 보낼 삭제할 인덱스 추가하기
-      this.educationDelete.push(deleteEducation);
-      // vue 보여지는 부분에서 삭제한 부분 제거하기 -> 저장 안하면 다시 되돌아오게
-      let sliceIndex = null;
-      Object.entries(this.resumeEdit.education).forEach((education) => {
-        if (Object.keys(education[1]).find((key) => education[1][key] === deleteEducation)) {
-          [sliceIndex] = education;
-        }
-      });
-      this.resumeEdit.education.splice(sliceIndex, 1);
-    },
     updateEducationData(updateEducationData) {
-      console.log('update');
       const updateData = {};
       updateData.id = updateEducationData.id;
-      delete updateEducationData.id;
       updateEducationData.userId = this.userId;
       updateData.data = updateEducationData;
       let flag = false;
-      Object.entries(this.educationUpdate).forEach((update) => {
+      Object.values(this.educationUpdate).forEach((update) => {
         if (update.id === updateData.id) {
           // educationUpdate에 있으면 내용 대체
           this.educationUpdate.splice(update[0], 1, updateData);
@@ -148,15 +135,12 @@ export default {
       }
     },
     createEducationData(createEducationData) {
-      console.log('create');
-      // console.log(createEducationData);
       const createData = {};
       createData.id = createEducationData.id;
-      delete createEducationData.id;
       createEducationData.userId = this.userId;
       createData.data = createEducationData;
       let flag = false;
-      Object.entries(this.educationCreate).forEach((create) => {
+      Object.values(this.educationCreate).forEach((create) => {
         if (create.id === createData.id) {
           // 있으면 내용 대체
           this.educationCreate.splice(create[0], 1, createData);
@@ -167,8 +151,6 @@ export default {
       if (!flag) {
         this.educationCreate.push(createData);
       }
-      console.log(this.educationCreate);
-      console.log('---------------');
     },
   },
   beforeMount() {

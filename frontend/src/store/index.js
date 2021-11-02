@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { getUserInfo } from './modules/UserAPI';
-import { putEducation, getEducation, postEducation } from './modules/ResumeAPI';
+import { getEducation, putEducation, postEducation } from './modules/ResumeAPI';
 
 Vue.use(Vuex);
 
@@ -14,16 +14,6 @@ export default new Vuex.Store({
         profilePath: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-DjoQ3H0LFCWXLurl6qeHzGnbox2_cJTAmg&usqp=CAU', name: '아무개', birthday: '2000.01.01', phone: '010-0000-0000', email: 'qwer@qwer.com',
       },
       education: {
-        id: 1,
-        university: '싸피대학교',
-        graduation: true,
-        admissionDate: '2020.03',
-        graduationDate: '2023.02',
-        score: '4.0',
-        totalScore: 4.5,
-        major: '컴공',
-        minor: '',
-        mainSchool: false,
       },
       activity: [
         {
@@ -167,20 +157,19 @@ export default new Vuex.Store({
         context.commit('GET_USER_INFO', res.data.data);
       });
     },
-    updateEducation(context, data) {
-      console.log('context', data.data);
-      putEducation(data.id, data.data).then((res) => {
-        console.log('put---------', res);
-        getEducation(context.state.userId).then((response) => {
-          console.log(response.data.data);
-          context.commit('EDUCATION_INFO', response.data.data);
+    updateEducation(context, eduInfo) {
+      putEducation(eduInfo.id, eduInfo.data).then(() => {
+        getEducation(context.state.userId).then((res) => {
+          console.log(res.data.data);
+          context.commit('EDUCATION_INFO', res.data.data);
         });
       });
     },
-    educationCreate(context, data) {
-      console.log(data);
-      postEducation(data).then((res) => {
-        console.log('createAPI RES', res);
+    createEducation(context, data) {
+      postEducation(data).then(() => {
+        getEducation(context.state.userId).then((res) => {
+          context.commit('EDUCATION_INFO', res.data.data);
+        });
       });
     },
   },

@@ -5,8 +5,7 @@ const axiosService = axios.create({
 });
 
 function putEducation(id, data) {
-  console.log('api', id, data);
-  return axiosService.put(`resume/education/${id}`, { data });
+  return axiosService.put(`resume/education/${id}`, data);
 }
 function deleteEducation(id) {
   return axiosService.delete(`resume/education/${id}`);
