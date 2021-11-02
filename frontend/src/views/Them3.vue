@@ -25,13 +25,14 @@
       </div>
       <div class="them3-content">
         <div id="them3-pdf">
-        <Them3Info/>
-        <Them3Edu/>
-        <Them3Certi/>
-        <Them3Exp/>
-        <Them3Skill/>
-        <Them3Awards/>
-        <Them3Project/>
+          <Them3Info/>
+          <Them3Intro/>
+          <Them3Edu/>
+          <Them3Certi/>
+          <Them3Exp/>
+          <Them3Skill/>
+          <Them3Awards/>
+          <Them3Project/>
         </div>
       </div>
   </div>
@@ -44,6 +45,7 @@ import Them3Certi from '../components/Them3Certi.vue';
 import Them3Edu from '../components/Them3Edu.vue';
 import Them3Exp from '../components/Them3Exp.vue';
 import Them3Info from '../components/Them3Info.vue';
+import Them3Intro from '../components/Them3Intro.vue';
 import Them3Project from '../components/Them3Project.vue';
 import Them3Skill from '../components/Them3Skill.vue';
 
@@ -57,6 +59,7 @@ export default {
     Them3Skill,
     Them3Awards,
     Them3Project,
+    Them3Intro,
   },
   data() {
     return {
@@ -66,7 +69,7 @@ export default {
     test() {
       const element = document.getElementById('them3-pdf');
       html2pdf().from(element).set({
-        margin: 10,
+        margin: 0,
         filename: 'test.pdf',
         html2canvas: {
           scale: 1,

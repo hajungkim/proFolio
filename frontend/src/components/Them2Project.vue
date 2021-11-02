@@ -16,11 +16,10 @@
                 <span style="color: #0014BC; margin-right: 5%">역할</span>
                 <span>{{pro.role}}</span>
             </div>
-          </div>
-          <div>
-            <span v-for="(skill) in skills" :key="skill.id" class="project-skill">
-                {{skill}}
-            </span>
+              <div style="margin-top: 5%">
+                <span style="color: #0014BC; margin-right: 5%">기술스택</span>
+                <span>{{pro.technologyStack}}</span>
+            </div>
           </div>
       </div>
   </div>
@@ -40,11 +39,6 @@ export default {
     ...mapState([
       'resume',
     ]),
-  },
-  mounted() {
-    const skills = this.resume.project[0].technology_stack;
-    const arr = skills.split(',');
-    this.skills = arr;
   },
 };
 </script>
