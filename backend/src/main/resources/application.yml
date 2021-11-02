@@ -35,7 +35,7 @@ spring:
 spring:
   profiles: prod
   datasource:
-    url: jdbc:mysql://k5b203.p.ssafy.io:3306/profolio?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
-    username: root
-    password: {{password}}
+    url: jdbc:mysql://k5b302.p.ssafy.io:3306/profolio?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
+    username: profolio
+    password: profoliossafy
     driver-class-name: com.mysql.cj.jdbc.Driver
