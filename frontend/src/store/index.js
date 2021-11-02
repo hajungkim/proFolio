@@ -130,7 +130,19 @@ export default new Vuex.Store({
       project: [
         {
           id: '1',
-          title: '포트폴리오 만들기!',
+          title: 'proFoilo',
+          summary: '개발자 준비생을 위한 포트폴리오 사이트',
+          description: '포트폴리오를 처음 만드는 개발자를 위한 서비스로 작성 가이드를 제공하고, 작성한 내용으로 템플릿을 적용한 포트폴리오를 PDF로 생성해줍니다.',
+          memberCnt: 5,
+          technologyStack: 'Java, Django, Vue, SpringBoot',
+          role: 'FE',
+          link: 'https://ssafy.com',
+          startDate: '2021.10',
+          endDate: '2021.11',
+        },
+        {
+          id: '2',
+          title: 'proFoilo',
           summary: '개발자 준비생을 위한 포트폴리오 사이트',
           description: '쉬운 포트폴리오 만들기 와아아아아아아',
           memberCnt: 5,
