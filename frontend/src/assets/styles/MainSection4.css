@@ -1,0 +1,26 @@
+.template-box {
+  display: flex;
+  justify-content: space-around;
+  min-width:1000px;
+  /* border: solid #928888 6px; */
+}
+
+.main-card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 5px;
+  display: inline-block;
+  height: 300px;
+  margin: 2rem;
+  position: relative;
+  width: 300px;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.12), 0 3px 5
+  px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.main-card:hover {
+  transform: translateY(-10px) scale(1.105) translateZ(0);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
