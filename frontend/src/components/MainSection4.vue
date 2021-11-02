@@ -37,27 +37,6 @@ export default {
 </script>
 
 <style>
-.template-box {
-  display: flex;
-  justify-content: space-around;
-  min-width:1000px;
-  /* border: solid #928888 6px; */
-}
-
-.main-card {
-  background: #fff;
-  padding: 15px;
-  border-radius: 5px;
-  display: inline-block;
-  height: 300px;
-  margin: 2rem;
-  position: relative;
-  width: 300px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-}
-
-.main-card:hover {
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-}
+@import '../assets/styles/MainSection4.css';
+@import '../assets/styles/Main.css';
 </style>

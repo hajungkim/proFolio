@@ -18,7 +18,7 @@
     <section class="fullpage blue">
       <MainSection3 />
     </section>
-    <section class="fullpage green">
+    <section class="fullpage pink">
       <MainSection4 />
     </section>
   </div>
