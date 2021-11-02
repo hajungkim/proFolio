@@ -20,7 +20,7 @@
       </tr>
       <tr>
         <th>기술스택명</th>
-        <td><input type="text" :placeholder="technology_stack.name"></td>
+        <td><input type="text" :placeholder="technologystack.name"></td>
       </tr>
       <tr>
         <th>레벨</th>
@@ -32,7 +32,7 @@
       <tr>
         <th>설명</th>
         <td colspan="4">
-          <textarea class="resume-p2-career" :placeholder="technology_stack.description"></textarea>
+          <textarea class="resume-p2-career" :placeholder="technologystack.description"></textarea>
         </td>
       </tr>
     </table>
@@ -43,7 +43,7 @@
 export default {
   name: 'CreateTechStack',
   props: {
-    technology_stack: {
+    technologystack: {
       type: Object,
     },
     index: {
@@ -52,7 +52,7 @@ export default {
   },
   data() {
     return {
-      techStackKind: this.technology_stack.kind,
+      techStackKind: this.technologystack.kind,
       techStackBox: 'tech-stack-box',
       techStackBoxSelected: 'tech-stack-selected',
       sliderValue: 50,
