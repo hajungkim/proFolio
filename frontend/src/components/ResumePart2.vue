@@ -17,7 +17,12 @@
         <div class="plus-btn" @click="addCreateCareer">+</div>
       </strong>
       <CreateCareer
-        v-for="(career) in career" :key="career.id" :career="career"
+        v-for="(career) in careerCreate" :key="career.id" :career="career"
+        @createCareerData="createCareerData"
+      />
+      <UpdateCareer
+        v-for="(career) in careerUpdate" :key="career.id" :career="career"
+        @updateCareer="updateCareer"
       />
     </div>
     <div class="hr-border-m-40"></div>
@@ -34,7 +39,9 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import CreateCareer from './CreateCareer.vue';
+import UpdateCareer from './UpdateCareer.vue';
 import CreateExperience from './CreateExperience.vue';
 import UpdateEducation from './UpdateEducation.vue';
 
@@ -44,26 +51,29 @@ export default {
     CreateCareer,
     CreateExperience,
     UpdateEducation,
+    UpdateCareer,
   },
-  props: {
-    resumeEdit: {
-      type: Object,
-    },
+  computed: {
+    ...mapState([
+      'resume',
+    ]),
   },
   data() {
     return {
-      career: this.resumeEdit.career,
-      activity: this.resumeEdit.activity,
+      // career: this.resumeEdit.career,
+      activity: null,
       educationUpdate: null,
       educationCreate: [],
+      careerCreate: [],
+      careerUpdate: null,
     };
   },
   methods: {
     addCreateCareer() {
       const newCareer = {
-        id: this.career.length + 1, company: '', duty: '', description: '', startDate: '', endDate: '',
+        id: `create${Math.random()}`, company: '', duty: '', description: '', startDate: '', endDate: '',
       };
-      this.career.unshift(newCareer);
+      this.careerCreate.unshift(newCareer);
     },
     addCreateExperience() {
       const newExp = {
@@ -78,16 +88,46 @@ export default {
         this.$emit('updateEducationData', updateEducation.education);
       }
     },
+    createCareerData(createCareer) {
+      if (createCareer.isDeleted) {
+        let sliceIndex = null;
+        const idx = createCareer.career.id;
+        Object.entries(this.careerCreate).forEach((career) => {
+          if (Object.keys(career[1]).find((key) => career[1][key] === idx)) {
+            [sliceIndex] = career;
+          }
+        });
+        this.careerCreate.splice(sliceIndex, 1);
+      } else {
+        this.$emit('createCareerData', createCareer.career);
+      }
+    },
+    updateCareer(updateCareer) {
+      if (updateCareer.isDeleted) {
+        let sliceIndex = null;
+        const idx = updateCareer.career.id;
+        Object.entries(this.careerUpdate).forEach((career) => {
+          if (Object.keys(career[1]).find((key) => career[1][key] === idx)) {
+            [sliceIndex] = career;
+          }
+        });
+        this.careerUpdate.splice(sliceIndex, 1);
+        this.$emit('deleteCareer', updateCareer.career.id);
+      } else if (updateCareer.isUpdated) {
+        this.$emit('updateCareerData', updateCareer.career);
+      }
+    },
   },
   beforeMount() {
-    if (this.resumeEdit.education.id === undefined) {
+    if (this.resume.education.id === undefined) {
       this.educationUpdate = {
         id: 'create', university: '', graduation: null, admissionDate: '', graduationDate: '', score: '', totalScore: '', major: '', minor: '', mainSchool: false, isCreated: true,
       };
     } else {
-      this.educationUpdate = this.resumeEdit.education;
+      this.educationUpdate = this.resume.education;
       this.educationUpdate.isCreated = false;
     }
+    this.careerUpdate = JSON.parse(JSON.stringify(this.resume.career));
   },
 };
 </script>

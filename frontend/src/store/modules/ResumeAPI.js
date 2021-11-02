@@ -16,6 +16,19 @@ function getEducation(userId) {
 function postEducation(data) {
   return axiosService.post('resume/education', data);
 }
+function putCareer(id, data) {
+  return axiosService.put(`resume/career/${id}`, data);
+}
+function deleteCareer(id) {
+  return axiosService.delete(`resume/career/${id}`);
+}
+function getCareer(userId) {
+  return axiosService.get(`resume/career/${userId}`);
+}
+function postCareer(data) {
+  return axiosService.post('resume/career', data);
+}
 export {
-  putEducation, deleteEducation, getEducation, postEducation,
+  putEducation, deleteEducation, getEducation, postEducation, putCareer, deleteCareer,
+  getCareer, postCareer,
 };
