@@ -1,7 +1,7 @@
 <template>
   <div class="nav">
     <div class="logo" @click="goToMain">
-      <img src="../assets/images/logo1.png" style="width:120px; margin-top:15px">
+      <img src="../assets/images/logo2.png" style="width:55px; margin-top:10px">
     </div>
     <div class="wrapper-box">
       <input type="checkbox" id="active">
