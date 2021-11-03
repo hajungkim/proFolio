@@ -39,6 +39,8 @@
       @createLangData="createLangData" @deleteLanguage="deleteLanguage"
       @updateLanguageData="updateLanguageData" @createCertData="createCertData"
       @deleteCertificate="deleteCertificate" @updateCertificateData="updateCertificateData"
+      @createAwardtData="createAwardtData" @deleteAwards="deleteAwards"
+      @updateAwardsData="updateAwardsData"
       />
       <ResumePart4 v-if="resumePart==3"/>
       <ResumePart5 v-if="resumePart==4"/>
@@ -81,6 +83,9 @@ export default {
       certCreate: [],
       certUpdate: [],
       certDelete: new Set(),
+      awardCreate: [],
+      awardUpdate: [],
+      awardDelete: new Set(),
     };
   },
   computed: {
@@ -175,7 +180,16 @@ export default {
           this.$store.dispatch('certificateUpdate', certInfo.data);
         });
         Object.values([...this.certDelete]).forEach((certInfo) => {
-          this.$store.dispatch('certificateeDelete', certInfo);
+          this.$store.dispatch('certificateDelete', certInfo);
+        });
+        Object.values(this.awardCreate).forEach((awardInfo) => {
+          this.$store.dispatch('awardsCreate', awardInfo.data);
+        });
+        Object.values(this.awardUpdate).forEach((awardInfo) => {
+          this.$store.dispatch('awardsUpdate', awardInfo.data);
+        });
+        Object.values([...this.awardDelete]).forEach((awardInfo) => {
+          this.$store.dispatch('awardsDelete', awardInfo);
         });
         this.langCreate = [];
         this.langUpdate = [];
@@ -183,6 +197,9 @@ export default {
         this.certCreate = [];
         this.certUpdate = [];
         this.certDelete = new Set();
+        this.awardCreate = [];
+        this.awardUpdate = [];
+        this.awardDelete = new Set();
       }
     },
     updateEducationData(updateEducationData) {
@@ -340,12 +357,10 @@ export default {
       let flag = false;
       Object.values(this.certCreate).forEach((create) => {
         if (create.id === createData.id) {
-          // 있으면 내용 대체
           this.certCreate.splice(create[0], 1, createData);
           flag = true;
         }
       });
-      // 없으면 추가
       if (!flag) {
         this.certCreate.push(createData);
       }
@@ -368,6 +383,41 @@ export default {
     },
     deleteCertificate(deleteCertificate) {
       this.certDelete.add(deleteCertificate);
+    },
+    createAwardtData(createAwardtData) {
+      const createData = {};
+      createData.id = createAwardtData.id;
+      createAwardtData.userId = this.userId;
+      createData.data = createAwardtData;
+      let flag = false;
+      Object.values(this.awardCreate).forEach((create) => {
+        if (create.id === createData.id) {
+          this.awardCreate.splice(create[0], 1, createData);
+          flag = true;
+        }
+      });
+      if (!flag) {
+        this.awardCreate.push(createData);
+      }
+    },
+    updateAwardsData(updateAwardsData) {
+      const updateData = {};
+      updateData.id = updateAwardsData.id;
+      updateAwardsData.userId = this.userId;
+      updateData.data = updateAwardsData;
+      let flag = false;
+      Object.values(this.awardUpdate).forEach((update) => {
+        if (update.id === updateData.id) {
+          this.awardUpdate.splice(update[0], 1, updateData);
+          flag = true;
+        }
+      });
+      if (!flag) {
+        this.awardUpdate.push(updateData);
+      }
+    },
+    deleteAwards(deleteAwards) {
+      this.awardDelete.add(deleteAwards);
     },
   },
 };

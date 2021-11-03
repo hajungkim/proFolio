@@ -3,11 +3,11 @@
   <table class="resume-part2-input">
     <tr>
       <th>대회명</th>
-      <td><input type="text" @change="awardName"></td>
+      <td><input type="text" @change="awardName" :placeholder="awardUpdate.awards.name"></td>
     </tr>
     <tr>
       <th>성적</th>
-      <td><input type="text" @change="awardPrize"></td>
+      <td><input type="text" @change="awardPrize" :placeholder="awardUpdate.awards.prize"></td>
       <th>날짜</th>
       <td style="padding-left:10px;">
         <v-app class="date-pick">
@@ -15,14 +15,14 @@
             ref="menu1"
             v-model="menu1"
             :close-on-content-click="false"
-            :return-value.sync="awardCreate.awards.awardsDate"
+            :return-value.sync="awardUpdate.awards.awardsDate"
             transition="scale-transition"
             offset-y
             min-width="auto"
           >
             <template v-slot:activator="{ on, attrs }">
               <v-text-field
-                v-model="awardCreate.awards.awardsDate"
+                v-model="awardUpdate.awards.awardsDate"
                 label="수상일"
                 prepend-icon="mdi-calendar"
                 readonly
@@ -31,7 +31,7 @@
               ></v-text-field>
             </template>
             <v-date-picker
-              v-model="awardCreate.awards.awardsDate"
+              v-model="awardUpdate.awards.awardsDate"
               no-title
               scrollable
             >
@@ -58,7 +58,8 @@
     <tr>
       <th>내용</th>
       <td colspan="4" >
-        <textarea type="text" @change="awardDescription" class="resume-p2-award"/>
+        <textarea type="text" @change="awardDescription"
+        :placeholder="awardUpdate.awards.description" class="resume-p2-award"/>
       </td>
     </tr>
   </table>
@@ -67,7 +68,7 @@
 
 <script>
 export default {
-  name: 'CreateAward',
+  name: 'UpdateAward',
   props: {
     awards: {
       type: Object,
@@ -76,37 +77,39 @@ export default {
   data() {
     return {
       menu1: false,
-      awardCreate: {},
+      awardUpdate: {},
     };
   },
   methods: {
     dataUpdate() {
-      this.$emit('createAward', this.awardCreate);
+      this.awardUpdate.isUpdated = true;
+      this.$emit('updateAward', this.awardUpdate);
     },
     awardsDateUpdate() {
-      this.$refs.menu1.save(this.awardCreate.awards.awardsDate);
+      this.$refs.menu1.save(this.awardUpdate.awards.awardsDate);
       this.dataUpdate();
     },
     awardName(event) {
-      this.awardCreate.awards.name = event.target.value;
+      this.awardUpdate.awards.name = event.target.value;
       this.dataUpdate();
     },
     awardPrize(event) {
-      this.awardCreate.awards.prize = event.target.value;
+      this.awardUpdate.awards.prize = event.target.value;
       this.dataUpdate();
     },
     awardDescription(event) {
-      this.awardCreate.awards.description = event.target.value;
+      this.awardUpdate.awards.description = event.target.value;
       this.dataUpdate();
     },
     deleteAward() {
-      this.awardCreate.isDeleted = true;
+      this.awardUpdate.isDeleted = true;
       this.dataUpdate();
     },
   },
   beforeMount() {
-    this.awardCreate.awards = this.awards;
-    this.awardCreate.isDeleted = false;
+    this.awardUpdate.awards = this.awards;
+    this.awardUpdate.isDeleted = false;
+    this.awardUpdate.isUpdated = false;
   },
 };
 </script>

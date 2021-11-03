@@ -38,7 +38,12 @@
         <div class="plus-btn" @click="addCreateAward">+</div>
       </strong>
       <CreateAward
-       v-for="(award) in awards" :key="award.id" :award="award"
+       v-for="(awards) in awardCreate" :key="awards.id" :awards="awards"
+       @createAward="createAward"
+       />
+      <UpdateAward
+       v-for="(awards) in awardUpdate" :key="awards.id" :awards="awards"
+       @updateAward="updateAward"
        />
     </div>
   </div>
@@ -51,6 +56,7 @@ import UpdateLanguage from './UpdateLanguage.vue';
 import CreateCertificate from './CreateCertificate.vue';
 import UpdateCertificate from './UpdateCertificate.vue';
 import CreateAward from './CreateAward.vue';
+import UpdateAward from './UpdateAward.vue';
 
 export default {
   name: 'ResumePart3',
@@ -60,16 +66,16 @@ export default {
     CreateAward,
     UpdateLanguage,
     UpdateCertificate,
+    UpdateAward,
   },
   data() {
     return {
       langCreate: [],
       langUpdate: [],
-      langDelete: new Set(),
       certCreate: [],
       certUpdate: [],
-      certDelete: new Set(),
-      awards: null,
+      awardCreate: [],
+      awardUpdate: [],
     };
   },
   computed: {
@@ -92,9 +98,9 @@ export default {
     },
     addCreateAward() {
       const newAward = {
-        id: this.awards.length + 1, description: '', name: '', prize: '', awardsDate: '',
+        id: `create${Math.random()}`, description: '', name: '', prize: '', awardsDate: '',
       };
-      this.awards.unshift(newAward);
+      this.awardCreate.unshift(newAward);
     },
     createLang(createLang) {
       if (createLang.isDeleted) {
@@ -154,11 +160,40 @@ export default {
         this.$emit('updateCertificateData', updateCert.certificate);
       }
     },
+    createAward(createAward) {
+      if (createAward.isDeleted) {
+        let sliceIndex = null;
+        const idx = createAward.awards.id;
+        Object.entries(this.awardCreate).forEach((awards) => {
+          if (Object.keys(awards[1]).find((key) => awards[1][key] === idx)) {
+            [sliceIndex] = awards;
+          }
+        });
+        this.awardCreate.splice(sliceIndex, 1);
+      } else {
+        this.$emit('createAwardtData', createAward.awards);
+      }
+    },
+    updateAward(updateAward) {
+      if (updateAward.isDeleted) {
+        let sliceIndex = null;
+        const idx = updateAward.awards.id;
+        Object.entries(this.awardUpdate).forEach((awards) => {
+          if (Object.keys(awards[1]).find((key) => awards[1][key] === idx)) {
+            [sliceIndex] = awards;
+          }
+        });
+        this.awardUpdate.splice(sliceIndex, 1);
+        this.$emit('deleteAwards', updateAward.awards.id);
+      } else if (updateAward.isUpdated) {
+        this.$emit('updateAwardsData', updateAward.awards);
+      }
+    },
   },
   beforeMount() {
     this.langUpdate = JSON.parse(JSON.stringify(this.resume.foreignLang));
     this.certUpdate = JSON.parse(JSON.stringify(this.resume.certificate));
-    // this.awards = JSON.parse(JSON.stringify(this.resume.awards));
+    this.awardUpdate = JSON.parse(JSON.stringify(this.resume.awards));
   },
 };
 </script>
