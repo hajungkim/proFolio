@@ -1,5 +1,6 @@
 <template>
-  <div class="them2-box">
+  <div class="them2-box" id="remove">
+    <DeleteBtn :edit="edit"/>
       <div class="them2-subtitle">Tech Stack</div>
       <div class="skill-desc">
           <div class="flex">
@@ -26,11 +27,18 @@
 <script>
 import { mapState } from 'vuex';
 import Them2SkillContent from './Them2SkillContent.vue';
+import DeleteBtn from './DeleteBtn.vue';
 
 export default {
   name: 'Them2Skill',
+  props: {
+    edit: {
+      type: Boolean,
+    },
+  },
   components: {
     Them2SkillContent,
+    DeleteBtn,
   },
   data() {
     return {

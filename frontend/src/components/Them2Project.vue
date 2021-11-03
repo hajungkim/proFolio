@@ -1,35 +1,52 @@
 <template>
-  <div class="them2-box">
+  <div class="them2-box" id="remove">
+    <DeleteBtn :edit="edit"/>
       <div class="them2-subtitle">Project</div>
-      <div v-for="(pro) in resume.project" :key="pro.id" class="them2-card">
-          <span class="them2-cardname">{{pro.title}}</span>
-          <span class="them2-grayfont">({{pro.startDate}} ~ {{pro.endDate}})</span>
-          <div style="float: right; font-weight:bold">{{pro.link}}</div>
-          <div class="them2-summary">{{pro.summary}}</div>
-          <div class="them2-grayfont">{{pro.description}}</div>
-          <div class="grid2 margin">
-            <div>
-                <span style="color: #0014BC; margin-right: 5%">팀원</span>
-                <span>{{pro.memberCnt}}명</span>
+      <!-- test -->
+      <draggable
+        ghost-class="ghost"
+      >
+        <div v-for="(pro) in resume.project" :key="pro.id" class="them2-card">
+            <span class="them2-cardname">{{pro.title}}</span>
+            <span class="them2-grayfont">({{pro.startDate}} ~ {{pro.endDate}})</span>
+            <div style="float: right; font-weight:bold">{{pro.link}}</div>
+            <div class="them2-summary">{{pro.summary}}</div>
+            <div class="them2-grayfont">{{pro.description}}</div>
+            <div class="grid2 margin">
+              <div>
+                  <span style="color: #0014BC; margin-right: 5%">팀원</span>
+                  <span>{{pro.memberCnt}}명</span>
+              </div>
+              <div>
+                  <span style="color: #0014BC; margin-right: 5%">역할</span>
+                  <span>{{pro.role}}</span>
+              </div>
+                <div style="margin-top: 5%">
+                  <span style="color: #0014BC; margin-right: 5%">기술스택</span>
+                  <span>{{pro.technologyStack}}</span>
+              </div>
             </div>
-            <div>
-                <span style="color: #0014BC; margin-right: 5%">역할</span>
-                <span>{{pro.role}}</span>
-            </div>
-              <div style="margin-top: 5%">
-                <span style="color: #0014BC; margin-right: 5%">기술스택</span>
-                <span>{{pro.technologyStack}}</span>
-            </div>
-          </div>
-      </div>
+        </div>
+      </draggable>
   </div>
 </template>
 
 <script>
+import draggable from "vuedraggable";
 import { mapState } from 'vuex';
+import DeleteBtn from './DeleteBtn.vue';
 
 export default {
   name: 'Them2Project',
+  props: {
+    edit: {
+      type: Boolean,
+    },
+  },
+  components: {
+    draggable,
+    DeleteBtn,
+  },
   data() {
     return {
       skills: [],
@@ -45,4 +62,8 @@ export default {
 
 <style>
 @import '../assets/styles/Them2.css';
+.ghost {
+  opacity: 0.5;
+  background: #c8ebfb;
+}
 </style>
