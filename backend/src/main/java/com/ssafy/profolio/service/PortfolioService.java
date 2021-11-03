@@ -36,15 +36,7 @@ public class PortfolioService {
     }
 
     private String createFileName(String originalFileName){
-        return UUID.randomUUID().toString().concat(getFileExtension(originalFileName));
-    }
-
-    private String getFileExtension(String fileName){
-        try{
-            return fileName.substring(fileName.lastIndexOf("."));
-        }catch (StringIndexOutOfBoundsException e){
-            throw new IllegalArgumentException(String.format("잘못된 형식의 파일 (%s) 입니다", fileName));
-        }
+        return UUID.randomUUID().toString().concat(originalFileName);
     }
 
     public List<PortfolioDto> getPortfolioList(Long userId){
