@@ -15,7 +15,7 @@
                 <div>능숙하지는 않지만 책/인터넷을 참고하며 개발할 수 있음</div>
           </div>
       </div>
-      <div>
+      <div class="skill-list">
           <Them2SkillContent :title="Language" :list="langArr"/>
           <Them2SkillContent :title="Framework" :list="frameArr"/>
           <Them2SkillContent :title="Management" :list="manaArr"/>
