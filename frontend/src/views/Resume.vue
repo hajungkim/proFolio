@@ -35,7 +35,10 @@
        @createActivityData="createActivityData" @updateActivityData="updateActivityData"
        @deleteActivity="deleteActivity"
        />
-      <ResumePart3 v-if="resumePart==2"/>
+      <ResumePart3 v-if="resumePart==2"
+      @createLangData="createLangData" @deleteLanguage="deleteLanguage"
+      @updateLanguageData="updateLanguageData"
+      />
       <ResumePart4 v-if="resumePart==3"/>
       <ResumePart5 v-if="resumePart==4"/>
     </div>
@@ -71,6 +74,9 @@ export default {
       activityCreate: [],
       activityUpdate: [],
       activityDelete: new Set(),
+      langCreate: [],
+      langUpdate: [],
+      langDelete: new Set(),
     };
   },
   computed: {
@@ -138,7 +144,7 @@ export default {
           this.$store.dispatch('activityUpdate', activityInfo.data);
         });
         Object.values([...this.activityDelete]).forEach((activityInfo) => {
-          this.$store.dispatch('activityrDelete', activityInfo);
+          this.$store.dispatch('activityDelete', activityInfo);
         });
         this.educationUpdate = [];
         this.educationCreate = [];
@@ -148,6 +154,20 @@ export default {
         this.activityCreate = [];
         this.activityUpdate = [];
         this.activityDelete = new Set();
+      } else if (this.resumePart === 2) {
+        Object.values(this.langCreate).forEach((langInfo) => {
+          this.$store.dispatch('languageCreate', langInfo.data);
+        });
+        Object.values(this.langUpdate).forEach((langInfo) => {
+          console.log(langInfo);
+          this.$store.dispatch('languageUpdate', langInfo.data);
+        });
+        Object.values([...this.langDelete]).forEach((langInfo) => {
+          this.$store.dispatch('languageDelete', langInfo);
+        });
+        this.langCreate = [];
+        this.langUpdate = [];
+        this.langDelete = new Set();
       }
     },
     updateEducationData(updateEducationData) {
@@ -259,6 +279,44 @@ export default {
     },
     deleteActivity(deleteActivity) {
       this.activityDelete.add(deleteActivity);
+    },
+    createLangData(createLangData) {
+      const createData = {};
+      createData.id = createLangData.id;
+      createLangData.userId = this.userId;
+      createData.data = createLangData;
+      let flag = false;
+      Object.values(this.langCreate).forEach((create) => {
+        if (create.id === createData.id) {
+          // 있으면 내용 대체
+          this.langCreate.splice(create[0], 1, createData);
+          flag = true;
+        }
+      });
+      // 없으면 추가
+      if (!flag) {
+        this.langCreate.push(createData);
+      }
+    },
+    updateLanguageData(updateLanguageData) {
+      console.log(updateLanguageData);
+      const updateData = {};
+      updateData.id = updateLanguageData.id;
+      updateLanguageData.userId = this.userId;
+      updateData.data = updateLanguageData;
+      let flag = false;
+      Object.values(this.langUpdate).forEach((update) => {
+        if (update.id === updateData.id) {
+          this.langUpdate.splice(update[0], 1, updateData);
+          flag = true;
+        }
+      });
+      if (!flag) {
+        this.langUpdate.push(updateData);
+      }
+    },
+    deleteLanguage(deleteLanguage) {
+      this.langDelete.add(deleteLanguage);
     },
   },
 };

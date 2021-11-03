@@ -5,7 +5,7 @@ const axiosService = axios.create({
 });
 
 function login(social) {
-  location.href = `${process.env.VUE_APP_API_URL}/auth/${social}`;
+  window.location.href = `${process.env.VUE_APP_API_URL}/auth/${social}`;
 }
 
 function getUserInfo(userId) {

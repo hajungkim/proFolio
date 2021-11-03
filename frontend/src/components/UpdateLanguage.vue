@@ -3,13 +3,13 @@
     <table class="resume-part2-input">
       <tr>
         <th>외국어명</th>
-        <td><input type="text" @change="langLanguage"></td>
+        <td><input type="text" @change="langLanguage" :placeholder="language.language"></td>
         <th class="pl-15">점수</th>
-        <td><input type="text" @change="langScore"></td>
+        <td><input type="text" @change="langScore" :placeholder="language.score"></td>
       </tr>
       <tr>
         <th>시험명</th>
-        <td><input type="text" @change="langName"></td>
+        <td><input type="text" @change="langName" :placeholder="language.name"></td>
         <th class="pl-15">취득일</th>
         <td style="padding-left:10px;">
           <v-app class="date-pick">
@@ -17,14 +17,14 @@
               ref="menu1"
               v-model="menu1"
               :close-on-content-click="false"
-              :return-value.sync="langCreate.language.certifiedDate"
+              :return-value.sync="langUpdate.language.certifiedDate"
               transition="scale-transition"
               offset-y
               min-width="auto"
             >
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
-                  v-model="langCreate.language.certifiedDate"
+                  v-model="langUpdate.language.certifiedDate"
                   label="취득일"
                   prepend-icon="mdi-calendar"
                   readonly
@@ -33,7 +33,7 @@
                 ></v-text-field>
               </template>
               <v-date-picker
-                v-model="langCreate.language.certifiedDate"
+                v-model="langUpdate.language.certifiedDate"
                 no-title
                 scrollable
               >
@@ -64,7 +64,7 @@
 
 <script>
 export default {
-  name: 'CreateLanguage',
+  name: 'UpdateLanguage',
   props: {
     language: {
       type: Object,
@@ -73,37 +73,42 @@ export default {
   data() {
     return {
       menu1: false,
-      langCreate: {},
+      langUpdate: {},
     };
   },
   methods: {
     dataUpdate() {
-      this.$emit('createLang', this.langCreate);
+      this.$emit('updateLang', this.langUpdate);
     },
     certifiedDateUpdate() {
-      this.$refs.menu1.save(this.langCreate.language.certifiedDate);
+      this.$refs.menu1.save(this.langUpdate.language.certifiedDate);
+      this.langUpdate.isUpdated = true;
       this.dataUpdate();
     },
     langName(event) {
-      this.langCreate.language.name = event.target.value;
+      this.langUpdate.language.name = event.target.value;
+      this.langUpdate.isUpdated = true;
       this.dataUpdate();
     },
     langScore(event) {
-      this.langCreate.language.score = event.target.value;
+      this.langUpdate.language.score = event.target.value;
+      this.langUpdate.isUpdated = true;
       this.dataUpdate();
     },
     langLanguage(event) {
-      this.langCreate.language.language = event.target.value;
+      this.langUpdate.language.language = event.target.value;
+      this.langUpdate.isUpdated = true;
       this.dataUpdate();
     },
     deleteLang() {
-      this.langCreate.isDeleted = true;
+      this.langUpdate.isDeleted = true;
       this.dataUpdate();
     },
   },
   beforeMount() {
-    this.langCreate.language = this.language;
-    this.langCreate.isDeleted = false;
+    this.langUpdate.language = this.language;
+    this.langUpdate.isDeleted = false;
+    this.langUpdate.isUpdated = false;
   },
 };
 </script>
