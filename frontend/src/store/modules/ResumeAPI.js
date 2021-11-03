@@ -64,9 +64,21 @@ function getCertificate(userId) {
 function postCertificate(data) {
   return axiosService.post('resume/certificate', data);
 }
+function putAwards(id, data) {
+  return axiosService.put(`resume/awards/${id}`, data);
+}
+function deleteAwards(id) {
+  return axiosService.delete(`resume/awards/${id}`);
+}
+function getAwards(userId) {
+  return axiosService.get(`resume/awards/${userId}`);
+}
+function postAwards(data) {
+  return axiosService.post('resume/awards', data);
+}
 export {
   putEducation, deleteEducation, getEducation, postEducation, putCareer, deleteCareer,
   getCareer, postCareer, putActivity, deleteActivity, getActivity, postActivity,
   putLanguage, deleteLanguage, getLanguage, postLanguage, putCertificate, deleteCertificate,
-  getCertificate, postCertificate,
+  getCertificate, postCertificate, putAwards, deleteAwards, getAwards, postAwards,
 };
