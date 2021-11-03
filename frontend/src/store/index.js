@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import createPersistedState from 'vuex-persistedstate';
 import { getUserInfo } from './modules/UserAPI';
 import {
   putEducation, getEducation, postEducation, postCareer, getCareer, deleteCareer, putCareer,
@@ -10,8 +11,11 @@ import {
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  plugins: [
+    createPersistedState(),
+  ],
   state: {
-    isLogin: true,
+    isLogin: false,
     userId: 1,
     resume: {
       user: {
@@ -170,6 +174,12 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    CHANGE_ISLOGIN(state, isLogin) {
+      state.isLogin = isLogin;
+    },
+    SET_USER_ID(state, userId) {
+      state.userId = userId;
+    },
     GET_USER_INFO(state, userinfo) {
       state.resume.user = userinfo;
     },
@@ -187,6 +197,28 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    socialLogin(context, userId) {
+      context.commit('SET_USER_ID', userId);
+      context.commit('CHANGE_ISLOGIN', true);
+      context.dispatch('getUser', userId);
+      getEducation(context.state.userId).then((response) => {
+        console.log(response.data.data);
+        if (response.data.data === null) {
+          response.data.data = {};
+          console.log(response.data.data);
+        }
+        context.commit('EDUCATION_INFO', response.data.data);
+      });
+      getCareer(context.state.userId).then((response) => {
+        context.commit('CAREER_INFO', response.data.data);
+      });
+      getActivity(context.state.userId).then((response) => {
+        context.commit('ACTIVITY_INFO', response.data.data);
+      });
+      getLanguage(context.state.userId).then((response) => {
+        context.commit('LANGUAGE_INFO', response.data.data);
+      });
+    },
     getUser(context, userId) {
       getUserInfo(userId).then((res) => {
         context.commit('GET_USER_INFO', res.data.data);
