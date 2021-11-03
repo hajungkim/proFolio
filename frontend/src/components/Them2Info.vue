@@ -5,7 +5,7 @@
           <div class="user-img">
               <img :src = "resume.user.profilePath" class="user-profile-img">
           </div>
-          <!-- <div class="them2-detail">
+          <div class="them2-detail">
             <div class="them2-username">{{resume.user.name}}</div>
             <div class="them2-info-detail">
                 <div class="line2">
@@ -21,7 +21,7 @@
                     <div>{{resume.user.link}}</div>
                 </div>
             </div>
-          </div> -->
+          </div>
       </div>
       <div class="blue_box">Let me Introduce myself</div>
       <div class="introduce">

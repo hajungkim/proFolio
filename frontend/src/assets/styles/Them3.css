@@ -7,7 +7,7 @@
 .them3{
     font-family: 'Pretendard-Regular';
     background-color: #EFF1FF;
-    height: 300vh;
+    height: 400vh;
     padding-top: 5%;
 }
 .them3 .name{
@@ -154,4 +154,10 @@
     margin: 3% 10%;
     height: 5vh;
     line-height: 5vh;
+}
+.them3-intro{
+    background-color: white;
+    grid-column: 1 / span 2;
+    padding: 5%;
+    margin: 0 8% 5% 5%;
 }

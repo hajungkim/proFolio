@@ -127,7 +127,6 @@
         </td>
       </tr>
     </table>
-    <div class="delete-btn" @click="deleteEdu">X</div>
   </div>
 </template>
 
@@ -197,16 +196,13 @@ export default {
       this.educationUpdate.isUpdated = true;
       this.dataUpdate();
     },
-    deleteEdu() {
-      this.educationUpdate.isDeleted = true;
-      this.dataUpdate();
-    },
   },
   beforeMount() {
     this.educationUpdate.education = this.education;
+    this.educationUpdate.isCreated = this.education.isCreated;
     this.educationUpdate.isUpdated = false;
-    this.educationUpdate.isDeleted = false;
-    if (this.educationUpdate.graduation === true) this.graduation = '졸업';
+    delete this.educationUpdate.education.isCreated;
+    if (this.educationUpdate.education.graduation === true) this.graduation = '졸업';
     else this.graduation = '졸업예정';
   },
 };

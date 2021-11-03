@@ -3,9 +3,9 @@
     <table class="resume-part2-input">
       <tr>
         <th>활동명</th>
-        <td><input type="text" :placeholder="activity.name"></td>
+        <td><input type="text" @change="activityName"></td>
         <th class="pl-15">활동기관</th>
-        <td><input type="text" :placeholder="activity.organization"></td>
+        <td><input type="text" @change="activityOrganization"></td>
       </tr>
       <tr>
         <th>시작일</th>
@@ -15,15 +15,15 @@
               ref="menu1"
               v-model="menu1"
               :close-on-content-click="false"
-              :return-value.sync="date1"
+              :return-value.sync="activityCreate.activity.startDate"
               transition="scale-transition"
               offset-y
               min-width="auto"
             >
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
-                  v-model="date1"
-                  :label="start"
+                  v-model="activityCreate.activity.startDate"
+                  label="시작일"
                   prepend-icon="mdi-calendar"
                   readonly
                   v-bind="attrs"
@@ -31,7 +31,7 @@
                 ></v-text-field>
               </template>
               <v-date-picker
-                v-model="date1"
+                v-model="activityCreate.activity.startDate"
                 no-title
                 scrollable
                 type="month"
@@ -47,7 +47,7 @@
                 <v-btn
                   text
                   color="primary"
-                  @click="$refs.menu1.save(date1)"
+                  @click="startDateUpdate"
                 >
                   OK
                 </v-btn>
@@ -62,15 +62,15 @@
               ref="menu2"
               v-model="menu2"
               :close-on-content-click="false"
-              :return-value.sync="date2"
+              :return-value.sync="activityCreate.activity.endDate"
               transition="scale-transition"
               offset-y
               min-width="auto"
             >
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
-                  v-model="date2"
-                  :label="end"
+                  v-model="activityCreate.activity.endDate"
+                  label="종료일"
                   prepend-icon="mdi-calendar"
                   readonly
                   v-bind="attrs"
@@ -78,7 +78,7 @@
                 ></v-text-field>
               </template>
               <v-date-picker
-                v-model="date2"
+                v-model="activityCreate.activity.endDate"
                 no-title
                 scrollable
                 type="month"
@@ -94,7 +94,7 @@
                 <v-btn
                   text
                   color="primary"
-                  @click="$refs.menu2.save(date2)"
+                  @click="endDateUpdate"
                 >
                   OK
                 </v-btn>
@@ -106,10 +106,11 @@
       <tr>
         <th>활동내용</th>
         <td colspan="4">
-          <textarea class="resume-p2-exp" :placeholder="activity.description"></textarea>
+          <textarea class="resume-p2-exp" @change="activityDescription"></textarea>
         </td>
       </tr>
     </table>
+    <div class="delete-btn" @click="deleteActivity">X</div>
   </div>
 </template>
 
@@ -123,13 +124,43 @@ export default {
   },
   data() {
     return {
-      date1: null,
-      date2: null,
       menu1: false,
       menu2: false,
-      start: this.activity.startDate,
-      end: this.activity.endDate,
+      activityCreate: {},
     };
+  },
+  methods: {
+    dataUpdate() {
+      this.$emit('createActivity', this.activityCreate);
+    },
+    startDateUpdate() {
+      this.$refs.menu1.save(this.activityCreate.activity.startDate);
+      this.dataUpdate();
+    },
+    endDateUpdate() {
+      this.$refs.menu2.save(this.activityCreate.activity.endDate);
+      this.dataUpdate();
+    },
+    activityName(event) {
+      this.activityCreate.activity.name = event.target.value;
+      this.dataUpdate();
+    },
+    activityOrganization(event) {
+      this.activityCreate.activity.organizagion = event.target.value;
+      this.dataUpdate();
+    },
+    activityDescription(event) {
+      this.activityCreate.activity.description = event.target.value;
+      this.dataUpdate();
+    },
+    deleteActivity() {
+      this.activityCreate.isDeleted = true;
+      this.dataUpdate();
+    },
+  },
+  beforeMount() {
+    this.activityCreate.activity = this.activity;
+    this.activityCreate.isDeleted = false;
   },
 };
 </script>

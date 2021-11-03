@@ -1,7 +1,11 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { getUserInfo } from './modules/UserAPI';
-import { putEducation, getEducation, postEducation } from './modules/ResumeAPI';
+import {
+  putEducation, getEducation, postEducation, postCareer, getCareer, deleteCareer, putCareer,
+  postActivity, getActivity, putActivity, deleteActivity, postLanguage, getLanguage,
+  putLanguage, deleteLanguage,
+} from './modules/ResumeAPI';
 
 Vue.use(Vuex);
 
@@ -140,7 +144,19 @@ export default new Vuex.Store({
       project: [
         {
           id: '1',
-          title: '포트폴리오 만들기!',
+          title: 'proFoilo',
+          summary: '개발자 준비생을 위한 포트폴리오 사이트',
+          description: '포트폴리오를 처음 만드는 개발자를 위한 서비스로 작성 가이드를 제공하고, 작성한 내용으로 템플릿을 적용한 포트폴리오를 PDF로 생성해줍니다.',
+          memberCnt: 5,
+          technologyStack: 'Java, Django, Vue, SpringBoot',
+          role: 'FE',
+          link: 'https://ssafy.com',
+          startDate: '2021.10',
+          endDate: '2021.11',
+        },
+        {
+          id: '2',
+          title: 'proFoilo',
           summary: '개발자 준비생을 위한 포트폴리오 사이트',
           description: '쉬운 포트폴리오 만들기 와아아아아아아',
           memberCnt: 5,
@@ -160,6 +176,15 @@ export default new Vuex.Store({
     EDUCATION_INFO(state, education) {
       state.resume.education = education;
     },
+    CAREER_INFO(state, career) {
+      state.resume.career = career;
+    },
+    ACTIVITY_INFO(state, activity) {
+      state.resume.activity = activity;
+    },
+    LANGUAGE_INFO(state, language) {
+      state.resume.foreignLang = language;
+    },
   },
   actions: {
     getUser(context, userId) {
@@ -168,19 +193,81 @@ export default new Vuex.Store({
       });
     },
     updateEducation(context, data) {
-      console.log('context', data.data);
-      putEducation(data.id, data.data).then((res) => {
-        console.log('put---------', res);
+      putEducation(data.id, data.data).then(() => {
         getEducation(context.state.userId).then((response) => {
-          console.log(response.data.data);
           context.commit('EDUCATION_INFO', response.data.data);
         });
       });
     },
     educationCreate(context, data) {
+      postEducation(data).then(() => {
+        getEducation(context.state.userId).then((response) => {
+          context.commit('EDUCATION_INFO', response.data.data);
+        });
+      });
+    },
+    careerCreate(context, data) {
+      postCareer(data).then(() => {
+        getCareer(context.state.userId).then((response) => {
+          context.commit('CAREER_INFO', response.data.data);
+        });
+      });
+    },
+    careerDelete(context, data) {
+      deleteCareer(data).then(() => {
+        getCareer(context.state.userId).then((response) => {
+          context.commit('CAREER_INFO', response.data.data);
+        });
+      });
+    },
+    careerUpdate(context, data) {
+      putCareer(data.id, data).then(() => {
+        getCareer(context.state.userId).then((response) => {
+          context.commit('CAREER_INFO', response.data.data);
+        });
+      });
+    },
+    activityCreate(context, data) {
+      postActivity(data).then(() => {
+        getActivity(context.state.userId).then((response) => {
+          context.commit('ACTIVITY_INFO', response.data.data);
+        });
+      });
+    },
+    activityUpdate(context, data) {
+      putActivity(data.id, data).then(() => {
+        getActivity(context.state.userId).then((response) => {
+          context.commit('ACTIVITY_INFO', response.data.data);
+        });
+      });
+    },
+    activityDelete(context, data) {
+      deleteActivity(data).then(() => {
+        getActivity(context.state.userId).then((response) => {
+          context.commit('ACTIVITY_INFO', response.data.data);
+        });
+      });
+    },
+    languageCreate(context, data) {
+      postLanguage(data).then(() => {
+        getLanguage(context.state.userId).then((response) => {
+          context.commit('LANGUAGE_INFO', response.data.data);
+        });
+      });
+    },
+    languageUpdate(context, data) {
       console.log(data);
-      postEducation(data).then((res) => {
-        console.log('createAPI RES', res);
+      putLanguage(data.id, data).then(() => {
+        getLanguage(context.state.userId).then((response) => {
+          context.commit('LANGUAGE_INFO', response.data.data);
+        });
+      });
+    },
+    languageDelete(context, data) {
+      deleteLanguage(data).then(() => {
+        getLanguage(context.state.userId).then((response) => {
+          context.commit('LANGUAGE_INFO', response.data.data);
+        });
       });
     },
   },

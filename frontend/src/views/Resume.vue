@@ -27,10 +27,18 @@
     </div>
     <div class="resume-part">
       <ResumePart1 v-if="resumePart==0" @part1Data="part1Data"/>
-      <ResumePart2 v-if="resumePart==1" :resumeEdit="resumeEdit"
-       @deleteEducation="deleteEducation" @updateEducationData="updateEducationData"
-       @createEducationData="createEducationData"/>
-      <ResumePart3 v-if="resumePart==2"/>
+      <ResumePart2 v-if="resumePart==1"
+       @updateEducationData="updateEducationData"
+       @createEducationData="createEducationData"
+       @createCareerData="createCareerData" @deleteCareer="deleteCareer"
+       @updateCareerData="updateCareerData"
+       @createActivityData="createActivityData" @updateActivityData="updateActivityData"
+       @deleteActivity="deleteActivity"
+       />
+      <ResumePart3 v-if="resumePart==2"
+      @createLangData="createLangData" @deleteLanguage="deleteLanguage"
+      @updateLanguageData="updateLanguageData"
+      />
       <ResumePart4 v-if="resumePart==3"/>
       <ResumePart5 v-if="resumePart==4"/>
     </div>
@@ -58,10 +66,17 @@ export default {
   data() {
     return {
       resumePart: 0,
-      resumeEdit: null,
-      educationDelete: [],
       educationUpdate: [],
       educationCreate: [],
+      careerCreate: [],
+      careerUpdate: [],
+      careerDelete: new Set(),
+      activityCreate: [],
+      activityUpdate: [],
+      activityDelete: new Set(),
+      langCreate: [],
+      langUpdate: [],
+      langDelete: new Set(),
     };
   },
   computed: {
@@ -113,29 +128,55 @@ export default {
         Object.values(this.educationCreate).forEach((educationInfo) => {
           this.$store.dispatch('educationCreate', educationInfo.data);
         });
+        Object.values(this.careerCreate).forEach((careerInfo) => {
+          this.$store.dispatch('careerCreate', careerInfo.data);
+        });
+        Object.values(this.careerUpdate).forEach((careerInfo) => {
+          this.$store.dispatch('careerUpdate', careerInfo.data);
+        });
+        Object.values([...this.careerDelete]).forEach((careerInfo) => {
+          this.$store.dispatch('careerDelete', careerInfo);
+        });
+        Object.values(this.activityCreate).forEach((activityInfo) => {
+          this.$store.dispatch('activityCreate', activityInfo.data);
+        });
+        Object.values(this.activityUpdate).forEach((activityInfo) => {
+          this.$store.dispatch('activityUpdate', activityInfo.data);
+        });
+        Object.values([...this.activityDelete]).forEach((activityInfo) => {
+          this.$store.dispatch('activityDelete', activityInfo);
+        });
+        this.educationUpdate = [];
+        this.educationCreate = [];
+        this.careerCreate = [];
+        this.careerUpdate = [];
+        this.careerDelete = new Set();
+        this.activityCreate = [];
+        this.activityUpdate = [];
+        this.activityDelete = new Set();
+      } else if (this.resumePart === 2) {
+        Object.values(this.langCreate).forEach((langInfo) => {
+          this.$store.dispatch('languageCreate', langInfo.data);
+        });
+        Object.values(this.langUpdate).forEach((langInfo) => {
+          console.log(langInfo);
+          this.$store.dispatch('languageUpdate', langInfo.data);
+        });
+        Object.values([...this.langDelete]).forEach((langInfo) => {
+          this.$store.dispatch('languageDelete', langInfo);
+        });
+        this.langCreate = [];
+        this.langUpdate = [];
+        this.langDelete = new Set();
       }
     },
-    deleteEducation(deleteEducation) {
-      // api 보낼 삭제할 인덱스 추가하기
-      this.educationDelete.push(deleteEducation);
-      // vue 보여지는 부분에서 삭제한 부분 제거하기 -> 저장 안하면 다시 되돌아오게
-      let sliceIndex = null;
-      Object.entries(this.resumeEdit.education).forEach((education) => {
-        if (Object.keys(education[1]).find((key) => education[1][key] === deleteEducation)) {
-          [sliceIndex] = education;
-        }
-      });
-      this.resumeEdit.education.splice(sliceIndex, 1);
-    },
     updateEducationData(updateEducationData) {
-      console.log('update');
       const updateData = {};
       updateData.id = updateEducationData.id;
-      delete updateEducationData.id;
       updateEducationData.userId = this.userId;
       updateData.data = updateEducationData;
       let flag = false;
-      Object.entries(this.educationUpdate).forEach((update) => {
+      Object.values(this.educationUpdate).forEach((update) => {
         if (update.id === updateData.id) {
           // educationUpdate에 있으면 내용 대체
           this.educationUpdate.splice(update[0], 1, updateData);
@@ -148,15 +189,12 @@ export default {
       }
     },
     createEducationData(createEducationData) {
-      console.log('create');
-      // console.log(createEducationData);
       const createData = {};
       createData.id = createEducationData.id;
-      delete createEducationData.id;
       createEducationData.userId = this.userId;
       createData.data = createEducationData;
       let flag = false;
-      Object.entries(this.educationCreate).forEach((create) => {
+      Object.values(this.educationCreate).forEach((create) => {
         if (create.id === createData.id) {
           // 있으면 내용 대체
           this.educationCreate.splice(create[0], 1, createData);
@@ -167,12 +205,119 @@ export default {
       if (!flag) {
         this.educationCreate.push(createData);
       }
-      console.log(this.educationCreate);
-      console.log('---------------');
     },
-  },
-  beforeMount() {
-    this.resumeEdit = JSON.parse(JSON.stringify(this.resume));
+    createCareerData(createCareerData) {
+      const createData = {};
+      createData.id = createCareerData.id;
+      createCareerData.userId = this.userId;
+      createData.data = createCareerData;
+      let flag = false;
+      Object.values(this.careerCreate).forEach((create) => {
+        if (create.id === createData.id) {
+          // 있으면 내용 대체
+          this.careerCreate.splice(create[0], 1, createData);
+          flag = true;
+        }
+      });
+      // 없으면 추가
+      if (!flag) {
+        this.careerCreate.push(createData);
+      }
+    },
+    deleteCareer(deleteCareer) {
+      this.careerDelete.add(deleteCareer);
+    },
+    updateCareerData(updateCareerData) {
+      const updateData = {};
+      updateData.id = updateCareerData.id;
+      updateCareerData.userId = this.userId;
+      updateData.data = updateCareerData;
+      let flag = false;
+      Object.values(this.careerUpdate).forEach((update) => {
+        if (update.id === updateData.id) {
+          this.careerUpdate.splice(update[0], 1, updateData);
+          flag = true;
+        }
+      });
+      if (!flag) {
+        this.careerUpdate.push(updateData);
+      }
+    },
+    createActivityData(createActivityData) {
+      const createData = {};
+      createData.id = createActivityData.id;
+      createActivityData.userId = this.userId;
+      createData.data = createActivityData;
+      let flag = false;
+      Object.values(this.activityCreate).forEach((create) => {
+        if (create.id === createData.id) {
+          // 있으면 내용 대체
+          this.careerCreate.splice(create[0], 1, createData);
+          flag = true;
+        }
+      });
+      // 없으면 추가
+      if (!flag) {
+        this.activityCreate.push(createData);
+      }
+    },
+    updateActivityData(updateActivityData) {
+      const updateData = {};
+      updateData.id = updateActivityData.id;
+      updateActivityData.userId = this.userId;
+      updateData.data = updateActivityData;
+      let flag = false;
+      Object.values(this.activityUpdate).forEach((update) => {
+        if (update.id === updateData.id) {
+          this.activityUpdate.splice(update[0], 1, updateData);
+          flag = true;
+        }
+      });
+      if (!flag) {
+        this.activityUpdate.push(updateData);
+      }
+    },
+    deleteActivity(deleteActivity) {
+      this.activityDelete.add(deleteActivity);
+    },
+    createLangData(createLangData) {
+      const createData = {};
+      createData.id = createLangData.id;
+      createLangData.userId = this.userId;
+      createData.data = createLangData;
+      let flag = false;
+      Object.values(this.langCreate).forEach((create) => {
+        if (create.id === createData.id) {
+          // 있으면 내용 대체
+          this.langCreate.splice(create[0], 1, createData);
+          flag = true;
+        }
+      });
+      // 없으면 추가
+      if (!flag) {
+        this.langCreate.push(createData);
+      }
+    },
+    updateLanguageData(updateLanguageData) {
+      console.log(updateLanguageData);
+      const updateData = {};
+      updateData.id = updateLanguageData.id;
+      updateLanguageData.userId = this.userId;
+      updateData.data = updateLanguageData;
+      let flag = false;
+      Object.values(this.langUpdate).forEach((update) => {
+        if (update.id === updateData.id) {
+          this.langUpdate.splice(update[0], 1, updateData);
+          flag = true;
+        }
+      });
+      if (!flag) {
+        this.langUpdate.push(updateData);
+      }
+    },
+    deleteLanguage(deleteLanguage) {
+      this.langDelete.add(deleteLanguage);
+    },
   },
 };
 </script>

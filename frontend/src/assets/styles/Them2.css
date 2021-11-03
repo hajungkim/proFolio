@@ -11,6 +11,22 @@
     padding-top: 5%;
     font-size: 1.5rem;
 }
+#them2-pdf{
+    font-family: 'NanumBarunGothic';
+    font-size: 1.5rem;
+}
+.them2 .menu{
+    position: fixed;
+    margin-left: 5%;
+    margin-top: 5%;
+    height: 20vh;
+    width: 200px;
+}
+.them2-content{
+    width: 85vw;
+    right: 0;
+    position: absolute;
+}
 .them2-title{
     font-size: 4rem;
     font-weight: bold;
@@ -29,7 +45,7 @@
     grid-template-columns: repeat(3, 1fr);
 }
 .user-profile-img{
-    width: 20vw;
+    width: 15vw;
 }
 .them2-username{
     font-weight: bold;
@@ -97,7 +113,7 @@
     background-color: #FFE7E7;
     border: 2px solid #FF0000;
 }
-.green{
+.levelgreen{
     color: #009A2B;
     background-color: #E1FFE4;
     border: 2px solid #009A2B;

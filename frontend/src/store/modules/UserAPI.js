@@ -5,9 +5,7 @@ const axiosService = axios.create({
 });
 
 function login(social) {
-  return axiosService.get(`auth/${social}`, {
-    headers: { 'Access-Control-Allow-Origin': '*' },
-  });
+  window.location.href = `${process.env.VUE_APP_API_URL}/auth/${social}`;
 }
 
 function getUserInfo(userId) {

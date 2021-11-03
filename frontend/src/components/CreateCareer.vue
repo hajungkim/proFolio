@@ -4,11 +4,10 @@
       <tr>
         <th>기업명</th>
         <td>
-          <input type="text"
-          :placeholder="career.company">
+          <input type="text" @change="careerCompany">
         </td>
         <th class="pl-15">직무</th>
-        <td><input type="text" :placeholder="career.duty"></td>
+        <td><input type="text" @change="careerDuty"></td>
       </tr>
       <tr>
         <th>시작일</th>
@@ -18,15 +17,15 @@
               ref="menu1"
               v-model="menu1"
               :close-on-content-click="false"
-              :return-value.sync="date1"
+              :return-value.sync="careerCreate.career.startDate"
               transition="scale-transition"
               offset-y
               min-width="auto"
             >
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
-                  v-model="date1"
-                  :label="start"
+                  v-model="careerCreate.career.startDate"
+                  label="시작일"
                   prepend-icon="mdi-calendar"
                   readonly
                   v-bind="attrs"
@@ -34,7 +33,7 @@
                 ></v-text-field>
               </template>
               <v-date-picker
-                v-model="date1"
+                v-model="careerCreate.career.startDate"
                 no-title
                 scrollable
                 type="month"
@@ -50,7 +49,7 @@
                 <v-btn
                   text
                   color="primary"
-                  @click="$refs.menu1.save(date1)"
+                  @click="startDateUpdate"
                 >
                   OK
                 </v-btn>
@@ -65,15 +64,15 @@
               ref="menu2"
               v-model="menu2"
               :close-on-content-click="false"
-              :return-value.sync="date2"
+              :return-value.sync="careerCreate.career.endDate"
               transition="scale-transition"
               offset-y
               min-width="auto"
             >
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
-                  v-model="date2"
-                  :label="end"
+                  v-model="careerCreate.career.endDate"
+                  label="종료일"
                   prepend-icon="mdi-calendar"
                   readonly
                   v-bind="attrs"
@@ -81,7 +80,7 @@
                 ></v-text-field>
               </template>
               <v-date-picker
-                v-model="date2"
+                v-model="careerCreate.career.endDate"
                 no-title
                 scrollable
                 type="month"
@@ -97,7 +96,7 @@
                 <v-btn
                   text
                   color="primary"
-                  @click="$refs.menu2.save(date2)"
+                  @click="endDateUpdate"
                 >
                   OK
                 </v-btn>
@@ -109,10 +108,11 @@
       <tr>
         <th>내용</th>
         <td colspan="4">
-          <textarea class="resume-p2-career" :placeholder="career.description"></textarea>
+          <textarea class="resume-p2-career" @change="careerDescription"></textarea>
         </td>
       </tr>
     </table>
+    <div class="delete-btn" @click="deleteCareer">X</div>
   </div>
 </template>
 
@@ -126,13 +126,43 @@ export default {
   },
   data() {
     return {
-      date1: null,
-      date2: null,
       menu1: false,
       menu2: false,
-      start: this.career.startDate,
-      end: this.career.endDate,
+      careerCreate: {},
     };
+  },
+  methods: {
+    dataUpdate() {
+      this.$emit('createCareerData', this.careerCreate);
+    },
+    startDateUpdate() {
+      this.$refs.menu1.save(this.careerCreate.career.startDate);
+      this.dataUpdate();
+    },
+    endDateUpdate() {
+      this.$refs.menu2.save(this.careerCreate.career.endDate);
+      this.dataUpdate();
+    },
+    careerCompany(event) {
+      this.careerCreate.career.company = event.target.value;
+      this.dataUpdate();
+    },
+    careerDuty(event) {
+      this.careerCreate.career.duty = event.target.value;
+      this.dataUpdate();
+    },
+    careerDescription(event) {
+      this.careerCreate.career.description = event.target.value;
+      this.dataUpdate();
+    },
+    deleteCareer() {
+      this.careerCreate.isDeleted = true;
+      this.dataUpdate();
+    },
+  },
+  beforeMount() {
+    this.careerCreate.career = this.career;
+    this.careerCreate.isDeleted = false;
   },
 };
 </script>
