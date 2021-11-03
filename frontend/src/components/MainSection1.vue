@@ -1,7 +1,7 @@
 <template>
   <div class="main-container main-section1">
     <div>
-      <img src="../assets/images/profolio.svg" alt="">
+      <img src="../assets/images/logo3.png" alt="">
       <h2>개발자를 위한 포트폴리오 사이트</h2>
       <button class="btn-hover color-9"> GET STARTED </button>
     </div>
