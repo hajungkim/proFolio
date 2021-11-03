@@ -2,8 +2,10 @@ from django.http import HttpResponse, FileResponse
 from django.shortcuts import render
 from faceswap.faceswap import main as fswap
 from .forms import SynthesisForm
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
+@csrf_exempt
 def convert(request):
     if request.method == 'POST':
         # print(request.FILES['input_image'])
