@@ -63,6 +63,7 @@
       </td>
     </tr>
   </table>
+  <div class="delete-btn" @click="deleteAward">X</div>
 </div>
 </template>
 
