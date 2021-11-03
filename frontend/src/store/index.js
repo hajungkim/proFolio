@@ -3,7 +3,8 @@ import Vuex from 'vuex';
 import { getUserInfo } from './modules/UserAPI';
 import {
   putEducation, getEducation, postEducation, postCareer, getCareer, deleteCareer, putCareer,
-  postActivity, getActivity, putActivity, deleteActivity,
+  postActivity, getActivity, putActivity, deleteActivity, postLanguage, getLanguage,
+  putLanguage, deleteLanguage,
 } from './modules/ResumeAPI';
 
 Vue.use(Vuex);
@@ -181,6 +182,9 @@ export default new Vuex.Store({
     ACTIVITY_INFO(state, activity) {
       state.resume.activity = activity;
     },
+    LANGUAGE_INFO(state, language) {
+      state.resume.foreignLang = language;
+    },
   },
   actions: {
     getUser(context, userId) {
@@ -237,10 +241,32 @@ export default new Vuex.Store({
         });
       });
     },
-    activityrDelete(context, data) {
+    activityDelete(context, data) {
       deleteActivity(data).then(() => {
         getActivity(context.state.userId).then((response) => {
           context.commit('ACTIVITY_INFO', response.data.data);
+        });
+      });
+    },
+    languageCreate(context, data) {
+      postLanguage(data).then(() => {
+        getLanguage(context.state.userId).then((response) => {
+          context.commit('LANGUAGE_INFO', response.data.data);
+        });
+      });
+    },
+    languageUpdate(context, data) {
+      console.log(data);
+      putLanguage(data.id, data).then(() => {
+        getLanguage(context.state.userId).then((response) => {
+          context.commit('LANGUAGE_INFO', response.data.data);
+        });
+      });
+    },
+    languageDelete(context, data) {
+      deleteLanguage(data).then(() => {
+        getLanguage(context.state.userId).then((response) => {
+          context.commit('LANGUAGE_INFO', response.data.data);
         });
       });
     },

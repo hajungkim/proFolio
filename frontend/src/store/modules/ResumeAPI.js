@@ -40,7 +40,20 @@ function getActivity(userId) {
 function postActivity(data) {
   return axiosService.post('resume/activity', data);
 }
+function putLanguage(id, data) {
+  return axiosService.put(`resume/foreign/${id}`, data);
+}
+function deleteLanguage(id) {
+  return axiosService.delete(`resume/foreign/${id}`);
+}
+function getLanguage(userId) {
+  return axiosService.get(`resume/foreign/${userId}`);
+}
+function postLanguage(data) {
+  return axiosService.post('resume/foreign', data);
+}
 export {
   putEducation, deleteEducation, getEducation, postEducation, putCareer, deleteCareer,
   getCareer, postCareer, putActivity, deleteActivity, getActivity, postActivity,
+  putLanguage, deleteLanguage, getLanguage, postLanguage,
 };
