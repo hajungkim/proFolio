@@ -2,15 +2,18 @@
   <div class="my-page">
     <div class="tab-group">
       <div class="tab-sub-group">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css" />
         <div class="tab-menu">
-          <div :class="[ resumeActive ? fullColor : halfColor ]" @click="resumeClick">
-            <span>이력서</span>
-          </div>
+          <button :class="[ resumeActive ? clickState : unclickState ]" @click="resumeClick">
+            <div>My Resume</div>
+            <i class="icon-arrow-right"></i>
+          </button>
         </div>
         <div class="tab-menu">
-          <div :class="[ resumeActive ? halfColor :  fullColor ]" @click="portFolioClick">
-            <span>포트폴리오</span>
-          </div>
+          <button :class="[ resumeActive ? unclickState : clickState ]" @click="portFolioClick">
+            <div>My Portfolio</div>
+            <i class="icon-arrow-right"></i>
+          </button>
         </div>
       </div>
     </div>
@@ -38,6 +41,8 @@ export default {
       resumeActive: true,
       fullColor: 'tab-btn-click',
       halfColor: 'tab-btn',
+      clickState: 'slide-click',
+      unclickState: 'slide',
     };
   },
   methods: {
