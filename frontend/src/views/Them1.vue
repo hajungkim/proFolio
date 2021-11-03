@@ -94,17 +94,14 @@ export default {
         },
       }).output('blob')
         .then((res) => {
-          console.log(res);
           const pdfFile = new FormData();
-          pdfFile.append('file', res);
-          const data = {
-            name: this.pdfName,
-            userId: 1,
-            file: pdfFile,
-          };
-          postPortfolio(data);
-        });
-      this.pdfName = '';
+          pdfFile.append('file', res, this.pdfName);
+          pdfFile.append('name', this.pdfName);
+          pdfFile.append('userId', 1);
+          postPortfolio(pdfFile);
+          this.pdfName = '';
+        })
+        .save();
       this.closeModal();
     },
     openModal() {

@@ -9,9 +9,9 @@ function getPortfolio(userId) {
 }
 function postPortfolio(data) {
   return axiosService.post('portfolio/upload', data, {
-    // headers: {
-    //   'Content-Type': 'multipart/form-data',
-    // },
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
   });
 }
 export {
