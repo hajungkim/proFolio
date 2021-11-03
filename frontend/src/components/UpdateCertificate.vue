@@ -3,11 +3,11 @@
   <table class="resume-part2-input">
     <tr>
       <th>주최기관</th>
-      <td><input type="text" @change="certOrganizaion"></td>
+      <td><input type="text" @change="certOrganizaion" :placeholder="certificate.organization"></td>
     </tr>
     <tr>
       <th>시험명</th>
-      <td><input type="text" @change="certName"></td>
+      <td><input type="text" @change="certName" :placeholder="certificate.name"></td>
       <th class="pl-15">취득일</th>
       <td style="padding-left:10px;">
         <v-app class="date-pick">
@@ -15,14 +15,14 @@
             ref="menu1"
             v-model="menu1"
             :close-on-content-click="false"
-            :return-value.sync="certCreate.certificate.certifiedDate"
+            :return-value.sync="certUpdate.certificate.certifiedDate"
             transition="scale-transition"
             offset-y
             min-width="auto"
           >
             <template v-slot:activator="{ on, attrs }">
               <v-text-field
-                v-model="certCreate.certificate.certifiedDate"
+                v-model="certUpdate.certificate.certifiedDate"
                 label="취득일"
                 prepend-icon="mdi-calendar"
                 readonly
@@ -31,7 +31,7 @@
               ></v-text-field>
             </template>
             <v-date-picker
-              v-model="certCreate.certificate.certifiedDate"
+              v-model="certUpdate.certificate.certifiedDate"
               no-title
               scrollable
             >
@@ -62,7 +62,7 @@
 
 <script>
 export default {
-  name: 'CreateCertificate',
+  name: 'UpdateCertificate',
   props: {
     certificate: {
       type: Object,
@@ -71,33 +71,37 @@ export default {
   data() {
     return {
       menu1: false,
-      certCreate: {},
+      certUpdate: {},
     };
   },
   methods: {
     dataUpdate() {
-      this.$emit('createCert', this.certCreate);
+      this.$emit('updateCert', this.certUpdate);
     },
     certifiedDateUpdate() {
-      this.$refs.menu1.save(this.certCreate.certificate.certifiedDate);
+      this.$refs.menu1.save(this.certUpdate.certificate.certifiedDate);
+      this.certUpdate.isUpdated = true;
       this.dataUpdate();
     },
     certName(event) {
-      this.certCreate.certificate.name = event.target.value;
+      this.certUpdate.certificate.name = event.target.value;
+      this.certUpdate.isUpdated = true;
       this.dataUpdate();
     },
     certOrganizaion(event) {
-      this.certCreate.certificate.organization = event.target.value;
+      this.certUpdate.certificate.organization = event.target.value;
+      this.certUpdate.isUpdated = true;
       this.dataUpdate();
     },
     deleteCert() {
-      this.certCreate.isDeleted = true;
+      this.certUpdate.isDeleted = true;
       this.dataUpdate();
     },
   },
   beforeMount() {
-    this.certCreate.certificate = this.certificate;
-    this.certCreate.isDeleted = false;
+    this.certUpdate.certificate = this.certificate;
+    this.certUpdate.isDeleted = false;
+    this.certUpdate.isUpdated = false;
   },
 };
 </script>

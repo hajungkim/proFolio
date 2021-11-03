@@ -5,7 +5,7 @@ import { getUserInfo } from './modules/UserAPI';
 import {
   putEducation, getEducation, postEducation, postCareer, getCareer, deleteCareer, putCareer,
   postActivity, getActivity, putActivity, deleteActivity, postLanguage, getLanguage,
-  putLanguage, deleteLanguage,
+  putLanguage, deleteLanguage, getCertificate, postCertificate, deleteCertificate, putCertificate,
 } from './modules/ResumeAPI';
 
 Vue.use(Vuex);
@@ -195,6 +195,9 @@ export default new Vuex.Store({
     LANGUAGE_INFO(state, language) {
       state.resume.foreignLang = language;
     },
+    CERTIFICATION_INFO(state, certInfo) {
+      state.resume.certificate = certInfo;
+    },
   },
   actions: {
     socialLogin(context, userId) {
@@ -202,10 +205,8 @@ export default new Vuex.Store({
       context.commit('CHANGE_ISLOGIN', true);
       context.dispatch('getUser', userId);
       getEducation(context.state.userId).then((response) => {
-        console.log(response.data.data);
         if (response.data.data === null) {
           response.data.data = {};
-          console.log(response.data.data);
         }
         context.commit('EDUCATION_INFO', response.data.data);
       });
@@ -217,6 +218,9 @@ export default new Vuex.Store({
       });
       getLanguage(context.state.userId).then((response) => {
         context.commit('LANGUAGE_INFO', response.data.data);
+      });
+      getCertificate(context.state.userId).then((response) => {
+        context.commit('CERTIFICATION_INFO', response.data.data);
       });
     },
     getUser(context, userId) {
@@ -288,7 +292,6 @@ export default new Vuex.Store({
       });
     },
     languageUpdate(context, data) {
-      console.log(data);
       putLanguage(data.id, data).then(() => {
         getLanguage(context.state.userId).then((response) => {
           context.commit('LANGUAGE_INFO', response.data.data);
@@ -299,6 +302,27 @@ export default new Vuex.Store({
       deleteLanguage(data).then(() => {
         getLanguage(context.state.userId).then((response) => {
           context.commit('LANGUAGE_INFO', response.data.data);
+        });
+      });
+    },
+    certificateCreate(context, data) {
+      postCertificate(data).then(() => {
+        getCertificate(context.state.userId).then((response) => {
+          context.commit('CERTIFICATION_INFO', response.data.data);
+        });
+      });
+    },
+    certificateUpdate(context, data) {
+      putCertificate(data.id, data).then(() => {
+        getCertificate(context.state.userId).then((response) => {
+          context.commit('CERTIFICATION_INFO', response.data.data);
+        });
+      });
+    },
+    certificateeDelete(context, data) {
+      deleteCertificate(data).then(() => {
+        getCertificate(context.state.userId).then((response) => {
+          context.commit('CERTIFICATION_INFO', response.data.data);
         });
       });
     },

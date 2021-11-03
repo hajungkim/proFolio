@@ -52,8 +52,21 @@ function getLanguage(userId) {
 function postLanguage(data) {
   return axiosService.post('resume/foreign', data);
 }
+function putCertificate(id, data) {
+  return axiosService.put(`resume/certificate/${id}`, data);
+}
+function deleteCertificate(id) {
+  return axiosService.delete(`resume/certificate/${id}`);
+}
+function getCertificate(userId) {
+  return axiosService.get(`resume/certificate/${userId}`);
+}
+function postCertificate(data) {
+  return axiosService.post('resume/certificate', data);
+}
 export {
   putEducation, deleteEducation, getEducation, postEducation, putCareer, deleteCareer,
   getCareer, postCareer, putActivity, deleteActivity, getActivity, postActivity,
-  putLanguage, deleteLanguage, getLanguage, postLanguage,
+  putLanguage, deleteLanguage, getLanguage, postLanguage, putCertificate, deleteCertificate,
+  getCertificate, postCertificate,
 };

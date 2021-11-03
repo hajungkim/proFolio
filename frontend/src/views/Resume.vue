@@ -37,7 +37,8 @@
        />
       <ResumePart3 v-if="resumePart==2"
       @createLangData="createLangData" @deleteLanguage="deleteLanguage"
-      @updateLanguageData="updateLanguageData"
+      @updateLanguageData="updateLanguageData" @createCertData="createCertData"
+      @deleteCertificate="deleteCertificate" @updateCertificateData="updateCertificateData"
       />
       <ResumePart4 v-if="resumePart==3"/>
       <ResumePart5 v-if="resumePart==4"/>
@@ -77,6 +78,9 @@ export default {
       langCreate: [],
       langUpdate: [],
       langDelete: new Set(),
+      certCreate: [],
+      certUpdate: [],
+      certDelete: new Set(),
     };
   },
   computed: {
@@ -159,15 +163,26 @@ export default {
           this.$store.dispatch('languageCreate', langInfo.data);
         });
         Object.values(this.langUpdate).forEach((langInfo) => {
-          console.log(langInfo);
           this.$store.dispatch('languageUpdate', langInfo.data);
         });
         Object.values([...this.langDelete]).forEach((langInfo) => {
           this.$store.dispatch('languageDelete', langInfo);
         });
+        Object.values(this.certCreate).forEach((certInfo) => {
+          this.$store.dispatch('certificateCreate', certInfo.data);
+        });
+        Object.values(this.certUpdate).forEach((certInfo) => {
+          this.$store.dispatch('certificateUpdate', certInfo.data);
+        });
+        Object.values([...this.certDelete]).forEach((certInfo) => {
+          this.$store.dispatch('certificateeDelete', certInfo);
+        });
         this.langCreate = [];
         this.langUpdate = [];
         this.langDelete = new Set();
+        this.certCreate = [];
+        this.certUpdate = [];
+        this.certDelete = new Set();
       }
     },
     updateEducationData(updateEducationData) {
@@ -299,7 +314,6 @@ export default {
       }
     },
     updateLanguageData(updateLanguageData) {
-      console.log(updateLanguageData);
       const updateData = {};
       updateData.id = updateLanguageData.id;
       updateLanguageData.userId = this.userId;
@@ -317,6 +331,43 @@ export default {
     },
     deleteLanguage(deleteLanguage) {
       this.langDelete.add(deleteLanguage);
+    },
+    createCertData(createCertData) {
+      const createData = {};
+      createData.id = createCertData.id;
+      createCertData.userId = this.userId;
+      createData.data = createCertData;
+      let flag = false;
+      Object.values(this.certCreate).forEach((create) => {
+        if (create.id === createData.id) {
+          // 있으면 내용 대체
+          this.certCreate.splice(create[0], 1, createData);
+          flag = true;
+        }
+      });
+      // 없으면 추가
+      if (!flag) {
+        this.certCreate.push(createData);
+      }
+    },
+    updateCertificateData(updateCertificateData) {
+      const updateData = {};
+      updateData.id = updateCertificateData.id;
+      updateCertificateData.userId = this.userId;
+      updateData.data = updateCertificateData;
+      let flag = false;
+      Object.values(this.certUpdate).forEach((update) => {
+        if (update.id === updateData.id) {
+          this.certUpdate.splice(update[0], 1, updateData);
+          flag = true;
+        }
+      });
+      if (!flag) {
+        this.certUpdate.push(updateData);
+      }
+    },
+    deleteCertificate(deleteCertificate) {
+      this.certDelete.add(deleteCertificate);
     },
   },
 };
