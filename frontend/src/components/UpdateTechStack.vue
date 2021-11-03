@@ -5,17 +5,17 @@
         <th>기술스택 종류</th>
         <td class="pl-15">
           <div
-          :class="[techCreate.technologyStack.kind === 1 ? techStackBoxSelected : '', techStackBox]"
+          :class="[techUpdate.technologyStack.kind === 1 ? techStackBoxSelected : '', techStackBox]"
           data-stack="1" @click="changeKind">
             Language
           </div>
           <div
-          :class="[techCreate.technologyStack.kind === 2 ? techStackBoxSelected : '', techStackBox]"
+          :class="[techUpdate.technologyStack.kind === 2 ? techStackBoxSelected : '', techStackBox]"
           data-stack="2" @click="changeKind">
             Management
           </div>
           <div
-          :class="[techCreate.technologyStack.kind === 3 ? techStackBoxSelected : '', techStackBox]"
+          :class="[techUpdate.technologyStack.kind === 3 ? techStackBoxSelected : '', techStackBox]"
           data-stack="3" @click="changeKind">
             Framework
           </div>
@@ -23,20 +23,22 @@
       </tr>
       <tr>
         <th>기술스택명</th>
-        <td><input type="text" @change="techName"></td>
+        <td><input type="text" @change="techName" :placeholder="technologyStack.name"></td>
       </tr>
       <tr>
         <th>레벨</th>
         <td class="pl-15">
           <input type="range" min="0" max="100"
-          v-model="techCreate.technologyStack.level" class="range" @change="dataUpdate"/>
-          <span class="range-value">{{ techCreate.technologyStack.level }}</span>
+          v-model="techUpdate.technologyStack.level" class="range" @change="dataUpdate"/>
+          <span class="range-value">{{ techUpdate.technologyStack.level }}</span>
         </td>
       </tr>
       <tr>
         <th>설명</th>
         <td colspan="4">
-          <textarea class="resume-p2-career" @change="techDescription"></textarea>
+          <textarea class="resume-p2-career" @change="techDescription"
+          :placeholder="technologyStack.description"
+          ></textarea>
         </td>
       </tr>
     </table>
@@ -46,7 +48,7 @@
 
 <script>
 export default {
-  name: 'CreateTechStack',
+  name: 'UpdateTechStack',
   props: {
     technologyStack: {
       type: Object,
@@ -56,13 +58,13 @@ export default {
     return {
       techStackBox: 'tech-stack-box',
       techStackBoxSelected: 'tech-stack-selected',
-      techCreate: {},
+      techUpdate: {},
     };
   },
   methods: {
     changeKind(event) {
       const Now = event.target.getAttribute('data-stack') - 1;
-      this.techCreate.technologyStack.kind = Now + 1;
+      this.techUpdate.technologyStack.kind = Now + 1;
       const stackList = document.querySelectorAll('.tech-stack-box');
       for (let i = this.index * 3; i < this.index * 3 + 3; i += 1) {
         if (Now === (i % 3)) {
@@ -72,24 +74,26 @@ export default {
       this.dataUpdate();
     },
     dataUpdate() {
-      this.$emit('createTech', this.techCreate);
+      this.techUpdate.isUpdated = true;
+      this.$emit('updateTech', this.techUpdate);
     },
     techName(event) {
-      this.techCreate.technologyStack.name = event.target.value;
+      this.techUpdate.technologyStack.name = event.target.value;
       this.dataUpdate();
     },
     techDescription(event) {
-      this.techCreate.technologyStack.description = event.target.value;
+      this.techUpdate.technologyStack.description = event.target.value;
       this.dataUpdate();
     },
     deleteTech() {
-      this.techCreate.isDeleted = true;
+      this.techUpdate.isDeleted = true;
       this.dataUpdate();
     },
   },
   beforeMount() {
-    this.techCreate.technologyStack = this.technologyStack;
-    this.techCreate.isDeleted = false;
+    this.techUpdate.technologyStack = this.technologyStack;
+    this.techUpdate.isUpdated = false;
+    this.techUpdate.isDeleted = false;
   },
 };
 </script>

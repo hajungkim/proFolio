@@ -171,7 +171,7 @@ export default {
         });
         this.awardCreate.splice(sliceIndex, 1);
       } else {
-        this.$emit('createAwardtData', createAward.awards);
+        this.$emit('createAwardData', createAward.awards);
       }
     },
     updateAward(updateAward) {
