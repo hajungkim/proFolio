@@ -25,8 +25,13 @@
           </table>
         </div>
       </div>
-      <div class="resume-edit-btn" @click="goToResume">
-        <div>수정</div>
+      <div class="buttons">
+        <div class="resum-btn">
+          <a href="#"><button class="round-shadow rbtn1" @click="goToResume">이력서 수정</button></a>
+        </div>
+        <div class="resum-btn">
+          <a href="#"><button class="round-shadow rbtn2" @click="goToResume">포트폴리오 생성</button></a>
+        </div>
       </div>
     </div>
     <div class="read-resume-edu mt-50">

@@ -7,8 +7,12 @@
         <div>기술스택</div>
         <div class="plus-btn" @click="addCreateStack">+</div>
       </strong>
-      <CreateTechStack v-for="(technologyStack, index) in technologyStack"
-      :key="index" :technologyStack="technologyStack" :index="index"/>
+      <CreateTechStack v-for="(technologyStack, index) in techStackCreate"
+      :key="index" :technologyStack="technologyStack"
+      @createTech="createTech"/>
+      <UpdateTechStack v-for="(technologyStack, index) in techStackUpdate"
+      :key="index" :technologyStack="technologyStack"
+      @updateTech="updateTech"/>
     </div>
   </div>
 </template>
@@ -16,15 +20,18 @@
 <script>
 import { mapState } from 'vuex';
 import CreateTechStack from './CreateTechStack.vue';
+import UpdateTechStack from './UpdateTechStack.vue';
 
 export default {
   name: 'ResumePart4',
   components: {
     CreateTechStack,
+    UpdateTechStack,
   },
   data() {
     return {
-      technologyStack: null,
+      techStackCreate: [],
+      techStackUpdate: [],
     };
   },
   computed: {
@@ -35,13 +42,42 @@ export default {
   methods: {
     addCreateStack() {
       const newStack = {
-        id: this.technologyStack.length + 1, name: '', level: '', description: '', kind: '1',
+        id: `create${Math.random()}`, name: '', level: '', description: '', kind: '1',
       };
-      this.technologyStack.push(newStack);
+      this.techStackCreate.push(newStack);
+    },
+    createTech(createTech) {
+      if (createTech.isDeleted) {
+        let sliceIndex = null;
+        const idx = createTech.technologyStack.id;
+        Object.entries(this.techStackCreate).forEach((tech) => {
+          if (Object.keys(tech[1]).find((key) => tech[1][key] === idx)) {
+            [sliceIndex] = tech;
+          }
+        });
+        this.techStackCreate.splice(sliceIndex, 1);
+      } else {
+        this.$emit('createTechData', createTech.technologyStack);
+      }
+    },
+    updateTech(updateTech) {
+      if (updateTech.isDeleted) {
+        let sliceIndex = null;
+        const idx = updateTech.technologyStack.id;
+        Object.entries(this.techStackUpdate).forEach((tech) => {
+          if (Object.keys(tech[1]).find((key) => tech[1][key] === idx)) {
+            [sliceIndex] = tech;
+          }
+        });
+        this.techStackUpdate.splice(sliceIndex, 1);
+        this.$emit('deleteTech', updateTech.technologyStack.id);
+      } else if (updateTech.isUpdated) {
+        this.$emit('updateTechData', updateTech.technologyStack);
+      }
     },
   },
   beforeMount() {
-    this.technologyStack = JSON.parse(JSON.stringify(this.resume.technologyStack));
+    this.techStackUpdate = JSON.parse(JSON.stringify(this.resume.technologyStack));
   },
 };
 </script>

@@ -105,6 +105,18 @@ export default {
     this.calculateSectionOffsets();
     window.addEventListener('DOMMouseScroll', this.handleMouseWheelDOM);
     window.addEventListener('mousewheel', this.handleMouseWheel, { passive: false });
+    if (document.cookie.length) {
+      const cookies = document.cookie.split((/=|;| /));
+      let idx = null;
+      // console.log(cookies);
+      Object.entries(cookies).forEach((cook) => {
+        if (cook[1] === 'userId') {
+          idx = parseInt(cook[0], 10);
+        }
+      });
+      const userId = cookies[idx + 1];
+      this.$store.dispatch('socialLogin', userId);
+    }
   },
   destroyed() {
     window.removeEventListener('mousewheel', this.handleMouseWheel, { passive: false });

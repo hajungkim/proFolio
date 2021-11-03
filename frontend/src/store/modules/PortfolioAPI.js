@@ -7,9 +7,13 @@ const axiosService = axios.create({
 function getPortfolio(userId) {
   return axiosService.get(`portfolio/list?userId=${userId}`);
 }
-function postEducation(data) {
-  return axiosService.post('portfolio/upload', data);
+function postPortfolio(data) {
+  return axiosService.post('portfolio/upload', data, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
 }
 export {
-  getPortfolio, postEducation,
+  getPortfolio, postPortfolio,
 };

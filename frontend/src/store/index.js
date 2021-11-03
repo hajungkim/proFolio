@@ -1,17 +1,23 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import createPersistedState from 'vuex-persistedstate';
 import { getUserInfo } from './modules/UserAPI';
 import {
   putEducation, getEducation, postEducation, postCareer, getCareer, deleteCareer, putCareer,
   postActivity, getActivity, putActivity, deleteActivity, postLanguage, getLanguage,
-  putLanguage, deleteLanguage,
+  putLanguage, deleteLanguage, getCertificate, postCertificate, deleteCertificate,
+  putCertificate, getAwards, postAwards, deleteAwards, putAwards, postTech, getTech,
+  putTech, deleteTech,
 } from './modules/ResumeAPI';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  plugins: [
+    createPersistedState(),
+  ],
   state: {
-    isLogin: true,
+    isLogin: false,
     userId: 1,
     resume: {
       user: {
@@ -108,7 +114,7 @@ export default new Vuex.Store({
         {
           id: '1',
           name: 'Java',
-          level: '3',
+          level: '40',
           description: '????',
           kind: 1,
         },
@@ -170,6 +176,12 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    CHANGE_ISLOGIN(state, isLogin) {
+      state.isLogin = isLogin;
+    },
+    SET_USER_ID(state, userId) {
+      state.userId = userId;
+    },
     GET_USER_INFO(state, userinfo) {
       state.resume.user = userinfo;
     },
@@ -185,8 +197,43 @@ export default new Vuex.Store({
     LANGUAGE_INFO(state, language) {
       state.resume.foreignLang = language;
     },
+    CERTIFICATION_INFO(state, certInfo) {
+      state.resume.certificate = certInfo;
+    },
+    AWARDS_INFO(state, awardsInfo) {
+      state.resume.awards = awardsInfo;
+    },
+    TECHNOLOGY_INFO(state, techInfo) {
+      state.resume.technologyStack = techInfo;
+    },
   },
   actions: {
+    socialLogin(context, userId) {
+      context.commit('SET_USER_ID', userId);
+      context.commit('CHANGE_ISLOGIN', true);
+      context.dispatch('getUser', userId);
+      getEducation(context.state.userId).then((response) => {
+        if (response.data.data === null) {
+          response.data.data = {};
+        }
+        context.commit('EDUCATION_INFO', response.data.data);
+      });
+      getCareer(context.state.userId).then((response) => {
+        context.commit('CAREER_INFO', response.data.data);
+      });
+      getActivity(context.state.userId).then((response) => {
+        context.commit('ACTIVITY_INFO', response.data.data);
+      });
+      getLanguage(context.state.userId).then((response) => {
+        context.commit('LANGUAGE_INFO', response.data.data);
+      });
+      getCertificate(context.state.userId).then((response) => {
+        context.commit('CERTIFICATION_INFO', response.data.data);
+      });
+      getAwards(context.state.userId).then((response) => {
+        context.commit('AWARDS_INFO', response.data.data);
+      });
+    },
     getUser(context, userId) {
       getUserInfo(userId).then((res) => {
         context.commit('GET_USER_INFO', res.data.data);
@@ -256,7 +303,6 @@ export default new Vuex.Store({
       });
     },
     languageUpdate(context, data) {
-      console.log(data);
       putLanguage(data.id, data).then(() => {
         getLanguage(context.state.userId).then((response) => {
           context.commit('LANGUAGE_INFO', response.data.data);
@@ -267,6 +313,69 @@ export default new Vuex.Store({
       deleteLanguage(data).then(() => {
         getLanguage(context.state.userId).then((response) => {
           context.commit('LANGUAGE_INFO', response.data.data);
+        });
+      });
+    },
+    certificateCreate(context, data) {
+      postCertificate(data).then(() => {
+        getCertificate(context.state.userId).then((response) => {
+          context.commit('CERTIFICATION_INFO', response.data.data);
+        });
+      });
+    },
+    certificateUpdate(context, data) {
+      putCertificate(data.id, data).then(() => {
+        getCertificate(context.state.userId).then((response) => {
+          context.commit('CERTIFICATION_INFO', response.data.data);
+        });
+      });
+    },
+    certificateDelete(context, data) {
+      deleteCertificate(data).then(() => {
+        getCertificate(context.state.userId).then((response) => {
+          context.commit('CERTIFICATION_INFO', response.data.data);
+        });
+      });
+    },
+    awardsCreate(context, data) {
+      postAwards(data).then(() => {
+        getAwards(context.state.userId).then((response) => {
+          context.commit('AWARDS_INFO', response.data.data);
+        });
+      });
+    },
+    awardsUpdate(context, data) {
+      putAwards(data.id, data).then(() => {
+        getAwards(context.state.userId).then((response) => {
+          context.commit('AWARDS_INFO', response.data.data);
+        });
+      });
+    },
+    awardsDelete(context, data) {
+      deleteAwards(data).then(() => {
+        getAwards(context.state.userId).then((response) => {
+          context.commit('AWARDS_INFO', response.data.data);
+        });
+      });
+    },
+    techStackCreate(context, data) {
+      postTech(data).then(() => {
+        getTech(context.state.userId).then((response) => {
+          context.commit('TECHNOLOGY_INFO', response.data.data);
+        });
+      });
+    },
+    techStackUpdate(context, data) {
+      putTech(data.id, data).then(() => {
+        getTech(context.state.userId).then((response) => {
+          context.commit('TECHNOLOGY_INFO', response.data.data);
+        });
+      });
+    },
+    techStackDelete(context, data) {
+      deleteTech(data).then(() => {
+        getTech(context.state.userId).then((response) => {
+          context.commit('TECHNOLOGY_INFO', response.data.data);
         });
       });
     },

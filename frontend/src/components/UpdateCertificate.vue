@@ -2,28 +2,28 @@
   <div class="resume-part2-box">
   <table class="resume-part2-input">
     <tr>
-      <th>대회명</th>
-      <td><input type="text" @change="awardName"></td>
+      <th>주최기관</th>
+      <td><input type="text" @change="certOrganizaion" :placeholder="certificate.organization"></td>
     </tr>
     <tr>
-      <th>성적</th>
-      <td><input type="text" @change="awardPrize"></td>
-      <th>날짜</th>
+      <th>시험명</th>
+      <td><input type="text" @change="certName" :placeholder="certificate.name"></td>
+      <th class="pl-15">취득일</th>
       <td style="padding-left:10px;">
         <v-app class="date-pick">
           <v-menu
             ref="menu1"
             v-model="menu1"
             :close-on-content-click="false"
-            :return-value.sync="awardCreate.awards.awardsDate"
+            :return-value.sync="certUpdate.certificate.certifiedDate"
             transition="scale-transition"
             offset-y
             min-width="auto"
           >
             <template v-slot:activator="{ on, attrs }">
               <v-text-field
-                v-model="awardCreate.awards.awardsDate"
-                label="수상일"
+                v-model="certUpdate.certificate.certifiedDate"
+                label="취득일"
                 prepend-icon="mdi-calendar"
                 readonly
                 v-bind="attrs"
@@ -31,7 +31,7 @@
               ></v-text-field>
             </template>
             <v-date-picker
-              v-model="awardCreate.awards.awardsDate"
+              v-model="certUpdate.certificate.certifiedDate"
               no-title
               scrollable
             >
@@ -46,7 +46,7 @@
               <v-btn
                 text
                 color="primary"
-                @click="awardsDateUpdate"
+                @click="certifiedDateUpdate"
               >
                 OK
               </v-btn>
@@ -55,63 +55,57 @@
         </v-app>
       </td>
     </tr>
-    <tr>
-      <th>내용</th>
-      <td colspan="4" >
-        <textarea type="text" @change="awardDescription" class="resume-p2-award"/>
-      </td>
-    </tr>
   </table>
-  <div class="delete-btn" @click="deleteAward">X</div>
+  <div class="delete-btn" @click="deleteCert">X</div>
 </div>
 </template>
 
 <script>
 export default {
-  name: 'CreateAward',
+  name: 'UpdateCertificate',
   props: {
-    awards: {
+    certificate: {
       type: Object,
     },
   },
   data() {
     return {
       menu1: false,
-      awardCreate: {},
+      certUpdate: {},
     };
   },
   methods: {
     dataUpdate() {
-      this.$emit('createAward', this.awardCreate);
+      this.$emit('updateCert', this.certUpdate);
     },
-    awardsDateUpdate() {
-      this.$refs.menu1.save(this.awardCreate.awards.awardsDate);
+    certifiedDateUpdate() {
+      this.$refs.menu1.save(this.certUpdate.certificate.certifiedDate);
+      this.certUpdate.isUpdated = true;
       this.dataUpdate();
     },
-    awardName(event) {
-      this.awardCreate.awards.name = event.target.value;
+    certName(event) {
+      this.certUpdate.certificate.name = event.target.value;
+      this.certUpdate.isUpdated = true;
       this.dataUpdate();
     },
-    awardPrize(event) {
-      this.awardCreate.awards.prize = event.target.value;
+    certOrganizaion(event) {
+      this.certUpdate.certificate.organization = event.target.value;
+      this.certUpdate.isUpdated = true;
       this.dataUpdate();
     },
-    awardDescription(event) {
-      this.awardCreate.awards.description = event.target.value;
-      this.dataUpdate();
-    },
-    deleteAward() {
-      this.awardCreate.isDeleted = true;
+    deleteCert() {
+      this.certUpdate.isDeleted = true;
       this.dataUpdate();
     },
   },
   beforeMount() {
-    this.awardCreate.awards = this.awards;
-    this.awardCreate.isDeleted = false;
+    this.certUpdate.certificate = this.certificate;
+    this.certUpdate.isDeleted = false;
+    this.certUpdate.isUpdated = false;
   },
 };
 </script>
 
 <style>
-@import '../assets/styles/LookResume.css'
+
 </style>
