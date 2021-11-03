@@ -5,7 +5,8 @@ import { getUserInfo } from './modules/UserAPI';
 import {
   putEducation, getEducation, postEducation, postCareer, getCareer, deleteCareer, putCareer,
   postActivity, getActivity, putActivity, deleteActivity, postLanguage, getLanguage,
-  putLanguage, deleteLanguage, getCertificate, postCertificate, deleteCertificate, putCertificate,
+  putLanguage, deleteLanguage, getCertificate, postCertificate, deleteCertificate,
+  putCertificate, getAwards, postAwards, deleteAwards, putAwards,
 } from './modules/ResumeAPI';
 
 Vue.use(Vuex);
@@ -198,6 +199,9 @@ export default new Vuex.Store({
     CERTIFICATION_INFO(state, certInfo) {
       state.resume.certificate = certInfo;
     },
+    AWARDS_INFO(state, awardsInfo) {
+      state.resume.awards = awardsInfo;
+    },
   },
   actions: {
     socialLogin(context, userId) {
@@ -221,6 +225,9 @@ export default new Vuex.Store({
       });
       getCertificate(context.state.userId).then((response) => {
         context.commit('CERTIFICATION_INFO', response.data.data);
+      });
+      getAwards(context.state.userId).then((response) => {
+        context.commit('AWARDS_INFO', response.data.data);
       });
     },
     getUser(context, userId) {
@@ -319,10 +326,31 @@ export default new Vuex.Store({
         });
       });
     },
-    certificateeDelete(context, data) {
+    certificateDelete(context, data) {
       deleteCertificate(data).then(() => {
         getCertificate(context.state.userId).then((response) => {
           context.commit('CERTIFICATION_INFO', response.data.data);
+        });
+      });
+    },
+    awardsCreate(context, data) {
+      postAwards(data).then(() => {
+        getAwards(context.state.userId).then((response) => {
+          context.commit('AWARDS_INFO', response.data.data);
+        });
+      });
+    },
+    awardsUpdate(context, data) {
+      putAwards(data.id, data).then(() => {
+        getAwards(context.state.userId).then((response) => {
+          context.commit('AWARDS_INFO', response.data.data);
+        });
+      });
+    },
+    awardsDelete(context, data) {
+      deleteAwards(data).then(() => {
+        getAwards(context.state.userId).then((response) => {
+          context.commit('AWARDS_INFO', response.data.data);
         });
       });
     },
