@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
+@CrossOrigin(origins = { "*" }, maxAge = 6000)
 @RestController
 @RequestMapping("/portfolio")
 @RequiredArgsConstructor
