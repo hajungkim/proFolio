@@ -16,7 +16,7 @@
       </div>
       <div v-else class="wrapper">
         <ul>
-          <li><a href="#" @click="goToConvertingPage">증명사진</a></li>
+          <li style="margin-top: 50px"><a href="#" @click="goToConvertingPage">증명사진</a></li>
           <li><a href="#" @click="goToLogin">로그인</a></li>
         </ul>
       </div>
