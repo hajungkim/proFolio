@@ -6,7 +6,8 @@ import {
   putEducation, getEducation, postEducation, postCareer, getCareer, deleteCareer, putCareer,
   postActivity, getActivity, putActivity, deleteActivity, postLanguage, getLanguage,
   putLanguage, deleteLanguage, getCertificate, postCertificate, deleteCertificate,
-  putCertificate, getAwards, postAwards, deleteAwards, putAwards,
+  putCertificate, getAwards, postAwards, deleteAwards, putAwards, postTech, getTech,
+  putTech, deleteTech,
 } from './modules/ResumeAPI';
 
 Vue.use(Vuex);
@@ -113,7 +114,7 @@ export default new Vuex.Store({
         {
           id: '1',
           name: 'Java',
-          level: '3',
+          level: '40',
           description: '????',
           kind: 1,
         },
@@ -201,6 +202,9 @@ export default new Vuex.Store({
     },
     AWARDS_INFO(state, awardsInfo) {
       state.resume.awards = awardsInfo;
+    },
+    TECHNOLOGY_INFO(state, techInfo) {
+      state.resume.technologyStack = techInfo;
     },
   },
   actions: {
@@ -351,6 +355,27 @@ export default new Vuex.Store({
       deleteAwards(data).then(() => {
         getAwards(context.state.userId).then((response) => {
           context.commit('AWARDS_INFO', response.data.data);
+        });
+      });
+    },
+    techStackCreate(context, data) {
+      postTech(data).then(() => {
+        getTech(context.state.userId).then((response) => {
+          context.commit('TECHNOLOGY_INFO', response.data.data);
+        });
+      });
+    },
+    techStackUpdate(context, data) {
+      putTech(data.id, data).then(() => {
+        getTech(context.state.userId).then((response) => {
+          context.commit('TECHNOLOGY_INFO', response.data.data);
+        });
+      });
+    },
+    techStackDelete(context, data) {
+      deleteTech(data).then(() => {
+        getTech(context.state.userId).then((response) => {
+          context.commit('TECHNOLOGY_INFO', response.data.data);
         });
       });
     },
