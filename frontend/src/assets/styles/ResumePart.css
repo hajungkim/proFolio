@@ -258,3 +258,8 @@
   right: -12%;
   cursor: pointer;
 }
+.delete-btn-2 {
+  position: relative;
+  right: -9%;
+  cursor: pointer;
+}
