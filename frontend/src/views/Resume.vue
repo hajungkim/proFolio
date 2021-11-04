@@ -135,7 +135,7 @@ export default {
           email: this.resumeEdit.user.email,
           name: this.resumeEdit.user.name,
           phone: this.resumeEdit.user.phone,
-          profile_path: this.resumeEdit.user.profile_path,
+          profilePath: this.resumeEdit.user.profilePath,
         };
         putUserInfo(this.userId, part1).then(() => {
           this.$store.dispatch('getUser', this.userId);

@@ -2,7 +2,7 @@
   <div class="read-resume">
     <div class="read-resume-profile">
       <div class="read-resume-box">
-        <img :src="resume.user.profile_path" class="read-resume-image">
+        <img :src="resume.user.profilePath" class="read-resume-image">
         <div class="font-30">About</div>
         <div class="mt-15 ml-15">
           <table class="read-resume-profile-table">
