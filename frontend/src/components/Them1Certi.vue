@@ -3,13 +3,13 @@
     <div class="certiedu">
       <div class="celeft">
         <div class="name">CERTIFICATE / LANGUAGE</div>
-        <div v-for="cer in resume.certificate" :key="cer.id" class="mini-card">
+        <div v-for="cer in resume.certificate" :key="'certi'+cer.id" class="mini-card">
           <span style="color: #656060; margin-right: 5%">{{
             cer.certifiedDate
           }}</span>
           <span style="font-weight: bold">{{ cer.name }}</span>
         </div>
-        <div v-for="lag in resume.foreignLang" :key="lag.id" class="mini-card">
+        <div v-for="lag in resume.foreignLang" :key="'foreign'+lag.id" class="mini-card">
           <span style="color: #656060; margin-right: 5%">{{
             lag.certifiedDate
           }}</span>

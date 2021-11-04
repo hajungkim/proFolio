@@ -170,8 +170,21 @@ export default new Vuex.Store({
           startDate: '2021.10',
           endDate: '2021.11',
         },
+        {
+          id: '3',
+          title: '12',
+          summary: '개발자 준비생을 위한 포트폴리오 사이트',
+          description: '쉬운',
+          memberCnt: 5,
+          technologyStack: 'Java, Django, Vue, SpringBoot',
+          role: 'FE',
+          link: 'https://ssafy.com',
+          startDate: '2021.10',
+          endDate: '2021.11',
+        },
       ],
     },
+    portfolio: {},
   },
   mutations: {
     CHANGE_ISLOGIN(state, isLogin) {
@@ -194,6 +207,32 @@ export default new Vuex.Store({
     },
     LANGUAGE_INFO(state, language) {
       state.resume.foreignLang = language;
+    },
+    PROJECT_INFO(state, project) {
+      state.resume.project = project;
+    },
+    // ABOUT PORTFOLIO
+    PORTFOLIO_COPY_RESUME(state) {
+      const newObject = JSON.parse(JSON.stringify(state.resume));
+      state.portfolio = newObject;
+    },
+    PORTFOLIO_USER_INFO(state, userinfo) {
+      state.portfolio.user = userinfo;
+    },
+    PORTFOLIO_EDUCATION_INFO(state, education) {
+      state.portfolio.education = education;
+    },
+    PORTFOLIO_CAREER_INFO(state, career) {
+      state.portfolio.career = career;
+    },
+    PORTFOLIO_ACTIVITY_INFO(state, activity) {
+      state.portfolio.activity = activity;
+    },
+    PORTFOLIO_LANGUAGE_INFO(state, language) {
+      state.portfolio.foreignLang = language;
+    },
+    PORTFOLIO_PROJECT_INFO(state, project) {
+      state.portfolio.project = project;
     },
   },
   actions: {
@@ -301,6 +340,14 @@ export default new Vuex.Store({
           context.commit('LANGUAGE_INFO', response.data.data);
         });
       });
+    },
+    // //////////////////
+    portfolioProjectDelete(context, data) {
+      const oldArray = [...this.state.resume.project];
+      const newArray = oldArray.filter((item) => item.id !== data.id);
+      console.log(data);
+      console.log(newArray);
+      context.commit('PROJECT_INFO', newArray);
     },
   },
   modules: {
