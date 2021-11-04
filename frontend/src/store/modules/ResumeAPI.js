@@ -88,10 +88,22 @@ function getTech(userId) {
 function postTech(data) {
   return axiosService.post('resume/technology', data);
 }
+function putProject(id, data) {
+  return axiosService.put(`resume/project/${id}`, data);
+}
+function deleteProject(id) {
+  return axiosService.delete(`resume/project/${id}`);
+}
+function getProject(userId) {
+  return axiosService.get(`resume/project/${userId}`);
+}
+function postProject(data) {
+  return axiosService.post('resume/project', data);
+}
 export {
   putEducation, deleteEducation, getEducation, postEducation, putCareer, deleteCareer,
   getCareer, postCareer, putActivity, deleteActivity, getActivity, postActivity,
   putLanguage, deleteLanguage, getLanguage, postLanguage, putCertificate, deleteCertificate,
   getCertificate, postCertificate, putAwards, deleteAwards, getAwards, postAwards,
-  putTech, deleteTech, getTech, postTech,
+  putTech, deleteTech, getTech, postTech, putProject, deleteProject, getProject, postProject,
 };
