@@ -34,6 +34,9 @@ export default new Vuex.Store({
     CHANGE_ISLOGIN(state, isLogin) {
       state.isLogin = isLogin;
     },
+    RESET_RESUME_INFO(state, resume) {
+      state.resume = resume;
+    },
     SET_USER_ID(state, userId) {
       state.userId = userId;
     },
@@ -97,6 +100,21 @@ export default new Vuex.Store({
       getTech(context.state.userId).then((response) => {
         context.commit('TECHNOLOGY_INFO', response.data.data);
       });
+    },
+    logout(context) {
+      context.commit('CHANGE_ISLOGIN', false);
+      context.commit('SET_USER_ID', null);
+      const resume = {
+        user: {},
+        education: {},
+        activity: [],
+        career: [],
+        certificate: [],
+        foreignLang: [],
+        technologyStack: [],
+        project: [],
+      };
+      context.commit('RESET_RESUME_INFO', resume);
     },
     getUser(context, userId) {
       getUserInfo(userId).then((res) => {

@@ -11,7 +11,7 @@
         <ul>
           <li style="margin-top: 20px"><a href="#" @click="goToConvertingPage">증명사진</a></li>
           <li><a href="#" @click="goToMyPage">마이페이지</a></li>
-          <li><a href="#">로그아웃</a></li>
+          <li><a href="#" @click="logout">로그아웃</a></li>
         </ul>
       </div>
       <div v-else class="wrapper">
@@ -49,6 +49,11 @@ export default {
     goToConvertingPage() {
       this.$router.push({ name: 'Convert' });
       this.$router.go();
+    },
+    logout() {
+      document.cookie = 'userId = ; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      this.$store.dispatch('logout');
+      this.$router.push({ name: 'Main' });
     },
   },
 };
