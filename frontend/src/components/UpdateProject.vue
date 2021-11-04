@@ -4,14 +4,17 @@
       <tr>
         <th>프로젝트명</th>
         <td colspan="4">
-          <textarea class="resume-p5-summary" @change="projectTitle"></textarea>
+          <textarea class="resume-p5-summary" @change="projectTitle"
+          :placeholder="project.title"></textarea>
         </td>
       </tr>
       <tr>
         <th>인원</th>
-        <td><input type="number"  @change="projectMemberCnt"></td>
+        <td><input type="number" @change="projectMemberCnt"
+        :placeholder="project.memberCnt"></td>
         <th class="pl-15">역할</th>
-        <td><input type="text" @change="projectRole"></td>
+        <td><input type="text" @change="projectRole"
+        :placeholder="project.role"></td>
       </tr>
       <tr>
         <th>시작일</th>
@@ -21,14 +24,14 @@
               ref="menu1"
               v-model="menu1"
               :close-on-content-click="false"
-              :return-value.sync="projectCreate.project.startDate"
+              :return-value.sync="projectUpdate.project.startDate"
               transition="scale-transition"
               offset-y
               min-width="auto"
             >
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
-                  v-model="projectCreate.project.startDate"
+                  v-model="projectUpdate.project.startDate"
                   label="시작일"
                   prepend-icon="mdi-calendar"
                   readonly
@@ -37,7 +40,7 @@
                 ></v-text-field>
               </template>
               <v-date-picker
-                v-model="projectCreate.project.startDate"
+                v-model="projectUpdate.project.startDate"
                 no-title
                 scrollable
                 type="month"
@@ -68,14 +71,14 @@
               ref="menu2"
               v-model="menu2"
               :close-on-content-click="false"
-              :return-value.sync="projectCreate.project.endDate"
+              :return-value.sync="projectUpdate.project.endDate"
               transition="scale-transition"
               offset-y
               min-width="auto"
             >
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
-                  v-model="projectCreate.project.endDate"
+                  v-model="projectUpdate.project.endDate"
                   label="종료일"
                   prepend-icon="mdi-calendar"
                   readonly
@@ -84,7 +87,7 @@
                 ></v-text-field>
               </template>
               <v-date-picker
-                v-model="projectCreate.project.endDate"
+                v-model="projectUpdate.project.endDate"
                 no-title
                 scrollable
                 type="month"
@@ -112,25 +115,29 @@
       <tr>
         <th>요약</th>
         <td colspan="4">
-          <textarea class="resume-p5-summary" @change="projectSummary"></textarea>
+          <textarea class="resume-p5-summary" @change="projectSummary"
+          :placeholder="project.summary"></textarea>
         </td>
       </tr>
       <tr>
         <th>설명</th>
         <td colspan="4">
-          <textarea class="resume-p5-project" @change="projectDescription"></textarea>
+          <textarea class="resume-p5-project" @change="projectDescription"
+          :placeholder="project.description"></textarea>
         </td>
       </tr>
       <tr>
         <th>사용스택</th>
         <td colspan="4">
-          <input type="text" class="project-input-width" @change="projectTechStack">
+          <input type="text" class="project-input-width" @change="projectTechStack"
+          :placeholder="project.technologyStack">
         </td>
       </tr>
       <tr>
         <th>링크</th>
         <td colspan="4">
-          <input type="text" class="project-input-width" @change="projectLink">
+          <input type="text" class="project-input-width" @change="projectLink"
+          :placeholder="project.link">
         </td>
       </tr>
     </table>
@@ -140,7 +147,7 @@
 
 <script>
 export default {
-  name: 'CreateProject',
+  name: 'UpdateProject',
   props: {
     project: {
       type: Object,
@@ -150,57 +157,59 @@ export default {
     return {
       menu1: false,
       menu2: false,
-      projectCreate: {},
+      projectUpdate: {},
     };
   },
   methods: {
     dataUpdate() {
-      this.$emit('createProject', this.projectCreate);
+      this.projectUpdate.isUpdated = true;
+      this.$emit('updateProject', this.projectUpdate);
     },
     startDateUpdate() {
-      this.$refs.menu1.save(this.projectCreate.project.startDate);
+      this.$refs.menu1.save(this.projectUpdate.project.startDate);
       this.dataUpdate();
     },
     endDateUpdate() {
-      this.$refs.menu2.save(this.projectCreate.project.endDate);
+      this.$refs.menu2.save(this.projectUpdate.project.endDate);
       this.dataUpdate();
     },
     projectTitle(event) {
-      this.projectCreate.project.title = event.target.value;
+      this.projectUpdate.project.title = event.target.value;
       this.dataUpdate();
     },
     projectTechStack(event) {
-      this.projectCreate.project.technologyStack = event.target.value;
+      this.projectUpdate.project.technologyStack = event.target.value;
       this.dataUpdate();
     },
     projectSummary(event) {
-      this.projectCreate.project.summary = event.target.value;
+      this.projectUpdate.project.summary = event.target.value;
       this.dataUpdate();
     },
     projectRole(event) {
-      this.projectCreate.project.role = event.target.value;
+      this.projectUpdate.project.role = event.target.value;
       this.dataUpdate();
     },
     projectMemberCnt(event) {
-      this.projectCreate.project.memberCnt = event.target.value;
+      this.projectUpdate.project.memberCnt = event.target.value;
       this.dataUpdate();
     },
     projectDescription(event) {
-      this.projectCreate.project.description = event.target.value;
+      this.projectUpdate.project.description = event.target.value;
       this.dataUpdate();
     },
     projectLink(event) {
-      this.projectCreate.project.link = event.target.value;
+      this.projectUpdate.project.link = event.target.value;
       this.dataUpdate();
     },
     deleteProject() {
-      this.projectCreate.isDeleted = true;
+      this.projectUpdate.isDeleted = true;
       this.dataUpdate();
     },
   },
   beforeMount() {
-    this.projectCreate.project = this.project;
-    this.projectCreate.isDeleted = false;
+    this.projectUpdate.project = this.project;
+    this.projectUpdate.isDeleted = false;
+    this.projectUpdate.isUpdated = false;
   },
 };
 </script>

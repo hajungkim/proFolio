@@ -7,7 +7,7 @@ import {
   postActivity, getActivity, putActivity, deleteActivity, postLanguage, getLanguage,
   putLanguage, deleteLanguage, getCertificate, postCertificate, deleteCertificate,
   putCertificate, getAwards, postAwards, deleteAwards, putAwards, postTech, getTech,
-  putTech, deleteTech,
+  putTech, deleteTech, getProject, postProject, putProject, deleteProject,
 } from './modules/ResumeAPI';
 
 Vue.use(Vuex);
@@ -206,6 +206,9 @@ export default new Vuex.Store({
     TECHNOLOGY_INFO(state, techInfo) {
       state.resume.technologyStack = techInfo;
     },
+    PROJECT_INFO(state, pjtInfo) {
+      state.resume.project = pjtInfo;
+    },
   },
   actions: {
     socialLogin(context, userId) {
@@ -232,6 +235,9 @@ export default new Vuex.Store({
       });
       getAwards(context.state.userId).then((response) => {
         context.commit('AWARDS_INFO', response.data.data);
+      });
+      getProject(context.state.userId).then((response) => {
+        context.commit('PROJECT_INFO', response.data.data);
       });
     },
     getUser(context, userId) {
@@ -376,6 +382,27 @@ export default new Vuex.Store({
       deleteTech(data).then(() => {
         getTech(context.state.userId).then((response) => {
           context.commit('TECHNOLOGY_INFO', response.data.data);
+        });
+      });
+    },
+    projectCreate(context, data) {
+      postProject(data).then(() => {
+        getProject(context.state.userId).then((response) => {
+          context.commit('PROJECT_INFO', response.data.data);
+        });
+      });
+    },
+    projectUpdate(context, data) {
+      putProject(data.id, data).then(() => {
+        getProject(context.state.userId).then((response) => {
+          context.commit('PROJECT_INFO', response.data.data);
+        });
+      });
+    },
+    projectDelete(context, data) {
+      deleteProject(data).then(() => {
+        getProject(context.state.userId).then((response) => {
+          context.commit('PROJECT_INFO', response.data.data);
         });
       });
     },
