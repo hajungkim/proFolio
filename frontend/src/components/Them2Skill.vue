@@ -4,18 +4,18 @@
       <div class="skill-desc">
           <div class="flex">
                 <div class="red level-color">5</div>
-                <div>대규모 프로그램 및 시스템을 참고사항(책/인터넷)없이 개발할 수 있음</div>
+                <div class="skill-desc-detail">대규모 프로그램 및 시스템을 참고사항(책/인터넷)없이 개발할 수 있음</div>
           </div>
           <div class="flex">
                 <div class="levelgreen level-color">3 - 4</div>
-                <div>중간 규모 프로그램 및 시스템을 개발할 수 있으며, 능숙하게 다룰 수 있음</div>
+                <div class="skill-desc-detail">중간 규모 프로그램 및 시스템을 개발할 수 있으며, 능숙하게 다룰 수 있음</div>
           </div>
           <div class="flex">
                 <div class="yellow level-color">1 - 2</div>
-                <div>능숙하지는 않지만 책/인터넷을 참고하며 개발할 수 있음</div>
+                <div class="skill-desc-detail">능숙하지는 않지만 책/인터넷을 참고하며 개발할 수 있음</div>
           </div>
       </div>
-      <div>
+      <div class="skill-list">
           <Them2SkillContent :title="Language" :list="langArr"/>
           <Them2SkillContent :title="Framework" :list="frameArr"/>
           <Them2SkillContent :title="Management" :list="manaArr"/>
