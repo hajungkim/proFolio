@@ -101,7 +101,7 @@
 .level-color{
     width: 5vw;
     height: 4vh;
-    line-height: 4vh;
+    line-height: 3.5vh;
     border-radius: 15px;
     text-align: center;
     margin: 0 2%;
@@ -111,7 +111,7 @@
     text-align: center;
     font-size: 15px;
     font-weight: bold;
-    line-height: 3vh;
+    line-height: 2.5vh;
     width: 1.5vw;
     height: 3vh;
     border-radius: 70%;
@@ -131,6 +131,9 @@
     color: #FFA800;
     background-color: #FFF4CB;
     border: 2px solid #FFA800;
+}
+.skill-desc-detail{
+    margin-top: 5px;
 }
 .blue-line{
     font-weight: bold;
