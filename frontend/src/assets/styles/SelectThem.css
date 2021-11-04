@@ -1,0 +1,37 @@
+.select-theme{
+    padding-top: 5%;
+}
+.select-theme .name{
+    text-align: center;
+    color: #005ED3;
+    margin: 3%;
+}
+.theme-list{
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+}
+.theme-item{
+    margin: 3%;
+}
+.theme-card{
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    width: 20vw;
+    height: 35vh;
+    cursor: pointer;
+    text-align: center;
+}
+.theme-item:hover{
+    transform: translateY(-10px) scale(1.105) translateZ(0);
+}
+.theme-img{
+    height: 100%;
+}
+.theme-name{
+    margin: 5%;
+    text-align: center;
+    font-family: 'S-CoreDream-6Bold';
+}
+.theme-card:hover{
+    box-shadow: 0px 8px 13px rgba(31, 60, 187, 0.25);
+}

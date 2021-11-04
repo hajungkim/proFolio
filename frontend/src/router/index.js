@@ -8,6 +8,7 @@ import Them1 from '../views/Them1.vue';
 import Them2 from '../views/Them2.vue';
 import Them3 from '../views/Them3.vue';
 import Convert from '../views/Convert.vue';
+import SelectTheme from '../views/SelectTheme.vue';
 
 Vue.use(VueRouter);
 
@@ -51,6 +52,11 @@ const routes = [
     path: '/convert',
     name: 'Convert',
     component: Convert,
+  },
+  {
+    path: '/select',
+    name: 'SelectTheme',
+    component: SelectTheme,
   },
 ];
 

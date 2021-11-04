@@ -6,13 +6,13 @@
     </div>
     <div class='template-box'>
       <div class="main-card" @click="goToThem1">
-        <img style="width:250px" src="../assets/images/them1.jpg" alt="">
+        <img style="height:100%" src="../assets/images/them1.png" alt="">
       </div>
       <div class="main-card" @click="goToThem2">
-        <img style="width:250px" src="../assets/images/them1.jpg" alt="">
+        <img style="width:250px" src="../assets/images/them2.png" alt="">
       </div>
       <div class="main-card" @click="goToThem3">
-        <img style="width:250px" src="../assets/images/them3.jpg" alt="">
+        <img style="width:250px" src="../assets/images/them3.png" alt="">
       </div>
     </div>
   </div>
