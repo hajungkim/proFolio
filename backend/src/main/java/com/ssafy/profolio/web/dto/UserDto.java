@@ -65,7 +65,7 @@ public class UserDto {
         private String name;
         private String phone;
         private String birthday;
-        private String profile_path;
+        private String profilePath;
     }
 
     @Getter
@@ -74,7 +74,7 @@ public class UserDto {
         private String email;
         private String name;
         private String phone;
-        private String profile_path;
+        private String profilePath;
         private String birthday;
     }
 
