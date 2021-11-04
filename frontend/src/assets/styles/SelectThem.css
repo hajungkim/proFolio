@@ -12,7 +12,7 @@
     margin: 0 auto;
 }
 .theme-item{
-    margin: 3%;
+    margin: 4%;
 }
 .theme-card{
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
@@ -25,6 +25,7 @@
     transform: translateY(-10px) scale(1.105) translateZ(0);
 }
 .theme-img{
+    width: 100%;
     height: 100%;
 }
 .theme-name{
@@ -34,4 +35,47 @@
 }
 .theme-card:hover{
     box-shadow: 0px 8px 13px rgba(31, 60, 187, 0.25);
+}
+@keyframes sparkle {
+    from {
+      background-position: 0% 100%;
+    }
+    to {
+      background-position: 200% 100%;
+    }
+}
+.test {
+    position: relative;
+}
+.test:before {
+    animation: sparkle 4s infinite linear;
+    background: linear-gradient(
+    90deg,
+    #7fe2ef 0%,
+    #7953c2 11%,
+    #cf30ff 22%,
+    #7fe2ef 33%,
+    #7953c2 44%,
+    #cf30ff 55%,
+    #7fe2ef 66%,
+    #7953c2 77%,
+    #cf30ff 88%,
+    #7fe2ef 100%
+    );
+    background-size: 300% 100%;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    filter: blur(3px);
+    z-index: -1;
+    transform: scale(0.99) translateY(3px);
+}
+.createbtn{
+    margin: 0 auto;
+    height: 5vh;
+    line-height: 5vh;
 }
