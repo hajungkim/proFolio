@@ -83,6 +83,9 @@ export default {
       }).save();
     },
   },
+  created() {
+    this.$store.dispatch('portfolioCopyResume');
+  },
 };
 </script>
 

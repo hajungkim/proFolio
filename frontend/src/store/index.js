@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import Vue from 'vue';
 import Vuex from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
@@ -234,6 +235,9 @@ export default new Vuex.Store({
     PORTFOLIO_PROJECT_INFO(state, project) {
       state.portfolio.project = project;
     },
+    PORTFOLIO_AWARDS_INFO(state, awards) {
+      state.portfolio.awards = awards;
+    },
   },
   actions: {
     socialLogin(context, userId) {
@@ -341,13 +345,39 @@ export default new Vuex.Store({
         });
       });
     },
-    // //////////////////
+    // ABOUT PORTFOLIO //////////////////////////
+    portfolioCopyResume(context) {
+      context.commit('PORTFOLIO_COPY_RESUME');
+    },
     portfolioProjectDelete(context, data) {
-      const oldArray = [...this.state.resume.project];
-      const newArray = oldArray.filter((item) => item.id !== data.id);
-      console.log(data);
-      console.log(newArray);
-      context.commit('PROJECT_INFO', newArray);
+      // data === project
+      const newArray = _.differenceWith(this.state.portfolio.project, [data], _.isEqual);
+      context.commit('PORTFOLIO_PROJECT_INFO', newArray);
+    },
+    portfolioProjectAdd(context, data) {
+      // data === project
+      const newArray = _.unionWith(this.state.portfolio.project, [data], _.isEqual);
+      context.commit('PORTFOLIO_PROJECT_INFO', newArray);
+    },
+    portfolioAwardsDelete(context, data) {
+      // data === award
+      const newArray = _.differenceWith(this.state.portfolio.awards, [data], _.isEqual);
+      context.commit('PORTFOLIO_AWARDS_INFO', newArray);
+    },
+    portfolioAwardsAdd(context, data) {
+      // data === award
+      const newArray = _.unionWith(this.state.portfolio.awards, [data], _.isEqual);
+      context.commit('PORTFOLIO_AWARDS_INFO', newArray);
+    },
+    portfolioActivityDelete(context, data) {
+      // data === award
+      const newArray = _.differenceWith(this.state.portfolio.activity, [data], _.isEqual);
+      context.commit('PORTFOLIO_ACTIVITY_INFO', newArray);
+    },
+    portfolioActivityAdd(context, data) {
+      // data === award
+      const newArray = _.unionWith(this.state.portfolio.activity, [data], _.isEqual);
+      context.commit('PORTFOLIO_ACTIVITY_INFO', newArray);
     },
   },
   modules: {

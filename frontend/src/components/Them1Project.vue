@@ -1,19 +1,18 @@
 <template>
-  <div class="projects">
-    <div>Projects</div>
-    <AddButton type="project"/>
-    <draggable>
-      <div v-for="(pro) in resume.project" :key="pro.id" class="project-card">
-        <RemoveButton
-          :type="'portfolioProjectDelete'"
-          :project="pro"
+  <div class="skill">
+    <div class="name">Projects</div>
+    <AddItemButton type="project"/>
+    <draggable class="draggable-container-col">
+      <div v-for="(pro) in portfolio.project" :key="pro.id" class="project-card">
+        <RemoveItemButton
+          type="project"
+          :item="pro"
         />
         <div>
           <div class="name">{{pro.title}}</div>
           <div class="summary">{{pro.summary}}</div>
           <div style="color: #656060">{{pro.description}}</div>
         </div>
-        <draggable>
           <div>
             <div class="subtitle">사용한 기술스택</div>
             <div>{{pro.technologyStack}}</div>
@@ -30,7 +29,6 @@
             <div class="subtitle">참여인원</div>
             <div>{{pro.memberCnt}}</div>
           </div>
-        </draggable>
         <div style="float: right; font-weight:bold">{{pro.link}}</div>
       </div>
     </draggable>
@@ -40,15 +38,15 @@
 <script>
 import { mapState } from 'vuex';
 import draggable from 'vuedraggable';
-import RemoveButton from './RemoveButton.vue';
-import AddButton from './AddButton.vue';
+import RemoveItemButton from './RemoveItemButton.vue';
+import AddItemButton from './AddItemButton.vue';
 
 export default {
   name: 'Them1Project',
   components: {
     draggable,
-    RemoveButton,
-    AddButton,
+    RemoveItemButton,
+    AddItemButton,
   },
   data() {
     return {
@@ -56,7 +54,7 @@ export default {
   },
   computed: {
     ...mapState([
-      'resume',
+      'portfolio',
     ]),
   },
 };
