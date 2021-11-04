@@ -110,7 +110,7 @@
         </td>
       </tr>
     </table>
-    <div class="delete-btn" @click="deleteActivity">X</div>
+    <div class="delete-btn-2" @click="deleteActivity">X</div>
   </div>
 </template>
 

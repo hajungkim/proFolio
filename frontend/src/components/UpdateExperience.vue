@@ -112,7 +112,7 @@
         </td>
       </tr>
     </table>
-    <div class="delete-btn" @click="deleteActivity">X</div>
+    <div class="delete-btn-2" @click="deleteActivity">X</div>
   </div>
 </template>
 
@@ -133,31 +133,27 @@ export default {
   },
   methods: {
     dataUpdate() {
+      this.activityUpdate.isUpdated = true;
       this.$emit('updateActivity', this.activityUpdate);
     },
     startDateUpdate() {
       this.$refs.menu1.save(this.activityUpdate.activity.startDate);
-      this.activityUpdate.isUpdated = true;
       this.dataUpdate();
     },
     endDateUpdate() {
       this.$refs.menu2.save(this.activityUpdate.activity.endDate);
-      this.activityUpdate.isUpdated = true;
       this.dataUpdate();
     },
     activityName(event) {
       this.activityUpdate.activity.name = event.target.value;
-      this.activityUpdate.isUpdated = true;
       this.dataUpdate();
     },
     activityOrganization(event) {
       this.activityUpdate.activity.organizagion = event.target.value;
-      this.activityUpdate.isUpdated = true;
       this.dataUpdate();
     },
     activityDescription(event) {
       this.activityUpdate.activity.description = event.target.value;
-      this.activityUpdate.isUpdated = true;
       this.dataUpdate();
     },
     deleteActivity() {

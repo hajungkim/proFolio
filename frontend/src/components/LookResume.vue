@@ -41,7 +41,7 @@
         <table class="read-resume-table">
           <tr>
             <th>{{ resume.education.admissionDate }} ~ {{ resume.education.graduationDate }}</th>
-            <td>{{ resume.education.graduation }}</td>
+            <td>{{ graduation }}</td>
           </tr>
           <tr>
             <th>전공</th>
@@ -100,16 +100,24 @@
       <table class="read-resume-table">
         <tr>
           <th>Language</th>
-          <td v-for="(lang) in resume.technologyStack" :key="lang.id">
-            <span>{{ lang.name }} </span>
-            <div class="lang-level">{{ lang.level }}</div>
+          <td v-for="(tech) in techLanguage" :key="tech.id">
+            <span>{{ tech.name }} </span>
+            <div class="lang-level">{{ tech.level }}</div>
           </td>
         </tr>
         <tr>
-          <th>DataBase</th>
+          <th>Management</th>
+          <td v-for="(tech) in techManagement" :key="tech.id">
+            <span>{{ tech.name }} </span>
+            <div class="lang-level">{{ tech.level }}</div>
+          </td>
         </tr>
         <tr>
           <th>FrameWork</th>
+          <td v-for="(tech) in techFrameWork" :key="tech.id">
+            <span>{{ tech.name }} </span>
+            <div class="lang-level">{{ tech.level }}</div>
+          </td>
         </tr>
       </table>
     </div>
@@ -135,6 +143,14 @@ export default {
     LookCareer,
     LookProject,
   },
+  data() {
+    return {
+      graduation: '',
+      techLanguage: [],
+      techManagement: [],
+      techFrameWork: [],
+    };
+  },
   computed: {
     ...mapState([
       'resume',
@@ -144,6 +160,19 @@ export default {
     goToResume() {
       this.$router.push({ name: 'Resume' });
     },
+  },
+  beforeMount() {
+    if (this.resume.education.graduation) this.graduation = '졸업';
+    else this.graduation = '졸업예정';
+    Object.values(this.resume.technologyStack).forEach((tech) => {
+      if (tech.kind === 1) {
+        this.techLanguage.push(tech);
+      } else if (tech.kind === 2) {
+        this.techManagement.push(tech);
+      } else if (tech.kind === 3) {
+        this.techFrameWork.push(tech);
+      }
+    });
   },
 };
 </script>
