@@ -12,7 +12,7 @@
             {{resume.education.admissionDate}} ~
             {{resume.education.graduationDate}}</div>
           <div class="item-title">{{resume.education.university}}</div>
-          <div class="item-detail">전공 : {{resume.education.major}}</div>
+          <div class="item-detail">{{resume.education.major}}</div>
         </li>
       </ul>
   </div>
