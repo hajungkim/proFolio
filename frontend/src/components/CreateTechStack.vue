@@ -40,7 +40,7 @@
         </td>
       </tr>
     </table>
-    <div class="delete-btn" @click="deleteTech">X</div>
+    <div class="delete-btn-2" @click="deleteTech">X</div>
   </div>
 </template>
 
