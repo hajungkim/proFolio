@@ -53,6 +53,7 @@
 
 <script>
 import html2pdf from 'html2pdf.js';
+import { mapState } from 'vuex';
 import Them3Awards from '../components/Them3Awards.vue';
 import Them3Certi from '../components/Them3Certi.vue';
 import Them3Edu from '../components/Them3Edu.vue';
@@ -81,6 +82,11 @@ export default {
       pdfName: '',
     };
   },
+  computed: {
+    ...mapState([
+      'userId',
+    ]),
+  },
   methods: {
     savePDF() {
       const element = document.getElementById('them3-pdf');
@@ -103,7 +109,7 @@ export default {
           const pdfFile = new FormData();
           pdfFile.append('file', res, this.pdfName);
           pdfFile.append('name', this.pdfName);
-          pdfFile.append('userId', 1);
+          pdfFile.append('userId', this.userId);
           postPortfolio(pdfFile);
           this.pdfName = '';
         })

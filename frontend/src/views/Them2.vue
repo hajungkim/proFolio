@@ -52,6 +52,7 @@
 
 <script>
 import html2pdf from 'html2pdf.js';
+import { mapState } from 'vuex';
 import Them2Awards from '../components/Them2Awards.vue';
 import Them2Certi from '../components/Them2Certi.vue';
 import Them2Exp from '../components/Them2Exp.vue';
@@ -76,6 +77,11 @@ export default {
       pdfName: '',
     };
   },
+  computed: {
+    ...mapState([
+      'userId',
+    ]),
+  },
   methods: {
     savePDF() {
       const element = document.getElementById('them2-pdf');
@@ -98,7 +104,7 @@ export default {
           const pdfFile = new FormData();
           pdfFile.append('file', res, this.pdfName);
           pdfFile.append('name', this.pdfName);
-          pdfFile.append('userId', 1);
+          pdfFile.append('userId', this.userId);
           postPortfolio(pdfFile);
           this.pdfName = '';
         })
