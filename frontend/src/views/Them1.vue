@@ -51,6 +51,7 @@
 
 <script>
 import html2pdf from 'html2pdf.js';
+import { mapState } from 'vuex';
 import Them1Info from '../components/Them1Info.vue';
 import Them1Skill from '../components/Them1Skill.vue';
 import Them1Exp from '../components/Them1Exp.vue';
@@ -75,6 +76,11 @@ export default {
       pdfName: '',
     };
   },
+  computed: {
+    ...mapState([
+      'userId',
+    ]),
+  },
   methods: {
     savePDF() {
       const element = document.getElementById('pdf');
@@ -97,7 +103,7 @@ export default {
           const pdfFile = new FormData();
           pdfFile.append('file', res, this.pdfName);
           pdfFile.append('name', this.pdfName);
-          pdfFile.append('userId', 1);
+          pdfFile.append('userId', this.userId);
           postPortfolio(pdfFile);
           this.pdfName = '';
         })
