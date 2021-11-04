@@ -29,7 +29,7 @@ services:
     volumes:
       - ./backend:/app
 
-  data:
+  faceswap:
     build:
       dockerfile: Dockerfile
       context: ./faceswap
