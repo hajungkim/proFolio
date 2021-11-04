@@ -162,8 +162,8 @@ export default {
     },
   },
   beforeMount() {
-    if (this.resume.education.graduation) this.graduation = '졸업';
-    else this.graduation = '졸업예정';
+    if (this.resume.education.graduation === true) this.graduation = '졸업';
+    else if (this.resume.education.graduation === false) this.graduation = '졸업예정';
     Object.values(this.resume.technologyStack).forEach((tech) => {
       if (tech.kind === 1) {
         this.techLanguage.push(tech);
