@@ -30,7 +30,7 @@
           <a href="#"><button class="round-shadow rbtn1" @click="goToResume">이력서 수정</button></a>
         </div>
         <div class="resum-btn">
-          <a href="#"><button class="round-shadow rbtn2" @click="goToResume">포트폴리오 생성</button></a>
+          <a href="#"><button class="round-shadow rbtn2" @click="goToSelect">포트폴리오 생성</button></a>
         </div>
       </div>
     </div>
@@ -159,6 +159,9 @@ export default {
   methods: {
     goToResume() {
       this.$router.push({ name: 'Resume' });
+    },
+    goToSelect() {
+      this.$router.push({ name: 'SelectTheme' });
     },
   },
   beforeMount() {
