@@ -77,10 +77,10 @@ public class User {
     private List<Project> projectList = new ArrayList<>();
 
     @Builder
-    public User(String accessToken, String refreshToken, String social_id, String email, String name, String phone, String birthday, String profilePath) {
+    public User(String accessToken, String refreshToken, String socialId, String email, String name, String phone, String birthday, String profilePath) {
         this.accessToken = accessToken;
         this.refreshToken = refreshToken;
-        this.socialId = social_id;
+        this.socialId = socialId;
         this.email = email;
         this.name = name;
         this.phone = phone;
@@ -93,7 +93,7 @@ public class User {
         this.email = request.getEmail();
         this.name = request.getName();
         this.phone = request.getPhone();
-        this.profilePath = request.getProfile_path();
+        this.profilePath = request.getProfilePath();
         this.birthday = request.getBirthday();
     }
 }
