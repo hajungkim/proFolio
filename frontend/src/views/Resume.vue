@@ -45,7 +45,9 @@
       <ResumePart4 v-if="resumePart==3"
       @createTechData="createTechData"
       @deleteTech="deleteTech" @updateTechData="updateTechData"/>
-      <ResumePart5 v-if="resumePart==4"/>
+      <ResumePart5 v-if="resumePart==4"
+      @createProjectData="createProjectData"
+      @deleteProject="deleteProject" @updateProjectData="updateProjectData"/>
     </div>
   </div>
 </template>
@@ -91,6 +93,9 @@ export default {
       techCreate: [],
       techUpdate: [],
       techDelete: new Set(),
+      projectCreate: [],
+      projectUpdate: [],
+      projectDelete: new Set(),
     };
   },
   computed: {
@@ -218,6 +223,19 @@ export default {
         this.techCreate = [];
         this.techUpdate = [];
         this.techDelete = new Set();
+      } else if (this.resumePart === 4) {
+        Object.values(this.projectCreate).forEach((pjtInfo) => {
+          this.$store.dispatch('projectCreate', pjtInfo.data);
+        });
+        Object.values(this.projectUpdate).forEach((pjtInfo) => {
+          this.$store.dispatch('projectUpdate', pjtInfo.data);
+        });
+        Object.values([...this.projectDelete]).forEach((pjtInfo) => {
+          this.$store.dispatch('projectDelete', pjtInfo);
+        });
+        this.projectCreate = [];
+        this.projectUpdate = [];
+        this.projectDelete = new Set();
       }
     },
     updateEducationData(updateEducationData) {
@@ -471,6 +489,41 @@ export default {
     },
     deleteTech(deleteTech) {
       this.techDelete.add(deleteTech);
+    },
+    createProjectData(createProjectData) {
+      const createData = {};
+      createData.id = createProjectData.id;
+      createProjectData.userId = this.userId;
+      createData.data = createProjectData;
+      let flag = false;
+      Object.values(this.projectCreate).forEach((create) => {
+        if (create.id === createData.id) {
+          this.projectCreate.splice(create[0], 1, createData);
+          flag = true;
+        }
+      });
+      if (!flag) {
+        this.projectCreate.push(createData);
+      }
+    },
+    updateProjectData(updateProjectData) {
+      const updateData = {};
+      updateData.id = updateProjectData.id;
+      updateProjectData.userId = this.userId;
+      updateData.data = updateProjectData;
+      let flag = false;
+      Object.values(this.projectUpdate).forEach((update) => {
+        if (update.id === updateData.id) {
+          this.projectUpdate.splice(update[0], 1, updateData);
+          flag = true;
+        }
+      });
+      if (!flag) {
+        this.projectUpdate.push(updateData);
+      }
+    },
+    deleteProject(deleteProject) {
+      this.projectDelete.add(deleteProject);
     },
   },
 };
