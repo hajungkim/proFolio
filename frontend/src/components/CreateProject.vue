@@ -134,7 +134,7 @@
         </td>
       </tr>
     </table>
-    <div class="delete-btn" @click="deleteProject">X</div>
+    <div class="delete-btn-2" @click="deleteProject">X</div>
   </div>
 </template>
 

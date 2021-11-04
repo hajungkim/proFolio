@@ -135,31 +135,27 @@ export default {
   },
   methods: {
     dataUpdate() {
+      this.careerUpdate.isUpdated = true;
       this.$emit('updateCareer', this.careerUpdate);
     },
     startDateUpdate() {
       this.$refs.menu1.save(this.careerUpdate.career.startDate);
-      this.careerUpdate.isUpdated = true;
       this.dataUpdate();
     },
     endDateUpdate() {
       this.$refs.menu2.save(this.careerUpdate.career.endDate);
-      this.careerUpdate.isUpdated = true;
       this.dataUpdate();
     },
     careerCompany(event) {
       this.careerUpdate.career.company = event.target.value;
-      this.careerUpdate.isUpdated = true;
       this.dataUpdate();
     },
     careerDuty(event) {
       this.careerUpdate.career.duty = event.target.value;
-      this.careerUpdate.isUpdated = true;
       this.dataUpdate();
     },
     careerDescription(event) {
       this.careerUpdate.career.description = event.target.value;
-      this.careerUpdate.isUpdated = true;
       this.dataUpdate();
     },
     deleteCareer() {

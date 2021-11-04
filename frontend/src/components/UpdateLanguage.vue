@@ -78,26 +78,23 @@ export default {
   },
   methods: {
     dataUpdate() {
+      this.langUpdate.isUpdated = true;
       this.$emit('updateLang', this.langUpdate);
     },
     certifiedDateUpdate() {
       this.$refs.menu1.save(this.langUpdate.language.certifiedDate);
-      this.langUpdate.isUpdated = true;
       this.dataUpdate();
     },
     langName(event) {
       this.langUpdate.language.name = event.target.value;
-      this.langUpdate.isUpdated = true;
       this.dataUpdate();
     },
     langScore(event) {
       this.langUpdate.language.score = event.target.value;
-      this.langUpdate.isUpdated = true;
       this.dataUpdate();
     },
     langLanguage(event) {
       this.langUpdate.language.language = event.target.value;
-      this.langUpdate.isUpdated = true;
       this.dataUpdate();
     },
     deleteLang() {
