@@ -19,7 +19,6 @@ public class PortfolioController {
 
     @PostMapping("/upload")
     public BaseResponse<PortfolioDto> uploadFile(PortfolioDto param){
-        System.out.println(param);
         String url = portfolioService.uploadFile(param.getFile());
         PortfolioDto portfolio = portfolioService.putPortfolio(param, url);
         if (portfolio == null) throw new BaseException(BaseResponseCode.DATA_IS_NULL);

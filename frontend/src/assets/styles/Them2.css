@@ -13,7 +13,9 @@
 }
 #them2-pdf{
     font-family: 'NanumBarunGothic';
-    font-size: 1.5rem;
+    font-size: 20px;
+    padding-left: 5%;
+    padding-top: 5%;
 }
 .them2 .menu{
     position: fixed;
@@ -33,19 +35,22 @@
     text-align: center;
 }
 .them2-box{
-    margin: 5% 10%;
+    margin: 8% 10% 10% 12%;
 }
 .them2-subtitle{
-    margin: 5% 0;
+    text-decoration: underline;
+    text-decoration-color: #0014BC;
+    text-underline-position:under;
+    margin: 10% 0 5% 0;
     font-weight: bold;
-    font-size: 3rem;
+    font-size: 2rem;
 }
 .them2-info-box{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }
 .user-profile-img{
-    width: 15vw;
+    width: 14vw;
 }
 .them2-username{
     font-weight: bold;
@@ -55,8 +60,11 @@
     display: flex;
     margin: 7% 0;
 }
+.line-content2{
+    padding-top: 9px;
+}
 .line-title2{
-    width: 8vw;
+    width: 6vw;
     height: 5vh;
     line-height: 5vh;
     background-color: #E5EAFF;
@@ -93,7 +101,7 @@
 .level-color{
     width: 5vw;
     height: 4vh;
-    line-height: 4vh;
+    line-height: 3.5vh;
     border-radius: 15px;
     text-align: center;
     margin: 0 2%;
@@ -101,12 +109,13 @@
 }
 .level-circle{
     text-align: center;
+    font-size: 15px;
     font-weight: bold;
-    line-height: 5vh;
-    width: 2.5vw;
-    height: 5vh;
+    line-height: 2.5vh;
+    width: 1.5vw;
+    height: 3vh;
     border-radius: 70%;
-    margin: 0 2%;
+    margin: 2% 2%;
 }
 .red{
     color: #FF0000;
@@ -123,14 +132,18 @@
     background-color: #FFF4CB;
     border: 2px solid #FFA800;
 }
+.skill-desc-detail{
+    margin-top: 5px;
+}
 .blue-line{
-    text-decoration: underline;
-    text-decoration-color: #0014BC;
     font-weight: bold;
-    font-size: 2rem;
+    font-size: 1.5rem;
+}
+.skill-list{
+    margin-left: 5%;
 }
 .skill-item{
-    margin: 3% 5%;
+    margin: 1% 5% 5% 5%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }

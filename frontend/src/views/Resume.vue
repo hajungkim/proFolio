@@ -39,9 +39,15 @@
       @createLangData="createLangData" @deleteLanguage="deleteLanguage"
       @updateLanguageData="updateLanguageData" @createCertData="createCertData"
       @deleteCertificate="deleteCertificate" @updateCertificateData="updateCertificateData"
+      @createAwardData="createAwardData" @deleteAwards="deleteAwards"
+      @updateAwardsData="updateAwardsData"
       />
-      <ResumePart4 v-if="resumePart==3"/>
-      <ResumePart5 v-if="resumePart==4"/>
+      <ResumePart4 v-if="resumePart==3"
+      @createTechData="createTechData"
+      @deleteTech="deleteTech" @updateTechData="updateTechData"/>
+      <ResumePart5 v-if="resumePart==4"
+      @createProjectData="createProjectData"
+      @deleteProject="deleteProject" @updateProjectData="updateProjectData"/>
     </div>
   </div>
 </template>
@@ -81,6 +87,15 @@ export default {
       certCreate: [],
       certUpdate: [],
       certDelete: new Set(),
+      awardCreate: [],
+      awardUpdate: [],
+      awardDelete: new Set(),
+      techCreate: [],
+      techUpdate: [],
+      techDelete: new Set(),
+      projectCreate: [],
+      projectUpdate: [],
+      projectDelete: new Set(),
     };
   },
   computed: {
@@ -175,7 +190,16 @@ export default {
           this.$store.dispatch('certificateUpdate', certInfo.data);
         });
         Object.values([...this.certDelete]).forEach((certInfo) => {
-          this.$store.dispatch('certificateeDelete', certInfo);
+          this.$store.dispatch('certificateDelete', certInfo);
+        });
+        Object.values(this.awardCreate).forEach((awardInfo) => {
+          this.$store.dispatch('awardsCreate', awardInfo.data);
+        });
+        Object.values(this.awardUpdate).forEach((awardInfo) => {
+          this.$store.dispatch('awardsUpdate', awardInfo.data);
+        });
+        Object.values([...this.awardDelete]).forEach((awardInfo) => {
+          this.$store.dispatch('awardsDelete', awardInfo);
         });
         this.langCreate = [];
         this.langUpdate = [];
@@ -183,6 +207,35 @@ export default {
         this.certCreate = [];
         this.certUpdate = [];
         this.certDelete = new Set();
+        this.awardCreate = [];
+        this.awardUpdate = [];
+        this.awardDelete = new Set();
+      } else if (this.resumePart === 3) {
+        Object.values(this.techCreate).forEach((techInfo) => {
+          this.$store.dispatch('techStackCreate', techInfo.data);
+        });
+        Object.values(this.techUpdate).forEach((techInfo) => {
+          this.$store.dispatch('techStackUpdate', techInfo.data);
+        });
+        Object.values([...this.techDelete]).forEach((techInfo) => {
+          this.$store.dispatch('techStackDelete', techInfo);
+        });
+        this.techCreate = [];
+        this.techUpdate = [];
+        this.techDelete = new Set();
+      } else if (this.resumePart === 4) {
+        Object.values(this.projectCreate).forEach((pjtInfo) => {
+          this.$store.dispatch('projectCreate', pjtInfo.data);
+        });
+        Object.values(this.projectUpdate).forEach((pjtInfo) => {
+          this.$store.dispatch('projectUpdate', pjtInfo.data);
+        });
+        Object.values([...this.projectDelete]).forEach((pjtInfo) => {
+          this.$store.dispatch('projectDelete', pjtInfo);
+        });
+        this.projectCreate = [];
+        this.projectUpdate = [];
+        this.projectDelete = new Set();
       }
     },
     updateEducationData(updateEducationData) {
@@ -340,12 +393,10 @@ export default {
       let flag = false;
       Object.values(this.certCreate).forEach((create) => {
         if (create.id === createData.id) {
-          // 있으면 내용 대체
           this.certCreate.splice(create[0], 1, createData);
           flag = true;
         }
       });
-      // 없으면 추가
       if (!flag) {
         this.certCreate.push(createData);
       }
@@ -368,6 +419,111 @@ export default {
     },
     deleteCertificate(deleteCertificate) {
       this.certDelete.add(deleteCertificate);
+    },
+    createAwardData(createAwardData) {
+      const createData = {};
+      createData.id = createAwardData.id;
+      createAwardData.userId = this.userId;
+      createData.data = createAwardData;
+      let flag = false;
+      Object.values(this.awardCreate).forEach((create) => {
+        if (create.id === createData.id) {
+          this.awardCreate.splice(create[0], 1, createData);
+          flag = true;
+        }
+      });
+      if (!flag) {
+        this.awardCreate.push(createData);
+      }
+    },
+    updateAwardsData(updateAwardsData) {
+      const updateData = {};
+      updateData.id = updateAwardsData.id;
+      updateAwardsData.userId = this.userId;
+      updateData.data = updateAwardsData;
+      let flag = false;
+      Object.values(this.awardUpdate).forEach((update) => {
+        if (update.id === updateData.id) {
+          this.awardUpdate.splice(update[0], 1, updateData);
+          flag = true;
+        }
+      });
+      if (!flag) {
+        this.awardUpdate.push(updateData);
+      }
+    },
+    deleteAwards(deleteAwards) {
+      this.awardDelete.add(deleteAwards);
+    },
+    createTechData(createTechData) {
+      const createData = {};
+      createData.id = createTechData.id;
+      createTechData.userId = this.userId;
+      createData.data = createTechData;
+      let flag = false;
+      Object.values(this.techCreate).forEach((create) => {
+        if (create.id === createData.id) {
+          this.techCreate.splice(create[0], 1, createData);
+          flag = true;
+        }
+      });
+      if (!flag) {
+        this.techCreate.push(createData);
+      }
+    },
+    updateTechData(updateTechData) {
+      const updateData = {};
+      updateData.id = updateTechData.id;
+      updateTechData.userId = this.userId;
+      updateData.data = updateTechData;
+      let flag = false;
+      Object.values(this.techUpdate).forEach((update) => {
+        if (update.id === updateData.id) {
+          this.techUpdate.splice(update[0], 1, updateData);
+          flag = true;
+        }
+      });
+      if (!flag) {
+        this.techUpdate.push(updateData);
+      }
+    },
+    deleteTech(deleteTech) {
+      this.techDelete.add(deleteTech);
+    },
+    createProjectData(createProjectData) {
+      const createData = {};
+      createData.id = createProjectData.id;
+      createProjectData.userId = this.userId;
+      createData.data = createProjectData;
+      let flag = false;
+      Object.values(this.projectCreate).forEach((create) => {
+        if (create.id === createData.id) {
+          this.projectCreate.splice(create[0], 1, createData);
+          flag = true;
+        }
+      });
+      if (!flag) {
+        this.projectCreate.push(createData);
+      }
+    },
+    updateProjectData(updateProjectData) {
+      const updateData = {};
+      updateData.id = updateProjectData.id;
+      updateProjectData.userId = this.userId;
+      updateData.data = updateProjectData;
+      let flag = false;
+      Object.values(this.projectUpdate).forEach((update) => {
+        if (update.id === updateData.id) {
+          this.projectUpdate.splice(update[0], 1, updateData);
+          flag = true;
+        }
+      });
+      if (!flag) {
+        this.projectUpdate.push(updateData);
+      }
+    },
+    deleteProject(deleteProject) {
+      this.projectDelete.add(deleteProject);
     },
   },
 };

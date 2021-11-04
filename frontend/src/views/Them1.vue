@@ -20,7 +20,7 @@
           <h4>complete</h4>
           <div class="buttons">
               <button class="btn-hover color-9">저장하기</button>
-              <button class="btn-hover color-9" @click="test">PDF변환</button>
+              <button class="btn-hover color-9" @click="openModal">PDF변환</button>
           </div>
       </div>
       <div class="content">
@@ -33,7 +33,20 @@
           <Them1Project/>
         </div>
       </div>
-  </div>
+      <div v-if="isOpenModal" class="modal-bg">
+          <div class="modal">
+            <h2>PDF 변환</h2>
+            <div>
+              <p>PDF로 저장 할 이름을 입력하세요.</p>
+              <input type="text" placeholder='저장 할 이름' v-model="pdfName" class="pdfName-input">
+              <div>
+                <button class="btn-hover color-1" @click="savePDF">PDF저장</button>
+                <button class="btn-hover color-1" @click="closeModal">닫기</button>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
 </template>
 
 <script>
@@ -44,6 +57,7 @@ import Them1Exp from '../components/Them1Exp.vue';
 import Them1Awards from '../components/Them1Awards.vue';
 import Them1Certi from '../components/Them1Certi.vue';
 import Them1Project from '../components/Them1Project.vue';
+import { postPortfolio } from '../store/modules/PortfolioAPI';
 
 export default {
   name: 'Them1',
@@ -57,14 +71,16 @@ export default {
   },
   data() {
     return {
+      isOpenModal: false,
+      pdfName: '',
     };
   },
   methods: {
-    test() {
+    savePDF() {
       const element = document.getElementById('pdf');
       html2pdf().from(element).set({
         margin: 10,
-        filename: 'test.pdf',
+        filename: this.pdfName,
         html2canvas: {
           scale: 1,
           allowTaint: false,
@@ -76,7 +92,23 @@ export default {
           format: 'a3',
           compress: true,
         },
-      }).save();
+      }).output('blob')
+        .then((res) => {
+          const pdfFile = new FormData();
+          pdfFile.append('file', res, this.pdfName);
+          pdfFile.append('name', this.pdfName);
+          pdfFile.append('userId', 1);
+          postPortfolio(pdfFile);
+          this.pdfName = '';
+        })
+        .save();
+      this.closeModal();
+    },
+    openModal() {
+      this.isOpenModal = true;
+    },
+    closeModal() {
+      this.isOpenModal = false;
     },
   },
 };
