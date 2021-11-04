@@ -148,11 +148,11 @@ export default {
   },
   methods: {
     dataUpdate() {
+      this.educationUpdate.isUpdated = true;
       this.$emit('updateEducation', this.educationUpdate);
     },
     eduUniversity(event) {
       this.educationUpdate.education.university = event.target.value;
-      this.educationUpdate.isUpdated = true;
       this.dataUpdate();
     },
     eduGraduation(event) {
@@ -163,37 +163,30 @@ export default {
         this.educationUpdate.education.graduation = false;
         this.graduation = '졸업예정';
       }
-      this.educationUpdate.isUpdated = true;
       this.dataUpdate();
     },
     eduMajor(event) {
       this.educationUpdate.education.major = event.target.value;
-      this.educationUpdate.isUpdated = true;
       this.dataUpdate();
     },
     eduMinor(event) {
       this.educationUpdate.education.minor = event.target.value;
-      this.educationUpdate.isUpdated = true;
       this.dataUpdate();
     },
     eduScore(event) {
       this.educationUpdate.education.score = event.target.value;
-      this.educationUpdate.isUpdated = true;
       this.dataUpdate();
     },
     eduTotalScore(event) {
       this.educationUpdate.education.totalScore = parseFloat(event.target.value);
-      this.educationUpdate.isUpdated = true;
       this.dataUpdate();
     },
     admissionDateUpdate() {
       this.$refs.menu1.save(this.educationUpdate.education.admissionDate);
-      this.educationUpdate.isUpdated = true;
       this.dataUpdate();
     },
     graduationDateUpdate() {
       this.$refs.menu2.save(this.educationUpdate.education.graduationDate);
-      this.educationUpdate.isUpdated = true;
       this.dataUpdate();
     },
   },

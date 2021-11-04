@@ -76,21 +76,19 @@ export default {
   },
   methods: {
     dataUpdate() {
+      this.certUpdate.isUpdated = true;
       this.$emit('updateCert', this.certUpdate);
     },
     certifiedDateUpdate() {
       this.$refs.menu1.save(this.certUpdate.certificate.certifiedDate);
-      this.certUpdate.isUpdated = true;
       this.dataUpdate();
     },
     certName(event) {
       this.certUpdate.certificate.name = event.target.value;
-      this.certUpdate.isUpdated = true;
       this.dataUpdate();
     },
     certOrganizaion(event) {
       this.certUpdate.certificate.organization = event.target.value;
-      this.certUpdate.isUpdated = true;
       this.dataUpdate();
     },
     deleteCert() {
