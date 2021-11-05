@@ -1,16 +1,17 @@
 <template>
   <div class="them2-box" id="remove">
     <div class="them2-subtitle">Project</div>
-    <DeleteBtn :edit="edit"/>
-    <AddItemButton type="project"/>
+    <AddItemButton v-if="edit" type="project"/>
     <!-- test -->
     <draggable
       ghost-class="ghost"
     >
       <div v-for="(pro) in portfolio.project" :key="pro.id" class="them2-card">
         <RemoveItemButton
+          v-if="edit"
           type="project"
           :item="pro"
+          :edit="edit"
         />
         <span class="them2-cardname">{{pro.title}}</span>
         <span class="them2-grayfont">({{pro.startDate}} ~ {{pro.endDate}})</span>
@@ -39,7 +40,6 @@
 <script>
 import draggable from "vuedraggable";
 import { mapState } from 'vuex';
-import DeleteBtn from './DeleteBtn.vue';
 import RemoveItemButton from './RemoveItemButton.vue';
 import AddItemButton from './AddItemButton.vue';
 
@@ -52,7 +52,6 @@ export default {
   },
   components: {
     draggable,
-    DeleteBtn,
     RemoveItemButton,
     AddItemButton,
   },

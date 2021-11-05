@@ -1,5 +1,5 @@
 <template>
-  <div class="them2-box" id='remove'>
+  <div class="them2-box" id='removeInfo'>
     <!-- test -->
       <button
         id="remove-btn"
@@ -70,7 +70,7 @@ export default {
       }
     },
     removeComponent() {
-      const content = document.getElementById('remove');
+      const content = document.getElementById('removeInfo');
       content.remove();
     },
   },

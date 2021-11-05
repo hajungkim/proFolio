@@ -1,13 +1,20 @@
 <template>
   <div class="them2-box">
-      <div class="them2-subtitle">Education &amp; Experience</div>
+      <div class="them2-subtitle" v-if="this.resume.activity">Education &amp; Experience</div>
+      <button
+        @click="remove"
+        id="remove-btn"
+        :class="[edit ? '' : 'hidden']"
+      >
+        delete
+      </button>
       <ul class="tl">
         <li v-for="(exp) in portfolio.activity" :key="exp.id" class="tl-item">
           <div class="timestamp">{{exp.startDate}} ~ {{exp.endDate}}</div>
           <div class="item-title">{{exp.name}}</div>
           <div class="item-detail">{{exp.description}}</div>
         </li>
-          <li class="tl-item">
+        <li class="tl-item">
           <div class="timestamp">
             {{portfolio.education.admissionDate}} ~
             {{portfolio.education.graduationDate}}</div>
@@ -23,6 +30,11 @@ import { mapState } from 'vuex';
 
 export default {
   name: 'Them2Exp',
+  props: {
+    edit: {
+      type: Boolean,
+    },
+  },
   data() {
     return {
     };
@@ -31,6 +43,12 @@ export default {
     ...mapState([
       'portfolio',
     ]),
+  },
+  methods: {
+    remove() {
+      this.resume.activity = '';
+      this.resume.education = '';
+    },
   },
 };
 </script>

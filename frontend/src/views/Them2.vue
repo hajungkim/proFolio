@@ -35,9 +35,9 @@
             <Them2Info :edit="edit"/>
             <Them2Skill :edit="edit"/>
             <Them2Project :edit="edit"/>
-            <Them2Exp/>
-            <Them2Certi/>
-            <Them2Awards/>
+            <Them2Exp :edit="edit"/>
+            <Them2Certi :edit="edit"/>
+            <Them2Awards :edit="edit"/>
           </draggable>
         </div>
     </div>
@@ -81,10 +81,10 @@ export default {
   name: 'Them2',
   data() {
     return {
-      isOpenModal: false,
-      pdfName: '',
       edit: false,
       editBtn: '편집',
+      isOpenModal: false,
+      pdfName: '',
     };
   },
   methods: {
@@ -122,7 +122,6 @@ export default {
     closeModal() {
       this.isOpenModal = false;
     },
-
     clickEdit() {
       console.log('@편집 작동', this.edit);
       if (this.edit) {
