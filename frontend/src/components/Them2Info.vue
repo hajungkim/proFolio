@@ -62,7 +62,7 @@ export default {
       }
     },
     removeComponent() {
-      const content = document.getElementById('remove');
+      const content = document.getElementById('removeInfo');
       content.remove();
     },
   },

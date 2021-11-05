@@ -11,6 +11,7 @@
           v-if="edit"
           type="project"
           :item="pro"
+          :edit="edit"
         />
         <span class="them2-cardname">{{pro.title}}</span>
         <span class="them2-grayfont">({{pro.startDate}} ~ {{pro.endDate}})</span>

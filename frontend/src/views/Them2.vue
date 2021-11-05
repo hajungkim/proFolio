@@ -81,10 +81,10 @@ export default {
   name: 'Them2',
   data() {
     return {
-      isOpenModal: false,
-      pdfName: '',
       edit: false,
       editBtn: '편집',
+      isOpenModal: false,
+      pdfName: '',
     };
   },
   methods: {
