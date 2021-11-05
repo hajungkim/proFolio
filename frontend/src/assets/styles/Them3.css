@@ -12,6 +12,7 @@
     overflow: auto;
 }
 .them3 .name{
+    display: inline-block;
     font-family: 'Pretendard-Regular';
     font-weight: bold;
     margin-bottom: 5%;

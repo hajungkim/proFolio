@@ -4,13 +4,13 @@
     <AddItemButton type="awards" v-if="edit"/>
     <draggable class="draggable-container-row">
       <div v-for="(award) in portfolio.awards" :key="award.id" class="them2-card">
+        <span class="them2-cardname">{{award.name}}</span>
+        <span class="them2-grayfont">({{award.awardsDate}})</span>
         <RemoveItemButton
           v-if="edit"
           type="awards"
           :item="award"
         />
-        <span class="them2-cardname">{{award.name}}</span>
-        <span class="them2-grayfont">({{award.awardsDate}})</span>
         <div class="them2-summary">{{award.prize}}</div>
         <div class="them2-grayfont">{{award.description}}</div>
       </div>
