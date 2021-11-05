@@ -2,6 +2,14 @@ pipeline {
     agent any
     
     stages {
+        stage('Clean'){
+            steps{
+                script{
+                    sh 'docker stop $(docker ps -a -q)'
+                    sh 'docker rm $(docker ps -a -q)'
+                }
+            }
+        }
         stage('Build') {
             steps {
                 script {
@@ -10,11 +18,7 @@ pipeline {
                     } catch(e) {
                         currentBuild.result = "FAILURE"
                     } finally {
-                        if(currentBuild.result != "FAILURE") {
-                            
-                        } else {
-                            
-                        }
+                        
                     }
                 }
             }
