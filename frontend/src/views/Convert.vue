@@ -173,7 +173,8 @@ export default {
       this.outputImgUrl = defaultImage;
       this.imageLoading = true;
       this.outputLoaded = false;
-
+      // console.log(this.$refs['input-image-input'].files[0]);
+      // console.log(this.styleImgFile);
       // form data 작성 및 submit
       const formData = new FormData();
       formData.append('input_image', this.$refs['input-image-input'].files[0]);
@@ -229,9 +230,20 @@ export default {
       const img = document.getElementsByClassName('sample-img')[id];
       // this.click('style');
       img.className += ' select-img';
-      console.log(this.imgArr[id]);
       this.styleImgUrl = this.imgArr[id];
-      this.styleImgFile = this.imgArr[id];
+      this.convertURLtoFile(this.imgArr[id])
+        .then((res) => {
+          this.styleImgFile = res;
+          // console.log(res);
+        });
+    },
+    async convertURLtoFile(url) {
+      const response = await fetch(url);
+      const data = await response.blob();
+      const ext = url.split(".").pop();
+      const filename = url.split("/").pop();
+      const metadata = { type: `image/${ext}` };
+      return new File([data], filename, metadata);
     },
   },
   created() {
