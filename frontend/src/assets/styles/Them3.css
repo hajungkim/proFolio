@@ -1,0 +1,197 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+.them3{
+    font-family: 'Pretendard-Regular';
+    background-color: #EFF1FF;
+    /* height: auto; */
+    padding-top: 5%;
+    overflow: auto;
+}
+.them3 .name{
+    display: inline-block;
+    font-family: 'Pretendard-Regular';
+    font-weight: bold;
+    margin-bottom: 5%;
+}
+.them3-content{
+    padding-left: 120px;
+    background-color: #EFF1FF;
+    /* width: 80vw; */
+    /* right: 0; */
+    /* position: absolute; */
+}
+#them3-pdf{
+    background-color: #EFF1FF;
+    font-family: 'Pretendard-Regular';
+    display: grid;
+    /* grid-template-columns: repeat(2, 1fr); */
+}
+.them3 .menu{
+    z-index: 1;
+    position: fixed;
+    /* left: 5vw; */
+    top: 15vh;
+    /* height: 30vh; */
+    /* width: 15vw; */
+}
+.them3 .menu li{
+    list-style: none;
+    padding: 7%;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.them3 .menu li:hover{
+    color: #3e317c;
+}
+.itmes{
+    color: #7B61FF;
+    text-align: center;
+    margin: 10%;
+    padding: 0;
+}
+.menu-buttons{
+    position: relative;
+    bottom: 0;
+    left: 0;
+    margin-top: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.menu-buttons div{
+    margin: 5% auto;
+}
+.them3-box{
+    width: 15vw;
+    border-radius: 70%;
+    overflow: hidden;
+}
+.them3-info{
+    grid-column: 1 / span 2;
+    /* display: flex; */
+}
+.info-box{
+    background-color: white;
+    /* width: 61vw; */
+    box-sizing: content-box;
+    padding: 5%;
+    margin: 5%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.them3-info-detail{
+    grid-column: 2 / span 2;
+}
+.info-detail{
+    margin-left: 20%;
+}
+.user-name{
+    font-family: 'GongGothicMedium';
+    margin-left: 5%;
+    font-size: 4vw;
+    color: #7B61FF
+}
+.line{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 3%;
+    font-size: 1.3vw;
+}
+.line-title{
+    grid-column: 1;
+    font-weight: bold;
+}
+.them3-edu{
+    background-color: white;
+    grid-column: 1;
+    margin-left: 10%;
+    margin-right: 6%;
+    padding: 5%;
+    margin: 0 5% 5% 5%;
+}
+.them3-certi{
+    background-color: white;
+    margin-right: 16%;
+    padding: 5%;
+    margin: 0 5% 5% 5%;
+}
+.them3-exp{
+    background-color: white;
+    grid-column: 1 / span 2;
+    padding: 5%;
+    margin: 0 5% 5% 5%;
+}
+.them3-skill{
+    background-color: white;
+    grid-column: 1;
+    padding: 5%;
+    margin: 0 5% 5% 5%;
+}
+.them3-awards{
+    background-color: white;
+    margin-right: 16%;
+    padding: 5%;
+    margin: 0 5% 5% 5%;
+}
+.them3-awards-card{
+    position: relative;
+}
+.them3-projects{
+    /* background-color: white; */
+    /* margin-right: 16%; */
+    /* padding: 5%; */
+    /* margin: 0 5% 5% 5%; */
+    grid-column: 1 / span 2;
+}
+.them3-card{
+    position: relative;
+    background-color: white;
+    padding: 5%;
+    margin: 0 5% 5% 5%;
+}
+.grid2{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.skill-level{
+    margin: 3% 0;
+    width: 2.5vw;
+    height: 5vh;
+    line-height: 5vh;
+    text-align: center;
+    border-radius: 70%;
+    background-color: #7B61FF;
+    color: white;
+}
+.skill-name{
+    margin: 3% 10%;
+    height: 5vh;
+    line-height: 5vh;
+}
+.them3-intro{
+    background-color: white;
+    grid-column: 1 / span 2;
+    padding: 5%;
+    margin: 0 5% 5% 5%;
+}
+
+.draggable-container-col {
+    /* margin: 5% 5% 5% 5%; */
+    display: grid;
+    /* grid-template-columns: repeat(2, 1fr); */
+    grid-template-columns: repeat(auto-fit, minmax(350px,auto));
+}
+.draggable-container-row {
+    /* margin: 5% 5% 5% 5%; */
+    display: grid;
+    /* grid-template-columns: repeat(2, 1fr); */
+}
+
+.p-5 {
+    /* padding: 5%; */
+}
