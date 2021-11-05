@@ -7,14 +7,14 @@
       ghost-class="ghost"
     >
       <div v-for="(pro) in portfolio.project" :key="pro.id" class="them2-card">
+        <span class="them2-cardname">{{pro.title}}</span>
+        <span class="them2-grayfont">({{pro.startDate}} ~ {{pro.endDate}})</span>
         <RemoveItemButton
           v-if="edit"
           type="project"
           :item="pro"
           :edit="edit"
         />
-        <span class="them2-cardname">{{pro.title}}</span>
-        <span class="them2-grayfont">({{pro.startDate}} ~ {{pro.endDate}})</span>
         <div style="float: right; font-weight:bold">{{pro.link}}</div>
         <div class="them2-summary">{{pro.summary}}</div>
         <div class="them2-grayfont">{{pro.description}}</div>

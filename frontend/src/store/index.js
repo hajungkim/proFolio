@@ -66,8 +66,8 @@ export default new Vuex.Store({
     TECHNOLOGY_INFO(state, techInfo) {
       state.resume.technologyStack = techInfo;
     },
-    PROJECT_INFO(state, project) {
-      state.resume.project = project;
+    PROJECT_INFO(state, pjtInfo) {
+      state.resume.project = pjtInfo;
     },
     // ABOUT PORTFOLIO
     PORTFOLIO_COPY_RESUME(state) {
@@ -323,6 +323,7 @@ export default new Vuex.Store({
       const newArray = _.unionWith(this.state.portfolio.activity, [data], _.isEqual);
       context.commit('PORTFOLIO_ACTIVITY_INFO', newArray);
     },
+    // pjt
     projectCreate(context, data) {
       postProject(data).then(() => {
         getProject(context.state.userId).then((response) => {

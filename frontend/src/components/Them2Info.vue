@@ -10,15 +10,15 @@
             <div class="them2-info-detail">
                 <div class="line2">
                     <div class="line-title2">Email</div>
-                    <div>{{portfolio.user.email}}</div>
+                    <div class="line-content2">{{portfolio.user.email}}</div>
                 </div>
                 <div class="line2">
                     <div class="line-title2">Contact</div>
-                    <div>{{portfolio.user.phone}}</div>
+                    <div class="line-content2">{{portfolio.user.phone}}</div>
                 </div>
                 <div class="line2">
                     <div class="line-title2">Link</div>
-                    <div>{{portfolio.user.link}}</div>
+                    <div class="line-content2">{{portfolio.user.link}}</div>
                 </div>
             </div>
           </div>
