@@ -19,7 +19,7 @@
             {{portfolio.education.admissionDate}} ~
             {{portfolio.education.graduationDate}}</div>
           <div class="item-title">{{portfolio.education.university}}</div>
-          <div class="item-detail">전공 : {{portfolio.education.major}}</div>
+          <div class="item-detail">{{portfolio.education.major}}</div>
         </li>
       </ul>
   </div>

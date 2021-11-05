@@ -2,10 +2,19 @@
   <div class="resume-part2-box">
     <table class="resume-part2-input">
       <tr>
-        <th>활동명</th>
-        <td><input type="text" @change="activityName"></td>
-        <th class="pl-15">활동기관</th>
-        <td><input type="text" @change="activityOrganization"></td>
+        <th>프로젝트명</th>
+        <td colspan="4">
+          <textarea class="resume-p5-summary" @change="projectTitle"
+          :placeholder="project.title"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <th>인원</th>
+        <td><input type="number" @change="projectMemberCnt"
+        :placeholder="project.memberCnt"></td>
+        <th class="pl-15">역할</th>
+        <td><input type="text" @change="projectRole"
+        :placeholder="project.role"></td>
       </tr>
       <tr>
         <th>시작일</th>
@@ -15,14 +24,14 @@
               ref="menu1"
               v-model="menu1"
               :close-on-content-click="false"
-              :return-value.sync="activityCreate.activity.startDate"
+              :return-value.sync="projectUpdate.project.startDate"
               transition="scale-transition"
               offset-y
               min-width="auto"
             >
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
-                  v-model="activityCreate.activity.startDate"
+                  v-model="projectUpdate.project.startDate"
                   label="시작일"
                   prepend-icon="mdi-calendar"
                   readonly
@@ -31,7 +40,7 @@
                 ></v-text-field>
               </template>
               <v-date-picker
-                v-model="activityCreate.activity.startDate"
+                v-model="projectUpdate.project.startDate"
                 no-title
                 scrollable
                 type="month"
@@ -62,14 +71,14 @@
               ref="menu2"
               v-model="menu2"
               :close-on-content-click="false"
-              :return-value.sync="activityCreate.activity.endDate"
+              :return-value.sync="projectUpdate.project.endDate"
               transition="scale-transition"
               offset-y
               min-width="auto"
             >
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
-                  v-model="activityCreate.activity.endDate"
+                  v-model="projectUpdate.project.endDate"
                   label="종료일"
                   prepend-icon="mdi-calendar"
                   readonly
@@ -78,7 +87,7 @@
                 ></v-text-field>
               </template>
               <v-date-picker
-                v-model="activityCreate.activity.endDate"
+                v-model="projectUpdate.project.endDate"
                 no-title
                 scrollable
                 type="month"
@@ -104,21 +113,43 @@
         </td>
       </tr>
       <tr>
-        <th>활동내용</th>
+        <th>요약</th>
         <td colspan="4">
-          <textarea class="resume-p2-exp" @change="activityDescription"></textarea>
+          <textarea class="resume-p5-summary" @change="projectSummary"
+          :placeholder="project.summary"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <th>설명</th>
+        <td colspan="4">
+          <textarea class="resume-p5-project" @change="projectDescription"
+          :placeholder="project.description"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <th>사용스택</th>
+        <td colspan="4">
+          <input type="text" class="project-input-width" @change="projectTechStack"
+          :placeholder="project.technologyStack">
+        </td>
+      </tr>
+      <tr>
+        <th>링크</th>
+        <td colspan="4">
+          <input type="text" class="project-input-width" @change="projectLink"
+          :placeholder="project.link">
         </td>
       </tr>
     </table>
-    <div class="delete-btn-2" @click="deleteActivity">X</div>
+    <div class="delete-btn-2" @click="deleteProject">X</div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'CreateExperience',
+  name: 'UpdateProject',
   props: {
-    activity: {
+    project: {
       type: Object,
     },
   },
@@ -126,45 +157,63 @@ export default {
     return {
       menu1: false,
       menu2: false,
-      activityCreate: {},
+      projectUpdate: {},
     };
   },
   methods: {
     dataUpdate() {
-      this.$emit('createActivity', this.activityCreate);
+      this.projectUpdate.isUpdated = true;
+      this.$emit('updateProject', this.projectUpdate);
     },
     startDateUpdate() {
-      this.$refs.menu1.save(this.activityCreate.activity.startDate);
+      this.$refs.menu1.save(this.projectUpdate.project.startDate);
       this.dataUpdate();
     },
     endDateUpdate() {
-      this.$refs.menu2.save(this.activityCreate.activity.endDate);
+      this.$refs.menu2.save(this.projectUpdate.project.endDate);
       this.dataUpdate();
     },
-    activityName(event) {
-      this.activityCreate.activity.name = event.target.value;
+    projectTitle(event) {
+      this.projectUpdate.project.title = event.target.value;
       this.dataUpdate();
     },
-    activityOrganization(event) {
-      this.activityCreate.activity.organizagion = event.target.value;
+    projectTechStack(event) {
+      this.projectUpdate.project.technologyStack = event.target.value;
       this.dataUpdate();
     },
-    activityDescription(event) {
-      this.activityCreate.activity.description = event.target.value;
+    projectSummary(event) {
+      this.projectUpdate.project.summary = event.target.value;
       this.dataUpdate();
     },
-    deleteActivity() {
-      this.activityCreate.isDeleted = true;
+    projectRole(event) {
+      this.projectUpdate.project.role = event.target.value;
+      this.dataUpdate();
+    },
+    projectMemberCnt(event) {
+      this.projectUpdate.project.memberCnt = event.target.value;
+      this.dataUpdate();
+    },
+    projectDescription(event) {
+      this.projectUpdate.project.description = event.target.value;
+      this.dataUpdate();
+    },
+    projectLink(event) {
+      this.projectUpdate.project.link = event.target.value;
+      this.dataUpdate();
+    },
+    deleteProject() {
+      this.projectUpdate.isDeleted = true;
       this.dataUpdate();
     },
   },
   beforeMount() {
-    this.activityCreate.activity = this.activity;
-    this.activityCreate.isDeleted = false;
+    this.projectUpdate.project = this.project;
+    this.projectUpdate.isDeleted = false;
+    this.projectUpdate.isUpdated = false;
   },
 };
 </script>
 
 <style>
-@import '../assets/styles/ResumePart.css';
+
 </style>

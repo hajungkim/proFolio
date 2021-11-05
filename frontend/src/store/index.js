@@ -8,7 +8,7 @@ import {
   postActivity, getActivity, putActivity, deleteActivity, postLanguage, getLanguage,
   putLanguage, deleteLanguage, getCertificate, postCertificate, deleteCertificate,
   putCertificate, getAwards, postAwards, deleteAwards, putAwards, postTech, getTech,
-  putTech, deleteTech,
+  putTech, deleteTech, getProject, postProject, putProject, deleteProject,
 } from './modules/ResumeAPI';
 
 Vue.use(Vuex);
@@ -19,179 +19,25 @@ export default new Vuex.Store({
   ],
   state: {
     isLogin: false,
-    userId: 1,
+    userId: null,
     resume: {
-      user: {
-        profilePath: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-DjoQ3H0LFCWXLurl6qeHzGnbox2_cJTAmg&usqp=CAU', name: '아무개', birthday: '2000.01.01', phone: '010-0000-0000', email: 'qwer@qwer.com',
-      },
-      education: {
-        id: 1,
-        university: '싸피대학교',
-        graduation: true,
-        admissionDate: '2020.03',
-        graduationDate: '2023.02',
-        score: '4.0',
-        totalScore: 4.5,
-        major: '컴공',
-        minor: '',
-        mainSchool: false,
-      },
-      activity: [
-        {
-          id: '1',
-          name: '삼성청년SW아카데미',
-          organization: '삼성전자',
-          description: 'Java, DB, 알고리즘에 대해 배우고 해당 내용을 바탕으로 다수의 프로젝트를 진행함',
-          startDate: '2021.01',
-          endDate: '2021.12',
-        },
-        {
-          id: '2',
-          name: '삼성청년SW아카데미',
-          organization: '삼성전자',
-          description: 'Python, Javascript, 알고리즘에 대해 배우고 해당 내용을 바탕으로 다수의 프로젝트를 진행함',
-          startDate: '2021.01',
-          endDate: '2021.12',
-        },
-      ],
-      career: [
-        {
-          id: '1',
-          company: '삼성청년SW아카데미',
-          duty: '교육생111',
-          description: 'Java, DB, 알고리즘에 대해 배우고 해당 내용을 바탕으로 다수의 프로젝트를 진행함',
-          startDate: '2021.01',
-          endDate: '2021.12',
-        },
-        {
-          id: '2',
-          company: '삼성청년SW아카데미',
-          duty: '교육생222',
-          description: 'Python, Javascript, 알고리즘에 대해 배우고 해당 내용을 바탕으로 다수의 프로젝트를 진행함',
-          startDate: '2021.01',
-          endDate: '2021.12',
-        },
-      ],
-      certificate: [
-        {
-          id: '1',
-          name: '정보처리기사',
-          organization: '한국산업인력공단',
-          certifiedDate: '2021.10.23',
-        },
-        {
-          id: '2',
-          name: 'SQLD',
-          organization: '한국산업인력공단',
-          certifiedDate: '2021.02.23',
-        },
-      ],
-      foreignLang: [
-        {
-          id: '1',
-          language: '영어',
-          name: '토익',
-          score: '900',
-          certifiedDate: '2021.10.23',
-        },
-      ],
-      awards: [
-        {
-          id: '1',
-          name: 'SSAFY 공모전',
-          prize: '우수상',
-          description: '와아아아 활동을 해서 어디어디서 우수상을 수상 와아아아 활동을 해서 어디어디서 우수상을 수상 와아아아 활동을 해서 어디어디서 우수상을 수상',
-          awardsDate: '2021.10.23',
-        },
-        {
-          id: '2',
-          name: 'SSAFY 알고리즘',
-          prize: '우수상',
-          description: '와아아아 활동을 해서 어디어디서 우수상을 수상',
-          awardsDate: '2021.10.23',
-        },
-      ],
-      technologyStack: [
-        {
-          id: '1',
-          name: 'Java',
-          level: '40',
-          description: '????',
-          kind: 1,
-        },
-        {
-          id: '2',
-          name: 'Spring boot',
-          level: '3',
-          description: '????',
-          kind: 2,
-        },
-        {
-          id: '3',
-          name: 'Vue',
-          level: '4',
-          description: '????',
-          kind: 2,
-        },
-        {
-          id: '4',
-          name: 'Git',
-          level: '3',
-          description: '????',
-          kind: 3,
-        },
-        {
-          id: '5',
-          name: 'Python',
-          level: '1',
-          description: '????',
-          kind: 1,
-        },
-      ],
-      project: [
-        {
-          id: '1',
-          title: 'proFoilo',
-          summary: '개발자 준비생을 위한 포트폴리오 사이트',
-          description: '포트폴리오를 처음 만드는 개발자를 위한 서비스로 작성 가이드를 제공하고, 작성한 내용으로 템플릿을 적용한 포트폴리오를 PDF로 생성해줍니다.',
-          memberCnt: 5,
-          technologyStack: 'Java, Django, Vue, SpringBoot',
-          role: 'FE',
-          link: 'https://ssafy.com',
-          startDate: '2021.10',
-          endDate: '2021.11',
-        },
-        {
-          id: '2',
-          title: 'proFoilo',
-          summary: '개발자 준비생을 위한 포트폴리오 사이트',
-          description: '쉬운 포트폴리오 만들기 와아아아아아아',
-          memberCnt: 5,
-          technologyStack: 'Java, Django, Vue, SpringBoot',
-          role: 'FE',
-          link: 'https://ssafy.com',
-          startDate: '2021.10',
-          endDate: '2021.11',
-        },
-        {
-          id: '3',
-          title: '12',
-          summary: '개발자 준비생을 위한 포트폴리오 사이트',
-          description: '쉬운',
-          memberCnt: 5,
-          technologyStack: 'Java, Django, Vue, SpringBoot',
-          role: 'FE',
-          link: 'https://ssafy.com',
-          startDate: '2021.10',
-          endDate: '2021.11',
-        },
-      ],
+      user: {},
+      education: {},
+      activity: [],
+      career: [],
+      certificate: [],
+      foreignLang: [],
+      technologyStack: [],
+      project: [],
     },
     portfolio: {},
   },
   mutations: {
     CHANGE_ISLOGIN(state, isLogin) {
       state.isLogin = isLogin;
+    },
+    RESET_RESUME_INFO(state, resume) {
+      state.resume = resume;
     },
     SET_USER_ID(state, userId) {
       state.userId = userId;
@@ -220,8 +66,8 @@ export default new Vuex.Store({
     TECHNOLOGY_INFO(state, techInfo) {
       state.resume.technologyStack = techInfo;
     },
-    PROJECT_INFO(state, project) {
-      state.resume.project = project;
+    PROJECT_INFO(state, pjtInfo) {
+      state.resume.project = pjtInfo;
     },
     // ABOUT PORTFOLIO
     PORTFOLIO_COPY_RESUME(state) {
@@ -276,6 +122,27 @@ export default new Vuex.Store({
       getAwards(context.state.userId).then((response) => {
         context.commit('AWARDS_INFO', response.data.data);
       });
+      getProject(context.state.userId).then((response) => {
+        context.commit('PROJECT_INFO', response.data.data);
+      });
+      getTech(context.state.userId).then((response) => {
+        context.commit('TECHNOLOGY_INFO', response.data.data);
+      });
+    },
+    logout(context) {
+      context.commit('CHANGE_ISLOGIN', false);
+      context.commit('SET_USER_ID', null);
+      const resume = {
+        user: {},
+        education: {},
+        activity: [],
+        career: [],
+        certificate: [],
+        foreignLang: [],
+        technologyStack: [],
+        project: [],
+      };
+      context.commit('RESET_RESUME_INFO', resume);
     },
     getUser(context, userId) {
       getUserInfo(userId).then((res) => {
@@ -455,6 +322,28 @@ export default new Vuex.Store({
       // data === award
       const newArray = _.unionWith(this.state.portfolio.activity, [data], _.isEqual);
       context.commit('PORTFOLIO_ACTIVITY_INFO', newArray);
+    },
+    // pjt
+    projectCreate(context, data) {
+      postProject(data).then(() => {
+        getProject(context.state.userId).then((response) => {
+          context.commit('PROJECT_INFO', response.data.data);
+        });
+      });
+    },
+    projectUpdate(context, data) {
+      putProject(data.id, data).then(() => {
+        getProject(context.state.userId).then((response) => {
+          context.commit('PROJECT_INFO', response.data.data);
+        });
+      });
+    },
+    projectDelete(context, data) {
+      deleteProject(data).then(() => {
+        getProject(context.state.userId).then((response) => {
+          context.commit('PROJECT_INFO', response.data.data);
+        });
+      });
     },
   },
   modules: {

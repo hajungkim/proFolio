@@ -28,22 +28,22 @@ import org.springframework.web.client.RestTemplate;
 @RequiredArgsConstructor
 public class NaverOauth implements SocialOauth {
 
-    @Value("${sns.naver.url}")
+    @Value("${spring.sns.naver.url}")
     private String NAVER_SNS_BASE_URL;
 
-    @Value("${sns.naver.client.id}")
+    @Value("${spring.sns.naver.client.id}")
     private String NAVER_SNS_CLIENT_ID;
 
-    @Value("${sns.naver.client.secret}")
+    @Value("${spring.sns.naver.client.secret}")
     private String NAVER_SNS_CLIENT_SECRET;
 
-    @Value("${sns.naver.callback.url}")
+    @Value("${spring.sns.naver.callback.url}")
     private String NAVER_SNS_CALLBACK_URL;
 
-    @Value("${sns.naver.token.url}")
+    @Value("${spring.sns.naver.token.url}")
     private String NAVER_SNS_TOKEN_BASE_URL;
 
-    @Value("${sns.naver.user.url}")
+    @Value("${spring.sns.naver.user.url}")
     private String NAVER_SNS_USER_URL;
 
     @Override
