@@ -31,8 +31,10 @@
             <Them3Edu/>
             <Them3Certi/>
             <Them3Exp/>
-            <Them3Skill/>
-            <Them3Awards/>
+            <div class="draggable-container-col p-5">
+              <Them3Skill/>
+              <Them3Awards/>
+            </div>
             <Them3Project/>
           </draggable>
         </div>

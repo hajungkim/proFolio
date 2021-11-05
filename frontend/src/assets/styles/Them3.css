@@ -103,42 +103,48 @@
     grid-column: 1;
     margin-left: 10%;
     margin-right: 6%;
-    padding: 10% 10% 5% 10%;
+    padding: 5%;
+    margin: 0 5% 5% 5%;
 }
 .them3-certi{
     background-color: white;
     margin-right: 16%;
-    padding: 10% 10% 5% 10%;
+    padding: 5%;
+    margin: 0 5% 5% 5%;
 }
 .them3-exp{
     background-color: white;
     grid-column: 1 / span 2;
     padding: 5%;
-    margin: 4% 8% 5% 5%;
+    margin: 0 5% 5% 5%;
 }
 .them3-skill{
     background-color: white;
     grid-column: 1;
-    margin-left: 10%;
-    margin-right: 6%;
-    padding: 10% 10% 5% 10%;
+    padding: 5%;
+    margin: 0 5% 5% 5%;
 }
 .them3-awards{
     background-color: white;
     margin-right: 16%;
-    padding: 10% 10% 5% 10%;
+    padding: 5%;
+    margin: 0 5% 5% 5%;
 }
 .them3-awards-card{
     position: relative;
 }
 .them3-projects{
+    /* background-color: white; */
+    /* margin-right: 16%; */
+    /* padding: 5%; */
+    /* margin: 0 5% 5% 5%; */
     grid-column: 1 / span 2;
 }
 .them3-card{
     position: relative;
     background-color: white;
     padding: 5%;
-    margin: 4% 8% 5% 5%;
+    margin: 0 5% 5% 5%;
 }
 .grid2{
     display: grid;
@@ -163,7 +169,7 @@
     background-color: white;
     grid-column: 1 / span 2;
     padding: 5%;
-    margin: 0 8% 5% 5%;
+    margin: 0 5% 5% 5%;
 }
 
 .draggable-container-col {
@@ -175,4 +181,8 @@
     /* margin: 5% 5% 5% 5%; */
     display: grid;
     /* grid-template-columns: repeat(2, 1fr); */
+}
+
+.p-5 {
+    padding: 5%;
 }
