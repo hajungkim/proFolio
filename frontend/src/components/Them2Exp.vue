@@ -31,9 +31,7 @@ import { mapState } from 'vuex';
 export default {
   name: 'Them2Exp',
   props: {
-    edit: {
-      type: Boolean,
-    },
+    edit: Boolean,
   },
   data() {
     return {

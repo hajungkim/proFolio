@@ -19,21 +19,25 @@
           </div>
           <h4>complete</h4>
           <div class="buttons">
-              <button class="btn-hover color-9">저장하기</button>
-              <button class="btn-hover color-9" @click="openModal">PDF변환</button>
+            <button class="btn-hover color-9">저장하기</button>
+            <button class="btn-hover color-9" @click="openModal">PDF변환</button>
+            <!-- edit -->
+            <button id="edit-btn" @click="clickEdit">{{editBtn}}</button>
           </div>
       </div>
       <div class="them3-content">
         <div id="them3-pdf">
           <draggable>
-            <Them3Info/>
-            <Them3Intro/>
-            <Them3Edu/>
-            <Them3Certi/>
-            <Them3Exp/>
-            <Them3Skill/>
-            <Them3Awards/>
-            <Them3Project/>
+            <Them3Info :edit="edit"/>
+            <Them3Intro :edit="edit"/>
+            <Them3Edu :edit="edit"/>
+            <Them3Certi :edit="edit"/>
+            <Them3Exp :edit="edit"/>
+            <div class="draggable-container-col p-5">
+              <Them3Skill :edit="edit"/>
+              <Them3Awards :edit="edit"/>
+            </div>
+            <Them3Project :edit="edit"/>
           </draggable>
         </div>
       </div>
@@ -83,6 +87,8 @@ export default {
     return {
       isOpenModal: false,
       pdfName: '',
+      edit: false,
+      editBtn: '편집',
     };
   },
   methods: {
@@ -119,6 +125,15 @@ export default {
     },
     closeModal() {
       this.isOpenModal = false;
+    },
+    clickEdit() {
+      if (this.edit) {
+        this.editBtn = '편집';
+        this.edit = false;
+      } else {
+        this.editBtn = '완료';
+        this.edit = true;
+      }
     },
   },
   created() {

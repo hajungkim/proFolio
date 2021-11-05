@@ -47,6 +47,9 @@ import { mapState } from 'vuex';
 
 export default {
   name: 'Them1Skill',
+  props: {
+    edit: Boolean,
+  },
   data() {
     return {
     };

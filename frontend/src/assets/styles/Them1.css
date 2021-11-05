@@ -131,7 +131,7 @@
     border-radius: 15px;
     text-align: center;
 }
-.info{
+.them1_info{
     display: grid;
     font-family: 'S-CoreDream-6Bold';
     grid-template-columns: 1fr, 1fr;

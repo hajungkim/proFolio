@@ -123,14 +123,11 @@ export default {
       this.isOpenModal = false;
     },
     clickEdit() {
-      console.log('@편집 작동', this.edit);
       if (this.edit) {
         this.editBtn = '편집';
-        console.log(this.editBtn);
         this.edit = false;
       } else {
         this.editBtn = '완료';
-        console.log(this.editBtn);
         this.edit = true;
       }
     },

@@ -1,10 +1,11 @@
 <template>
-  <div class="skill">
+  <div class="skill" v-if="edit || portfolio.awards.length">
     <div class="name">Awards</div>
-    <AddItemButton type="awards"/>
+    <AddItemButton type="awards" v-if="edit"/>
     <draggable class="draggable-container-row">
       <div v-for="(award) in portfolio.awards" :key="award.id" class="card">
         <RemoveItemButton
+          v-if="edit"
           type="awards"
           :item="award"
         />
@@ -33,6 +34,9 @@ import AddItemButton from './AddItemButton.vue';
 
 export default {
   name: 'Them1Awards',
+  props: {
+    edit: Boolean,
+  },
   components: {
     draggable,
     RemoveItemButton,

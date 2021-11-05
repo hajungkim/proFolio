@@ -1,7 +1,7 @@
 <template>
-  <div class="them2-box" id="remove">
+  <div class="them2-box" id="remove"  v-if="edit || portfolio.project.length">
     <div class="them2-subtitle">Project</div>
-    <AddItemButton v-if="edit" type="project"/>
+    <AddItemButton type="project" v-if="edit"/>
     <!-- test -->
     <draggable
       ghost-class="ghost"

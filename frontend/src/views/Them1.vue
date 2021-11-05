@@ -21,17 +21,21 @@
           <div class="buttons">
               <button class="btn-hover color-9">저장하기</button>
               <button class="btn-hover color-9" @click="openModal">PDF변환</button>
+              <!-- edit -->
+            <button id="edit-btn" @click="clickEdit">{{editBtn}}</button>
           </div>
       </div>
       <div class="content">
         <div id="pdf">
-          <draggable>
-            <Them1Info/>
-            <Them1Skill/>
-            <Them1Exp/>
-            <Them1Certi/>
-            <Them1Awards/>
-            <Them1Project/>
+          <draggable
+            ghost-class="ghost"
+          >
+            <Them1Info :edit="edit"/>
+            <Them1Skill :edit="edit"/>
+            <Them1Exp :edit="edit"/>
+            <Them1Certi :edit="edit"/>
+            <Them1Awards :edit="edit"/>
+            <Them1Project :edit="edit"/>
           </draggable>
         </div>
       </div>
@@ -77,6 +81,8 @@ export default {
     return {
       isOpenModal: false,
       pdfName: '',
+      edit: false,
+      editBtn: '편집',
     };
   },
   methods: {
@@ -113,6 +119,15 @@ export default {
     },
     closeModal() {
       this.isOpenModal = false;
+    },
+    clickEdit() {
+      if (this.edit) {
+        this.editBtn = '편집';
+        this.edit = false;
+      } else {
+        this.editBtn = '완료';
+        this.edit = true;
+      }
     },
   },
   created() {

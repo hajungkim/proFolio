@@ -20,6 +20,9 @@ import { mapState } from 'vuex';
 
 export default {
   name: 'Them2Certi',
+  props: {
+    edit: Boolean,
+  },
   data() {
     return {
     };

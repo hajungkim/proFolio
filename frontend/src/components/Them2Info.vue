@@ -1,13 +1,5 @@
 <template>
-  <div class="them2-box" id='removeInfo'>
-    <!-- test -->
-      <button
-        id="remove-btn"
-        :class="[edit ? '' : 'hidden']"
-        @click="removeComponent()"
-      >
-      X
-      </button>
+  <div class="them2-box" id='remove'>
     <div class="them2-subtitle">About Me</div>
       <div class="them2-info-box">
           <div class="user-img">
