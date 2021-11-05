@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import Vue from 'vue';
 import Vuex from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
@@ -172,8 +173,21 @@ export default new Vuex.Store({
           startDate: '2021.10',
           endDate: '2021.11',
         },
+        {
+          id: '3',
+          title: '12',
+          summary: '개발자 준비생을 위한 포트폴리오 사이트',
+          description: '쉬운',
+          memberCnt: 5,
+          technologyStack: 'Java, Django, Vue, SpringBoot',
+          role: 'FE',
+          link: 'https://ssafy.com',
+          startDate: '2021.10',
+          endDate: '2021.11',
+        },
       ],
     },
+    portfolio: {},
   },
   mutations: {
     CHANGE_ISLOGIN(state, isLogin) {
@@ -205,6 +219,35 @@ export default new Vuex.Store({
     },
     TECHNOLOGY_INFO(state, techInfo) {
       state.resume.technologyStack = techInfo;
+    },
+    PROJECT_INFO(state, project) {
+      state.resume.project = project;
+    },
+    // ABOUT PORTFOLIO
+    PORTFOLIO_COPY_RESUME(state) {
+      const newObject = JSON.parse(JSON.stringify(state.resume));
+      state.portfolio = newObject;
+    },
+    PORTFOLIO_USER_INFO(state, userinfo) {
+      state.portfolio.user = userinfo;
+    },
+    PORTFOLIO_EDUCATION_INFO(state, education) {
+      state.portfolio.education = education;
+    },
+    PORTFOLIO_CAREER_INFO(state, career) {
+      state.portfolio.career = career;
+    },
+    PORTFOLIO_ACTIVITY_INFO(state, activity) {
+      state.portfolio.activity = activity;
+    },
+    PORTFOLIO_LANGUAGE_INFO(state, language) {
+      state.portfolio.foreignLang = language;
+    },
+    PORTFOLIO_PROJECT_INFO(state, project) {
+      state.portfolio.project = project;
+    },
+    PORTFOLIO_AWARDS_INFO(state, awards) {
+      state.portfolio.awards = awards;
     },
   },
   actions: {
@@ -378,6 +421,40 @@ export default new Vuex.Store({
           context.commit('TECHNOLOGY_INFO', response.data.data);
         });
       });
+    },
+    // ABOUT PORTFOLIO //////////////////////////
+    portfolioCopyResume(context) {
+      context.commit('PORTFOLIO_COPY_RESUME');
+    },
+    portfolioProjectDelete(context, data) {
+      // data === project
+      const newArray = _.differenceWith(this.state.portfolio.project, [data], _.isEqual);
+      context.commit('PORTFOLIO_PROJECT_INFO', newArray);
+    },
+    portfolioProjectAdd(context, data) {
+      // data === project
+      const newArray = _.unionWith(this.state.portfolio.project, [data], _.isEqual);
+      context.commit('PORTFOLIO_PROJECT_INFO', newArray);
+    },
+    portfolioAwardsDelete(context, data) {
+      // data === award
+      const newArray = _.differenceWith(this.state.portfolio.awards, [data], _.isEqual);
+      context.commit('PORTFOLIO_AWARDS_INFO', newArray);
+    },
+    portfolioAwardsAdd(context, data) {
+      // data === award
+      const newArray = _.unionWith(this.state.portfolio.awards, [data], _.isEqual);
+      context.commit('PORTFOLIO_AWARDS_INFO', newArray);
+    },
+    portfolioActivityDelete(context, data) {
+      // data === award
+      const newArray = _.differenceWith(this.state.portfolio.activity, [data], _.isEqual);
+      context.commit('PORTFOLIO_ACTIVITY_INFO', newArray);
+    },
+    portfolioActivityAdd(context, data) {
+      // data === award
+      const newArray = _.unionWith(this.state.portfolio.activity, [data], _.isEqual);
+      context.commit('PORTFOLIO_ACTIVITY_INFO', newArray);
     },
   },
   modules: {

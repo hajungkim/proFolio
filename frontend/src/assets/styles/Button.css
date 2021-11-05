@@ -1,0 +1,13 @@
+.outer-btn-add {
+  margin: 0.5rem;
+  /* position: absolute; */
+  /* top: 2%; */
+  /* right: 2%; */
+}
+
+.outer-btn-remove {
+  margin: 0.5rem;
+  position: absolute;
+  top: 2%;
+  right: 2%;
+}

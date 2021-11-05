@@ -189,6 +189,7 @@
     font-family: 'S-CoreDream-6Bold';
     color: #715ae4;
     font-size: 28px;
+    display: inline-block;
 }
 .birth{
     margin-bottom: 5%;
@@ -247,7 +248,8 @@
     margin: 10% 0;
 }
 .card{
-    margin: 30px 0;
+    position: relative;
+    margin: 15px 15px;
     padding: 30px 40px;
     box-sizing: border-box;
     border: 1px solid rgba(0, 0, 0, 0.25);
@@ -263,8 +265,18 @@
 }
 .projects{
     margin: 5% 5% 5% 5%;
+    /* display: grid;
+    grid-template-columns: repeat(2, 1fr); */
+}
+.draggable-container-col {
+    /* margin: 5% 5% 5% 5%; */
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+}
+.draggable-container-row {
+    /* margin: 5% 5% 5% 5%; */
+    display: grid;
+    /* grid-template-columns: repeat(2, 1fr); */
 }
 .project-card{
     margin: 10px;
@@ -272,6 +284,7 @@
     box-sizing: border-box;
     border: 1px solid rgba(0, 0, 0, 0.25);
     border-radius: 20px;
+    position: relative;
 }
 .summary{
     font-weight: bold;

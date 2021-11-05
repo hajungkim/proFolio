@@ -3,12 +3,12 @@
       <div class="left">
           <div class="title">
               <div class="them1-box">
-                <img :src = "resume.user.profilePath" class="profile-img">
+                <img :src = "portfolio.user.profilePath" class="profile-img">
               </div>
               <div class="detail">
-                <div class="username">{{resume.user.name}}</div>
-                <div class="tel">Tel. {{resume.user.phone}}</div>
-                <div class="email">Email. {{resume.user.email}}</div>
+                <div class="username">{{portfolio.user.name}}</div>
+                <div class="tel">Tel. {{portfolio.user.phone}}</div>
+                <div class="email">Email. {{portfolio.user.email}}</div>
               </div>
           </div>
       </div>
@@ -37,7 +37,7 @@ export default {
   },
   computed: {
     ...mapState([
-      'resume',
+      'portfolio',
     ]),
   },
 };

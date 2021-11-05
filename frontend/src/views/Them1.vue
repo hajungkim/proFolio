@@ -25,12 +25,14 @@
       </div>
       <div class="content">
         <div id="pdf">
-          <Them1Info/>
-          <Them1Skill/>
-          <Them1Exp/>
-          <Them1Certi/>
-          <Them1Awards/>
-          <Them1Project/>
+          <draggable>
+            <Them1Info/>
+            <Them1Skill/>
+            <Them1Exp/>
+            <Them1Certi/>
+            <Them1Awards/>
+            <Them1Project/>
+          </draggable>
         </div>
       </div>
       <div v-if="isOpenModal" class="modal-bg">
@@ -50,6 +52,7 @@
 </template>
 
 <script>
+import draggable from 'vuedraggable';
 import html2pdf from 'html2pdf.js';
 import Them1Info from '../components/Them1Info.vue';
 import Them1Skill from '../components/Them1Skill.vue';
@@ -62,6 +65,7 @@ import { postPortfolio } from '../store/modules/PortfolioAPI';
 export default {
   name: 'Them1',
   components: {
+    draggable,
     Them1Info,
     Them1Skill,
     Them1Exp,
@@ -110,6 +114,9 @@ export default {
     closeModal() {
       this.isOpenModal = false;
     },
+  },
+  created() {
+    this.$store.dispatch('portfolioCopyResume');
   },
 };
 </script>
