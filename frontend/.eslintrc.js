@@ -15,6 +15,7 @@ module.exports = {
       'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
       'no-param-reassign': ['error', { "props": false }],
       'linebreak-style': 0,
-      "import/no-unresolved": "off"
+      "import/no-unresolved": "off",
+      'quotes': ['off', 'single'],
     },
   };

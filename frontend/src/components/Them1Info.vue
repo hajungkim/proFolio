@@ -1,14 +1,14 @@
 <template>
-  <div class="info">
+  <div class="them1_info">
       <div class="left">
           <div class="title">
               <div class="them1-box">
-                <img :src = "resume.user.profilePath" class="profile-img">
+                <img :src = "portfolio.user.profilePath" class="profile-img">
               </div>
               <div class="detail">
-                <div class="username">{{resume.user.name}}</div>
-                <div class="tel">Tel. {{resume.user.phone}}</div>
-                <div class="email">Email. {{resume.user.email}}</div>
+                <div class="username">{{portfolio.user.name}}</div>
+                <div class="tel">Tel. {{portfolio.user.phone}}</div>
+                <div class="email">Email. {{portfolio.user.email}}</div>
               </div>
           </div>
       </div>
@@ -31,13 +31,16 @@ import { mapState } from 'vuex';
 
 export default {
   name: 'Them1Info',
+  props: {
+    edit: Boolean,
+  },
   data() {
     return {
     };
   },
   computed: {
     ...mapState([
-      'resume',
+      'portfolio',
     ]),
   },
 };

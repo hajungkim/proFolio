@@ -148,6 +148,7 @@
     grid-template-columns: repeat(3, 1fr);
 }
 .them2-card{
+    position: relative;
     border: 2px solid #ececec;
     border-radius: 20px;
     padding: 3%;
@@ -233,4 +234,15 @@ ul.tl li .timestamp{
     border-radius: 15px;
     padding: 0 1%;
     margin: 0 0.5%;
+}
+
+.draggable-container-col {
+    /* margin: 5% 5% 5% 5%; */
+    /* display: grid; */
+    /* grid-template-columns: repeat(2, 1fr); */
+}
+.draggable-container-row {
+    /* margin: 5% 5% 5% 5%; */
+    /* display: grid; */
+    /* grid-template-columns: repeat(2, 1fr); */
 }

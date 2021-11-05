@@ -21,16 +21,22 @@
           <div class="buttons">
               <button class="btn-hover color-9">저장하기</button>
               <button class="btn-hover color-9" @click="openModal">PDF변환</button>
+              <!-- edit -->
+            <button id="edit-btn" @click="clickEdit">{{editBtn}}</button>
           </div>
       </div>
       <div class="content">
         <div id="pdf">
-          <Them1Info/>
-          <Them1Skill/>
-          <Them1Exp/>
-          <Them1Certi/>
-          <Them1Awards/>
-          <Them1Project/>
+          <draggable
+            ghost-class="ghost"
+          >
+            <Them1Info :edit="edit"/>
+            <Them1Skill :edit="edit"/>
+            <Them1Exp :edit="edit"/>
+            <Them1Certi :edit="edit"/>
+            <Them1Awards :edit="edit"/>
+            <Them1Project :edit="edit"/>
+          </draggable>
         </div>
       </div>
       <div v-if="isOpenModal" class="modal-bg">
@@ -50,6 +56,7 @@
 </template>
 
 <script>
+import draggable from 'vuedraggable';
 import html2pdf from 'html2pdf.js';
 import { mapState } from 'vuex';
 import Them1Info from '../components/Them1Info.vue';
@@ -63,6 +70,7 @@ import { postPortfolio } from '../store/modules/PortfolioAPI';
 export default {
   name: 'Them1',
   components: {
+    draggable,
     Them1Info,
     Them1Skill,
     Them1Exp,
@@ -74,6 +82,8 @@ export default {
     return {
       isOpenModal: false,
       pdfName: '',
+      edit: false,
+      editBtn: '편집',
     };
   },
   computed: {
@@ -116,6 +126,18 @@ export default {
     closeModal() {
       this.isOpenModal = false;
     },
+    clickEdit() {
+      if (this.edit) {
+        this.editBtn = '편집';
+        this.edit = false;
+      } else {
+        this.editBtn = '완료';
+        this.edit = true;
+      }
+    },
+  },
+  created() {
+    this.$store.dispatch('portfolioCopyResume');
   },
 };
 </script>

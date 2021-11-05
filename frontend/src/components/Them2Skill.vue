@@ -1,6 +1,13 @@
 <template>
-  <div class="them2-box">
-      <div class="them2-subtitle">Tech Stack</div>
+  <div class="them2-box" id="removeSkill">
+      <button
+        @click="remove"
+        id="remove-btn"
+        :class="[edit ? '' : 'hidden']"
+      >
+        delete
+      </button>
+      <div class="them2-subtitle" v-if="this.resume.technologyStack">Tech Stack</div>
       <div class="skill-desc">
           <div class="flex">
                 <div class="red level-color">5</div>
@@ -26,11 +33,18 @@
 <script>
 import { mapState } from 'vuex';
 import Them2SkillContent from './Them2SkillContent.vue';
+// import DeleteBtn from './DeleteBtn.vue';
 
 export default {
   name: 'Them2Skill',
+  props: {
+    edit: {
+      type: Boolean,
+    },
+  },
   components: {
     Them2SkillContent,
+    // DeleteBtn,
   },
   data() {
     return {
@@ -44,17 +58,24 @@ export default {
   },
   computed: {
     ...mapState([
-      'resume',
+      'portfolio',
     ]),
   },
   mounted() {
-    const list = this.resume.technologyStack;
+    const list = this.portfolio.technologyStack;
     let i;
     for (i = 0; i < list.length; i += 1) {
       if (list[i].kind === 1) this.langArr.push(list[i]);
       if (list[i].kind === 2) this.frameArr.push(list[i]);
       if (list[i].kind === 3) this.manaArr.push(list[i]);
     }
+  },
+  methods: {
+    remove() {
+      const content = document.getElementById('removeSkill');
+      content.remove();
+      // this.resume.technologyStack = '';
+    },
   },
 };
 </script>

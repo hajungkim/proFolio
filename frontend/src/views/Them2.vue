@@ -19,19 +19,26 @@
           </div>
           <h4>complete</h4>
           <div class="buttons">
-              <button class="btn-hover color-9">저장하기</button>
-              <button class="btn-hover color-9" @click="openModal">PDF변환</button>
+            <button class="btn-hover color-9">저장하기</button>
+            <button class="btn-hover color-9" @click="savePDF">PDF변환</button>
+            <!-- edit -->
+            <button id="edit-btn" @click="clickEdit">{{editBtn}}</button>
           </div>
      </div>
     <div class="them2-content">
       <div id="them2-pdf">
         <div class="them2-title">Portfolio</div>
-          <Them2Info/>
-          <Them2Skill/>
-          <Them2Project/>
-          <Them2Exp/>
-          <Them2Certi/>
-          <Them2Awards/>
+        <!-- test -->
+          <draggable
+            ghost-class="ghost"
+          >
+            <Them2Info :edit="edit"/>
+            <Them2Skill :edit="edit"/>
+            <Them2Project :edit="edit"/>
+            <Them2Exp :edit="edit"/>
+            <Them2Certi :edit="edit"/>
+            <Them2Awards :edit="edit"/>
+          </draggable>
         </div>
     </div>
     <div v-if="isOpenModal" class="modal-bg">
@@ -51,6 +58,7 @@
 </template>
 
 <script>
+import draggable from "vuedraggable";
 import html2pdf from 'html2pdf.js';
 import { mapState } from 'vuex';
 import Them2Awards from '../components/Them2Awards.vue';
@@ -63,6 +71,7 @@ import { postPortfolio } from '../store/modules/PortfolioAPI';
 
 export default {
   components: {
+    draggable,
     Them2Info,
     Them2Skill,
     Them2Project,
@@ -73,6 +82,8 @@ export default {
   name: 'Them2',
   data() {
     return {
+      edit: false,
+      editBtn: '편집',
       isOpenModal: false,
       pdfName: '',
     };
@@ -117,10 +128,52 @@ export default {
     closeModal() {
       this.isOpenModal = false;
     },
+    clickEdit() {
+      if (this.edit) {
+        this.editBtn = '편집';
+        this.edit = false;
+      } else {
+        this.editBtn = '완료';
+        this.edit = true;
+      }
+    },
+  },
+  created() {
+    this.$store.dispatch('portfolioCopyResume');
   },
 };
 </script>
 
 <style>
 @import '../assets/styles/Them2.css';
+.ghost {
+  opacity: 0.5;
+  background: #c8ebfb;
+}
+
+#edit-btn {
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  width: 50px;
+  height: 35px;
+  border-radius: 10px;
+  background-color: darkgray;
+  margin-left: 10px;
+  /* position: absolute; */
+  /* top: 14%; */
+  /* right: 20%; */
+  cursor: pointer;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+#remove-btn {
+  width: 50px;
+  height: 35px;
+  border-radius: 10px;
+  background-color: #d9534f;
+  /* margin-left: 10px; */
+  cursor: pointer;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
 </style>
