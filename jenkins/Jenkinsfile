@@ -42,7 +42,7 @@ pipeline {
                 sh 'docker-compose up -d'
                 mattermostSend (
                     color: "#8bf285", 
-                    message: "👍 Build Finished: ${env.JOB_NAME} #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Link to build>)"
+                    message: "👍 Deploy Finished: ${env.JOB_NAME} #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Link to build>)"
                 ) 
             }
         }
