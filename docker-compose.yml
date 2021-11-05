@@ -1,0 +1,38 @@
+version: "3"
+services:
+  frontend:
+    build:
+      dockerfile: Dockerfile
+      context: ./frontend
+    container_name: profolio_fe
+    volumes:
+      - /app/node_modules
+      - ./frontend:/app
+    stdin_open: true
+
+  nginx:
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+    ports:
+      - "80:80"
+      - "443:443"
+
+  backend:
+    build:
+      dockerfile: Dockerfile
+      context: ./backend
+    container_name: profolio_be
+    volumes:
+      - ./backend:/app
+
+  faceswap:
+    build:
+      dockerfile: Dockerfile
+      context: ./faceswap
+    container_name: faceswap_be
+    volumes:
+      - ./faceswap:/app

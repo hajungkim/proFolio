@@ -1,0 +1,30 @@
+.portfolio-content{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-right: 5%;
+}
+.portfolio-card{
+    box-shadow: 9px 9px 10px 10px rgba(0,0,0,0.1);
+    text-align: center;
+    border-radius: 15px;
+    margin: 5%;
+    height: 25vh;
+    line-height: 25vh;
+    font-weight: bold;
+    font-family: 'S-CoreDream-6Bold';
+    cursor: pointer;
+}
+.portfolio-card:hover{
+    box-shadow: 1px 2px 2px 2px #0053b8;
+    color: #0053b8;
+    background: none;
+    font-size: 2rem;
+    margin: 2% 5%;
+}
+.preview_img{
+    margin: 0 10%;
+    height: 40vh;
+}
+.portfolio-item{
+    display: flex;
+}

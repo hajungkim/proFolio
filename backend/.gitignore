@@ -35,3 +35,9 @@ out/
 
 ### VS Code ###
 .vscode/
+
+## s3 ##
+application-credentials.yml
+
+## google social login ##
+#application-oauth.yml

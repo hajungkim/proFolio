@@ -1,26 +1,67 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '../views/Home.vue';
+import Main from '../views/Main.vue';
+import Login from '../views/Login.vue';
+import MyPage from '../views/MyPage.vue';
+import Resume from '../views/Resume.vue';
+import Them1 from '../views/Them1.vue';
+import Them2 from '../views/Them2.vue';
+import Them3 from '../views/Them3.vue';
+import Convert from '../views/Convert.vue';
+import SelectTheme from '../views/SelectTheme.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home,
+    name: 'Main',
+    component: Main,
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    path: '/login',
+    name: 'Login',
+    component: Login,
+  },
+  {
+    path: '/mypage',
+    name: 'MyPage',
+    component: MyPage,
+  },
+  {
+    path: '/resume',
+    name: 'Resume',
+    component: Resume,
+  },
+  {
+    path: '/them1',
+    name: 'Them1',
+    component: Them1,
+  },
+  {
+    path: '/them2',
+    name: 'Them2',
+    component: Them2,
+  },
+  {
+    path: '/them3',
+    name: 'Them3',
+    component: Them3,
+  },
+  {
+    path: '/convert',
+    name: 'Convert',
+    component: Convert,
+  },
+  {
+    path: '/select',
+    name: 'SelectTheme',
+    component: SelectTheme,
   },
 ];
 
 const router = new VueRouter({
+  mode: 'history',
   routes,
 });
 

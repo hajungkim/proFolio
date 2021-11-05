@@ -1,0 +1,65 @@
+server:
+  port : 7777
+  servlet:
+    context-path: /api
+
+spring:
+  profiles:
+    active: local
+    include: aws, credentials, oauth
+  jpa:
+    defer-datasource-initialization: true
+    generate-ddl: true
+    database: mysql
+    datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      initialization-mode: always
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+
+---
+# 개발
+spring:
+  profiles: local
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/profolio?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
+    username: root
+    password: ssafy
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  front:
+    url : http://localhost:3000/
+  sns:
+    google:
+      callback:
+        url: http://localhost:7777/api/auth/google/callback
+    naver:
+      callback:
+        url: http://localhost:7777/api/auth/naver/callback
+    github:
+      callback:
+        url: http://localhost:7777/api/auth/github/callback
+
+---
+# 배포 환경
+spring:
+  profiles: prod
+  datasource:
+    url: jdbc:mysql://k5b302.p.ssafy.io:3306/profolio?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
+    username: profolio
+    password: profoliossafy
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  front:
+    url: https://k5b302.p.ssafy.io/
+  sns:
+    google:
+      callback:
+        url: https://k5b302.p.ssafy.io/api/auth/google/callback
+    naver:
+      callback:
+        url: https://k5b302.p.ssafy.io/api/auth/naver/callback
+    github:
+      callback:
+        url: https://k5b302.p.ssafy.io/api/auth/github/callback
