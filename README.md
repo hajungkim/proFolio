@@ -1,11 +1,16 @@
-![logo](/uploads/a28baf64fe6afc36a544de35d81feb80/logo.png)
+<p align="center">
+  ![logo](/uploads/a28baf64fe6afc36a544de35d81feb80/logo.png)
+  <!-- <h3 align="center">IT 입문자들을 위한 포트폴리오 생성 서비스💻</h3> -->
+<br/>  
+<br/> 
+</p>
 
 # proFolio | 프로폴리오 📝
 
-> 서비스명 : proFolio 프로폴리오  
-> 개발기간 : 2021.10.12 ~ 2021.11.19 (6주)  
-> 팀명 : 알잘딱깔쓴  
->  🤷‍♀️ 알아서 잘 딱 깔끔하게 쓴 포트폴리오
+- #### 서비스명 : proFolio 프로폴리오  
+- #### 개발기간 : 2021.10.12 ~ 2021.11.19 (6주)  
+- #### 팀명 : 알잘딱깔쓴  
+  - ##### "알아서 잘 딱 깔끔하게 쓴 포트폴리오"
 
 <br>
 
@@ -16,7 +21,6 @@
 - IT 입문자들을 위한 포트폴리오 작성 가이드를 제공하는 웹 서비스
 - 본인의 이력(학력, 자격증, 프로젝트 내용 등)을 작성한 후, 테마를 선택하면 포트폴리오로 변환해주는 서비스 제공
 - 취업 사진이 없는 지원자를 위한 취업용 사진 합성 서비스 제공
-
 <br>
 
 ### 기획배경
@@ -29,9 +33,9 @@
 
 # 👩 팀원 역할
 
-|   Name   |                   이수정                   |             고동건             |          김하정          |          엄재식          |          전혜민          |          최정은          |
-| :------: | :----------------------------------------: | :----------------------------: | :----------------------: | :----------------------: | :----------------------: | :----------------------: |
-| Profile  |          <img width="200" src="">          |    <img width="200" src="">    | <img width="200" src=""> | <img width="200" src=""> | <img width="200" src=""> | <img width="200" src=""> |
+|   Name   |         이수정         |         고동건         |         김하정         |         엄재식         |         전혜민         |         최정은         |
+| :------: | :-------------------: | :-------------------: | :-------------------: | :-------------------: | :-------------------: | :----------------------: |
+| Profile  |    <img width="100" src="">   |    <img width="100" src="">   |    <img width="100" src="">   |    <img width="100" src="">   |    <img width="100" src="">   |    <img width="100" src="">   |
 | Position | Project leader <br />Backend <br /> DevOps | Full Stack<br />사진 합성 기능 |     Full Stack<br />     |      Frontend<br />      |    Full Stack <br />     |      Frontend<br />      |
 |  GitHub  |  [@SuJeong2](https://github.com/SuJeong2)  |    [@](https://github.com/)    | [@](https://github.com/) | [@](https://github.com/) | [@](https://github.com/) | [@](https://github.com/) |
 
@@ -40,38 +44,42 @@
 # 💻 기술 스택
 
 > ### Front : Vue.js
->
 > ### Back : Spring, Django
->
 > ### Devops : docker, jenkins, nginx
->
 > ### Server : AWS
->
 > ### DB : MySQL
 
 <br>
 
 # 📝개발 규칙
+<details>
+  <summary>Git 규칙</summary>  
 
-### ✔Git 규칙
+  #### ✔ Branch 규칙  
+  
+  ### `develop -> BE,FE/feat/기능명`  
+  #### ex) FE/feat/editor  
+  <br>  
 
-- #### Branch 규칙
+  #### ✔ Commit 규칙  
+  
+  ### `[ FE / BE / DEV ] [Git 컨벤션(대문자)] Commit 메시지`  
+  #### ex) [FE] [feat] education API연결  
+  <br><br>
+</details>
+<details>
+  <summary>Naming Rule</summary>  
 
-  ### `develop -> BE,FE/feat/기능명`
-
-  #### ex) FE/feat/editor
-
-- #### Commit 규칙
-  ### `[ FE / BE / DEV ] [Git 컨벤션(대문자)] : Commit 메시지`
-  #### ex) [FE] [feat] education API연결
+  | 프론트엔드 | 백엔드                                                                                                                                     |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+|            | 클래스명 : 첫글자 대문자 + Camel case<br>변수 : 첫글자 소문자 + Camel case<br>함수명 : save, find, update, delete + 엔티티이름(Camel case) |
+</details>
 
 <br>
 
-### ✔ Naming Rule
+# 📃 산출물
 
-| 프론트엔드 | 백엔드                                                                                                                                     |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-|            | 클래스명 : 첫글자 대문자 + Camel case<br>변수 : 첫글자 소문자 + Camel case<br>함수명 : save, find, update, delete + 엔티티이름(Camel case) |
+# ✔ 서비스 구조
 
 <br>
 
