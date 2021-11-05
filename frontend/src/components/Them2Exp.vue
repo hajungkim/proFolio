@@ -23,6 +23,9 @@ import { mapState } from 'vuex';
 
 export default {
   name: 'Them2Exp',
+  props: {
+    edit: Boolean,
+  },
   data() {
     return {
     };

@@ -1,5 +1,5 @@
 <template>
-  <div class="info">
+  <div class="them1_info">
       <div class="left">
           <div class="title">
               <div class="them1-box">
@@ -31,6 +31,9 @@ import { mapState } from 'vuex';
 
 export default {
   name: 'Them1Info',
+  props: {
+    edit: Boolean,
+  },
   data() {
     return {
     };

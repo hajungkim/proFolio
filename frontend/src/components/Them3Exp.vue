@@ -1,10 +1,11 @@
 <template>
-  <div class="them3-exp">
+  <div class="them3-exp" v-if="edit || portfolio.activity.length">
     <div class="name">Experience</div>
-    <AddItemButton type="activity"/>
+    <AddItemButton type="activity" v-if="edit"/>
     <draggable class="draggable-container-row">
       <div v-for="(exp) in portfolio.activity" :key="exp.id" class="card">
         <RemoveItemButton
+          v-if="edit"
           type="activity"
           :item="exp"
         />
@@ -33,6 +34,9 @@ import AddItemButton from './AddItemButton.vue';
 
 export default {
   name: 'Them3Exp',
+  props: {
+    edit: Boolean,
+  },
   components: {
     draggable,
     RemoveItemButton,

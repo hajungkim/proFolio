@@ -1,10 +1,11 @@
 <template>
-  <div class="them2-box">
+  <div class="them2-box"  v-if="edit || portfolio.awards.length">
     <div class="them2-subtitle">Awards</div>
-    <AddItemButton type="awards"/>
+    <AddItemButton type="awards" v-if="edit"/>
     <draggable class="draggable-container-row">
       <div v-for="(award) in portfolio.awards" :key="award.id" class="them2-card">
         <RemoveItemButton
+          v-if="edit"
           type="awards"
           :item="award"
         />
@@ -25,6 +26,9 @@ import AddItemButton from './AddItemButton.vue';
 
 export default {
   name: 'Them2Awards',
+  props: {
+    edit: Boolean,
+  },
   components: {
     draggable,
     RemoveItemButton,

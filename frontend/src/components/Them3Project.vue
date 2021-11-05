@@ -1,10 +1,11 @@
 <template>
   <div class="them3-projects">
-    <AddItemButton type="project"/>
+    <AddItemButton type="project" v-if="edit"/>
     <draggable class="draggable-container-row">
       <div v-for="(pro) in portfolio.project" :key="pro.id" class="them3-card">
         <div class="name">{{pro.title}}</div>
         <RemoveItemButton
+          v-if="edit"
           type="project"
           :item="pro"
         />
@@ -42,6 +43,9 @@ import AddItemButton from './AddItemButton.vue';
 
 export default {
   name: 'Them3Project',
+  props: {
+    edit: Boolean,
+  },
   components: {
     draggable,
     RemoveItemButton,
