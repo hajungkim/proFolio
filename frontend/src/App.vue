@@ -1,10 +1,10 @@
 <template>
-  <div id="app">
+  <v-app id="app">
     <div id="nav">
       <Navbar/>
     </div>
     <router-view/>
-  </div>
+  </v-app>
 </template>
 <script>
 import Navbar from './components/Navbar.vue';
