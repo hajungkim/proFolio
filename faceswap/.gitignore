@@ -284,4 +284,5 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+dlib-19.17.0-cp37-cp37m-win_amd64.whl
 # End of https://www.toptal.com/developers/gitignore/api/django,windows,macos,linux,python
