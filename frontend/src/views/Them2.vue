@@ -20,15 +20,15 @@
           <h4>complete</h4>
           <div class="buttons">
             <button class="btn-hover color-9">저장하기</button>
-            <button class="btn-hover color-9" @click="test">PDF변환</button>
+            <button class="btn-hover color-9" @click="savePDF">PDF변환</button>
             <!-- edit -->
+            <button id="edit-btn" @click="clickEdit">{{editBtn}}</button>
           </div>
      </div>
     <div class="them2-content">
       <div id="them2-pdf">
         <div class="them2-title">Portfolio</div>
         <!-- test -->
-          <button id="edit-btn" @click="clickEdit">{{editBtn}}</button>
           <draggable
             ghost-class="ghost"
           >
@@ -135,6 +135,9 @@ export default {
         this.edit = true;
       }
     },
+  },
+  created() {
+    this.$store.dispatch('portfolioCopyResume');
   },
 };
 </script>

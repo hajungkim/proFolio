@@ -1,33 +1,38 @@
 <template>
   <div class="them2-box" id="remove">
+    <div class="them2-subtitle">Project</div>
     <DeleteBtn :edit="edit"/>
-      <div class="them2-subtitle">Project</div>
-      <!-- test -->
-      <draggable
-        ghost-class="ghost"
-      >
-        <div v-for="(pro) in resume.project" :key="pro.id" class="them2-card">
-            <span class="them2-cardname">{{pro.title}}</span>
-            <span class="them2-grayfont">({{pro.startDate}} ~ {{pro.endDate}})</span>
-            <div style="float: right; font-weight:bold">{{pro.link}}</div>
-            <div class="them2-summary">{{pro.summary}}</div>
-            <div class="them2-grayfont">{{pro.description}}</div>
-            <div class="grid2 margin">
-              <div>
-                  <span style="color: #0014BC; margin-right: 5%">팀원</span>
-                  <span>{{pro.memberCnt}}명</span>
-              </div>
-              <div>
-                  <span style="color: #0014BC; margin-right: 5%">역할</span>
-                  <span>{{pro.role}}</span>
-              </div>
-                <div style="margin-top: 5%">
-                  <span style="color: #0014BC; margin-right: 5%">기술스택</span>
-                  <span>{{pro.technologyStack}}</span>
-              </div>
-            </div>
+    <AddItemButton type="project"/>
+    <!-- test -->
+    <draggable
+      ghost-class="ghost"
+    >
+      <div v-for="(pro) in portfolio.project" :key="pro.id" class="them2-card">
+        <RemoveItemButton
+          type="project"
+          :item="pro"
+        />
+        <span class="them2-cardname">{{pro.title}}</span>
+        <span class="them2-grayfont">({{pro.startDate}} ~ {{pro.endDate}})</span>
+        <div style="float: right; font-weight:bold">{{pro.link}}</div>
+        <div class="them2-summary">{{pro.summary}}</div>
+        <div class="them2-grayfont">{{pro.description}}</div>
+        <div class="grid2 margin">
+          <div>
+            <span style="color: #0014BC; margin-right: 5%">팀원</span>
+            <span>{{pro.memberCnt}}명</span>
+          </div>
+          <div>
+            <span style="color: #0014BC; margin-right: 5%">역할</span>
+            <span>{{pro.role}}</span>
+          </div>
+            <div style="margin-top: 5%">
+            <span style="color: #0014BC; margin-right: 5%">기술스택</span>
+            <span>{{pro.technologyStack}}</span>
+          </div>
         </div>
-      </draggable>
+      </div>
+    </draggable>
   </div>
 </template>
 
@@ -35,6 +40,8 @@
 import draggable from "vuedraggable";
 import { mapState } from 'vuex';
 import DeleteBtn from './DeleteBtn.vue';
+import RemoveItemButton from './RemoveItemButton.vue';
+import AddItemButton from './AddItemButton.vue';
 
 export default {
   name: 'Them2Project',
@@ -46,6 +53,8 @@ export default {
   components: {
     draggable,
     DeleteBtn,
+    RemoveItemButton,
+    AddItemButton,
   },
   data() {
     return {
@@ -54,7 +63,7 @@ export default {
   },
   computed: {
     ...mapState([
-      'resume',
+      'portfolio',
     ]),
   },
 };

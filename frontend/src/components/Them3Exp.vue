@@ -1,35 +1,50 @@
 <template>
   <div class="them3-exp">
-      <div class="name">Experience</div>
-      <div v-for="(exp) in resume.activity" :key="exp.id" class="card">
-          <div style="margin-bottom: 20px">
-              <span style="font-weight: bold; margin-right: 15px">{{exp.name}}</span>
-              <span style="color: #656060">{{exp.startDate}} ~ {{exp.endDate}}</span>
-          </div>
-          <div style="display: flex">
-              <div style="color: #656060; margin-right: 15px">활동 기관</div>
-              <div>{{exp.organization}}</div>
-          </div>
-          <div style="display: flex">
-              <div style="color: #656060; margin-right: 15px">활동 내용</div>
-              {{exp.description}}
-          </div>
+    <div class="name">Experience</div>
+    <AddItemButton type="activity"/>
+    <draggable class="draggable-container-row">
+      <div v-for="(exp) in portfolio.activity" :key="exp.id" class="card">
+        <RemoveItemButton
+          type="activity"
+          :item="exp"
+        />
+        <div style="margin-bottom: 20px">
+          <span style="font-weight: bold; margin-right: 15px">{{exp.name}}</span>
+          <span style="color: #656060">{{exp.startDate}} ~ {{exp.endDate}}</span>
+        </div>
+        <div style="display: flex">
+          <div style="color: #656060; margin-right: 15px">활동 기관</div>
+          <div>{{exp.organization}}</div>
+        </div>
+        <div style="display: flex">
+          <div style="color: #656060; margin-right: 15px">활동 내용</div>
+          {{exp.description}}
+        </div>
       </div>
+    </draggable>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
+import draggable from 'vuedraggable';
+import RemoveItemButton from './RemoveItemButton.vue';
+import AddItemButton from './AddItemButton.vue';
 
 export default {
   name: 'Them3Exp',
+  components: {
+    draggable,
+    RemoveItemButton,
+    AddItemButton,
+  },
   data() {
     return {
     };
   },
   computed: {
     ...mapState([
-      'resume',
+      'portfolio',
     ]),
   },
 };

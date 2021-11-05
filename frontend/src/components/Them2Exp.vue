@@ -2,17 +2,17 @@
   <div class="them2-box">
       <div class="them2-subtitle">Education &amp; Experience</div>
       <ul class="tl">
-        <li v-for="(exp) in resume.activity" :key="exp.id" class="tl-item">
+        <li v-for="(exp) in portfolio.activity" :key="exp.id" class="tl-item">
           <div class="timestamp">{{exp.startDate}} ~ {{exp.endDate}}</div>
           <div class="item-title">{{exp.name}}</div>
           <div class="item-detail">{{exp.description}}</div>
         </li>
           <li class="tl-item">
           <div class="timestamp">
-            {{resume.education.admissionDate}} ~
-            {{resume.education.graduationDate}}</div>
-          <div class="item-title">{{resume.education.university}}</div>
-          <div class="item-detail">전공 : {{resume.education.major}}</div>
+            {{portfolio.education.admissionDate}} ~
+            {{portfolio.education.graduationDate}}</div>
+          <div class="item-title">{{portfolio.education.university}}</div>
+          <div class="item-detail">전공 : {{portfolio.education.major}}</div>
         </li>
       </ul>
   </div>
@@ -29,7 +29,7 @@ export default {
   },
   computed: {
     ...mapState([
-      'resume',
+      'portfolio',
     ]),
   },
 };

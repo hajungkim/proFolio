@@ -52,11 +52,11 @@ export default {
   },
   computed: {
     ...mapState([
-      'resume',
+      'portfolio',
     ]),
   },
   mounted() {
-    const list = this.resume.technologyStack;
+    const list = this.portfolio.technologyStack;
     let i;
     for (i = 0; i < list.length; i += 1) {
       if (list[i].kind === 1) this.langArr.push(list[i]);

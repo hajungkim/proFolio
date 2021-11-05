@@ -25,14 +25,16 @@
       </div>
       <div class="them3-content">
         <div id="them3-pdf">
-          <Them3Info/>
-          <Them3Intro/>
-          <Them3Edu/>
-          <Them3Certi/>
-          <Them3Exp/>
-          <Them3Skill/>
-          <Them3Awards/>
-          <Them3Project/>
+          <draggable>
+            <Them3Info/>
+            <Them3Intro/>
+            <Them3Edu/>
+            <Them3Certi/>
+            <Them3Exp/>
+            <Them3Skill/>
+            <Them3Awards/>
+            <Them3Project/>
+          </draggable>
         </div>
       </div>
     <div v-if="isOpenModal" class="modal-bg">
@@ -52,6 +54,7 @@
 </template>
 
 <script>
+import draggable from 'vuedraggable';
 import html2pdf from 'html2pdf.js';
 import Them3Awards from '../components/Them3Awards.vue';
 import Them3Certi from '../components/Them3Certi.vue';
@@ -66,6 +69,7 @@ import { postPortfolio } from '../store/modules/PortfolioAPI';
 export default {
   name: 'Them3',
   components: {
+    draggable,
     Them3Info,
     Them3Edu,
     Them3Certi,
@@ -116,6 +120,9 @@ export default {
     closeModal() {
       this.isOpenModal = false;
     },
+  },
+  created() {
+    this.$store.dispatch('portfolioCopyResume');
   },
 };
 </script>
