@@ -34,11 +34,6 @@ export default {
     RemoveItemButton,
     AddItemButton,
   },
-  props: {
-    edit: {
-      type: Boolean,
-    },
-  },
   data() {
     return {
     };

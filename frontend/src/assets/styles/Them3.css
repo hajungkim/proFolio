@@ -175,7 +175,8 @@
 .draggable-container-col {
     /* margin: 5% 5% 5% 5%; */
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    /* grid-template-columns: repeat(2, 1fr); */
+    grid-template-columns: repeat(auto-fit, minmax(350px,auto));
 }
 .draggable-container-row {
     /* margin: 5% 5% 5% 5%; */
@@ -184,5 +185,5 @@
 }
 
 .p-5 {
-    padding: 5%;
+    /* padding: 5%; */
 }

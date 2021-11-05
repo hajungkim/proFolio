@@ -270,12 +270,12 @@
 }
 .draggable-container-col {
     /* margin: 5% 5% 5% 5%; */
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    /* display: grid; */
+    /* grid-template-columns: repeat(2, 1fr); */
 }
 .draggable-container-row {
     /* margin: 5% 5% 5% 5%; */
-    display: grid;
+    /* display: grid; */
     /* grid-template-columns: repeat(2, 1fr); */
 }
 .project-card{
