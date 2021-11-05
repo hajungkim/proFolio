@@ -1,0 +1,50 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Clean'){
+            steps{
+                script{
+                    sh 'docker stop $(docker ps -a -q)'
+                    sh 'docker rm $(docker ps -a -q)'
+                }
+            }
+        }
+        stage('Build') {
+            steps {
+                script {
+                    try {
+                        mattermostSend (
+                            color: "#2A42EE", 
+                            message: "🏃‍♂️ Build STARTED: ${env.JOB_NAME} #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Link to build>)"
+                        ) 
+                        sh 'docker-compose build'
+                    } catch(e) {
+                        currentBuild.result = "FAILURE"
+                    } finally {
+                        if(currentBuild.result != "FAILURE") {
+                            mattermostSend (
+                                color: "good", 
+                                message: "🎉 Build SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Link to build>)"
+                            )
+                        } else {
+                            mattermostSend (
+                                color: "danger", 
+                                message: "😡 Build FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Link to build>)"
+                            )
+                        }
+                    }
+                }
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'docker-compose up -d'
+                mattermostSend (
+                    color: "#8bf285", 
+                    message: "👍 Build Finished: ${env.JOB_NAME} #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Link to build>)"
+                ) 
+            }
+        }
+    }
+}
