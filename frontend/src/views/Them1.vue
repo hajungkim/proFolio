@@ -22,7 +22,7 @@
               <button class="btn-hover color-9">저장하기</button>
               <button class="btn-hover color-9" @click="openModal">PDF변환</button>
               <!-- edit -->
-            <button id="edit-btn" @click="clickEdit">{{editBtn}}</button>
+            <button class="btn-hover color-9" @click="clickEdit">{{editBtn}}</button>
           </div>
       </div>
       <div class="content">

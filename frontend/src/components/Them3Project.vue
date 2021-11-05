@@ -1,5 +1,6 @@
 <template>
   <div class="them3-projects">
+    <div class="name">Project</div>
     <AddItemButton type="project" v-if="edit"/>
     <draggable class="draggable-container-row">
       <div v-for="(pro) in portfolio.project" :key="pro.id" class="them3-card">
