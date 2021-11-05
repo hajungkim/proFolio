@@ -16,7 +16,7 @@ pipeline {
                     try {
                         mattermostSend (
                             color: "#2A42EE", 
-                            message: "Build STARTED: ${env.JOB_NAME} #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Link to build>)"
+                            message: "🏃‍♂️ Build STARTED: ${env.JOB_NAME} #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Link to build>)"
                         ) 
                         sh 'docker-compose build'
                     } catch(e) {
@@ -25,12 +25,12 @@ pipeline {
                         if(currentBuild.result != "FAILURE") {
                             mattermostSend (
                                 color: "good", 
-                                message: "Build SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Link to build>)"
+                                message: "🎉 Build SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Link to build>)"
                             )
                         } else {
                             mattermostSend (
                                 color: "danger", 
-                                message: "Build FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Link to build>)"
+                                message: "😡 Build FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Link to build>)"
                             )
                         }
                     }
@@ -41,8 +41,8 @@ pipeline {
             steps {
                 sh 'docker-compose up -d'
                 mattermostSend (
-                    color: "#2A42EE", 
-                    message: "Build Finished: ${env.JOB_NAME} #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Link to build>)"
+                    color: "#8bf285", 
+                    message: "👍 Deploy Finished: ${env.JOB_NAME} #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Link to build>)"
                 ) 
             }
         }
