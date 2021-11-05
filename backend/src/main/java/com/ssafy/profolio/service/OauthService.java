@@ -61,7 +61,7 @@ public class OauthService {
         User user = userRepository.findBySocialId(userDto.getSocialId()).orElseGet(
                 () -> {
                     User newUser = User.builder()
-                            .social_id(userDto.getSocialId())
+                            .socialId(userDto.getSocialId())
                             .accessToken(access_token)
                             .refreshToken(refresh_token)
                             .email(userDto.getEmail())

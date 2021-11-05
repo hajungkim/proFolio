@@ -40,4 +40,4 @@ out/
 application-credentials.yml
 
 ## google social login ##
-application-oauth.yml
+#application-oauth.yml

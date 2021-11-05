@@ -20,17 +20,17 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class GithubOauth implements SocialOauth {
 
-    @Value("${sns.github.url}")
+    @Value("${spring.sns.github.url}")
     private String GITHUB_SNS_BASE_URL;
-    @Value("${sns.github.client.id}")
+    @Value("${spring.sns.github.client.id}")
     private String GITHUB_SNS_CLIENT_ID;
-    @Value("${sns.github.callback.url}")
+    @Value("${spring.sns.github.callback.url}")
     private String GITHUB_SNS_CALLBACK_URL;
-    @Value("${sns.github.client.secret}")
+    @Value("${spring.sns.github.client.secret}")
     private String GITHUB_SNS_CLIENT_SECRET;
-    @Value("${sns.github.token.url}")
+    @Value("${spring.sns.github.token.url}")
     private String GITHUB_SNS_TOKEN_BASE_URL;
-    @Value("${sns.github.user.url}")
+    @Value("${spring.sns.github.user.url}")
     private String GITHUB_SNS_USER_URL;
 
     @Override

@@ -1,22 +1,15 @@
-############################
-####### develop step #######
-############################
-FROM node:alpine as develop-step
-WORKDIR ./app
+#build stage
+FROM node:12.2.0-alpine  as build-stage
+WORKDIR /app
 COPY package*.json ./
-RUN npm install vue-cli -global
 COPY . .
+RUN yarn global add @vue/cli
+RUN yarn remove node-sass
+RUN yarn add node-sass@4.14.1
+RUN yarn run build
 
-###########################
-####### build step ########
-###########################
-FROM develop-step as build-step
-RUN npm run build
-
-###########################
-##### production step #####
-###########################
-FROM nginx  as production-step
+#production stage
+FROM nginx
 EXPOSE 8081
 COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY --from=build-step /app/dist/spa /usr/share/nginx/html
+COPY --from=build-stage /app/dist /usr/share/nginx/html
