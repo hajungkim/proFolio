@@ -1,6 +1,7 @@
 package com.ssafy.profolio.web.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 
 public class ResumeDto {
@@ -97,6 +98,7 @@ public class ResumeDto {
     }
 
     @Getter
+    @Builder
     @AllArgsConstructor
     public static class ActivityRequest {
         private String name;
