@@ -1,6 +1,7 @@
 .resume-part-title {
   font-size: 30px;
-  color: #ccc;
+  color: #0053b8;
+  font-weight: bold;
 }
 .resume-part-sub {
   font-size: 18px;
@@ -39,9 +40,10 @@
 }
 .resume-part-box {
   display: flex;
+  text-align: left;
   justify-content: center;
   align-items: center;
-  background-color: rgba(174, 180, 236, 0.12);
+  /* background-color: rgba(230, 230, 230, 0.12); */
   padding: 30px 0px;
   margin: 20px 0px;
   border-radius: 30px;
@@ -55,8 +57,9 @@
 }
 .resume-part2-box {
   display: flex;
+  text-align: left;
   justify-content: center;
-  background-color: rgba(174, 180, 236, 0.12);
+  background-color: rgba(212, 212, 212, 0.12);
   padding: 30px 0px;
   margin: 20px 0px;
   border-radius: 30px;

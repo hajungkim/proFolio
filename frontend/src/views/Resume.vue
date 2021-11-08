@@ -20,8 +20,7 @@
       </ul>
       <div class="resume-btn-box">
         <div>
-          <div class="resume-save-btn" @click="save">저장하기</div>
-          <div class="resume-next-btn" @click="next">Next</div>
+          <div class="resume-save-btn" @click="save">완료</div>
         </div>
       </div>
     </div>
