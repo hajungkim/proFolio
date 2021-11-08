@@ -14,6 +14,7 @@
       :key="index" :technologyStack="technologyStack"
       @updateTech="updateTech"/>
     </div>
+    <div class="hr-border-m-40"></div>
   </div>
 </template>
 
