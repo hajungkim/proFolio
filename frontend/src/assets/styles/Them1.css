@@ -339,3 +339,7 @@
 #pdf{
     font-family: 'ELAND_Choice_M';
 }
+.ghost {
+    opacity: 0.5;
+    background: #c8ebfb;
+}

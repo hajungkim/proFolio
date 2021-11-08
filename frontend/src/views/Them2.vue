@@ -19,7 +19,6 @@
           </div>
           <h4>complete</h4>
           <div class="buttons">
-            <button class="btn-hover color-9">저장하기</button>
             <button class="btn-hover color-9" @click="savePDF">PDF변환</button>
             <!-- edit -->
             <button class="btn-hover color-9" @click="clickEdit">{{editBtn}}</button>
@@ -146,34 +145,4 @@ export default {
 
 <style>
 @import '../assets/styles/Them2.css';
-.ghost {
-  opacity: 0.5;
-  background: #c8ebfb;
-}
-
-#edit-btn {
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-  width: 50px;
-  height: 35px;
-  border-radius: 10px;
-  background-color: darkgray;
-  margin-left: 10px;
-  /* position: absolute; */
-  /* top: 14%; */
-  /* right: 20%; */
-  cursor: pointer;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-}
-#remove-btn {
-  width: 50px;
-  height: 35px;
-  border-radius: 10px;
-  background-color: #d9534f;
-  /* margin-left: 10px; */
-  cursor: pointer;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-}
-
 </style>

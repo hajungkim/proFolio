@@ -1,13 +1,6 @@
 <template>
   <div class="them2-box">
-      <div class="them2-subtitle" v-if="this.resume.activity">Education &amp; Experience</div>
-      <button
-        @click="remove"
-        id="remove-btn"
-        :class="[edit ? '' : 'hidden']"
-      >
-        delete
-      </button>
+      <div class="them2-subtitle" v-if="this.portfolio.activity">Education &amp; Experience</div>
       <ul class="tl">
         <li v-for="(exp) in portfolio.activity" :key="exp.id" class="tl-item">
           <div class="timestamp">{{exp.startDate}} ~ {{exp.endDate}}</div>
@@ -41,12 +34,6 @@ export default {
     ...mapState([
       'portfolio',
     ]),
-  },
-  methods: {
-    remove() {
-      this.resume.activity = '';
-      this.resume.education = '';
-    },
   },
 };
 </script>
