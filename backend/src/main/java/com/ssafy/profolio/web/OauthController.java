@@ -65,7 +65,6 @@ public class OauthController {
         Cookie cookie = new Cookie("userId", String.valueOf(userDto.getUserId()));
         cookie.setMaxAge(7 * 24 * 60 * 60); // expires in 7 days
         cookie.setSecure(true);
-        //cookie.setHttpOnly(true);
         cookie.setPath("/");
         response.addCookie(cookie);
 
@@ -88,7 +87,6 @@ public class OauthController {
         Cookie cookie = new Cookie("userId", String.valueOf(userDto.getUserId()));
         cookie.setMaxAge(7 * 24 * 60 * 60); // expires in 7 days
         cookie.setSecure(true);
-        cookie.setHttpOnly(true);
         cookie.setPath("/");
         response.addCookie(cookie);
 
@@ -109,7 +107,6 @@ public class OauthController {
         Cookie cookie = new Cookie("userId", String.valueOf(userDto.getUserId()));
         cookie.setMaxAge(7 * 24 * 60 * 60); // expires in 7 days
         cookie.setSecure(true);
-        cookie.setHttpOnly(true);
         cookie.setPath("/");
         response.addCookie(cookie);
 
