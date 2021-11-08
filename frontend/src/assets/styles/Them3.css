@@ -195,3 +195,7 @@
 .p-5 {
     /* padding: 5%; */
 }
+.ghost {
+    opacity: 0.5;
+    background: #c8ebfb;
+}

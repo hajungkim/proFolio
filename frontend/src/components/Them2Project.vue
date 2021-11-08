@@ -15,8 +15,10 @@
           :item="pro"
           :edit="edit"
         />
-        <div style="float: right; font-weight:bold">{{pro.link}}</div>
-        <div class="them2-summary">{{pro.summary}}</div>
+        <div class="them2-summary">
+          <span>{{pro.summary}}</span>
+          <span style="float: right; font-weight:bold">{{pro.link}}</span>
+        </div>
         <div class="them2-grayfont">{{pro.description}}</div>
         <div class="grid2 margin">
           <div>
@@ -70,8 +72,5 @@ export default {
 
 <style>
 @import '../assets/styles/Them2.css';
-.ghost {
-  opacity: 0.5;
-  background: #c8ebfb;
-}
+
 </style>

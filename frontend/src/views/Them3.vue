@@ -19,7 +19,6 @@
           </div>
           <h4>complete</h4>
           <div class="menu-buttons">
-            <button class="btn-hover color-9">저장하기</button>
             <button class="btn-hover color-9" @click="openModal">PDF변환</button>
             <!-- edit -->
             <button class="btn-hover color-9" @click="clickEdit">{{editBtn}}</button>

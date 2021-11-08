@@ -4,12 +4,12 @@
     <AddItemButton type="awards" v-if="edit"/>
     <draggable class="draggable-container-row">
       <div v-for="(award) in portfolio.awards" :key="award.id" class="them3-awards-card">
-        <RemoveItemButton
-          v-if="edit"
-          type="awards"
-          :item="award"
-        />
         <div  style="margin:10% 0">
+          <RemoveItemButton
+            v-if="edit"
+            type="awards"
+            :item="award"
+          />
           <span style="font-weight: bold; margin-right: 15px">{{award.name}}</span>
           <span
             style="font-weight: bold; margin-right: 15px; color: #656060">
