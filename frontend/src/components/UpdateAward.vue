@@ -8,7 +8,7 @@
     <tr>
       <th>성적</th>
       <td><input type="text" @change="awardPrize" :placeholder="awardUpdate.awards.prize"></td>
-      <th>날짜</th>
+      <th class="pl-15">날짜</th>
       <td style="padding-left:10px;">
         <v-app class="date-pick">
           <v-menu
