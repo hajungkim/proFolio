@@ -81,7 +81,7 @@ public class ResumeService {
         List<ResumeDto.CertificateResponse> result = new ArrayList<>();
         for (Certificate certificate : certificateList) {
             result.add(new ResumeDto.CertificateResponse(certificate.getId(), certificate.getName(),
-                    certificate.getOrganization(), certificate.getCertifiedDate()));
+                    certificate.getCertifiedDate()));
         }
         return result;
     }
@@ -114,8 +114,8 @@ public class ResumeService {
         List<TechnologyStack> technologyStackList = technologyStackRepository.findByUserId(userId);
         List<ResumeDto.TechnologyStackResponse> result = new ArrayList<>();
         for (TechnologyStack technologyStack : technologyStackList) {
-            result.add(new ResumeDto.TechnologyStackResponse(technologyStack.getId(), technologyStack.getName(), technologyStack.getLevel(),
-                    technologyStack.getDescription(), technologyStack.getKind()));
+            result.add(new ResumeDto.TechnologyStackResponse(technologyStack.getId(), technologyStack.getName(),
+                    technologyStack.getLevel(), technologyStack.getKind()));
         }
         return result;
     }
@@ -172,7 +172,6 @@ public class ResumeService {
         User user = userRepository.getById(request.getUserId());
         Certificate certificate = Certificate.builder()
                 .name(request.getName())
-                .organization(request.getOrganization())
                 .certifiedDate(request.getCertifiedDate())
                 .user(user).build();
         certificateRepository.save(certificate);
@@ -230,7 +229,6 @@ public class ResumeService {
         TechnologyStack technologyStack = TechnologyStack.builder()
                 .name(request.getName())
                 .level(request.getLevel())
-                .description(request.getDescription())
                 .kind(request.getKind())
                 .user(user).build();
         technologyStackRepository.save(technologyStack);
