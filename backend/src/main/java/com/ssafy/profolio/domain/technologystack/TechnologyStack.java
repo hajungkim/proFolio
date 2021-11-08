@@ -24,9 +24,6 @@ public class TechnologyStack {
     @Column
     private String level;
 
-    @Column(length = 500)
-    private String description;
-
     @Column
     private int kind;       // 기술스택 종류 1:언어 2:프레임워크 3:DB
 
@@ -35,10 +32,9 @@ public class TechnologyStack {
     private User user;
 
     @Builder
-    public TechnologyStack(String name, String level, String description, int kind, User user){
+    public TechnologyStack(String name, String level, int kind, User user){
         this.name = name;
         this.level = level;
-        this.description = description;
         this.kind = kind;
         this.user = user;
     }
@@ -46,7 +42,6 @@ public class TechnologyStack {
     public void updateTechnologyStack(ResumeDto.TechnologyStackRequest request) {
         this.name = request.getName();
         this.level = request.getLevel();
-        this.description = request.getDescription();
         this.kind = request.getKind();
     }
 }

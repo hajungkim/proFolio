@@ -42,7 +42,6 @@ public class ResumeDto {
     public static class CertificateResponse {
         private Long id;
         private String name;
-        private String organization;
         private String certifiedDate;
     }
 
@@ -92,7 +91,6 @@ public class ResumeDto {
         private Long id;
         private String name;
         private String level;
-        private String description;
         private int kind;
     }
 
@@ -132,7 +130,6 @@ public class ResumeDto {
     @AllArgsConstructor
     public static class CertificateRequest {
         private String name;
-        private String organization;
         private String certifiedDate;
         private Long userId;
     }
@@ -182,7 +179,6 @@ public class ResumeDto {
     public static class TechnologyStackRequest {
         private String name;
         private String level;
-        private String description;
         private int kind;
         private Long userId;
     }

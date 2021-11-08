@@ -22,9 +22,6 @@ public class Certificate {
     @Column
     private String name;
 
-    @Column
-    private String organization;
-
     @Column(name = "certified_date")
     private String certifiedDate;
 
@@ -33,16 +30,14 @@ public class Certificate {
     private User user;
 
     @Builder
-    public Certificate(String name, String organization, String certifiedDate, User user) {
+    public Certificate(String name, String certifiedDate, User user) {
         this.name = name;
-        this.organization = organization;
         this.certifiedDate = certifiedDate;
         this.user = user;
     }
 
     public void updateCertificate(ResumeDto.CertificateRequest request) {
         this.name = request.getName();
-        this.organization = request.getOrganization();
         this.certifiedDate = request.getCertifiedDate();
     }
 }
