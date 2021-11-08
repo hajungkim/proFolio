@@ -5,12 +5,14 @@
     <draggable class="draggable-container-row">
       <div v-for="(pro) in portfolio.project" :key="pro.id" class="them3-card">
         <div class="name">{{pro.title}}</div>
-        <RemoveItemButton
-          v-if="edit"
-          type="project"
-          :item="pro"
-        />
-        <div style="float: right; font-weight:bold">{{pro.link}}</div>
+        <div style="float: right; font-weight:bold">
+          <RemoveItemButton
+            v-if="edit"
+            type="project"
+            :item="pro"
+          />
+          <p>{{pro.link}}</p>
+        </div>
         <div class="summary">{{pro.summary}}</div>
         <div style="color: #656060">{{pro.description}}</div>
         <div class="grid2">

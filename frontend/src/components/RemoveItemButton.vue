@@ -1,10 +1,11 @@
 <template>
-  <v-btn
+  <button
     @click="remove"
-    class="red white--text outer-btn-remove"
+    class="outer-btn-remove"
   >
-    remove
-  </v-btn>
+  <!-- hello -->
+  <span class="material-icons outer-btn-remove">delete_outline</span>
+  </button>
 </template>
 
 <script>
