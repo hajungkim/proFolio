@@ -7,7 +7,7 @@
         <div>proFolio로</div>
         <div>쉽게 포트폴리오를 완성해보세요</div>
       </div>
-      <div class="vl"></div>
+      <div class="vertical-line"></div>
       <div class="social-outer-box">
         <div>
           <div class="social-box" @click="googleLogin">
