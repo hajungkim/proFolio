@@ -5,7 +5,7 @@
     <div class="resume-part-box">
       <form enctype="multipart/form-data">
         <label for="imageInput" class="image-label">
-          <img v-if="user.profile_path" :src="user.profile_path" alt="" class="image-file-size">
+          <img v-if="user.profilePath" :src="user.profilePath" alt="" class="image-file-size">
           <img v-else src="../assets/images/gallery.png" alt="" class="gallery-icon">
         </label>
         <input type="file" id="imageInput" @change="loadFile">
@@ -50,7 +50,7 @@ export default {
   methods: {
     loadFile() {
       const fileInput = document.querySelector('#imageInput');
-      this.user.profile_path = URL.createObjectURL(fileInput.files[0]);
+      this.user.profilePath = URL.createObjectURL(fileInput.files[0]);
       URL.revokeObjectURL(fileInput.files[0]);
       this.$emit('part1Data', this.user);
     },

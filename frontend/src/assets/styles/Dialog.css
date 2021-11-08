@@ -1,0 +1,16 @@
+.dialog-div {
+  display: inline-block;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.card-item {
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.card-item:hover {
+  background-color: lightgrey;
+}

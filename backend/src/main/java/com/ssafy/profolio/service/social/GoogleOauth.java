@@ -21,17 +21,17 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class GoogleOauth implements SocialOauth {
 
-    @Value("${sns.google.url}")
+    @Value("${spring.sns.google.url}")
     private String GOOGLE_SNS_BASE_URL;
-    @Value("${sns.google.client.id}")
+    @Value("${spring.sns.google.client.id}")
     private String GOOGLE_SNS_CLIENT_ID;
-    @Value("${sns.google.callback.url}")
+    @Value("${spring.sns.google.callback.url}")
     private String GOOGLE_SNS_CALLBACK_URL;
-    @Value("${sns.google.client.secret}")
+    @Value("${spring.sns.google.client.secret}")
     private String GOOGLE_SNS_CLIENT_SECRET;
-    @Value("${sns.google.token.url}")
+    @Value("${spring.sns.google.token.url}")
     private String GOOGLE_SNS_TOKEN_BASE_URL;
-    @Value("${sns.google.user.url}")
+    @Value("${spring.sns.google.user.url}")
     private String GOOGLE_SNS_USER_URL;
 
     @Override

@@ -13,9 +13,7 @@
 }
 #them2-pdf{
     font-family: 'NanumBarunGothic';
-    font-size: 20px;
-    padding-left: 5%;
-    padding-top: 5%;
+    font-size: 1.5rem;
 }
 .them2 .menu{
     position: fixed;
@@ -35,22 +33,20 @@
     text-align: center;
 }
 .them2-box{
-    margin: 8% 10% 10% 12%;
+    margin: 5% 10%;
 }
 .them2-subtitle{
-    text-decoration: underline;
-    text-decoration-color: #0014BC;
-    text-underline-position:under;
-    margin: 10% 0 5% 0;
+    display: inline-block;
+    margin: 5% 0;
     font-weight: bold;
-    font-size: 2rem;
+    font-size: 3rem;
 }
 .them2-info-box{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }
 .user-profile-img{
-    width: 14vw;
+    width: 15vw;
 }
 .them2-username{
     font-weight: bold;
@@ -60,11 +56,8 @@
     display: flex;
     margin: 7% 0;
 }
-.line-content2{
-    padding-top: 9px;
-}
 .line-title2{
-    width: 6vw;
+    width: 8vw;
     height: 5vh;
     line-height: 5vh;
     background-color: #E5EAFF;
@@ -101,7 +94,7 @@
 .level-color{
     width: 5vw;
     height: 4vh;
-    line-height: 3.5vh;
+    line-height: 4vh;
     border-radius: 15px;
     text-align: center;
     margin: 0 2%;
@@ -109,13 +102,12 @@
 }
 .level-circle{
     text-align: center;
-    font-size: 15px;
     font-weight: bold;
-    line-height: 2.5vh;
-    width: 1.5vw;
-    height: 3vh;
+    line-height: 5vh;
+    width: 2.5vw;
+    height: 5vh;
     border-radius: 70%;
-    margin: 2% 2%;
+    margin: 0 2%;
 }
 .red{
     color: #FF0000;
@@ -132,22 +124,19 @@
     background-color: #FFF4CB;
     border: 2px solid #FFA800;
 }
-.skill-desc-detail{
-    margin-top: 5px;
-}
 .blue-line{
+    text-decoration: underline;
+    text-decoration-color: #0014BC;
     font-weight: bold;
-    font-size: 1.5rem;
-}
-.skill-list{
-    margin-left: 5%;
+    font-size: 2rem;
 }
 .skill-item{
-    margin: 1% 5% 5% 5%;
+    margin: 3% 5%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }
 .them2-card{
+    position: relative;
     border: 2px solid #ececec;
     border-radius: 20px;
     padding: 3%;
@@ -233,4 +222,15 @@ ul.tl li .timestamp{
     border-radius: 15px;
     padding: 0 1%;
     margin: 0 0.5%;
+}
+
+.draggable-container-col {
+    /* margin: 5% 5% 5% 5%; */
+    /* display: grid; */
+    /* grid-template-columns: repeat(2, 1fr); */
+}
+.draggable-container-row {
+    /* margin: 5% 5% 5% 5%; */
+    /* display: grid; */
+    /* grid-template-columns: repeat(2, 1fr); */
 }

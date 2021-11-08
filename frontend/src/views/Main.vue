@@ -9,7 +9,7 @@
          v-bind:key="index">
       </span>
     </div>
-    <section class="fullpage purple">
+    <section class="fullpage puppy">
       <MainSection1 />
     </section>
     <section class="fullpage beige">

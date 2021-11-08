@@ -2,7 +2,7 @@
   <div class="read-resume">
     <div class="read-resume-profile">
       <div class="read-resume-box">
-        <img :src="resume.user.profile_path" class="read-resume-image">
+        <img :src="resume.user.profilePath" class="read-resume-image">
         <div class="font-30">About</div>
         <div class="mt-15 ml-15">
           <table class="read-resume-profile-table">
@@ -30,7 +30,7 @@
           <a href="#"><button class="round-shadow rbtn1" @click="goToResume">이력서 수정</button></a>
         </div>
         <div class="resum-btn">
-          <a href="#"><button class="round-shadow rbtn2" @click="goToResume">포트폴리오 생성</button></a>
+          <a href="#"><button class="round-shadow rbtn2" @click="goToSelect">포트폴리오 생성</button></a>
         </div>
       </div>
     </div>
@@ -160,10 +160,13 @@ export default {
     goToResume() {
       this.$router.push({ name: 'Resume' });
     },
+    goToSelect() {
+      this.$router.push({ name: 'SelectTheme' });
+    },
   },
   beforeMount() {
-    if (this.resume.education.graduation) this.graduation = '졸업';
-    else this.graduation = '졸업예정';
+    if (this.resume.education.graduation === true) this.graduation = '졸업';
+    else if (this.resume.education.graduation === false) this.graduation = '졸업예정';
     Object.values(this.resume.technologyStack).forEach((tech) => {
       if (tech.kind === 1) {
         this.techLanguage.push(tech);

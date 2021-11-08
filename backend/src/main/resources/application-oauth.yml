@@ -1,36 +1,31 @@
-sns:
-  google:
-    url: https://accounts.google.com/o/oauth2/v2/auth
-    client:
-      id: 445988236737-ik5gc4cdm5j2rnd5gtphq6sk6omi29oe.apps.googleusercontent.com
-      secret: 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
-    callback:
-      url: http://localhost:7777/api/auth/google/callback
-    token:
-      url: https://oauth2.googleapis.com/token
-    user:
-      url: https://www.googleapis.com/oauth2/v1/userinfo
+spring:
+  sns:
+    google:
+      url: https://accounts.google.com/o/oauth2/v2/auth
+      client:
+        id: 445988236737-ik5gc4cdm5j2rnd5gtphq6sk6omi29oe.apps.googleusercontent.com
+        secret: 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
+      token:
+        url: https://oauth2.googleapis.com/token
+      user:
+        url: https://www.googleapis.com/oauth2/v1/userinfo
 
-  naver:
-    url: https://nid.naver.com/oauth2.0/authorize
-    client:
-      id: L38_qX6vZAMo_Pi0ZMwy
-      secret: NInWYkP_59
-    callback:
-      url: http://localhost:7777/api/auth/naver/callback
-    token:
-      url: https://nid.naver.com/oauth2.0/token
-    user:
-      url: https://openapi.naver.com/v1/nid/me
+    naver:
+      url: https://nid.naver.com/oauth2.0/authorize
+      client:
+        id: L38_qX6vZAMo_Pi0ZMwy
+        secret: NInWYkP_59
+      token:
+        url: https://nid.naver.com/oauth2.0/token
+      user:
+        url: https://openapi.naver.com/v1/nid/me
 
-  github:
-    url: https://github.com/login/oauth/authorize
-    client:
-      id: 9f084481be77266c33ce
-      secret: 13f450f9d13757bd33c9074fe621c8bb021991a0
-    callback:
-      url: http://localhost:7777/api/auth/github/callback
-    token:
-      url: https://github.com/login/oauth/access_token
-    user:
-      url: https://api.github.com/user
+    github:
+      url: https://github.com/login/oauth/authorize
+      client:
+        id: 9f084481be77266c33ce
+        secret: 13f450f9d13757bd33c9074fe621c8bb021991a0
+      token:
+        url: https://github.com/login/oauth/access_token
+      user:
+        url: https://api.github.com/user

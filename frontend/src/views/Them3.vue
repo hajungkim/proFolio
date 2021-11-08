@@ -18,21 +18,27 @@
             </svg>
           </div>
           <h4>complete</h4>
-          <div class="buttons">
-              <button class="btn-hover color-9">저장하기</button>
-              <button class="btn-hover color-9" @click="openModal">PDF변환</button>
+          <div class="menu-buttons">
+            <button class="btn-hover color-9">저장하기</button>
+            <button class="btn-hover color-9" @click="openModal">PDF변환</button>
+            <!-- edit -->
+            <button class="btn-hover color-9" @click="clickEdit">{{editBtn}}</button>
           </div>
       </div>
       <div class="them3-content">
         <div id="them3-pdf">
-          <Them3Info/>
-          <Them3Intro/>
-          <Them3Edu/>
-          <Them3Certi/>
-          <Them3Exp/>
-          <Them3Skill/>
-          <Them3Awards/>
-          <Them3Project/>
+          <draggable>
+            <Them3Info :edit="edit"/>
+            <Them3Intro :edit="edit"/>
+            <Them3Edu :edit="edit"/>
+            <Them3Certi :edit="edit"/>
+            <Them3Exp :edit="edit"/>
+            <div class="draggable-container-col p-5">
+              <Them3Skill :edit="edit"/>
+              <Them3Awards :edit="edit"/>
+            </div>
+            <Them3Project :edit="edit"/>
+          </draggable>
         </div>
       </div>
     <div v-if="isOpenModal" class="modal-bg">
@@ -52,7 +58,9 @@
 </template>
 
 <script>
+import draggable from 'vuedraggable';
 import html2pdf from 'html2pdf.js';
+import { mapState } from 'vuex';
 import Them3Awards from '../components/Them3Awards.vue';
 import Them3Certi from '../components/Them3Certi.vue';
 import Them3Edu from '../components/Them3Edu.vue';
@@ -66,6 +74,7 @@ import { postPortfolio } from '../store/modules/PortfolioAPI';
 export default {
   name: 'Them3',
   components: {
+    draggable,
     Them3Info,
     Them3Edu,
     Them3Certi,
@@ -79,7 +88,14 @@ export default {
     return {
       isOpenModal: false,
       pdfName: '',
+      edit: false,
+      editBtn: '편집',
     };
+  },
+  computed: {
+    ...mapState([
+      'userId',
+    ]),
   },
   methods: {
     savePDF() {
@@ -103,7 +119,7 @@ export default {
           const pdfFile = new FormData();
           pdfFile.append('file', res, this.pdfName);
           pdfFile.append('name', this.pdfName);
-          pdfFile.append('userId', 1);
+          pdfFile.append('userId', this.userId);
           postPortfolio(pdfFile);
           this.pdfName = '';
         })
@@ -116,6 +132,18 @@ export default {
     closeModal() {
       this.isOpenModal = false;
     },
+    clickEdit() {
+      if (this.edit) {
+        this.editBtn = '편집';
+        this.edit = false;
+      } else {
+        this.editBtn = '완료';
+        this.edit = true;
+      }
+    },
+  },
+  created() {
+    this.$store.dispatch('portfolioCopyResume');
   },
 };
 </script>

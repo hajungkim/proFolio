@@ -7,32 +7,36 @@
 .them3{
     font-family: 'Pretendard-Regular';
     background-color: #EFF1FF;
-    height: 400vh;
+    /* height: auto; */
     padding-top: 5%;
+    overflow: auto;
 }
 .them3 .name{
+    display: inline-block;
     font-family: 'Pretendard-Regular';
     font-weight: bold;
     margin-bottom: 5%;
 }
 .them3-content{
+    padding-left: 120px;
     background-color: #EFF1FF;
-    width: 80vw;
-    right: 0;
-    position: absolute;
+    /* width: 80vw; */
+    /* right: 0; */
+    /* position: absolute; */
 }
 #them3-pdf{
     background-color: #EFF1FF;
     font-family: 'Pretendard-Regular';
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    /* grid-template-columns: repeat(2, 1fr); */
 }
 .them3 .menu{
+    z-index: 1;
     position: fixed;
-    left: 5vw;
+    /* left: 5vw; */
     top: 15vh;
-    height: 30vh;
-    width: 15vw;
+    /* height: 30vh; */
+    /* width: 15vw; */
 }
 .them3 .menu li{
     list-style: none;
@@ -54,6 +58,10 @@
     bottom: 0;
     left: 0;
     margin-top: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .menu-buttons div{
     margin: 5% auto;
@@ -65,11 +73,11 @@
 }
 .them3-info{
     grid-column: 1 / span 2;
-    display: flex;
+    /* display: flex; */
 }
 .info-box{
     background-color: white;
-    width: 61vw;
+    /* width: 61vw; */
     box-sizing: content-box;
     padding: 5%;
     margin: 5%;
@@ -103,38 +111,48 @@
     grid-column: 1;
     margin-left: 10%;
     margin-right: 6%;
-    padding: 10% 10% 5% 10%;
+    padding: 5%;
+    margin: 0 5% 5% 5%;
 }
 .them3-certi{
     background-color: white;
     margin-right: 16%;
-    padding: 10% 10% 5% 10%;
+    padding: 5%;
+    margin: 0 5% 5% 5%;
 }
 .them3-exp{
     background-color: white;
     grid-column: 1 / span 2;
     padding: 5%;
-    margin: 4% 8% 5% 5%;
+    margin: 0 5% 5% 5%;
 }
 .them3-skill{
     background-color: white;
     grid-column: 1;
-    margin-left: 10%;
-    margin-right: 6%;
-    padding: 10% 10% 5% 10%;
+    padding: 5%;
+    margin: 0 5% 5% 5%;
 }
 .them3-awards{
     background-color: white;
     margin-right: 16%;
-    padding: 10% 10% 5% 10%;
+    padding: 5%;
+    margin: 0 5% 5% 5%;
+}
+.them3-awards-card{
+    position: relative;
 }
 .them3-projects{
+    /* background-color: white; */
+    /* margin-right: 16%; */
+    /* padding: 5%; */
+    /* margin: 0 5% 5% 5%; */
     grid-column: 1 / span 2;
 }
 .them3-card{
+    position: relative;
     background-color: white;
     padding: 5%;
-    margin: 4% 8% 5% 5%;
+    margin: 0 5% 5% 5%;
 }
 .grid2{
     display: grid;
@@ -159,5 +177,21 @@
     background-color: white;
     grid-column: 1 / span 2;
     padding: 5%;
-    margin: 0 8% 5% 5%;
+    margin: 0 5% 5% 5%;
+}
+
+.draggable-container-col {
+    /* margin: 5% 5% 5% 5%; */
+    display: grid;
+    /* grid-template-columns: repeat(2, 1fr); */
+    grid-template-columns: repeat(auto-fit, minmax(350px,auto));
+}
+.draggable-container-row {
+    /* margin: 5% 5% 5% 5%; */
+    display: grid;
+    /* grid-template-columns: repeat(2, 1fr); */
+}
+
+.p-5 {
+    /* padding: 5%; */
 }

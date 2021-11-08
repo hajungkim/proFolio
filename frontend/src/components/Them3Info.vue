@@ -2,22 +2,22 @@
   <div class="them3-info">
       <div class="info-box">
         <div class="them3-box">
-            <img :src="resume.user.profilePath" class="profile-img"/>
+            <img :src="portfolio.user.profilePath" class="profile-img"/>
         </div>
         <div class="them3-info-detail">
-          <div class="user-name">{{resume.user.name}}</div>
+          <div class="user-name">{{portfolio.user.name}}</div>
           <div class="info-detail">
               <div class="line">
                 <div class="line-title">연락처</div>
-                <div>{{resume.user.phone}}</div>
+                <div>{{portfolio.user.phone}}</div>
               </div>
               <div class="line">
                 <div class="line-title">이메일</div>
-                <div>{{resume.user.email}}</div>
+                <div>{{portfolio.user.email}}</div>
               </div>
               <div class="line">
                 <div class="line-title">깃허브</div>
-                <div>{{resume.user.link}}</div>
+                <div>{{portfolio.user.link}}</div>
               </div>
           </div>
         </div>
@@ -36,7 +36,7 @@ export default {
   },
   computed: {
     ...mapState([
-      'resume',
+      'portfolio',
     ]),
   },
 };

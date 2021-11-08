@@ -20,5 +20,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('convert/', include('convert.urls')),
+    path('faceswap/convert/', include('convert.urls')),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
