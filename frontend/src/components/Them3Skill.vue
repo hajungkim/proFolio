@@ -2,7 +2,7 @@
   <div class="them3-skill">
       <div class="name">Skills</div>
       <div v-for="(skill) in portfolio.technologyStack" :key="skill.id" style="display: flex">
-        <div class="skill-level">{{skill.level}}</div>
+        <div class="skill-level"><span>{{skill.level}}</span></div>
         <div class="skill-name">{{skill.name}}</div>
       </div>
   </div>

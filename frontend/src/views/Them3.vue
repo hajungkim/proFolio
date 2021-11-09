@@ -17,7 +17,7 @@
               points="113,52.8 74.1,108.4 48.2,86.4 "/>
             </svg>
           </div>
-          <h4>complete</h4>
+          <h4 class="complete-text">complete</h4>
           <div class="menu-buttons">
             <button class="btn-hover color-9" @click="openModal">PDF변환</button>
             <!-- edit -->
@@ -26,7 +26,9 @@
       </div>
       <div class="them3-content">
         <div id="them3-pdf">
-          <draggable>
+          <draggable
+            ghost-class="ghost"
+          >
             <Them3Info :edit="edit"/>
             <Them3Intro :edit="edit"/>
             <Them3Edu :edit="edit"/>

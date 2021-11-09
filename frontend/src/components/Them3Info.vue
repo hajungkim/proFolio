@@ -2,7 +2,7 @@
   <div class="them3-info">
       <div class="info-box">
         <div class="them3-box">
-            <img :src="portfolio.user.profilePath" class="profile-img"/>
+            <img :src="portfolio.user.profilePath" class="them3-profile-img"/>
         </div>
         <div class="them3-info-detail">
           <div class="user-name">{{portfolio.user.name}}</div>
