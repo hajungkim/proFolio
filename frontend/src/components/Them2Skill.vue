@@ -7,7 +7,7 @@
       >
         delete
       </button>
-      <div class="them2-subtitle" v-if="this.resume.technologyStack">Tech Stack</div>
+      <div class="them2-subtitle" v-if="portfolio.technologyStack">Tech Stack</div>
       <div class="skill-desc">
           <div class="flex">
                 <div class="red level-color">5</div>

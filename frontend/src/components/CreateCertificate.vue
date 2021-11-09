@@ -1,10 +1,10 @@
 <template>
   <div class="resume-part2-box">
   <table class="resume-part2-input">
-    <tr>
+    <!-- <tr>
       <th>주최기관</th>
       <td><input type="text" @change="certOrganizaion"></td>
-    </tr>
+    </tr> -->
     <tr>
       <th>시험명</th>
       <td><input type="text" @change="certName"></td>
@@ -86,10 +86,10 @@ export default {
       this.certCreate.certificate.name = event.target.value;
       this.dataUpdate();
     },
-    certOrganizaion(event) {
-      this.certCreate.certificate.organization = event.target.value;
-      this.dataUpdate();
-    },
+    // certOrganizaion(event) {
+    //   this.certCreate.certificate.organization = event.target.value;
+    //   this.dataUpdate();
+    // },
     deleteCert() {
       this.certCreate.isDeleted = true;
       this.dataUpdate();

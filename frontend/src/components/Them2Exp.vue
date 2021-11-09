@@ -1,6 +1,6 @@
 <template>
   <div class="them2-box">
-      <div class="them2-subtitle" v-if="this.resume.activity">Education &amp; Experience</div>
+      <div class="them2-subtitle" v-if="portfolio.activity">Education &amp; Experience</div>
       <button
         @click="remove"
         id="remove-btn"

@@ -28,7 +28,7 @@
       <tr>
         <th>레벨</th>
         <td class="pl-15">
-          <input type="range" min="0" max="100"
+          <input type="range" min="1" max="5"
           v-model="techUpdate.technologyStack.level" class="range" @change="dataUpdate"/>
           <span class="range-value">{{ techUpdate.technologyStack.level }}</span>
         </td>

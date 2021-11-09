@@ -23,6 +23,7 @@ export default new Vuex.Store({
     resume: {
       user: {},
       education: {},
+      awards: [],
       activity: [],
       career: [],
       certificate: [],
@@ -30,6 +31,7 @@ export default new Vuex.Store({
       technologyStack: [],
       project: [],
     },
+    old_resume: {},
     portfolio: {},
   },
   mutations: {
@@ -68,6 +70,80 @@ export default new Vuex.Store({
     },
     PROJECT_INFO(state, pjtInfo) {
       state.resume.project = pjtInfo;
+    },
+    // new resume function
+    CHANGE_USER_INFO(state, payload) {
+      const { name, value } = payload;
+      state.resume.user[name] = value;
+    },
+    CHANGE_EDUCATION_INFO(state, payload) {
+      const { name, value } = payload;
+      state.resume.education[name] = value;
+    },
+    CHANGE_CAREER_LIST(state, careerList) {
+      state.resume.career = careerList;
+    },
+    CHANGE_CAREER_INFO(state, payload) {
+      const { name, value, career } = payload;
+      const index = state.resume.career.findIndex((obj) => obj.id === career.id);
+      state.resume.career[index][name] = value;
+    },
+    CHANGE_ACTIVITY_LIST(state, activityList) {
+      state.resume.activity = activityList;
+    },
+    CHANGE_ACTIVITY_INFO(state, payload) {
+      const { name, value, activity } = payload;
+      const index = state.resume.activity.findIndex((obj) => obj.id === activity.id);
+      state.resume.activity[index][name] = value;
+    },
+    CHANGE_LANGUAGE_LIST(state, languageList) {
+      state.resume.foreignLang = languageList;
+    },
+    CHANGE_LANGUAGE_INFO(state, payload) {
+      const { name, value, language } = payload;
+      const index = state.resume.foreignLang.findIndex((obj) => obj.id === language.id);
+      state.resume.foreignLang[index][name] = value;
+    },
+    CHANGE_CERTIFICATE_LIST(state, certList) {
+      state.resume.certificate = certList;
+    },
+    CHANGE_CERTIFICATE_INFO(state, payload) {
+      const { name, value, certificate } = payload;
+      const index = state.resume.certificate.findIndex((obj) => obj.id === certificate.id);
+      state.resume.certificate[index][name] = value;
+    },
+    CHANGE_AWARDS_LIST(state, awardsList) {
+      state.resume.awards = awardsList;
+    },
+    CHANGE_AWARDS_INFO(state, payload) {
+      const { name, value, award } = payload;
+      const index = state.resume.awards.findIndex((obj) => obj.id === award.id);
+      state.resume.awards[index][name] = value;
+    },
+    CHANGE_TECHNOLOGY_LIST(state, techList) {
+      state.resume.technologyStack = techList;
+    },
+    CHANGE_TECHNOLOGY_INFO(state, payload) {
+      const { name, value, tech } = payload;
+      const index = state.resume.technologyStack.findIndex((obj) => obj.id === tech.id);
+      state.resume.technologyStack[index][name] = value;
+    },
+    CHANGE_PROJECT_LIST(state, pjtList) {
+      state.resume.project = pjtList;
+    },
+    CHANGE_PROJECT_INFO(state, payload) {
+      const { name, value, project } = payload;
+      const index = state.resume.project.findIndex((obj) => obj.id === project.id);
+      state.resume.project[index][name] = value;
+    },
+    RESUME_COPY_RESUME(state) {
+      const newObject = JSON.parse(JSON.stringify(state.resume));
+      state.old_resume = newObject;
+    },
+    RESUME_COPY_RESUME_PART(state, payload) {
+      const { key } = payload;
+      const newObject = JSON.parse(JSON.stringify(state.resume[key]));
+      state.old_resume[key] = newObject;
     },
     // ABOUT PORTFOLIO
     PORTFOLIO_COPY_RESUME(state) {
@@ -135,6 +211,7 @@ export default new Vuex.Store({
       const resume = {
         user: {},
         education: {},
+        awards: [],
         activity: [],
         career: [],
         certificate: [],
@@ -149,146 +226,149 @@ export default new Vuex.Store({
         context.commit('GET_USER_INFO', res.data.data);
       });
     },
-    updateEducation(context, data) {
-      putEducation(data.id, data.data).then(() => {
-        getEducation(context.state.userId).then((response) => {
-          context.commit('EDUCATION_INFO', response.data.data);
-        });
-      });
-    },
     educationCreate(context, data) {
-      postEducation(data).then(() => {
-        getEducation(context.state.userId).then((response) => {
-          context.commit('EDUCATION_INFO', response.data.data);
+      postEducation(data.data)
+        .then(() => {
+          context.commit('RESUME_COPY_RESUME');
         });
-      });
+    },
+    educationUpdate(context, data) {
+      putEducation(data.id, data.data)
+        .then(() => {
+          context.commit('RESUME_COPY_RESUME');
+        });
     },
     careerCreate(context, data) {
-      postCareer(data).then(() => {
-        getCareer(context.state.userId).then((response) => {
-          context.commit('CAREER_INFO', response.data.data);
+      postCareer(data)
+        .then(() => {
+          context.commit('RESUME_COPY_RESUME');
         });
-      });
-    },
-    careerDelete(context, data) {
-      deleteCareer(data).then(() => {
-        getCareer(context.state.userId).then((response) => {
-          context.commit('CAREER_INFO', response.data.data);
-        });
-      });
     },
     careerUpdate(context, data) {
-      putCareer(data.id, data).then(() => {
-        getCareer(context.state.userId).then((response) => {
-          context.commit('CAREER_INFO', response.data.data);
+      putCareer(data.id, data)
+        .then(() => {
+          context.commit('RESUME_COPY_RESUME');
         });
-      });
+    },
+    careerDelete(context, id) {
+      deleteCareer(id)
+        .then(() => {
+          context.commit('RESUME_COPY_RESUME');
+        });
     },
     activityCreate(context, data) {
-      postActivity(data).then(() => {
-        getActivity(context.state.userId).then((response) => {
-          context.commit('ACTIVITY_INFO', response.data.data);
+      postActivity(data)
+        .then(() => {
+          context.commit('RESUME_COPY_RESUME');
         });
-      });
     },
     activityUpdate(context, data) {
-      putActivity(data.id, data).then(() => {
-        getActivity(context.state.userId).then((response) => {
-          context.commit('ACTIVITY_INFO', response.data.data);
+      putActivity(data.id, data)
+        .then(() => {
+          context.commit('RESUME_COPY_RESUME');
         });
-      });
     },
-    activityDelete(context, data) {
-      deleteActivity(data).then(() => {
-        getActivity(context.state.userId).then((response) => {
-          context.commit('ACTIVITY_INFO', response.data.data);
+    activityDelete(context, id) {
+      deleteActivity(id)
+        .then(() => {
+          context.commit('RESUME_COPY_RESUME');
         });
-      });
     },
     languageCreate(context, data) {
-      postLanguage(data).then(() => {
-        getLanguage(context.state.userId).then((response) => {
-          context.commit('LANGUAGE_INFO', response.data.data);
+      postLanguage(data)
+        .then(() => {
+          context.commit('RESUME_COPY_RESUME');
         });
-      });
     },
     languageUpdate(context, data) {
-      putLanguage(data.id, data).then(() => {
-        getLanguage(context.state.userId).then((response) => {
-          context.commit('LANGUAGE_INFO', response.data.data);
+      putLanguage(data.id, data)
+        .then(() => {
+          context.commit('RESUME_COPY_RESUME');
         });
-      });
     },
-    languageDelete(context, data) {
-      deleteLanguage(data).then(() => {
-        getLanguage(context.state.userId).then((response) => {
-          context.commit('LANGUAGE_INFO', response.data.data);
+    languageDelete(context, id) {
+      deleteLanguage(id)
+        .then(() => {
+          context.commit('RESUME_COPY_RESUME');
         });
-      });
     },
     certificateCreate(context, data) {
-      postCertificate(data).then(() => {
-        getCertificate(context.state.userId).then((response) => {
-          context.commit('CERTIFICATION_INFO', response.data.data);
+      postCertificate(data)
+        .then(() => {
+          context.commit('RESUME_COPY_RESUME');
         });
-      });
     },
     certificateUpdate(context, data) {
-      putCertificate(data.id, data).then(() => {
-        getCertificate(context.state.userId).then((response) => {
-          context.commit('CERTIFICATION_INFO', response.data.data);
+      putCertificate(data.id, data)
+        .then(() => {
+          context.commit('RESUME_COPY_RESUME');
         });
-      });
     },
-    certificateDelete(context, data) {
-      deleteCertificate(data).then(() => {
-        getCertificate(context.state.userId).then((response) => {
-          context.commit('CERTIFICATION_INFO', response.data.data);
+    certificateDelete(context, id) {
+      deleteCertificate(id)
+        .then(() => {
+          context.commit('RESUME_COPY_RESUME');
         });
-      });
     },
     awardsCreate(context, data) {
-      postAwards(data).then(() => {
-        getAwards(context.state.userId).then((response) => {
-          context.commit('AWARDS_INFO', response.data.data);
+      postAwards(data)
+        .then(() => {
+          context.commit('RESUME_COPY_RESUME');
         });
-      });
     },
     awardsUpdate(context, data) {
-      putAwards(data.id, data).then(() => {
-        getAwards(context.state.userId).then((response) => {
-          context.commit('AWARDS_INFO', response.data.data);
+      putAwards(data.id, data)
+        .then(() => {
+          context.commit('RESUME_COPY_RESUME');
         });
-      });
     },
-    awardsDelete(context, data) {
-      deleteAwards(data).then(() => {
-        getAwards(context.state.userId).then((response) => {
-          context.commit('AWARDS_INFO', response.data.data);
+    awardsDelete(context, id) {
+      deleteAwards(id)
+        .then(() => {
+          context.commit('RESUME_COPY_RESUME');
         });
-      });
     },
     techStackCreate(context, data) {
-      postTech(data).then(() => {
-        getTech(context.state.userId).then((response) => {
-          context.commit('TECHNOLOGY_INFO', response.data.data);
+      postTech(data)
+        .then(() => {
+          context.commit('RESUME_COPY_RESUME');
         });
-      });
     },
     techStackUpdate(context, data) {
-      putTech(data.id, data).then(() => {
-        getTech(context.state.userId).then((response) => {
-          context.commit('TECHNOLOGY_INFO', response.data.data);
+      putTech(data.id, data)
+        .then(() => {
+          context.commit('RESUME_COPY_RESUME');
         });
-      });
     },
-    techStackDelete(context, data) {
-      deleteTech(data).then(() => {
-        getTech(context.state.userId).then((response) => {
-          context.commit('TECHNOLOGY_INFO', response.data.data);
+    techStackDelete(context, id) {
+      deleteTech(id)
+        .then(() => {
+          context.commit('RESUME_COPY_RESUME');
         });
-      });
     },
+    projectCreate(context, data) {
+      postProject(data)
+        .then(() => {
+          context.commit('RESUME_COPY_RESUME');
+        });
+    },
+    projectUpdate(context, data) {
+      putProject(data.id, data)
+        .then(() => {
+          context.commit('RESUME_COPY_RESUME');
+        });
+    },
+    projectDelete(context, id) {
+      deleteProject(id)
+        .then(() => {
+          context.commit('RESUME_COPY_RESUME');
+        });
+    },
+    // .then(() => {
+    //   getProject(context.state.userId).then((response) => {
+    //     context.commit('PROJECT_INFO', response.data.data);
+    //   });
+    // });
     // ABOUT PORTFOLIO //////////////////////////
     portfolioCopyResume(context) {
       context.commit('PORTFOLIO_COPY_RESUME');
@@ -322,28 +402,6 @@ export default new Vuex.Store({
       // data === award
       const newArray = _.unionWith(this.state.portfolio.activity, [data], _.isEqual);
       context.commit('PORTFOLIO_ACTIVITY_INFO', newArray);
-    },
-    // pjt
-    projectCreate(context, data) {
-      postProject(data).then(() => {
-        getProject(context.state.userId).then((response) => {
-          context.commit('PROJECT_INFO', response.data.data);
-        });
-      });
-    },
-    projectUpdate(context, data) {
-      putProject(data.id, data).then(() => {
-        getProject(context.state.userId).then((response) => {
-          context.commit('PROJECT_INFO', response.data.data);
-        });
-      });
-    },
-    projectDelete(context, data) {
-      deleteProject(data).then(() => {
-        getProject(context.state.userId).then((response) => {
-          context.commit('PROJECT_INFO', response.data.data);
-        });
-      });
     },
   },
   modules: {
