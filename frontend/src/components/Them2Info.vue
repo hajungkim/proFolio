@@ -1,5 +1,5 @@
 <template>
-  <div class="them2-box" id='remove'>
+  <div class="them2-box">
     <div class="them2-subtitle">About Me</div>
       <div class="them2-info-box">
           <div class="user-img">
@@ -40,32 +40,6 @@ import { mapState } from 'vuex';
 
 export default {
   name: 'Them2Info',
-  props: {
-    edit: {
-      type: Boolean,
-    },
-  },
-  data() {
-    return {
-      // edit: '',
-    //   editBtn: '편집',
-    };
-  },
-  methods: {
-    clickEdit() {
-      if (this.edit) {
-        this.editBtn = '완료';
-        this.edit = false;
-      } else {
-        this.editBtn = '편집';
-        this.edit = true;
-      }
-    },
-    removeComponent() {
-      const content = document.getElementById('removeInfo');
-      content.remove();
-    },
-  },
   computed: {
     ...mapState([
       'portfolio',

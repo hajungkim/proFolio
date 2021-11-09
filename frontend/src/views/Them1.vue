@@ -17,7 +17,7 @@
               points="113,52.8 74.1,108.4 48.2,86.4 "/>
             </svg>
           </div>
-          <h4>complete</h4>
+          <h4 class="complete-text">complete</h4>
           <div class="buttons">
               <button class="btn-hover color-9" @click="openModal">PDF변환</button>
               <!-- edit -->
