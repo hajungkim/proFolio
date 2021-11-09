@@ -1,7 +1,7 @@
 <template>
   <div class="them3">
       <div class="menu">
-          <div class="checkmark">
+          <div class="checkmark" v-if="userId">
             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
             x="0px" y="0px" viewBox="0 0 161.2 161.2" enable-background="new 0 0 161.2 161.2"
             xml:space="preserve">
@@ -17,7 +17,7 @@
               points="113,52.8 74.1,108.4 48.2,86.4 "/>
             </svg>
           </div>
-          <h4 class="complete-text">complete</h4>
+          <h4 class="complete-text" v-if="userId">complete</h4>
           <div class="menu-buttons">
             <button class="btn-hover color-9" @click="openModal">PDF변환</button>
             <!-- edit -->
@@ -144,7 +144,11 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch('portfolioCopyResume');
+    if (!this.userId) {
+      this.$store.dispatch('portfolioCopySample');
+    } else {
+      this.$store.dispatch('portfolioCopyResume');
+    }
   },
 };
 </script>
