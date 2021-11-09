@@ -2,9 +2,11 @@ package com.ssafy.profolio.service;
 
 import com.ssafy.profolio.domain.activity.Activity;
 import com.ssafy.profolio.domain.activity.ActivityRepository;
+import com.ssafy.profolio.domain.awards.Awards;
 import com.ssafy.profolio.domain.awards.AwardsRepository;
 import com.ssafy.profolio.domain.career.CareerRepository;
 import com.ssafy.profolio.domain.certificate.CertificateRepository;
+import com.ssafy.profolio.domain.education.Education;
 import com.ssafy.profolio.domain.education.EducationRepository;
 import com.ssafy.profolio.domain.foreignlang.ForeignlangRepository;
 import com.ssafy.profolio.domain.project.ProjectRepository;
@@ -77,14 +79,6 @@ public class ResumeServiceTest {
     @DisplayName("should find all activity")
     void findActivity() {
         // given
-        Activity activity = Activity.builder()
-                .name("test")
-                .organization("or")
-                .startDate("20210101")
-                .endDate("20210101")
-                .description("test")
-                .user(user)
-                .build();
         List<Activity> activityList = Arrays.asList(
                 Activity.builder().name("test1").user(user).build(),
                 Activity.builder().name("test2").user(user).build());
@@ -96,4 +90,34 @@ public class ResumeServiceTest {
         // then
         verify(activityRepository).findByUserId(USER_ID);
     }
+
+    @Test
+    @DisplayName("should find all awards")
+    void findAwards() {
+        // given
+        List<Awards> awardsList = Arrays.asList(
+                Awards.builder().name("test1").user(user).build(),
+                Awards.builder().name("test2").user(user).build());
+        when(awardsRepository.findByUserId(USER_ID)).thenReturn(awardsList);
+
+        // when
+        resumeService.findAwards(USER_ID);
+
+        // then
+        verify(awardsRepository).findByUserId(USER_ID);
+    }
+    @Test
+    @DisplayName("should find all education")
+    void findEducation() {
+        // given
+        Education education = Education.builder().university("test").user(user).build();
+        when(educationRepository.findByUserId(USER_ID)).thenReturn(education);
+
+        // when
+        resumeService.findEducation(USER_ID);
+
+        // then
+        verify(educationRepository).findByUserId(USER_ID);
+    }
+
 }
