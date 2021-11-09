@@ -10,7 +10,6 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@Builder
 @NoArgsConstructor
 @Table(name = "activity")
 public class Activity {
@@ -39,15 +38,15 @@ public class Activity {
     @JoinColumn(name = "user_id")
     private User user;
 
-//    @Builder
-//    public Activity(String name, String organization, String startDate, String endDate, String description, User user) {
-//        this.name = name;
-//        this.organization = organization;
-//        this.startDate = startDate;
-//        this.endDate = endDate;
-//        this.description = description;
-//        this.user = user;
-//    }
+    @Builder
+    public Activity(String name, String organization, String startDate, String endDate, String description, User user) {
+        this.name = name;
+        this.organization = organization;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.description = description;
+        this.user = user;
+    }
 
     public void updateActivity(ResumeDto.ActivityRequest request) {
         this.name = request.getName();

@@ -16,15 +16,19 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class ResumeServiceTest {
@@ -50,6 +54,19 @@ public class ResumeServiceTest {
     @InjectMocks
     private ResumeService resumeService;
 
+    private final Long USER_ID = 1L;
+
+    private User user = User.builder()
+            .accessToken("test")
+            .refreshToken("test")
+            .socialId("1")
+            .email("test")
+            .name("test")
+            .phone("test")
+            .birthday("test")
+            .profilePath("test")
+            .build();
+
     @BeforeEach
     public void setUp() {
         resumeService = new ResumeService(userRepository, activityRepository, awardsRepository,careerRepository,
@@ -57,22 +74,10 @@ public class ResumeServiceTest {
     }
 
     @Test
-    @DisplayName("")
-    void saveActivity() {
+    @DisplayName("should find all activity")
+    void findActivity() {
         // given
-        User user = User.builder()
-                .accessToken("test")
-                .refreshToken("test")
-                .socialId("1")
-                .email("test")
-                .name("test")
-                .phone("test")
-                .birthday("test")
-                .profilePath("test")
-                .build();
-
         Activity activity = Activity.builder()
-                .id(1L)
                 .name("test")
                 .organization("or")
                 .startDate("20210101")
@@ -80,11 +85,15 @@ public class ResumeServiceTest {
                 .description("test")
                 .user(user)
                 .build();
-
-        Mockito.when(activityRepository.save(any())).thenReturn(activity);
+        List<Activity> activityList = Arrays.asList(
+                Activity.builder().name("test1").user(user).build(),
+                Activity.builder().name("test2").user(user).build());
+        when(activityRepository.findByUserId(USER_ID)).thenReturn(activityList);
 
         // when
+        resumeService.findActivity(USER_ID);
 
         // then
+        verify(activityRepository).findByUserId(USER_ID);
     }
 }

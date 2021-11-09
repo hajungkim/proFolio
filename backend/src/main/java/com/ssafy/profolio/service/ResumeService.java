@@ -130,7 +130,7 @@ public class ResumeService {
     }
 
     @Transactional
-    public void saveActivity(ResumeDto.ActivityRequest request) {
+    public Activity saveActivity(ResumeDto.ActivityRequest request) {
         User user = userRepository.getById(request.getUserId());
         Activity activity = Activity.builder()
                 .name(request.getName())
@@ -139,7 +139,7 @@ public class ResumeService {
                 .endDate(request.getEndDate())
                 .description(request.getDescription())
                 .user(user).build();
-        activityRepository.save(activity);
+        return activityRepository.save(activity);
     }
 
     @Transactional
