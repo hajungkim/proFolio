@@ -92,7 +92,7 @@
 .hr-border-m-40 {
   width: 40vw;
   height: 1px;
-  background-color: #7e7b7bf6;
+  background-color: #c9c8c8f6;
   margin: 40px 0px;
 }
 .graduation {
@@ -190,10 +190,15 @@
   font-size: 14px;
 }
 .tech-stack-box:hover {
-  background-color: rgba(160, 159, 159, 0.74);
+  /* background-color: rgba(160, 159, 159, 0.74); */
+  background-color: rgba(0, 83, 184);
+  color: white;
 }
 .tech-stack-selected {
-  background-color: rgba(160, 159, 159, 0.74);
+  /* background-color: rgba(160, 159, 159, 0.74); */
+  background-color: rgb(2, 86, 189);
+  color: white;
+  font-weight: bold;
 }
 .range {
   appearance: none;
@@ -240,6 +245,7 @@
 }
 .date-pick {
   height: 20px;
+  margin: 20px;
 }
 .theme--light.v-application {
   background: none;
@@ -278,10 +284,20 @@
   top: -2vh;
   right: 0;
   cursor: pointer;
+  font-size: 25px;
+  color: #ccc;
+}
+.delete-btn:hover{
+  color: black;
 }
 .delete-btn-2 {
   position: relative;
   top: -2vh;
   right: 0;
   cursor: pointer;
+  font-size: 25px;
+  color: #ccc;
+}
+.delete-btn-2:hover{
+  color: black;
 }
