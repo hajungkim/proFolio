@@ -6,7 +6,7 @@
       <button class="main-btn-hover color-9" @click="goToLogin"> GET STARTED </button>
     </div>
     <div class="section1-img-box">
-      <img style="width:900px;" src="../assets/images/main_person.png" alt="">
+      <img style="width:40vw;" src="../assets/images/main_person.png" alt="">
       <div class="section1-text-box">
         <p>취업 사진?</p>
         <p>포트폴리오?!</p>

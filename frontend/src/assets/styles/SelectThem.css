@@ -80,3 +80,6 @@
     height: 5vh;
     line-height: 5vh;
 }
+.select-theme .btn-hover{
+    width: 7vw;
+}

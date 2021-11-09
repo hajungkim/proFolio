@@ -1,3 +1,9 @@
+@font-face {
+    font-family: 'SDSamliphopangche_Outline';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Outline.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 .main-section1 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -12,9 +18,9 @@
 }
 .section1-text-box {
     position: relative;
-    font-size: 2.5rem;
+    font-size: 2rem;
     left: 40px;
-    bottom: 600px;
+    bottom: 55vh;
 }
 
 .main-btn-hover {
@@ -54,10 +60,13 @@
 
 .main-header {
     font-size: 4rem;
+    font-family: 'SDSamliphopangche_Outline';
 }
   
 .section-text {
-    font-size: 2rem;
-    margin-top: 1rem;
-    margin-left: 5%;
+    font-size: 1.7rem;
+    margin-top: 3rem;
+    /* margin-left: 5%; */
+    text-align: center;
+    font-family: 'S-CoreDream-6Bold';
 }

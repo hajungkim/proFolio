@@ -7,6 +7,7 @@
   justify-content: space-between;
   align-items: center;
   position: fixed;
+  font-family: 'Pretendard-Regular';
 }
 .logo {
   font-size: 30px;

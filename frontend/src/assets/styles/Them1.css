@@ -349,6 +349,9 @@
     padding: 3%;
     width: 25vw;
 }
+.modal .btn-hover{
+    width: 40%;
+}
 .pdfName-input{
     width: 90%;
     height: 4vh;

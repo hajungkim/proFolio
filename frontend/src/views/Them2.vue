@@ -19,7 +19,7 @@
           </div>
           <h4 class="complete-text" v-if="userId">complete</h4>
           <div class="buttons">
-            <button class="btn-hover color-9" @click="savePDF">PDF변환</button>
+            <button class="btn-hover color-9" @click="openModal">PDF변환</button>
             <!-- edit -->
             <button class="btn-hover color-9" @click="clickEdit">{{editBtn}}</button>
           </div>
