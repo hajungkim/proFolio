@@ -103,6 +103,11 @@
   width: 10vw;
   border-radius: 5px;
   border: 2px solid #ccc;
+  padding: 2px 3px;
+}
+.select-graduation:focus {
+  outline: none;
+  border:2px solid rgb(85, 153, 255);
 }
 .select-graduation > option:hover {
   background-color: #ccc;
@@ -190,12 +195,10 @@
   font-size: 14px;
 }
 .tech-stack-box:hover {
-  /* background-color: rgba(160, 159, 159, 0.74); */
   background-color: rgba(0, 83, 184);
   color: white;
 }
 .tech-stack-selected {
-  /* background-color: rgba(160, 159, 159, 0.74); */
   background-color: rgb(2, 86, 189);
   color: white;
   font-weight: bold;
