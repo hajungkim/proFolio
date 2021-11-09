@@ -23,10 +23,6 @@ export default {
   props: {
     edit: Boolean,
   },
-  data() {
-    return {
-    };
-  },
   computed: {
     ...mapState([
       'portfolio',

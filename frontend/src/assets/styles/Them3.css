@@ -5,10 +5,11 @@
     font-style: normal;
 }
 .them3{
+    display: grid;
     font-family: 'Pretendard-Regular';
     background-color: #EFF1FF;
-    /* height: auto; */
-    padding-top: 5%;
+    height: auto;
+    padding-top: 3%;
     overflow: auto;
 }
 .them3 .name{
@@ -18,25 +19,45 @@
     margin-bottom: 5%;
 }
 .them3-content{
-    padding-left: 120px;
+    /* padding-left: 120px; */
+    /* background 연보라의 원인 */
     background-color: #EFF1FF;
+    /* max-width: 1600px; */
     /* width: 80vw; */
     /* right: 0; */
     /* position: absolute; */
+    /* ---------------- */
+    min-width: 750px;
+    width: 85vw;
+    right: 0;
+    position: absolute;
 }
 #them3-pdf{
+    /* background 연보라의 원인 */
+    margin: auto;
+    max-width: 75vw;
     background-color: #EFF1FF;
     font-family: 'Pretendard-Regular';
     display: grid;
     /* grid-template-columns: repeat(2, 1fr); */
 }
 .them3 .menu{
-    z-index: 1;
-    position: fixed;
+    /* z-index: 1; */
+    /* position: fixed; */
+    /* margin-left: 5%; */
+    /* margin-top: 5%; */
     /* left: 5vw; */
-    top: 15vh;
+    /* top: 15vh; */
     /* height: 30vh; */
     /* width: 15vw; */
+    /* --------------- */
+    position: fixed;
+    margin-left: 3%;
+    margin-top: 5%;
+    padding-top: 2%;
+    height: 20vh;
+    width: 10%;
+    min-width: 90px;
 }
 .them3 .menu li{
     list-style: none;
@@ -57,19 +78,31 @@
     position: relative;
     bottom: 0;
     left: 0;
-    margin-top: 30%;
+    margin: 10%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 .menu-buttons div{
-    margin: 5% auto;
+    /* margin: 5% auto; */
 }
 .them3-box{
-    width: 15vw;
-    border-radius: 70%;
+    position: relative;
+    border-radius: 50%;
+    max-height: 220px;
+    width: auto;
+    height: auto;
     overflow: hidden;
+    margin: 0 auto;
+    margin-top: 8%;
+}
+.them3-profile-img {
+    position: relative;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    max-height: 220px;
 }
 .them3-info{
     grid-column: 1 / span 2;
@@ -159,14 +192,18 @@
     grid-template-columns: repeat(2, 1fr);
 }
 .skill-level{
-    margin: 3% 0;
-    width: 2.5vw;
-    height: 5vh;
+    margin: 3% 0%;
+    /* width: 2.5vw; */
+    /* height: 5vh; */
     line-height: 5vh;
     text-align: center;
-    border-radius: 70%;
+    border-radius: 50%;
     background-color: #7B61FF;
     color: white;
+    /* --------- */
+    width: 50px;
+    height: 50px;
+    /* margin: 0 2%; */
 }
 .skill-name{
     margin: 3% 10%;
