@@ -1,6 +1,7 @@
 .resume-part-title {
   font-size: 30px;
-  color: #ccc;
+  color: #0053b8;
+  font-weight: bold;
 }
 .resume-part-sub {
   font-size: 18px;
@@ -10,8 +11,8 @@
 }
 .image-label {
   display: flex;
-  width: 120px;
-  height: 150px;
+  width: 10vw;
+  height: 20vh;
   cursor: pointer;
   border: 2px solid #ccc;
   overflow: hidden;
@@ -20,8 +21,8 @@
   background-color: white;
 }
 .image-file-size {
-  width: 120px;
-  height: 150px;
+  width: 10vw;
+  height: 20vh;
 }
 .gallery-icon { 
   width: 80px;
@@ -39,36 +40,48 @@
 }
 .resume-part-box {
   display: flex;
+  text-align: left;
   justify-content: center;
   align-items: center;
-  background-color: rgba(174, 180, 236, 0.12);
+  /* background-color: rgba(230, 230, 230, 0.12); */
   padding: 30px 0px;
   margin: 20px 0px;
   border-radius: 30px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.20);
-  width: 600px;
+  width: 40vw;
 }
 .resume-part-table > tr > td > input {
   border-radius: 5px;
   border: 2px solid #ccc;
   padding: 2px 3px;
+  margin: 1%;
+  width: 13vw;
+}
+.resume-part-table > tr > td > input:focus{
+  border: 2px solid rgb(85, 153, 255);
+  outline: none;
 }
 .resume-part2-box {
   display: flex;
+  text-align: left;
   justify-content: center;
-  background-color: rgba(174, 180, 236, 0.12);
-  padding: 30px 0px;
+  padding: 4% 0px;
   margin: 20px 0px;
   border-radius: 30px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.20);
-  width: 600px;
+  width: 40vw;
 }
 .resume-part2-input {
   border-spacing: 2px 5px;
+  width: 90%;
+}
+.resume-part2-input > tr > td > input:focus {
+  border: 2px solid rgb(85, 153, 255);
+  outline: none;
 }
 .resume-part2-input > tr > td > input {
-  width: 120px;
-  margin-left: 10px;
+  width: 10vw;
+  margin: 10px;
   border-radius: 5px;
   border: 2px solid #ccc;
   padding: 2px 3px;
@@ -77,17 +90,17 @@
   padding-left: 15px;
 }
 .hr-border-m-40 {
-  width: 600px;
+  width: 40vw;
   height: 1px;
   background-color: #7e7b7bf6;
   margin: 40px 0px;
 }
 .graduation {
   display: inline-block;
-  margin-left: 8px;
+  margin: 8px;
 }
 .select-graduation {
-  width: 120px;
+  width: 10vw;
   border-radius: 5px;
   border: 2px solid #ccc;
 }
@@ -96,22 +109,22 @@
 }
 
 .resume-p2-career {
-  margin-left: 10px;
-  width: 330px;
+  margin: 10px;
+  width: 93%;
   height: 50px;
   border-radius: 5px;
   border: 2px solid #ccc;
   resize: none;
-  margin-top: 10px;
+  margin-top: 5%;
 }
 .resume-p2-exp {
-  margin-left: 10px;
-  width: 350px;
+  margin: 10px;
+  width: 95%;
   height: 50px;
   border-radius: 5px;
   border: 2px solid #ccc;
   resize: none;
-  margin-top: 10px;
+  margin-top: 5%;
 }
 .plus-btn-box {
   display: flex;
@@ -133,25 +146,29 @@
   justify-content: center;
 }
 .resume-p2-award {
-  margin-left: 10px;
-  width: 310px;
+  margin: 10px;
+  width: 95%;
   height: 50px;
   border-radius: 5px;
   border: 2px solid #ccc;
   resize: none;
   margin-top: 10px;
 }
+.resume textarea:focus {
+  outline: none;
+  border:2px solid rgb(85, 153, 255);
+}
 .resume-p5-project {
-  margin-left: 10px;
-  width: 330px;
+  margin: 10px;
+  width: 95%;
   height: 50px;
   border-radius: 5px;
   border: 2px solid #ccc;
   resize: none;
 }
 .resume-p5-summary {
-  margin-left: 10px;
-  width: 330px;
+  margin: 10px;
+  width: 95%;
   height: 30px;
   border-radius: 5px;
   border: 2px solid #ccc;
@@ -159,16 +176,18 @@
   margin-top: 10px;
 }
 .project-input-width {
-  width: 330px !important;
+  width: 95% !important;
 }
 .tech-stack-box {
   display: inline-block;
-  height: 24px;
+  height: 10%;
   background-color: rgba(204, 204, 204, 0.623);
   border-radius: 5px;
-  padding: 2px 5px;
+  padding: 2% 5%;
   margin-right: 5px;
   text-align: center;
+  cursor: pointer;
+  font-size: 14px;
 }
 .tech-stack-box:hover {
   background-color: rgba(160, 159, 159, 0.74);
@@ -243,23 +262,26 @@
 }
 .v-input {
   max-width: none;
-  width: 120px;
+  width: 10vw;
 }
 .v-text-field input {
-  font-size: 14px;  
+  font-family: 'ELAND_Choice_M';
   line-height: 10px;
   padding: 6px 0px;
 }
 .v-label {
-  font-size: 14px;  
+  font-size: 14px;
+  font-family: 'ELAND_Choice_M';
 }
 .delete-btn {
   position: relative;
-  right: -12%;
+  top: -2vh;
+  right: 0;
   cursor: pointer;
 }
 .delete-btn-2 {
   position: relative;
-  right: -9%;
+  top: -2vh;
+  right: 0;
   cursor: pointer;
 }

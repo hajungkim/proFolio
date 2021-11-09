@@ -113,7 +113,7 @@ public class GoogleOauth implements SocialOauth {
         String name = null;
 
         if(!jObject.isNull("email"))  email = jObject.getString("email");
-        if(!jObject.isNull("avatar_url")) picture = jObject.getString("avatar_url");
+        if(!jObject.isNull("picture")) picture = jObject.getString("picture");
         if(!jObject.isNull("name")) name = jObject.getString("name");
 
 

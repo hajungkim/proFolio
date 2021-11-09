@@ -31,12 +31,6 @@ public class User {
     @Column(name = "social_id", nullable = false)
     private String socialId;
 
-    @Column(name = "access_token", nullable = false)
-    private String accessToken;
-
-    @Column(name = "refresh_token")
-    private String refreshToken;
-
     @Column(unique = true)
     private String email;
 
@@ -47,7 +41,7 @@ public class User {
     private String phone;
 
     @Column
-    private String birthday;
+    private String githubId;
 
     @Column(length = 500)
     private String profilePath;
@@ -77,14 +71,12 @@ public class User {
     private List<Project> projectList = new ArrayList<>();
 
     @Builder
-    public User(String accessToken, String refreshToken, String socialId, String email, String name, String phone, String birthday, String profilePath) {
-        this.accessToken = accessToken;
-        this.refreshToken = refreshToken;
+    public User(String socialId, String email, String name, String phone, String githubId, String profilePath) {
         this.socialId = socialId;
         this.email = email;
         this.name = name;
         this.phone = phone;
-        this.birthday = birthday;
+        this.githubId = githubId;
         this.profilePath = profilePath;
         this.joinDate = LocalDateTime.now();
     }
@@ -93,7 +85,7 @@ public class User {
         this.email = request.getEmail();
         this.name = request.getName();
         this.phone = request.getPhone();
+        this.githubId = request.getGithubId();
         this.profilePath = request.getProfilePath();
-        this.birthday = request.getBirthday();
     }
 }

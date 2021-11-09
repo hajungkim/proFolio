@@ -13,18 +13,16 @@ public class UserDto {
     private String email;
     private String name;
     private String phone;
-    private String birthday;
+    private String githubId;
     private String profilePath;
-    private String accessToken;
-    private String refreshToken;
 
     @Builder
-    public UserDto(String socialId, String email, String name, String phone, String birthday, String profilePath) {
+    public UserDto(String socialId, String email, String name, String phone, String githubId, String profilePath) {
         this.socialId = socialId;
         this.email = email;
         this.name = name;
         this.phone = phone;
-        this.birthday = birthday;
+        this.githubId = githubId;
         this.profilePath = profilePath;
     }
 
@@ -34,14 +32,7 @@ public class UserDto {
         this.email = user.getEmail();
         this.phone = user.getPhone();
         this.profilePath = user.getProfilePath();
-        this.birthday = user.getBirthday();
-        this.accessToken = user.getAccessToken();
-        this.refreshToken = user.getRefreshToken();
-    }
-
-    public void addToken(String accessToken, String refreshToken) {
-        this.accessToken = accessToken;
-        this.refreshToken = refreshToken;
+        this.githubId = user.getGithubId();
     }
 
     @Getter
@@ -64,7 +55,7 @@ public class UserDto {
         private String email;
         private String name;
         private String phone;
-        private String birthday;
+        private String githubId;
         private String profilePath;
     }
 
@@ -75,7 +66,7 @@ public class UserDto {
         private String name;
         private String phone;
         private String profilePath;
-        private String birthday;
+        private String githubId;
     }
 
 }
