@@ -9,7 +9,8 @@
     font-family: 'NanumBarunGothic';
     min-height: 100vh;
     padding-top: 5%;
-    font-size: 1.5rem;
+    /* h4 'complete' */
+    /* font-size: 1.5rem;  */
 }
 #them2-pdf{
     font-family: 'NanumBarunGothic';
@@ -17,12 +18,14 @@
 }
 .them2 .menu{
     position: fixed;
-    margin-left: 5%;
+    margin-left: 3%;
     margin-top: 5%;
     height: 20vh;
-    width: 200px;
+    width: 10%;
+    min-width: 90px;
 }
 .them2-content{
+    min-width: 750px;
     width: 85vw;
     right: 0;
     position: absolute;
@@ -47,6 +50,7 @@
 }
 .user-profile-img{
     width: 15vw;
+    min-width: 160px;
 }
 .them2-username{
     font-weight: bold;
@@ -76,6 +80,7 @@
     line-height: 5vh;
     font-weight: bold;
     text-align: center;
+    min-width: 300px;
 }
 .introduce{
     font-weight: bold;
@@ -93,6 +98,7 @@
 }
 .level-color{
     width: 5vw;
+    min-width: 50px;
     height: 4vh;
     line-height: 4vh;
     border-radius: 15px;
@@ -104,12 +110,12 @@
     text-align: center;
     font-weight: bold;
     line-height: 5vh;
-    width: 2.5vw;
-    height: 5vh;
-    border-radius: 70%;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
     margin: 0 2%;
 }
-.red{
+.levelred{
     color: #FF0000;
     background-color: #FFE7E7;
     border: 2px solid #FF0000;
@@ -119,7 +125,7 @@
     background-color: #E1FFE4;
     border: 2px solid #009A2B;
 }
-.yellow{
+.levelyellow{
     color: #FFA800;
     background-color: #FFF4CB;
     border: 2px solid #FFA800;

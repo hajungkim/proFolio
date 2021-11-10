@@ -1,13 +1,31 @@
 .outer-btn-add {
   margin: 0.5rem;
+  opacity: 0.6;
+  color: #0a79df;
   /* position: absolute; */
   /* top: 2%; */
   /* right: 2%; */
 }
 
 .outer-btn-remove {
+  float: right;
   margin-bottom: 0.5rem;
+  color: #aaa;
+  cursor: pointer;
+  vertical-align: middle;
+  margin-top: -4px;
+
   /* position: absolute; */
   /* top: 2%; */
   /* right: 2%; */
+}
+
+.outer-btn-add:hover {
+  opacity: 1;
+  color: #0485fd;
+}
+
+
+.outer-btn-remove:hover {
+  color: #dc2a2a;
 }

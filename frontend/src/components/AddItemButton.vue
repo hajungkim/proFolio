@@ -5,15 +5,15 @@
       width="500"
     >
       <template v-slot:activator="{ on, attrs }">
-        <v-btn
+        <button
           color="primary"
           dark
           v-bind="attrs"
           v-on="on"
           class="outer-btn-add"
         >
-          ADD
-        </v-btn>
+          <span class="material-icons">add_circle_outline</span>
+        </button>
       </template>
 
       <v-card>

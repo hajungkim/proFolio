@@ -3,7 +3,7 @@
     <table class="resume-part2-input">
       <tr>
         <th>기술스택 종류</th>
-        <td class="pl-15">
+        <td style="padding-left: 10px">
           <div
           :class="[techCreate.technologyStack.kind === 1 ? techStackBoxSelected : '', techStackBox]"
           data-stack="1" @click="changeKind">
@@ -27,7 +27,7 @@
       </tr>
       <tr>
         <th>레벨</th>
-        <td class="pl-15">
+        <td style="padding-left:10px">
           <input type="range" min="1" max="5"
           v-model="techCreate.technologyStack.level" class="range" @change="dataUpdate"/>
           <span class="range-value">{{ techCreate.technologyStack.level }}</span>

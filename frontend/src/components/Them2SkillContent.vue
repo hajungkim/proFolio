@@ -7,9 +7,9 @@
                 <div style="line-height: 5vh">{{skill.name}}</div>
                 <div class="level-circle"
                 :class="{
-                    red: skill.level==5,
+                    levelred: skill.level==5,
                     levelgreen: skill.level == 3 || skill.level == 4,
-                    yellow: skill.level == 1 || skill.level == 2
+                    levelyellow: skill.level == 1 || skill.level == 2
                 }">{{skill.level}}</div>
             </div>
             </div>
@@ -32,9 +32,6 @@ export default {
   data() {
     return {
     };
-  },
-  mounted() {
-    // console.log(this.list);
   },
 };
 </script>

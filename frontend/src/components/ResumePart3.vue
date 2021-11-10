@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="resume-part-title">part3</div>
-    <div class="resume-part-sub">어학, 자격증, 수상 내역을을 입력해주세요</div>
+    <div class="resume-part-sub">어학, 자격증, 수상 내역을 입력해주세요</div>
     <div>
       <strong  class="plus-btn-box">
         <div>어학</div>

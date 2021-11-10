@@ -42,12 +42,6 @@ export default {
       'portfolio',
     ]),
   },
-  methods: {
-    remove() {
-      this.resume.activity = '';
-      this.resume.education = '';
-    },
-  },
 };
 </script>
 

@@ -41,20 +41,16 @@ public class OauthService {
 
         //받아온 code 값을 이용해서 access token 발급을 요청
         String accessResult = socialOauth.requestAccessToken(code, state);
-        log.info("\n>>>>> access token 요청 결과 : "+accessResult);
 
         //access_token parsing
         String access_token = socialOauth.getAccessToken(accessResult);
-        log.info("\n>>>>> access token 값 : "+accessResult);
 
         //access_token parsing
-        String refresh_token = socialOauth.getRefreshToken(accessResult);
-        log.info("\n>>>>> refresh token 값 : "+refresh_token);
+        //String refresh_token = socialOauth.getRefreshToken(accessResult);
 
         //파싱한 access token을 이용해서 userinfo 프로필 정보 받아오기
         String userinfo = socialOauth.getUserInfo(access_token);
-        log.info("\n>>>>> 받아온 유저 정보 : " + userinfo);
-
+        System.out.println(userinfo);
         UserDto userDto = socialOauth.makeUserDto(userinfo);
 
         //DB에 없는 유저일 경우, DB에 저장
@@ -62,12 +58,10 @@ public class OauthService {
                 () -> {
                     User newUser = User.builder()
                             .socialId(userDto.getSocialId())
-                            .accessToken(access_token)
-                            .refreshToken(refresh_token)
                             .email(userDto.getEmail())
                             .name(userDto.getName())
                             .phone(userDto.getPhone())
-                            .birthday(userDto.getBirthday())
+                            .githubId(userDto.getGithubId())
                             .profilePath(userDto.getProfilePath())
                             .build();
                     userRepository.save(newUser);

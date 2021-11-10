@@ -3,7 +3,7 @@
     <table class="resume-part2-input">
       <tr>
         <th>기술스택 종류</th>
-        <td class="pl-15">
+        <td>
           <div
           :class="[techUpdate.technologyStack.kind === 1 ? techStackBoxSelected : '', techStackBox]"
           data-stack="1" @click="changeKind">

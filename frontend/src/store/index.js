@@ -33,6 +33,131 @@ export default new Vuex.Store({
     },
     old_resume: {},
     portfolio: {},
+    sample: {
+      user: {
+        profilePath: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-DjoQ3H0LFCWXLurl6qeHzGnbox2_cJTAmg&usqp=CAU', name: '김싸피', githubId: 'qwer@github.com', phone: '010-1234-5678', email: 'qwer@qwer.com',
+      },
+      education: {
+        university: '싸피대학교',
+        graduation: '졸업',
+        admissionDate: '2020.03',
+        graduationDate: '2023.02',
+        major: '컴공',
+        minor: '',
+      },
+      activity: [
+        {
+          id: '1',
+          name: '삼성청년SW아카데미',
+          organization: '삼성전자',
+          description: 'Java, DB, 알고리즘에 대해 배우고 해당 내용을 바탕으로 다수의 프로젝트를 진행함',
+          startDate: '2021.01',
+          endDate: '2021.12',
+        },
+        {
+          id: '2',
+          name: '삼성청년SW아카데미',
+          organization: '삼성전자',
+          description: 'Python, Javascript, 알고리즘에 대해 배우고 해당 내용을 바탕으로 다수의 프로젝트를 진행함',
+          startDate: '2021.01',
+          endDate: '2021.12',
+        },
+      ],
+      career: [
+        {
+          id: '1',
+          company: '삼성전자',
+          description: '대규모 프로젝트를 진행하며 실무역량을 키움',
+          startDate: '2020.12',
+          endDate: '2020.09',
+        },
+      ],
+      certificate: [
+        {
+          id: '1',
+          name: '정보처리기사',
+          organization: '한국산업인력공단',
+          certifiedDate: '2021.10.23',
+        },
+        {
+          id: '2',
+          name: 'SQLD',
+          organization: '한국데이터산업진흥원',
+          certifiedDate: '2021.02.23',
+        },
+      ],
+      foreignLang: [
+        {
+          id: '1',
+          language: '영어',
+          name: '토익',
+          score: '900',
+          certifiedDate: '2021.10.23',
+        },
+      ],
+      awards: [
+        {
+          id: '1',
+          name: 'SSAFY 공모전',
+          prize: '우수상',
+          description: '어떤어떤 프로젝트를 진행하며 싸피 공모전에서 우수상을 수상함',
+          awardsDate: '2021.10.23',
+        },
+        {
+          id: '2',
+          name: 'SSAFY 알고리즘',
+          prize: '최우수상',
+          description: '무슨무슨 알고리즘 대회에 출전하여 최우수상을 수상함',
+          awardsDate: '2020.09.23',
+        },
+      ],
+      technologyStack: [
+        {
+          id: '1',
+          name: 'Java',
+          level: '3',
+          kind: 1,
+        },
+        {
+          id: '2',
+          name: 'Spring boot',
+          level: '3',
+          kind: 2,
+        },
+        {
+          id: '3',
+          name: 'Vue',
+          level: '4',
+          kind: 2,
+        },
+        {
+          id: '4',
+          name: 'Git',
+          level: '3',
+          kind: 3,
+        },
+        {
+          id: '5',
+          name: 'Python',
+          level: '1',
+          kind: 1,
+        },
+      ],
+      project: [
+        {
+          id: '1',
+          title: '포트폴리오 만들기!',
+          summary: '개발자 준비생을 위한 포트폴리오 사이트',
+          description: '유저가 입력한 정보를 바탕으로 포트폴리오를 생성해주고 PDF로 변환해주는 서비스',
+          memberCnt: 5,
+          technologyStack: 'Java, Django, Vue, SpringBoot',
+          role: 'FE',
+          link: 'https://ssafy.com',
+          startDate: '2021.10',
+          endDate: '2021.11',
+        },
+      ],
+    },
   },
   mutations: {
     CHANGE_ISLOGIN(state, isLogin) {
