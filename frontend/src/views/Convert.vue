@@ -131,8 +131,8 @@ export default {
       outputImgUrl: '',
       imageLoading: false,
       outputLoaded: false,
-      imgArr: [img0, img1, img2, img3, img4, img5],
-      imgCvtArr: [img00, img11, img22, img33, img44, img55],
+      imgArr: [img0, img1, img2, img3, img4, img5], // 눈코입 없는 사진
+      imgCvtArr: [img00, img11, img22, img33, img44, img55], // 눈코입 있는 사진
       styleImgFile: '',
     };
   },
