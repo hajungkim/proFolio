@@ -114,6 +114,13 @@ import img3 from '../assets/images/idPhoto3.jpg';
 import img4 from '../assets/images/idPhoto4.jpg';
 import img5 from '../assets/images/idPhoto5.jpg';
 
+import img00 from '../assets/images/idPhoto00.jpg';
+import img11 from '../assets/images/idPhoto11.jpg';
+import img22 from '../assets/images/idPhoto22.jpg';
+import img33 from '../assets/images/idPhoto33.jpg';
+import img44 from '../assets/images/idPhoto44.jpg';
+import img55 from '../assets/images/idPhoto55.jpg';
+
 export default {
   name: 'Convert',
   components: {},
@@ -124,7 +131,8 @@ export default {
       outputImgUrl: '',
       imageLoading: false,
       outputLoaded: false,
-      imgArr: [img0, img1, img2, img3, img4, img5],
+      imgArr: [img0, img1, img2, img3, img4, img5], // 눈코입 없는 사진
+      imgCvtArr: [img00, img11, img22, img33, img44, img55], // 눈코입 있는 사진
       styleImgFile: '',
     };
   },
@@ -230,8 +238,9 @@ export default {
       const img = document.getElementsByClassName('sample-img')[id];
       // this.click('style');
       img.className += ' select-img';
-      this.styleImgUrl = this.imgArr[id];
-      this.convertURLtoFile(this.imgArr[id])
+      this.styleImgUrl = this.imgCvtArr[id];
+      // console.log(this.imgArr[id]);
+      this.convertURLtoFile(this.imgCvtArr[id])
         .then((res) => {
           this.styleImgFile = res;
           // console.log(res);
