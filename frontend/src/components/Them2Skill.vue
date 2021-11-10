@@ -1,6 +1,13 @@
 <template>
   <div class="them2-box" id="removeSkill">
-    <div class="them2-subtitle" v-if="this.portfolio.technologyStack">Tech Stack</div>
+      <button
+        @click="remove"
+        id="remove-btn"
+        :class="[edit ? '' : 'hidden']"
+      >
+        delete
+      </button>
+      <div class="them2-subtitle" v-if="portfolio.technologyStack">Tech Stack</div>
       <div class="skill-desc">
           <div class="flex">
                 <div class="levelred level-color">5</div>

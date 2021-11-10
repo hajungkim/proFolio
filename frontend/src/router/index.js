@@ -9,6 +9,7 @@ import Them2 from '../views/Them2.vue';
 import Them3 from '../views/Them3.vue';
 import Convert from '../views/Convert.vue';
 import SelectTheme from '../views/SelectTheme.vue';
+import ResumeTemp from '../views/ResumeTemp.vue';
 
 Vue.use(VueRouter);
 
@@ -32,6 +33,11 @@ const routes = [
     path: '/resume',
     name: 'Resume',
     component: Resume,
+  },
+  {
+    path: '/resumetemp',
+    name: 'ResumeTemp',
+    component: ResumeTemp,
   },
   {
     path: '/them1',
