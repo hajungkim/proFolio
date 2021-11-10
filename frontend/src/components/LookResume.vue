@@ -3,16 +3,16 @@
     <div class="read-resume-profile">
       <div class="read-resume-box">
         <img :src="resume.user.profilePath" class="read-resume-image">
-        <div class="font-30">About</div>
-        <div class="mt-15 ml-15">
+        <div class="font-30 ml-5" style="font-weight:bold">About</div>
+        <div class="mt-10 ml-5">
           <table class="read-resume-profile-table">
             <tr>
               <th>name</th>
               <td>{{ resume.user.name }}</td>
             </tr>
             <tr>
-              <th>date of birth</th>
-              <td>{{ resume.user.birthday }}</td>
+              <th>github</th>
+              <td>{{ resume.user.githubId }}</td>
             </tr>
             <tr>
               <th>contact</th>
@@ -21,6 +21,10 @@
             <tr>
               <th>e-mail</th>
               <td>{{ resume.user.email }}</td>
+            </tr>
+              <tr>
+              <th>description</th>
+              <td>{{ resume.user.description }}</td>
             </tr>
           </table>
         </div>
@@ -69,11 +73,11 @@
       <div class="font-30 font-weight-b mb-20">Certificate / Language</div>
       <table class="read-resume-table">
         <tr v-for="(cert) in resume.certificate" :key="'cert'+cert.id">
-          <th>{{ cert.certifieddate }}</th>
+          <th>{{ cert.certifiedDate }}</th>
           <td class="font-weight-b">{{ cert.name }}</td>
         </tr>
         <tr v-for="(lang) in resume.foreignLang" :key="'lang'+lang.id">
-          <th>{{ lang.certifieddate }}</th>
+          <th>{{ lang.certifiedDate }}</th>
           <td class="font-weight-b">{{ lang.name }}</td>
           <td>{{ lang.score }}점</td>
         </tr>
@@ -84,10 +88,10 @@
       <div class="font-30 font-weight-b mb-20">Awards</div>
       <table class="read-resume-table">
         <tr v-for="(award) in resume.awards" :key="'award'+award.id">
-          <th style="line-height: 250%;">{{ award.awardsdate }}</th>
+          <th style="line-height: 250%;">{{ award.awardsDate }}</th>
           <td>
             <span class="font-weight-b" style="line-height: 250%;">{{ award.name }}</span>
-             {{ award.prize }}
+             <span class="ml-9">{{ award.prize }}</span>
             <br>
             <span>{{ award.description }}</span>
           </td>
@@ -158,7 +162,7 @@ export default {
   },
   methods: {
     goToResume() {
-      this.$router.push({ name: 'Resume' });
+      this.$router.push({ name: 'ResumeTemp' });
     },
     goToSelect() {
       this.$router.push({ name: 'SelectTheme' });

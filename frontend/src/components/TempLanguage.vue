@@ -44,7 +44,7 @@
           </td>
         </tr>
       </table>
-      <div class="delete-btn" @click="deleteLanguage(lang)">X</div>
+      <div class="delete-btn" @click="deleteLanguage(lang)">x</div>
     </div>
   </div>
 </template>
@@ -70,6 +70,7 @@ export default {
   },
   methods: {
     addLanguage() {
+      console.log("??");
       const newLang = {
         id: `${Date.now()}`,
         name: '',
@@ -77,7 +78,11 @@ export default {
         language: '',
         certifiedDate: '',
       };
-      this.$store.commit('CHANGE_LANGUAGE_LIST', [...this.resume.foreignLang, newLang]);
+      if (!this.resume.foreignLang) {
+        this.$store.commit('CHANGE_LANGUAGE_LIST', [newLang]);
+      } else {
+        this.$store.commit('CHANGE_LANGUAGE_LIST', [...this.resume.foreignLang, newLang]);
+      }
     },
     deleteLanguage(item) {
       const newList = _.differenceWith(this.resume.foreignLang, [item], _.isEqual);

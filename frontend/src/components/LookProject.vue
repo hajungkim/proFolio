@@ -3,9 +3,9 @@
     <div>
       <span class="font-weight-b font-20">{{ project.title }}</span>
       <span class="ml-15">{{ project.startDate }} ~ {{ project.endDate }}</span>
-      <div class="font-weight-b mt-15">{{ project.summary }}</div>
+      <div class="font-weight-b mt-5">{{ project.summary }}</div>
     </div>
-    <table class="read-resume-table">
+    <table class="read-resume-table mt-5">
       <tr>
         <th>설명</th>
         <td>{{ project.description }}</td>

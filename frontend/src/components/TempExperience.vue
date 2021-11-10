@@ -44,7 +44,7 @@
           </td>
         </tr>
       </table>
-      <div class="delete-btn-2" @click="deleteActivity(activity)">X</div>
+      <div class="delete-btn-2" @click="deleteActivity(activity)">x</div>
     </div>
   </div>
 </template>
@@ -83,7 +83,11 @@ export default {
         startDate: '',
         endDate: '',
       };
-      this.$store.commit('CHANGE_ACTIVITY_LIST', [...this.resume.activity, newActivity]);
+      if (!this.resume.activity) {
+        this.$store.commit('CHANGE_ACTIVITY_LIST', [newActivity]);
+      } else {
+        this.$store.commit('CHANGE_ACTIVITY_LIST', [...this.resume.activity, newActivity]);
+      }
     },
     deleteActivity(item) {
       const newList = _.differenceWith(this.resume.activity, [item], _.isEqual);

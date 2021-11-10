@@ -25,7 +25,7 @@
           </td>
         </tr>
       </table>
-      <div class="delete-btn" @click="deleteCertificate(cert)">X</div>
+      <div class="delete-btn" @click="deleteCertificate(cert)">x</div>
     </div>
   </div>
 </template>
@@ -56,7 +56,11 @@ export default {
         name: '',
         certifiedDate: '',
       };
-      this.$store.commit('CHANGE_CERTIFICATE_LIST', [...this.resume.certificate, newItem]);
+      if (!this.resume.certificate) {
+        this.$store.commit('CHANGE_CERTIFICATE_LIST', [newItem]);
+      } else {
+        this.$store.commit('CHANGE_CERTIFICATE_LIST', [...this.resume.certificate, newItem]);
+      }
     },
     deleteCertificate(item) {
       const newList = _.differenceWith(this.resume.certificate, [item], _.isEqual);
