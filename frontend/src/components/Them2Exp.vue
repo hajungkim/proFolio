@@ -1,6 +1,13 @@
 <template>
   <div class="them2-box">
-      <div class="them2-subtitle" v-if="this.portfolio.activity">Education &amp; Experience</div>
+      <div class="them2-subtitle" v-if="portfolio.activity">Education &amp; Experience</div>
+      <button
+        @click="remove"
+        id="remove-btn"
+        :class="[edit ? '' : 'hidden']"
+      >
+        delete
+      </button>
       <ul class="tl">
         <li v-for="(exp) in portfolio.activity" :key="exp.id" class="tl-item">
           <div class="timestamp">{{exp.startDate}} ~ {{exp.endDate}}</div>

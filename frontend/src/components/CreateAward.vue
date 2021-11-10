@@ -6,7 +6,7 @@
       <td><input type="text" @change="awardName"></td>
     </tr>
     <tr>
-      <th>성적</th>
+      <th>수상내역</th>
       <td><input type="text" @change="awardPrize"></td>
       <th class="pl-15">날짜</th>
       <td style="padding-left:10px;">

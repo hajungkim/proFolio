@@ -57,22 +57,22 @@
     <div class="hr-border-mt-50"></div>
     <div class="read-resume-exp mt-50">
       <div class="font-30 font-weight-b mb-20">Experience</div>
-      <LookExperience v-for="(act) in resume.activity" :key="act.id" :act="act" />
+      <LookExperience v-for="(act) in resume.activity" :key="'act'+act.id" :act="act" />
     </div>
     <div class="hr-border-mt-50"></div>
     <div class="read-resume-exp mt-50">
       <div class="font-30 font-weight-b mb-20">Work Experience</div>
-      <LookCareer v-for="(career) in resume.career" :key="career.id" :career="career" />
+      <LookCareer v-for="(career) in resume.career" :key="'career'+career.id" :career="career" />
     </div>
     <div class="hr-border-mt-50"></div>
     <div class="mt-50">
       <div class="font-30 font-weight-b mb-20">Certificate / Language</div>
       <table class="read-resume-table">
-        <tr v-for="(cert) in resume.certificate" :key="cert.id">
+        <tr v-for="(cert) in resume.certificate" :key="'cert'+cert.id">
           <th>{{ cert.certifieddate }}</th>
           <td class="font-weight-b">{{ cert.name }}</td>
         </tr>
-        <tr v-for="(lang) in resume.foreignLang" :key="lang.id">
+        <tr v-for="(lang) in resume.foreignLang" :key="'lang'+lang.id">
           <th>{{ lang.certifieddate }}</th>
           <td class="font-weight-b">{{ lang.name }}</td>
           <td>{{ lang.score }}점</td>
@@ -83,7 +83,7 @@
     <div class="mt-50">
       <div class="font-30 font-weight-b mb-20">Awards</div>
       <table class="read-resume-table">
-        <tr v-for="(award) in resume.awards" :key="award.id">
+        <tr v-for="(award) in resume.awards" :key="'award'+award.id">
           <th style="line-height: 250%;">{{ award.awardsdate }}</th>
           <td>
             <span class="font-weight-b" style="line-height: 250%;">{{ award.name }}</span>
@@ -100,21 +100,21 @@
       <table class="read-resume-table">
         <tr>
           <th>Language</th>
-          <td v-for="(tech) in techLanguage" :key="tech.id">
+          <td v-for="(tech) in techLanguage" :key="'techL'+tech.id">
             <span>{{ tech.name }} </span>
             <div class="lang-level">{{ tech.level }}</div>
           </td>
         </tr>
         <tr>
           <th>Management</th>
-          <td v-for="(tech) in techManagement" :key="tech.id">
+          <td v-for="(tech) in techManagement" :key="'techM'+tech.id">
             <span>{{ tech.name }} </span>
             <div class="lang-level">{{ tech.level }}</div>
           </td>
         </tr>
         <tr>
           <th>FrameWork</th>
-          <td v-for="(tech) in techFrameWork" :key="tech.id">
+          <td v-for="(tech) in techFrameWork" :key="'techF'+tech.id">
             <span>{{ tech.name }} </span>
             <div class="lang-level">{{ tech.level }}</div>
           </td>
@@ -124,7 +124,7 @@
     <div class="hr-border-mt-50"></div>
     <div class="mt-50">
       <div class="font-30 font-weight-b mb-20">Project</div>
-      <LookProject v-for="(project) in resume.project" :key="project.id" :project="project"/>
+      <LookProject v-for="(project) in resume.project" :key="'pjt'+project.id" :project="project"/>
     </div>
     <div class="hr-border-mt-50"></div>
   </div>

@@ -1,81 +1,36 @@
 <template>
   <div>
     <div class="resume-part-title">part3</div>
-    <div class="resume-part-sub">어학, 자격증, 수상 내역을 입력해주세요</div>
+    <div class="resume-part-sub">어학, 자격증, 수상 내역을을 입력해주세요</div>
     <div>
-      <strong  class="plus-btn-box">
-        <div>어학</div>
-        <div class="plus-btn" @click="addCreateLanguage">+</div>
-      </strong>
-      <CreateLanguage
-       v-for="(language) in langCreate" :key="language.id" :language="language"
-       @createLang="createLang"
-       />
-      <UpdateLanguage
-       v-for="(language) in langUpdate" :key="language.id" :language="language"
-       @updateLang="updateLang"
-       />
+      <Language />
     </div>
     <div class="hr-border-m-40"></div>
     <div>
-      <strong  class="plus-btn-box">
-        <div>자격증</div>
-        <div class="plus-btn" @click="addCreateCert">+</div>
-      </strong>
-      <CreateCertificate
-       v-for="(certificate) in certCreate" :key="certificate.id" :certificate="certificate"
-       @createCert="createCert"
-       />
-      <UpdateCertificate
-       v-for="(certificate) in certUpdate" :key="certificate.id" :certificate="certificate"
-       @updateCert="updateCert"
-       />
+      <Certificate />
     </div>
     <div class="hr-border-m-40"></div>
     <div>
-      <strong  class="plus-btn-box">
-        <div>수상</div>
-        <div class="plus-btn" @click="addCreateAward">+</div>
-      </strong>
-      <CreateAward
-       v-for="(awards) in awardCreate" :key="awards.id" :awards="awards"
-       @createAward="createAward"
-       />
-      <UpdateAward
-       v-for="(awards) in awardUpdate" :key="awards.id" :awards="awards"
-       @updateAward="updateAward"
-       />
+      <Award />
     </div>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
-import CreateLanguage from './CreateLanguage.vue';
-import UpdateLanguage from './UpdateLanguage.vue';
-import CreateCertificate from './CreateCertificate.vue';
-import UpdateCertificate from './UpdateCertificate.vue';
-import CreateAward from './CreateAward.vue';
-import UpdateAward from './UpdateAward.vue';
+import Language from './TempLanguage.vue';
+import Certificate from './TempCertificate.vue';
+import Award from './TempAward.vue';
 
 export default {
   name: 'ResumePart3',
   components: {
-    CreateLanguage,
-    CreateCertificate,
-    CreateAward,
-    UpdateLanguage,
-    UpdateCertificate,
-    UpdateAward,
+    Language,
+    Certificate,
+    Award,
   },
   data() {
     return {
-      langCreate: [],
-      langUpdate: [],
-      certCreate: [],
-      certUpdate: [],
-      awardCreate: [],
-      awardUpdate: [],
     };
   },
   computed: {
@@ -194,6 +149,9 @@ export default {
     this.langUpdate = JSON.parse(JSON.stringify(this.resume.foreignLang));
     this.certUpdate = JSON.parse(JSON.stringify(this.resume.certificate));
     this.awardUpdate = JSON.parse(JSON.stringify(this.resume.awards));
+  },
+  beforeDestroy() {
+    this.$emit('save', 2);
   },
 };
 </script>

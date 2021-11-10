@@ -25,8 +25,8 @@
       </div>
     </div>
     <div class="resume-part">
-      <ResumePart1 v-if="resumePart==0" @part1Data="part1Data"/>
-      <ResumePart2 v-if="resumePart==1"
+      <ResumePart1 v-if="resumePart==0" @save="save"/>
+      <ResumePart2 v-else-if="resumePart==1" @save="save"
        @updateEducationData="updateEducationData"
        @createEducationData="createEducationData"
        @createCareerData="createCareerData" @deleteCareer="deleteCareer"
@@ -34,17 +34,17 @@
        @createActivityData="createActivityData" @updateActivityData="updateActivityData"
        @deleteActivity="deleteActivity"
        />
-      <ResumePart3 v-if="resumePart==2"
+      <ResumePart3 v-else-if="resumePart==2" @save="save"
       @createLangData="createLangData" @deleteLanguage="deleteLanguage"
       @updateLanguageData="updateLanguageData" @createCertData="createCertData"
       @deleteCertificate="deleteCertificate" @updateCertificateData="updateCertificateData"
       @createAwardData="createAwardData" @deleteAwards="deleteAwards"
       @updateAwardsData="updateAwardsData"
       />
-      <ResumePart4 v-if="resumePart==3"
+      <ResumePart4 v-else-if="resumePart==3" @save="save"
       @createTechData="createTechData"
       @deleteTech="deleteTech" @updateTechData="updateTechData"/>
-      <ResumePart5 v-if="resumePart==4"
+      <ResumePart5 v-else-if="resumePart==4" @save="save"
       @createProjectData="createProjectData"
       @deleteProject="deleteProject" @updateProjectData="updateProjectData"/>
     </div>
@@ -114,20 +114,12 @@ export default {
       }
       this.resumePart = Now;
     },
-    next() {
-      const Next = this.resumePart + 1;
-      const stepList = document.querySelectorAll('.step-progress-item');
-      for (let i = 0; i < 5; i += 1) {
-        if (i < Next) stepList[i].className = 'step-progress-item is-done';
-        else if (i === Next) stepList[i].className = 'step-progress-item current';
-        else stepList[i].className = 'step-progress-item';
-      }
-      this.resumePart = Next;
-    },
-    part1Data(user) {
-      this.resumeEdit.user = user;
+    exit() {
+      // 페이지 벗어나기
+      console.log();
     },
     save() {
+      console.log('save', this.resumePart);
       if (this.resumePart === 0) {
         const part1 = {
           birthday: this.resumeEdit.user.birthday,
