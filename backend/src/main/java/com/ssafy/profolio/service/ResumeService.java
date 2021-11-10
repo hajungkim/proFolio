@@ -124,9 +124,9 @@ public class ResumeService {
     public ResumeDto.EducationResponse findEducation(Long userId) {
         Education education = educationRepository.findByUserId(userId);
         if (education == null) throw new BaseException(BaseResponseCode.DATA_IS_NULL);
-        return new ResumeDto.EducationResponse(education.getId(), education.getUniversity(), education.isMainSchool(),
+        return new ResumeDto.EducationResponse(education.getId(), education.getUniversity(),
                 education.getMajor(), education.getMinor(), education.getAdmissionDate(), education.getGraduationDate(),
-                education.isGraduation(), education.getScore(), education.getTotalScore());
+                education.isGraduation());
     }
 
     @Transactional
@@ -182,14 +182,11 @@ public class ResumeService {
         User user = userRepository.getById(request.getUserId());
         Education education = Education.builder()
                 .university(request.getUniversity())
-                .mainSchool(request.isMainSchool())
                 .major(request.getMajor())
                 .minor(request.getMinor())
                 .admissionDate(request.getAdmissionDate())
                 .graduationDate(request.getGraduationDate())
                 .graduation(request.isGraduation())
-                .score(request.getScore())
-                .totalScore(request.getTotalScore())
                 .user(user).build();
         educationRepository.save(education);
     }

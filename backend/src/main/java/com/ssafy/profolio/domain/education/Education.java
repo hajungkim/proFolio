@@ -22,9 +22,6 @@ public class Education {
     @Column
     private String university;
 
-    @Column(name = "main_school")
-    private boolean mainSchool;
-
     @Column
     private String major;
 
@@ -40,39 +37,27 @@ public class Education {
     @Column
     private boolean graduation;
 
-    @Column
-    private String score;
-
-    @Column(name = "total_score")
-    private Long totalScore;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
     @Builder
-    public Education(String university, boolean mainSchool, String major, String minor, String admissionDate, String graduationDate, boolean graduation, String score, Long totalScore, User user) {
+    public Education(String university, String major, String minor, String admissionDate, String graduationDate, boolean graduation, User user) {
         this.university = university;
-        this.mainSchool = mainSchool;
         this.major = major;
         this.minor = minor;
         this.admissionDate = admissionDate;
         this.graduationDate = graduationDate;
         this.graduation = graduation;
-        this.score = score;
-        this.totalScore = totalScore;
         this.user = user;
     }
 
     public void updateEducation(ResumeDto.EducationRequest request) {
         this.university = request.getUniversity();
-        this.mainSchool = request.isMainSchool();
         this.major = request.getMajor();
         this.minor = request.getMinor();
         this.admissionDate = request.getAdmissionDate();
         this.graduationDate = request.getGraduationDate();
         this.graduation = request.isGraduation();
-        this.score = request.getScore();
-        this.totalScore = request.getTotalScore();
     }
 }
