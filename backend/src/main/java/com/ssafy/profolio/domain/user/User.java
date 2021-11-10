@@ -49,6 +49,9 @@ public class User {
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime joinDate;
 
+    @Column
+    private String description;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<TechnologyStack> technologyStackList = new ArrayList<>();
 
@@ -71,7 +74,7 @@ public class User {
     private List<Project> projectList = new ArrayList<>();
 
     @Builder
-    public User(String socialId, String email, String name, String phone, String githubId, String profilePath) {
+    public User(String socialId, String email, String name, String phone, String githubId, String profilePath, String description) {
         this.socialId = socialId;
         this.email = email;
         this.name = name;
@@ -79,6 +82,7 @@ public class User {
         this.githubId = githubId;
         this.profilePath = profilePath;
         this.joinDate = LocalDateTime.now();
+        this.description=description;
     }
 
     public void updateUser(UserDto.UserRequest request) {
@@ -87,5 +91,6 @@ public class User {
         this.phone = request.getPhone();
         this.githubId = request.getGithubId();
         this.profilePath = request.getProfilePath();
+        this.description = request.getDescription();
     }
 }

@@ -15,6 +15,7 @@ public class UserDto {
     private String phone;
     private String githubId;
     private String profilePath;
+    private String description;
 
     @Builder
     public UserDto(String socialId, String email, String name, String phone, String githubId, String profilePath) {
@@ -33,6 +34,7 @@ public class UserDto {
         this.phone = user.getPhone();
         this.profilePath = user.getProfilePath();
         this.githubId = user.getGithubId();
+        this.description=user.getDescription();
     }
 
     @Getter
@@ -57,6 +59,7 @@ public class UserDto {
         private String phone;
         private String githubId;
         private String profilePath;
+        private String description;
     }
 
     @Getter
@@ -67,6 +70,7 @@ public class UserDto {
         private String phone;
         private String profilePath;
         private String githubId;
+        private String description;
     }
 
 }
