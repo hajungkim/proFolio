@@ -66,17 +66,18 @@ export default {
   computed: {
     ...mapState([
       'resume',
+      'userId',
     ]),
   },
   methods: {
     addLanguage() {
-      console.log("??");
       const newLang = {
         id: `${Date.now()}`,
         name: '',
         score: '',
         language: '',
         certifiedDate: '',
+        userId: this.userId,
       };
       if (!this.resume.foreignLang) {
         this.$store.commit('CHANGE_LANGUAGE_LIST', [newLang]);

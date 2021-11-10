@@ -10,6 +10,7 @@
     >
       <table class="resume-part2-input">
         <tr>
+          {{project.projectId}}
           <th>프로젝트명</th>
           <td>
             <input
@@ -111,6 +112,7 @@ export default {
   computed: {
     ...mapState([
       'resume',
+      'userId',
     ]),
   },
   methods: {
@@ -124,9 +126,10 @@ export default {
         memberCnt: '',
         description: '',
         link: '',
+        userId: this.userId,
       };
       if (!this.resume.project) {
-        this.$store.commit('CHANGE_PROJECT_LIST', [{}, newItem]);
+        this.$store.commit('CHANGE_PROJECT_LIST', [newItem]);
       } else {
         this.$store.commit('CHANGE_PROJECT_LIST', [...this.resume.project, newItem]);
       }

@@ -92,6 +92,7 @@ export default {
   computed: {
     ...mapState([
       'resume',
+      'userId',
     ]),
   },
   methods: {
@@ -101,8 +102,13 @@ export default {
         name: '',
         level: '',
         kind: null,
+        userId: this.userId,
       };
-      this.$store.commit('CHANGE_TECHNOLOGY_LIST', [...this.resume.technologyStack, newItem]);
+      if (!this.resume.technologyStack) {
+        this.$store.commit('CHANGE_TECHNOLOGY_LIST', [newItem]);
+      } else {
+        this.$store.commit('CHANGE_TECHNOLOGY_LIST', [...this.resume.technologyStack, newItem]);
+      }
     },
     deleteTech(item) {
       const newList = _.differenceWith(this.resume.technologyStack, [item], _.isEqual);
