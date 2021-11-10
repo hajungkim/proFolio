@@ -47,6 +47,7 @@ export default {
   computed: {
     ...mapState([
       'resume',
+      'userId',
     ]),
   },
   methods: {
@@ -55,6 +56,7 @@ export default {
         id: `${Date.now()}`,
         name: '',
         certifiedDate: '',
+        userId: this.userId,
       };
       if (!this.resume.certificate) {
         this.$store.commit('CHANGE_CERTIFICATE_LIST', [newItem]);

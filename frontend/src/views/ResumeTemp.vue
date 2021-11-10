@@ -103,12 +103,14 @@ export default {
         const newItem = _.differenceWith(
           [this.resume.education], [this.old_resume.education], _.isEqual,
         );
+        console.log(newItem);
         if (!_.isEmpty(newItem)) {
           const eduData = {
             id: newItem[0].id,
             data: newItem[0],
           };
           eduData.data.id = null;
+          console.log(eduData);
           if (_.isEmpty(this.old_resume.education)) {
             // 생성
             this.$store.dispatch('educationCreate', eduData);

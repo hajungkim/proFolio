@@ -70,6 +70,7 @@ export default {
   computed: {
     ...mapState([
       'resume',
+      'userId',
     ]),
   },
   methods: {
@@ -79,6 +80,7 @@ export default {
         name: '',
         certifiedDate: '',
         description: '',
+        userId: this.userId,
       };
       if (!this.resume.awards) {
         this.$store.commit('CHANGE_AWARDS_LIST', [newItem]);

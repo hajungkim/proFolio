@@ -71,6 +71,7 @@ export default {
   computed: {
     ...mapState([
       'resume',
+      'userId',
     ]),
   },
   methods: {
@@ -82,6 +83,7 @@ export default {
         description: '',
         startDate: '',
         endDate: '',
+        userId: this.userId,
       };
       if (!this.resume.activity) {
         this.$store.commit('CHANGE_ACTIVITY_LIST', [newActivity]);

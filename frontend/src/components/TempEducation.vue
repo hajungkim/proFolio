@@ -157,6 +157,7 @@ export default {
   computed: {
     ...mapState([
       'resume',
+      'userId',
     ]),
   },
   data() {
@@ -169,6 +170,7 @@ export default {
     changeInput(event) {
       const { name, value } = event.target;
       this.resume.education[name] = value;
+      this.resume.education.userId = this.userId;
       this.$store.commit('CHANGE_EDUCATION_INFO', { name, value });
     },
     admissionDateUpdate() {

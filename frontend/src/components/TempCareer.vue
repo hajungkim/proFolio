@@ -68,6 +68,7 @@ export default {
   computed: {
     ...mapState([
       'resume',
+      'userId',
     ]),
   },
   methods: {
@@ -79,6 +80,7 @@ export default {
         description: '',
         startDate: '',
         endDate: '',
+        userId: this.userId,
       };
       if (!this.resume.career) {
         this.$store.commit('CHANGE_CAREER_LIST', [newCareer]);
