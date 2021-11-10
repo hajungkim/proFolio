@@ -29,7 +29,7 @@ public class UserController {
         return new BaseResponse<>(response);
     }
 
-    @ApiOperation(value = "유저 기본 정보   수정", notes = "데이터 수정 성공 시 true 반환")
+    @ApiOperation(value = "유저 기본 정보 수정", notes = "데이터 수정 성공 시 true 반환")
     @PutMapping("/{userid}")
     public BaseResponse<Boolean> updateUserInfo(@PathVariable("userid") Long userId, @RequestBody UserDto.UserRequest request){
         userService.updateUser(userId, request);
