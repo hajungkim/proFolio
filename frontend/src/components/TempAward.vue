@@ -11,7 +11,7 @@
       <table class="resume-part2-input">
         <tr>
           <th>대회명</th>
-          <td>
+          <td style="grid-column: 1 / span2">
             <input
               type="text"
               :value="award.name"
@@ -48,7 +48,7 @@
           </td>
         </tr>
       </table>
-      <div class="delete-btn" @click="deleteAward(award)">X</div>
+      <div class="delete-btn" @click="deleteAward(award)">x</div>
     </div>
   </div>
 </template>
@@ -80,7 +80,11 @@ export default {
         certifiedDate: '',
         description: '',
       };
-      this.$store.commit('CHANGE_AWARDS_LIST', [...this.resume.awards, newItem]);
+      if (!this.resume.awards) {
+        this.$store.commit('CHANGE_AWARDS_LIST', [newItem]);
+      } else {
+        this.$store.commit('CHANGE_AWARDS_LIST', [...this.resume.awards, newItem]);
+      }
     },
     deleteAward(item) {
       const newList = _.differenceWith(this.resume.awards, [item], _.isEqual);

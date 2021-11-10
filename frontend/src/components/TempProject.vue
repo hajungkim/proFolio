@@ -89,7 +89,7 @@
           </td>
         </tr>
       </table>
-      <div class="delete-btn-2" @click="deleteProject">X</div>
+      <div class="delete-btn-2" @click="deleteProject(project)">x</div>
     </div>
   </div>
 </template>
@@ -125,7 +125,11 @@ export default {
         description: '',
         link: '',
       };
-      this.$store.commit('CHANGE_PROJECT_LIST', [...this.resume.project, newItem]);
+      if (!this.resume.project) {
+        this.$store.commit('CHANGE_PROJECT_LIST', [{}, newItem]);
+      } else {
+        this.$store.commit('CHANGE_PROJECT_LIST', [...this.resume.project, newItem]);
+      }
     },
     deleteProject(item) {
       const newList = _.differenceWith(this.resume.project, [item], _.isEqual);

@@ -46,7 +46,7 @@
           </td>
         </tr>
       </table>
-      <div class="delete-btn" @click="deleteCareer(career)">X</div>
+      <div class="delete-btn" @click="deleteCareer(career)">x</div>
     </div>
   </div>
 </template>
@@ -80,7 +80,11 @@ export default {
         startDate: '',
         endDate: '',
       };
-      this.$store.commit('CHANGE_CAREER_LIST', [...this.resume.career, newCareer]);
+      if (!this.resume.career) {
+        this.$store.commit('CHANGE_CAREER_LIST', [newCareer]);
+      } else {
+        this.$store.commit('CHANGE_CAREER_LIST', [...this.resume.career, newCareer]);
+      }
     },
     deleteCareer(item) {
       const newList = _.differenceWith(this.resume.career, [item], _.isEqual);

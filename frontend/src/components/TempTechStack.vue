@@ -11,7 +11,7 @@
       <table class="resume-part2-input">
         <tr>
           <th>기술스택 종류</th>
-          <td class="pl-15">
+          <td>
             <div
               :class="[
                 tech.kind === 1 ? techStackBoxSelected : '',
@@ -49,6 +49,7 @@
           <th>기술스택명</th>
           <td>
             <input
+              style="margin-left: 0;"
               type="text"
               :value="tech.name"
               name="name"
@@ -58,7 +59,7 @@
         </tr>
         <tr>
           <th>레벨</th>
-          <td class="pl-15">
+          <td>
             <input
               type="range" min="1" max="5"
               class="range"
@@ -70,7 +71,7 @@
           </td>
         </tr>
       </table>
-      <div class="delete-btn-2" @click="deleteTech(tech)">X</div>
+      <div class="delete-btn-2" @click="deleteTech(tech)">x</div>
     </div>
   </div>
 </template>
