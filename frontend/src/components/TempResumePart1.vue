@@ -59,7 +59,7 @@
           <th><label for="description">자기소개</label></th>
           <td>
             <textarea
-              :value="resume.user.introduce"
+              :value="resume.user.description"
               @change="changeInput"
               name="introduce"
             />
@@ -89,6 +89,9 @@ export default {
     loadFile() {
       const fileInput = document.querySelector('#imageInput');
       this.resume.user.profilePath = URL.createObjectURL(fileInput.files[0]);
+      const [temp] = fileInput.files;
+      this.resume.user.file = temp;
+      console.log(this.resume.user.file);
       URL.revokeObjectURL(fileInput.files[0]);
     },
     changeInput(event) {

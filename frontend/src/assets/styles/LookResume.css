@@ -113,6 +113,9 @@ button {
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5); 
   font-family: 'Pretendard-Regular';
 }
+.round-shadow:hover{
+  background: #0053b8;
+}
 .mt-15 {
   margin-top: 15px;
 }

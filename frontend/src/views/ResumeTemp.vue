@@ -89,12 +89,20 @@ export default {
       if (index === 0) {
         // 인적사항
         const {
-          email, name, phone, profilePath, githubId, description,
+          email, name, phone, profilePath, githubId, description, file,
         } = this.resume.user;
-        const part1 = {
-          email, name, phone, profilePath, githubId, description,
-        };
-        putUserInfo(this.userId, part1)
+        // const part1 = {
+        //   email, name, phone, profilePath, githubId, description, file,
+        // };
+        const user = new FormData();
+        if (file) user.append('file', file);
+        user.append('email', email);
+        user.append('name', name);
+        user.append('phone', phone);
+        user.append('profilePath', profilePath);
+        user.append('githubId', githubId);
+        user.append('description', description);
+        putUserInfo(this.userId, user)
           .then(() => {
             this.$store.dispatch('getUser', this.userId);
           });
