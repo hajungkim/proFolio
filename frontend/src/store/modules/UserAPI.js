@@ -13,7 +13,11 @@ function getUserInfo(userId) {
 }
 
 function putUserInfo(userId, userInfo) {
-  return axiosService.put(`user/${userId}`, userInfo);
+  return axiosService.put(`user/${userId}`, userInfo, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
 }
 
 export { login, getUserInfo, putUserInfo };
