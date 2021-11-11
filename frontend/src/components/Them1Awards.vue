@@ -1,5 +1,6 @@
 <template>
   <div class="skill" v-if="edit || portfolio.awards.length">
+    {{portfolio.awards}}
     <div class="name">Awards</div>
     <AddItemButton type="awards" v-if="edit"/>
     <draggable class="draggable-container-row">

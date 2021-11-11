@@ -1,6 +1,8 @@
 <template>
   <div class="skill"  v-if="edit || portfolio.project.length">
+    <!-- {{portfolio.project}} -->
     <div class="name">Projects</div>
+    <button @click="test()">test</button>
     <AddItemButton type="project" v-if="edit"/>
     <draggable class="draggable-container-col">
       <div v-for="(pro) in portfolio.project" :key="pro.id" class="project-card">
@@ -60,6 +62,18 @@ export default {
     ...mapState([
       'portfolio',
     ]),
+  },
+  methods: {
+    test() {
+      console.log('test');
+      console.log('@test: ', this.portfolio.project);
+      if (this.portfolio.project === null) {
+        this.portfolio.project = [];
+        console.log(this.portfolio.project.length);
+      } else {
+        console.log('@else');
+      }
+    },
   },
 };
 </script>
