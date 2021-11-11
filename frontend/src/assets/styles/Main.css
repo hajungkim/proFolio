@@ -37,7 +37,7 @@ h1 {
 
 .puppy {
   /* background: linear-gradient(#373B44, #4286f4); */
-  background-color: #c7dff7da;
+  background-color: #ffffffda;
   /* background-color: #C1C5E5; */
 }
 
@@ -46,18 +46,18 @@ section.black {
 }
 
 .beige {
-  background: linear-gradient(#c7dff7da, #c9afe0);
+  background: linear-gradient(#fdfdfdda, #b0cdf3);
   /* background-color: #ece6cc; */
 }
 
 .blue {
-  background: linear-gradient(#c9afe0, 60%, #dc94e6);
+  background: linear-gradient(#b0cdf3, 60%, #aa9ae7);
   /* background-color:  #c9afe0; */
   /* background-color: #519ff1; */
 }
 
 .pink {
-  background: linear-gradient( #dc94e6, 60%, #d66972);
+  background: linear-gradient( #aa9ae7, 60%, #d66972);
   /* background-color: #8ae28a; */
 }
 
