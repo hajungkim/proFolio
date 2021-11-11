@@ -12,7 +12,17 @@ import {
 } from './modules/ResumeAPI';
 
 Vue.use(Vuex);
-
+const initialResume = {
+  user: {},
+  education: {},
+  awards: [],
+  activity: [],
+  career: [],
+  certificate: [],
+  foreignLang: [],
+  technologyStack: [],
+  project: [],
+};
 export default new Vuex.Store({
   plugins: [
     createPersistedState(),
@@ -272,7 +282,14 @@ export default new Vuex.Store({
     },
     // ABOUT PORTFOLIO
     PORTFOLIO_COPY_RESUME(state) {
-      const newObject = JSON.parse(JSON.stringify(state.resume));
+      // Create newObject, using initial resume
+      const newObject = Object.assign(initialResume);
+      // copy resume values to newObject
+      Object.entries(state.resume).forEach((item) => {
+        const [key, value] = item;
+        newObject[key] = value;
+      });
+      // replace portfolio with newObject
       state.portfolio = newObject;
     },
     PORTFOLIO_USER_INFO(state, userinfo) {
