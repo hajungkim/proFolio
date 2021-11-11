@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 public class UserDto {
@@ -71,6 +72,7 @@ public class UserDto {
         private String profilePath;
         private String githubId;
         private String description;
+        private MultipartFile file;
     }
 
 }

@@ -91,6 +91,7 @@
     position: relative;
     border-radius: 50%;
     max-height: 220px;
+    min-width: 210px;
     width: auto;
     height: auto;
     overflow: hidden;
@@ -169,7 +170,7 @@
     background-color: white;
     margin-right: 16%;
     padding: 5%;
-    margin: 0 5% 5% 5%;
+    margin: 0 10% 5% 5%;
 }
 .them3-awards-card{
     position: relative;
@@ -218,7 +219,7 @@
 }
 
 .draggable-container-col {
-    /* margin: 5% 5% 5% 5%; */
+    /* margin: 2% 2% 2% 2%; */
     display: grid;
     /* grid-template-columns: repeat(2, 1fr); */
     grid-template-columns: repeat(auto-fit, minmax(350px,auto));
