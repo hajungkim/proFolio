@@ -41,7 +41,7 @@ https://k5b302.p.ssafy.io/
 
 |   Name   |                                     이수정                                      |             고동건             |          김하정          |                                         엄재식                                          |          전혜민          |          최정은          |
 | :------: | :-----------------------------------------------------------------------------: | :----------------------------: | :----------------------: | :-------------------------------------------------------------------------------------: | :----------------------: | :----------------------: |
-| Profile  | <img width="100" src="/uploads/c80475a6f25b231a683910b266b6a099/103628133.jpg"> |    <img width="100" src="">    | <img width="100" src=""> | <img width="100" src="/uploads/0656321787cce06ebe50ebe32200635a/2000-11-05_174907.jpg"> | <img width="100" src=""> | <img width="100" src=""> |
+| Profile  | <img width="100" src="/uploads/c80475a6f25b231a683910b266b6a099/103628133.jpg"> |    <img width="100" src="">    | <img width="100" src=""> | <img width="400" src="/uploads/0656321787cce06ebe50ebe32200635a/2000-11-05_174907.jpg"> | <img width="100" src=""> | <img width="100" src=""> |
 | Position |                   Project leader <br />Backend <br /> DevOps                    | Full Stack<br />사진 합성 기능 |     Full Stack<br />     |                                     Frontend<br />                                      |    Full Stack <br />     |      Frontend<br />      |
 |  GitHub  |                    [@SuJeong2](https://github.com/SuJeong2)                     |    [@](https://github.com/)    | [@](https://github.com/) |                         [@jaesikk](https://github.com/jaesikk)                          | [@](https://github.com/) | [@](https://github.com/) |
 
@@ -96,7 +96,7 @@ https://k5b302.p.ssafy.io/
 
 # 🗂 패키지 구조
 
-[@패키지구조](https://melodious-can-b87.notion.site/cc1c764f48a54f759fbd8e5965c742ba)
+[패키지구조](https://melodious-can-b87.notion.site/cc1c764f48a54f759fbd8e5965c742ba)
 
 <details>
   <summary>프론트엔드</summary>
@@ -122,7 +122,7 @@ https://k5b302.p.ssafy.io/
 <details>
   <summary>와이어프레임</summary>
 
-[@와이어프레임-Figma](https://www.figma.com/file/1bm6o7RuBk8LUyhs1fNV2D/자율PJT?node-id=0%3A1)
+[와이어프레임-Figma](https://www.figma.com/file/1bm6o7RuBk8LUyhs1fNV2D/자율PJT?node-id=0%3A1)
 
 ![와이어프레임1](/uploads/f034950df23c9de3df3d46acb5124283/와이어프레임1.png)
 
@@ -132,8 +132,7 @@ https://k5b302.p.ssafy.io/
 
 <details>
   <summary>기능명세서</summary>  
-  
-  [@기능명세서](https://melodious-can-b87.notion.site/c5c18834764a4d0bb76648103f079cb1)
+  [기능명세서](https://melodious-can-b87.notion.site/c5c18834764a4d0bb76648103f079cb1)
 </details>
 
 <br>
