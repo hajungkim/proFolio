@@ -43,12 +43,6 @@ export default {
       'portfolio',
     ]),
   },
-  methods: {
-    remove() {
-      console.log('@this.resume: ', this.resume.awards);
-      this.resume.awards = '';
-    },
-  },
 };
 </script>
 

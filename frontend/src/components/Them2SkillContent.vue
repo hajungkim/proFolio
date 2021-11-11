@@ -29,10 +29,6 @@ export default {
       type: Array,
     },
   },
-  data() {
-    return {
-    };
-  },
 };
 </script>
 

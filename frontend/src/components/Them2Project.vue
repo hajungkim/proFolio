@@ -1,5 +1,5 @@
 <template>
-  <div class="them2-box" id="remove"  v-if="edit || portfolio.project.length">
+  <div class="them2-box" id="remove"  v-if="edit || portfolio.project">
     <div class="them2-subtitle">Project</div>
     <AddItemButton type="project" v-if="edit"/>
     <!-- test -->
