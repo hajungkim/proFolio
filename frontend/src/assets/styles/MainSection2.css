@@ -1,6 +1,37 @@
+@font-face {
+  font-family: 'paybooc-Bold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/paybooc-Bold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 .main-section2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 8rem;
   /* text-align: center; */
+}
+.main-section2-img {
+  margin-top: 50px;
+  width: 550px;
+}
+.main-section2-content {
+  margin-right: 80px;
+  margin-top: 40px;
+}
+.main-header2 {
+  font-size: 4rem;
+  font-family: 'paybooc-Bold';
+}
+.section-text2 {
+  font-size: 1.7rem;
+  margin-top: 3rem;
+  text-align: center;
+  font-family: 'paybooc-Bold';
+}
+.line-container2 {
+  width: 150px;
+  margin-left: 160px;
+}
+.line2 {
+  border-bottom: 5px solid #0239af;
 }

@@ -1,3 +1,9 @@
+@font-face {
+  font-family: 'paybooc-Bold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/paybooc-Bold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 .template-box {
   display: flex;
   justify-content: space-around;
@@ -10,7 +16,7 @@
   padding: 15px;
   border-radius: 5px;
   display: inline-block;
-  height: 300px;
+  height: 350px;
   margin: 2rem;
   position: relative;
   width: 300px;
@@ -24,4 +30,20 @@
   transform: translateY(-10px) scale(1.105) translateZ(0);
   box-shadow: 0 20px 40px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
-
+.main-header4 {
+  font-size: 4rem;
+  font-family: 'paybooc-Bold';
+}
+.line-container4 {
+  width: 150px;
+  margin-left: 470px;
+}
+.line4 {
+  border-bottom: 5px solid #0239af;
+}
+.section-text4 {
+  font-size: 1.7rem;
+  margin-top: 3rem;
+  text-align: center;
+  font-family: 'paybooc-Bold';
+}
