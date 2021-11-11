@@ -300,6 +300,10 @@ export default new Vuex.Store({
       // replace portfolio with newObject
       state.portfolio = newObject;
     },
+    PORTFOLIO_COPY_SAMPLE(state) {
+      const newObject = JSON.parse(JSON.stringify(state.sample));
+      state.portfolio = newObject;
+    },
     PORTFOLIO_USER_INFO(state, userinfo) {
       state.portfolio.user = userinfo;
     },
@@ -541,6 +545,10 @@ export default new Vuex.Store({
     //   });
     // });
     // ABOUT PORTFOLIO //////////////////////////
+    portfolioCopySample(context) {
+      context.commit('PORTFOLIO_COPY_SAMPLE');
+    },
+
     portfolioCopyResume(context) {
       context.commit('PORTFOLIO_COPY_RESUME');
     },
