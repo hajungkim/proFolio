@@ -98,11 +98,11 @@ https://k5b302.p.ssafy.io/
 
 # 🗂 패키지 구조 및 공통 Response,Exception 문서
 
-### 📕[Frontend](https://melodious-can-b87.notion.site/Frontend-9631e4ceab8c45eb930e285f4f177369)
+#### 📕[Frontend](https://melodious-can-b87.notion.site/Frontend-9631e4ceab8c45eb930e285f4f177369)
 
-### 📙[Backend](https://melodious-can-b87.notion.site/Backend-b26e89cc1d60412e8d472b1dd1e55879)
+#### 📙[Backend](https://melodious-can-b87.notion.site/Backend-b26e89cc1d60412e8d472b1dd1e55879)
 
-### 📗[공통 Response,Exception](https://melodious-can-b87.notion.site/Response-Exception-88fe96c63dbc4d7d8872d3329e35cbe2)
+#### 📗[공통 Response,Exception](https://melodious-can-b87.notion.site/Response-Exception-88fe96c63dbc4d7d8872d3329e35cbe2)
 
 <br>
 
@@ -118,7 +118,7 @@ https://k5b302.p.ssafy.io/
 <details>
   <summary>와이어프레임</summary>
 
-🖋[와이어프레임-Figma](https://www.figma.com/file/1bm6o7RuBk8LUyhs1fNV2D/자율PJT?node-id=0%3A1)
+<h2> 🖋[와이어프레임-Figma](https://www.figma.com/file/1bm6o7RuBk8LUyhs1fNV2D/자율PJT?node-id=0%3A1) </h2>
 
 ![와이어프레임1](/uploads/f034950df23c9de3df3d46acb5124283/와이어프레임1.png)
 
@@ -128,7 +128,7 @@ https://k5b302.p.ssafy.io/
 
 <details>
   <summary>기능명세서</summary>  
-  📃[기능명세서](https://melodious-can-b87.notion.site/c5c18834764a4d0bb76648103f079cb1)
+  <h2> 📝[기능명세서](https://melodious-can-b87.notion.site/c5c18834764a4d0bb76648103f079cb1) </h2>
 </details>
 
 <br>
