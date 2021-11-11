@@ -85,7 +85,7 @@ export default {
       this.$router.push('mypage');
     },
     save(index = this.resumePart) {
-      console.log('save', index);
+      console.log('save', index, '=====');
       if (index === 0) {
         // 인적사항
         const {
@@ -103,19 +103,18 @@ export default {
         const newItem = _.differenceWith(
           [this.resume.education], [this.old_resume.education], _.isEqual,
         );
-        console.log(newItem);
         if (!_.isEmpty(newItem)) {
           const eduData = {
             id: newItem[0].id,
             data: newItem[0],
           };
-          eduData.data.id = null;
-          console.log(eduData);
           if (_.isEmpty(this.old_resume.education)) {
             // 생성
+            eduData.data.id = null;
             this.$store.dispatch('educationCreate', eduData);
           } else {
             // 수정
+            // eduData.data.id = 1;
             this.$store.dispatch('educationUpdate', eduData);
           }
         }
@@ -123,40 +122,59 @@ export default {
         // changeIdArray에 들어가있는 값은 put으로 들어있지 않은 값은 post로
         const oldIdCareer = this.old_resume.career.map((obj) => obj.id);
         const newIdCareer = this.resume.career.map((obj) => obj.id);
-        const changeIdCareer = _.difference(newIdCareer, oldIdCareer);
+        // create: resume만, change: resume, old 둘다, deleted: old만
+        const createIdCareer = _.difference(newIdCareer, oldIdCareer);
+        const changeIdCareer = _.intersection(newIdCareer, oldIdCareer);
         const deletedIdCareer = _.difference(oldIdCareer, newIdCareer);
         // 1. 새로운 사항 저장
-        const newItemCareerTemp = _.differenceWith(
-          this.resume.career, this.old_resume.career, _.isEqual,
-        );
-        const newItemCareer = newItemCareerTemp.filter(
-          (obj) => changeIdCareer.includes(obj.id),
+        const newItemCareer = this.resume.career.filter(
+          (obj) => createIdCareer.includes(obj.id),
         );
         // 2. 수정 사항
-        const changeItemCareer = newItemCareerTemp.filter(
-          (obj) => !changeIdCareer.includes(obj.id),
+        const changeItemCareerTemp = _.differenceWith(
+          this.resume.career, this.old_resume.career, _.isEqual,
+        ); // 새로운 아이템과 변경 아이템이 포함된 리스트 반환
+        const changeItemCareer = changeItemCareerTemp.filter(
+          (obj) => {
+            console.log("c", obj.id, changeIdCareer.includes(obj.id));
+            return changeIdCareer.includes(obj.id);
+          },
         );
+        console.log(changeItemCareer);
         // 3. 삭제된 사항
         const deletedItemCareer = this.old_resume.career.filter(
           (obj) => deletedIdCareer.includes(obj.id),
         );
+        console.log("new", newItemCareer.length);
+        console.log("change", changeItemCareer.length);
+        console.log("delete", deletedItemCareer.length);
         // 4. 저장
-        newItemCareer.forEach((data) => {
-          data.id = null;
-          this.$store.dispatch('careerCreate', data);
-        });
-        changeItemCareer.forEach((data) => {
-          const newData = {
-            id: data.id,
-            data,
-          };
-          newData.data.id = null;
-          this.$store.dispatch('careerUpdate', newData);
-        });
-        deletedItemCareer.forEach(
-          (data) => this.$store.dispatch('careerDelete', data.id),
-        );
-
+        const saveCareer = async () => {
+          const newList = newItemCareer.map(async (data) => {
+            console.log(data);
+            return this.$store.dispatch('careerCreate', data);
+          });
+          const changeList = changeItemCareer.map(async (data) => {
+            console.log(data);
+            const newData = {
+              id: data.id,
+              data,
+            };
+            return this.$store.dispatch('careerUpdate', newData);
+          });
+          const deleteList = deletedItemCareer.map(async (data) => {
+            console.log(data);
+            return this.$store.dispatch('careerDelete', data.id);
+          });
+          const promiseList = [...newList, ...changeList, ...deleteList];
+          console.log(promiseList);
+          const res = await Promise.all(promiseList);
+          console.log(res);
+          // if (res) {
+          //   this.$store.dispatch('resumeUpdate', 'career');
+          // }
+        };
+        saveCareer();
         // 경험
         const oldIdActivity = this.old_resume.activity.map((obj) => obj.id);
         const newIdActivity = this.resume.activity.map((obj) => obj.id);
@@ -193,11 +211,8 @@ export default {
         deletedItemActivity.forEach(
           (data) => this.$store.dispatch('activityDelete', data.id),
         );
-
         // old_resume 갱신
-        this.$store.commit('RESUME_COPY_RESUME_PART', { key: 'education' });
-        this.$store.commit('RESUME_COPY_RESUME_PART', { key: 'career' });
-        this.$store.commit('RESUME_COPY_RESUME_PART', { key: 'activity' });
+        this.$store.dispatch('resumeUpdate', 'activity');
       } else if (index === 2) {
         // 어학
         const oldIdLang = this.old_resume.foreignLang.map((obj) => obj.id);
@@ -309,9 +324,9 @@ export default {
           (data) => this.$store.dispatch('awardsDelete', data.id),
         );
         // old_resume 갱신
-        this.$store.commit('RESUME_COPY_RESUME_PART', { key: 'foreignLang' });
-        this.$store.commit('RESUME_COPY_RESUME_PART', { key: 'certificate' });
-        this.$store.commit('RESUME_COPY_RESUME_PART', { key: 'awards' });
+        this.$store.dispatch('resumeUpdate', 'foreignLang');
+        this.$store.dispatch('resumeUpdate', 'certificate');
+        this.$store.dispatch('resumeUpdate', 'awards');
       } else if (index === 3) {
         // 기술스택
         const oldIdTech = this.old_resume.technologyStack.map((obj) => obj.id);
@@ -350,7 +365,7 @@ export default {
           (data) => this.$store.dispatch('techStackDelete', data.id),
         );
         // old_resume 갱신
-        this.$store.commit('RESUME_COPY_RESUME_PART', { key: 'technologyStack' });
+        this.$store.dispatch('resumeUpdate', 'technologyStack');
       } else if (index === 4) {
         // 프로젝트
         const oldIdPjt = this.old_resume.project.map((obj) => obj.id);
@@ -389,12 +404,17 @@ export default {
           (data) => this.$store.dispatch('projectDelete', data.id),
         );
         // old_resume 갱신
-        this.$store.commit('RESUME_COPY_RESUME_PART', { key: 'project' });
+        this.$store.dispatch('resumeUpdate', 'project');
       }
     },
   },
   created() {
     this.$store.commit('RESUME_COPY_RESUME');
+  },
+  mounted() {
+    console.log(this.old_resume);
+    console.log(this.resume);
+    console.log(Object.is(this.old_resume, this.resume));
   },
 };
 </script>

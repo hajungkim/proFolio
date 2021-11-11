@@ -17,12 +17,14 @@ function postEducation(data) {
   return axiosService.post('resume/education', data);
 }
 function putCareer(id, data) {
+  console.log("putCareer", data);
   return axiosService.put(`resume/career/${id}`, data);
 }
 function deleteCareer(id) {
   return axiosService.delete(`resume/career/${id}`);
 }
 function getCareer(userId) {
+  console.log(`resume/career/${userId}`);
   return axiosService.get(`resume/career/${userId}`);
 }
 function postCareer(data) {
