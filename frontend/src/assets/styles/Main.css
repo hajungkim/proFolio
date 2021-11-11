@@ -1,14 +1,3 @@
-@font-face {
-  font-family: 'Noto Sans KR';
-  src: url(../fonts/Noto_Sans_KR/NotoSansKR-Regular.otf) format('opentype');
-  font-style: normal;
-  font-weight: 100;
-}
-
-/* h2 {
-  position: fixed;
-} */
-
 .fullpage {
   height: 100vh;
   width: 100%;
@@ -16,7 +5,6 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  font-family: 'Noto Sans KR';
 }
 
 h1 {
@@ -46,18 +34,18 @@ section.black {
 }
 
 .beige {
-  background: linear-gradient(#fdfdfdda, #b0cdf3);
+  background: white;
   /* background-color: #ece6cc; */
 }
 
 .blue {
-  background: linear-gradient(#b0cdf3, 60%, #aa9ae7);
+  background: linear-gradient(#002169, 60%, #002169);
   /* background-color:  #c9afe0; */
   /* background-color: #519ff1; */
 }
 
 .pink {
-  background: linear-gradient( #aa9ae7, 60%, #d66972);
+  background: linear-gradient( #ffffff, 60%, #ffffff);
   /* background-color: #8ae28a; */
 }
 
