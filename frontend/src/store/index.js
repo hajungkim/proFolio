@@ -272,7 +272,15 @@ export default new Vuex.Store({
       state.resume.project[index][name] = value;
     },
     RESUME_COPY_RESUME(state) {
-      const newObject = JSON.parse(JSON.stringify(state.resume));
+      // const newObject = JSON.parse(JSON.stringify(state.resume));
+      // state.old_resume = newObject;
+      const newObject = Object.assign(initialResume);
+      // copy resume values to newObject
+      Object.entries(state.resume).forEach((item) => {
+        const [key, value] = item;
+        newObject[key] = value;
+      });
+      // replace portfolio with newObject
       state.old_resume = newObject;
     },
     RESUME_COPY_RESUME_PART(state, payload) {
@@ -326,24 +334,45 @@ export default new Vuex.Store({
         context.commit('EDUCATION_INFO', response.data.data);
       });
       getCareer(context.state.userId).then((response) => {
+        if (response.data.data === null) {
+          response.data.data = [];
+        }
         context.commit('CAREER_INFO', response.data.data);
       });
       getActivity(context.state.userId).then((response) => {
+        if (response.data.data === null) {
+          response.data.data = [];
+        }
         context.commit('ACTIVITY_INFO', response.data.data);
       });
       getLanguage(context.state.userId).then((response) => {
+        if (response.data.data === null) {
+          response.data.data = [];
+        }
         context.commit('LANGUAGE_INFO', response.data.data);
       });
       getCertificate(context.state.userId).then((response) => {
+        if (response.data.data === null) {
+          response.data.data = [];
+        }
         context.commit('CERTIFICATION_INFO', response.data.data);
       });
       getAwards(context.state.userId).then((response) => {
+        if (response.data.data === null) {
+          response.data.data = [];
+        }
         context.commit('AWARDS_INFO', response.data.data);
       });
       getProject(context.state.userId).then((response) => {
+        if (response.data.data === null) {
+          response.data.data = [];
+        }
         context.commit('PROJECT_INFO', response.data.data);
       });
       getTech(context.state.userId).then((response) => {
+        if (response.data.data === null) {
+          response.data.data = [];
+        }
         context.commit('TECHNOLOGY_INFO', response.data.data);
       });
     },

@@ -61,7 +61,7 @@
             <textarea
               :value="resume.user.description"
               @change="changeInput"
-              name="introduce"
+              name="description"
             />
           </td>
         </tr>
