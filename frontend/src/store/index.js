@@ -292,7 +292,7 @@ export default new Vuex.Store({
     },
     RESUME_UPDATE(state, payload) {
       const { key, data } = payload;
-      state.old_resume[key] = data;
+      state.old_resume[key] = JSON.parse(JSON.stringify(data));
     },
     // ABOUT PORTFOLIO
     PORTFOLIO_COPY_RESUME(state) {
@@ -403,91 +403,96 @@ export default new Vuex.Store({
         context.commit('GET_USER_INFO', res.data.data);
       });
     },
-    async educationCreate(context, data) {
-      const res1 = await postEducation(data.data);
-      if (res1.status !== 200) {
-        throw new Error(`status: ${res1.status}`);
-      }
-      const educationValue = await getEducation(data.id);
-      context.commit('RESUME_UPDATE', { key: 'education', data: educationValue.data });
+    educationCreate(context, data) {
+      return postEducation(data.data).then((res) => {
+        context.dispatch('resumeUpdate', { key: 'education', res });
+      });
     },
-    async educationUpdate(context, data) {
-      const res1 = await putEducation(data.id, data.data);
-      if (res1.status !== 200) {
-        throw new Error(`status: ${res1.status}`);
-      }
-      const educationValue = await getEducation(data.id);
-      context.commit('RESUME_UPDATE', { key: 'education', data: educationValue.data });
+    educationUpdate(context, data) {
+      data.data.userId = context.state.userId;
+      return putEducation(data.id, data.data).then((res) => {
+        context.dispatch('resumeUpdate', { key: 'education', res });
+      });
     },
     careerCreate(context, data) {
       return postCareer(data);
     },
     careerUpdate(context, data) {
-      console.log("careerUpdate", data);
-      return putCareer(data.id, data);
+      return putCareer(data.id, data.data);
     },
     careerDelete(context, id) {
       return deleteCareer(id);
     },
     activityCreate(context, data) {
-      postActivity(data);
+      return postActivity(data);
     },
     activityUpdate(context, data) {
-      putActivity(data.id, data);
+      return putActivity(data.id, data.data);
     },
     activityDelete(context, id) {
-      deleteActivity(id);
+      return deleteActivity(id);
     },
     languageCreate(context, data) {
-      postLanguage(data);
+      return postLanguage(data);
     },
     languageUpdate(context, data) {
-      putLanguage(data.id, data);
+      return putLanguage(data.id, data.data);
     },
     languageDelete(context, id) {
-      deleteLanguage(id);
+      return deleteLanguage(id);
     },
     certificateCreate(context, data) {
-      postCertificate(data);
+      return postCertificate(data);
     },
     certificateUpdate(context, data) {
-      putCertificate(data.id, data);
+      return putCertificate(data.id, data.data);
     },
     certificateDelete(context, id) {
-      deleteCertificate(id);
+      return deleteCertificate(id);
     },
     awardsCreate(context, data) {
-      postAwards(data);
+      return postAwards(data);
     },
     awardsUpdate(context, data) {
-      putAwards(data.id, data);
+      return putAwards(data.id, data.data);
     },
     awardsDelete(context, id) {
-      deleteAwards(id);
+      return deleteAwards(id);
     },
     techStackCreate(context, data) {
-      postTech(data);
+      return postTech(data);
     },
     techStackUpdate(context, data) {
-      putTech(data.id, data);
+      return putTech(data.id, data.data);
     },
     techStackDelete(context, id) {
-      deleteTech(id);
+      return deleteTech(id);
     },
     projectCreate(context, data) {
-      postProject(data);
+      return postProject(data);
     },
     projectUpdate(context, data) {
-      putProject(data.id, data);
+      return putProject(data.id, data.data);
     },
     projectDelete(context, id) {
-      deleteProject(id);
+      return deleteProject(id);
     },
-    async resumeUpdate(context, key) {
+    async resumeUpdate(context, data) {
+      const { key } = data;
+      console.log('resumeUpdate', key, typeof (key));
       switch (key) {
+        case 'education': {
+          const response = await getEducation(context.state.userId);
+          if (response.data.data === null) {
+            response.data.data = {};
+          }
+          context.commit('EDUCATION_INFO', response.data.data);
+          context.commit('RESUME_UPDATE', { key, data: response.data.data });
+          break;
+        }
         case 'career': {
           const response = await getCareer(context.state.userId);
-          console.log(response);
+          // console.log(response);
           if (response.data.data === null) {
             response.data.data = [];
           }
@@ -500,6 +505,7 @@ export default new Vuex.Store({
           if (response.data.data === null) {
             response.data.data = [];
           }
+          console.log(response.data.data);
           context.commit('ACTIVITY_INFO', response.data.data);
           context.commit('RESUME_UPDATE', { key, data: response.data.data });
           break;
@@ -532,7 +538,7 @@ export default new Vuex.Store({
           break;
         }
         case 'technologyStack': {
-          const response = await getProject(context.state.userId);
+          const response = await getTech(context.state.userId);
           if (response.data.data === null) {
             response.data.data = [];
           }
@@ -541,7 +547,7 @@ export default new Vuex.Store({
           break;
         }
         case 'project': {
-          const response = await getTech(context.state.userId);
+          const response = await getProject(context.state.userId);
           if (response.data.data === null) {
             response.data.data = [];
           }

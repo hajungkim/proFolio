@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const axiosService = axios.create({
   baseURL: process.env.VUE_APP_API_URL,
+  headers: { 'Content-Type': 'application/json' },
 });
 
 function putEducation(id, data) {
@@ -17,20 +18,20 @@ function postEducation(data) {
   return axiosService.post('resume/education', data);
 }
 function putCareer(id, data) {
-  console.log("putCareer", data);
+  // console.log("putCareer", data);
   return axiosService.put(`resume/career/${id}`, data);
 }
 function deleteCareer(id) {
   return axiosService.delete(`resume/career/${id}`);
 }
 function getCareer(userId) {
-  console.log(`resume/career/${userId}`);
   return axiosService.get(`resume/career/${userId}`);
 }
 function postCareer(data) {
   return axiosService.post('resume/career', data);
 }
 function putActivity(id, data) {
+  console.log(data);
   return axiosService.put(`resume/activity/${id}`, data);
 }
 function deleteActivity(id) {

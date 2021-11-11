@@ -20,9 +20,9 @@
       </ul>
       <div class="resume-btn-box">
         <div>
-          <!-- <div class="resume-save-btn" @click="save()">저장하기</div> -->
-          <div class="resume-save-btn" @click="exit">완료</div>
-          <!-- <div class="resume-next-btn" @click="exit">완료</div> -->
+          <div class="resume-save-btn" @click="save()">저장하기</div>
+          <!-- <div class="resume-save-btn" @click="exit">완료</div> -->
+          <div class="resume-next-btn" @click="exit">완료</div>
         </div>
       </div>
     </div>
@@ -108,13 +108,11 @@ export default {
             id: newItem[0].id,
             data: newItem[0],
           };
-          if (_.isEmpty(this.old_resume.education)) {
+          if (eduData.id === undefined || eduData.id === null) {
             // 생성
-            eduData.data.id = null;
             this.$store.dispatch('educationCreate', eduData);
           } else {
             // 수정
-            // eduData.data.id = 1;
             this.$store.dispatch('educationUpdate', eduData);
           }
         }
@@ -135,276 +133,296 @@ export default {
           this.resume.career, this.old_resume.career, _.isEqual,
         ); // 새로운 아이템과 변경 아이템이 포함된 리스트 반환
         const changeItemCareer = changeItemCareerTemp.filter(
-          (obj) => {
-            console.log("c", obj.id, changeIdCareer.includes(obj.id));
-            return changeIdCareer.includes(obj.id);
-          },
+          (obj) => changeIdCareer.includes(obj.id),
         );
-        console.log(changeItemCareer);
         // 3. 삭제된 사항
         const deletedItemCareer = this.old_resume.career.filter(
           (obj) => deletedIdCareer.includes(obj.id),
         );
-        console.log("new", newItemCareer.length);
-        console.log("change", changeItemCareer.length);
-        console.log("delete", deletedItemCareer.length);
         // 4. 저장
         const saveCareer = async () => {
-          const newList = newItemCareer.map(async (data) => {
-            console.log(data);
-            return this.$store.dispatch('careerCreate', data);
-          });
+          const newList = newItemCareer.map(
+            async (data) => this.$store.dispatch('careerCreate', data),
+          );
           const changeList = changeItemCareer.map(async (data) => {
-            console.log(data);
             const newData = {
               id: data.id,
               data,
             };
             return this.$store.dispatch('careerUpdate', newData);
           });
-          const deleteList = deletedItemCareer.map(async (data) => {
-            console.log(data);
-            return this.$store.dispatch('careerDelete', data.id);
-          });
+          const deleteList = deletedItemCareer.map(
+            async (data) => this.$store.dispatch('careerDelete', data.id),
+          );
           const promiseList = [...newList, ...changeList, ...deleteList];
-          console.log(promiseList);
           const res = await Promise.all(promiseList);
-          console.log(res);
-          // if (res) {
-          //   this.$store.dispatch('resumeUpdate', 'career');
-          // }
+          // console.log(res);
+          this.$store.dispatch('resumeUpdate', { key: 'career', res });
         };
         saveCareer();
         // 경험
         const oldIdActivity = this.old_resume.activity.map((obj) => obj.id);
         const newIdActivity = this.resume.activity.map((obj) => obj.id);
-        const changeIdActivity = _.difference(newIdActivity, oldIdActivity);
+        const createIdActivity = _.difference(newIdActivity, oldIdActivity);
+        const changeIdActivity = _.intersection(newIdActivity, oldIdActivity);
         const deletedIdActivity = _.difference(oldIdActivity, newIdActivity);
         // 1. 새로운 사항
-        const newItemActivityTemp = _.differenceWith(
-          this.resume.activity, this.old_resume.activity, _.isEqual,
-        );
-        const newItemActivity = newItemActivityTemp.filter(
-          (obj) => changeIdActivity.includes(obj.id),
+        const newItemActivity = this.resume.activity.filter(
+          (obj) => createIdActivity.includes(obj.id),
         );
         // 2. 수정 사항
-        const changeItemActivity = newItemActivityTemp.filter(
-          (obj) => !changeIdActivity.includes(obj.id),
+        const changeItemActivityTemp = _.differenceWith(
+          this.resume.activity, this.old_resume.activity, _.isEqual,
+        ); // 새로운 아이템과 변경 아이템이 포함된 리스트 반환
+        const changeItemActivity = changeItemActivityTemp.filter(
+          (obj) => changeIdActivity.includes(obj.id),
         );
         // 3. 삭제된 사항
         const deletedItemActivity = this.old_resume.activity.filter(
           (obj) => deletedIdActivity.includes(obj.id),
         );
         // 4. 저장
-        newItemActivity.forEach((data) => {
-          data.id = null;
-          this.$store.dispatch('activityCreate', data);
-        });
-        changeItemActivity.forEach((data) => {
-          const newData = {
-            id: data.id,
-            data,
-          };
-          newData.data.id = null;
-          this.$store.dispatch('activityUpdate', newData);
-        });
-        deletedItemActivity.forEach(
-          (data) => this.$store.dispatch('activityDelete', data.id),
-        );
-        // old_resume 갱신
-        this.$store.dispatch('resumeUpdate', 'activity');
+        const saveActivity = async () => {
+          const newList = newItemActivity.map(
+            async (data) => this.$store.dispatch('activityCreate', data),
+          );
+          const changeList = changeItemActivity.map(async (data) => {
+            const newData = {
+              id: data.id,
+              data,
+            };
+            return this.$store.dispatch('activityUpdate', newData);
+          });
+          const deleteList = deletedItemActivity.map(
+            async (data) => this.$store.dispatch('activityDelete', data.id),
+          );
+          const promiseList = [...newList, ...changeList, ...deleteList];
+          const res = await Promise.all(promiseList);
+          // console.log(res);
+          this.$store.dispatch('resumeUpdate', { key: 'activity', res });
+        };
+        saveActivity();
       } else if (index === 2) {
         // 어학
         const oldIdLang = this.old_resume.foreignLang.map((obj) => obj.id);
         const newIdLang = this.resume.foreignLang.map((obj) => obj.id);
-        const changeIdLang = _.difference(newIdLang, oldIdLang);
+        // create: resume만, change: resume, old 둘다, deleted: old만
+        const createIdLang = _.difference(newIdLang, oldIdLang);
+        const changeIdLang = _.intersection(newIdLang, oldIdLang);
         const deletedIdLang = _.difference(oldIdLang, newIdLang);
-        // 1. 새로운 사항
-        const newItemLangTemp = _.differenceWith(
-          this.resume.foreignLang, this.old_resume.foreignLang, _.isEqual,
-        );
-        const newItemLang = newItemLangTemp.filter(
-          (obj) => changeIdLang.includes(obj.id),
+        // 1. 새로운 사항 저장
+        const newItemLang = this.resume.foreignLang.filter(
+          (obj) => createIdLang.includes(obj.id),
         );
         // 2. 수정 사항
-        const changeItemLang = newItemLangTemp.filter(
-          (obj) => !changeIdLang.includes(obj.id),
+        const changeItemLangTemp = _.differenceWith(
+          this.resume.foreignLang, this.old_resume.foreignLang, _.isEqual,
+        ); // 새로운 아이템과 변경 아이템이 포함된 리스트 반환
+        const changeItemLang = changeItemLangTemp.filter(
+          (obj) => changeIdLang.includes(obj.id),
         );
         // 3. 삭제된 사항
         const deletedItemLang = this.old_resume.foreignLang.filter(
           (obj) => deletedIdLang.includes(obj.id),
         );
         // 4. 저장
-        newItemLang.forEach((data) => {
-          data.id = null;
-          this.$store.dispatch('languageCreate', data);
-        });
-        changeItemLang.forEach((data) => {
-          const newData = {
-            id: data.id,
-            data,
-          };
-          newData.data.id = null;
-          this.$store.dispatch('languageUpdate', newData);
-        });
-        deletedItemLang.forEach(
-          (data) => this.$store.dispatch('languageDelete', data.id),
-        );
+        const saveLang = async () => {
+          const newList = newItemLang.map(
+            async (data) => this.$store.dispatch('languageCreate', data),
+          );
+          const changeList = changeItemLang.map(async (data) => {
+            const newData = {
+              id: data.id,
+              data,
+            };
+            return this.$store.dispatch('languageUpdate', newData);
+          });
+          const deleteList = deletedItemLang.map(
+            async (data) => this.$store.dispatch('languageDelete', data.id),
+          );
+          const promiseList = [...newList, ...changeList, ...deleteList];
+          const res = await Promise.all(promiseList);
+          // console.log(res);
+          this.$store.dispatch('resumeUpdate', { key: 'foreignLang', res });
+        };
+        saveLang();
+
         // 자격증
         const oldIdCert = this.old_resume.certificate.map((obj) => obj.id);
         const newIdCert = this.resume.certificate.map((obj) => obj.id);
-        const changeIdCert = _.difference(newIdCert, oldIdCert);
+        // create: resume만, change: resume, old 둘다, deleted: old만
+        const createIdCert = _.difference(newIdCert, oldIdCert);
+        const changeIdCert = _.intersection(newIdCert, oldIdCert);
         const deletedIdCert = _.difference(oldIdCert, newIdCert);
-        // 1. 새로운 사항
-        const newItemCertTemp = _.differenceWith(
-          this.resume.certificate, this.old_resume.certificate, _.isEqual,
-        );
-        const newItemCert = newItemCertTemp.filter(
-          (obj) => changeIdCert.includes(obj.id),
+        // 1. 새로운 사항 저장
+        const newItemCert = this.resume.certificate.filter(
+          (obj) => createIdCert.includes(obj.id),
         );
         // 2. 수정 사항
-        const changeItemCert = newItemCertTemp.filter(
-          (obj) => !changeIdCert.includes(obj.id),
+        const changeItemCertTemp = _.differenceWith(
+          this.resume.certificate, this.old_resume.certificate, _.isEqual,
+        ); // 새로운 아이템과 변경 아이템이 포함된 리스트 반환
+        const changeItemCert = changeItemCertTemp.filter(
+          (obj) => changeIdCert.includes(obj.id),
         );
         // 3. 삭제된 사항
         const deletedItemCert = this.old_resume.certificate.filter(
           (obj) => deletedIdCert.includes(obj.id),
         );
         // 4. 저장
-        newItemCert.forEach((data) => {
-          data.id = null;
-          this.$store.dispatch('certificateCreate', data);
-        });
-        changeItemCert.forEach((data) => {
-          const newData = {
-            id: data.id,
-            data,
-          };
-          newData.data.id = null;
-          this.$store.dispatch('certificateUpdate', newData);
-        });
-        deletedItemCert.forEach(
-          (data) => this.$store.dispatch('certificateDelete', data.id),
-        );
+        const saveCert = async () => {
+          const newList = newItemCert.map(
+            async (data) => this.$store.dispatch('certificateCreate', data),
+          );
+          const changeList = changeItemCert.map(async (data) => {
+            const newData = {
+              id: data.id,
+              data,
+            };
+            return this.$store.dispatch('certificateUpdate', newData);
+          });
+          const deleteList = deletedItemCert.map(
+            async (data) => this.$store.dispatch('certificateDelete', data.id),
+          );
+          const promiseList = [...newList, ...changeList, ...deleteList];
+          const res = await Promise.all(promiseList);
+          // console.log(res);
+          this.$store.dispatch('resumeUpdate', { key: 'certificate', res });
+        };
+        saveCert();
 
         // 수상
         const oldIdAward = this.old_resume.awards.map((obj) => obj.id);
         const newIdAward = this.resume.awards.map((obj) => obj.id);
-        const changeIdAward = _.difference(newIdAward, oldIdAward);
+        // create: resume만, change: resume, old 둘다, deleted: old만
+        const createIdAward = _.difference(newIdAward, oldIdAward);
+        const changeIdAward = _.intersection(newIdAward, oldIdAward);
         const deletedIdAward = _.difference(oldIdAward, newIdAward);
-        // 1. 새로운 사항
-        const newItemAwardTemp = _.differenceWith(
-          this.resume.awards, this.old_resume.awards, _.isEqual,
-        );
-        const newItemAward = newItemAwardTemp.filter(
-          (obj) => changeIdAward.includes(obj.id),
+        // 1. 새로운 사항 저장
+        const newItemAward = this.resume.awards.filter(
+          (obj) => createIdAward.includes(obj.id),
         );
         // 2. 수정 사항
-        const changeItemAward = newItemAwardTemp.filter(
-          (obj) => !changeIdAward.includes(obj.id),
+        const changeItemAwardTemp = _.differenceWith(
+          this.resume.awards, this.old_resume.awards, _.isEqual,
+        ); // 새로운 아이템과 변경 아이템이 포함된 리스트 반환
+        const changeItemAward = changeItemAwardTemp.filter(
+          (obj) => changeIdAward.includes(obj.id),
         );
         // 3. 삭제된 사항
         const deletedItemAward = this.old_resume.awards.filter(
           (obj) => deletedIdAward.includes(obj.id),
         );
         // 4. 저장
-        newItemAward.forEach((data) => {
-          data.id = null;
-          this.$store.dispatch('awardsCreate', data);
-        });
-        changeItemAward.forEach((data) => {
-          const newData = {
-            id: data.id,
-            data,
-          };
-          newData.data.id = null;
-          this.$store.dispatch('awardsUpdate', newData);
-        });
-        deletedItemAward.forEach(
-          (data) => this.$store.dispatch('awardsDelete', data.id),
-        );
-        // old_resume 갱신
-        this.$store.dispatch('resumeUpdate', 'foreignLang');
-        this.$store.dispatch('resumeUpdate', 'certificate');
-        this.$store.dispatch('resumeUpdate', 'awards');
+        const saveAward = async () => {
+          const newList = newItemAward.map(
+            async (data) => this.$store.dispatch('awardsCreate', data),
+          );
+          const changeList = changeItemAward.map(async (data) => {
+            const newData = {
+              id: data.id,
+              data,
+            };
+            return this.$store.dispatch('awardsUpdate', newData);
+          });
+          const deleteList = deletedItemAward.map(
+            async (data) => this.$store.dispatch('awardsDelete', data.id),
+          );
+          const promiseList = [...newList, ...changeList, ...deleteList];
+          const res = await Promise.all(promiseList);
+          // console.log(res);
+          this.$store.dispatch('resumeUpdate', { key: 'awards', res });
+        };
+        saveAward();
       } else if (index === 3) {
         // 기술스택
         const oldIdTech = this.old_resume.technologyStack.map((obj) => obj.id);
         const newIdTech = this.resume.technologyStack.map((obj) => obj.id);
-        const changeIdTech = _.difference(newIdTech, oldIdTech);
+        // create: resume만, change: resume, old 둘다, deleted: old만
+        const createIdTech = _.difference(newIdTech, oldIdTech);
+        const changeIdTech = _.intersection(newIdTech, oldIdTech);
         const deletedIdTech = _.difference(oldIdTech, newIdTech);
-        // 1. 새로운 사항
-        const newItemTechTemp = _.differenceWith(
-          this.resume.technologyStack, this.old_resume.technologyStack, _.isEqual,
-        );
-        const newItemTech = newItemTechTemp.filter(
-          (obj) => changeIdTech.includes(obj.id),
+        // 1. 새로운 사항 저장
+        const newItemTech = this.resume.technologyStack.filter(
+          (obj) => createIdTech.includes(obj.id),
         );
         // 2. 수정 사항
-        const changeItemTech = newItemTechTemp.filter(
-          (obj) => !changeIdTech.includes(obj.id),
+        const changeItemTechTemp = _.differenceWith(
+          this.resume.technologyStack, this.old_resume.technologyStack, _.isEqual,
+        ); // 새로운 아이템과 변경 아이템이 포함된 리스트 반환
+        const changeItemTech = changeItemTechTemp.filter(
+          (obj) => changeIdTech.includes(obj.id),
         );
         // 3. 삭제된 사항
         const deletedItemTech = this.old_resume.technologyStack.filter(
           (obj) => deletedIdTech.includes(obj.id),
         );
         // 4. 저장
-        newItemTech.forEach((data) => {
-          data.id = null;
-          this.$store.dispatch('techStackCreate', data);
-        });
-        changeItemTech.forEach((data) => {
-          const newData = {
-            id: data.id,
-            data,
-          };
-          newData.data.id = null;
-          this.$store.dispatch('techStackUpdate', newData);
-        });
-        deletedItemTech.forEach(
-          (data) => this.$store.dispatch('techStackDelete', data.id),
-        );
-        // old_resume 갱신
-        this.$store.dispatch('resumeUpdate', 'technologyStack');
+        const saveTech = async () => {
+          const newList = newItemTech.map(
+            async (data) => this.$store.dispatch('techStackCreate', data),
+          );
+          const changeList = changeItemTech.map(async (data) => {
+            const newData = {
+              id: data.id,
+              data,
+            };
+            return this.$store.dispatch('techStackUpdate', newData);
+          });
+          const deleteList = deletedItemTech.map(
+            async (data) => this.$store.dispatch('techStackDelete', data.id),
+          );
+          const promiseList = [...newList, ...changeList, ...deleteList];
+          const res = await Promise.all(promiseList);
+          // console.log(res);
+          this.$store.dispatch('resumeUpdate', { key: 'technologyStack', res });
+        };
+        saveTech();
       } else if (index === 4) {
         // 프로젝트
+        // changeIdArray에 들어가있는 값은 put으로 들어있지 않은 값은 post로
         const oldIdPjt = this.old_resume.project.map((obj) => obj.id);
         const newIdPjt = this.resume.project.map((obj) => obj.id);
-        const changeIdPjt = _.difference(newIdPjt, oldIdPjt);
+        // create: resume만, change: resume, old 둘다, deleted: old만
+        const createIdPjt = _.difference(newIdPjt, oldIdPjt);
+        const changeIdPjt = _.intersection(newIdPjt, oldIdPjt);
         const deletedIdPjt = _.difference(oldIdPjt, newIdPjt);
-        // 1. 새로운 사항
-        const newItemPjtTemp = _.differenceWith(
-          this.resume.project, this.old_resume.project, _.isEqual,
-        );
-        const newItemPjt = newItemPjtTemp.filter(
-          (obj) => changeIdPjt.includes(obj.id),
+        // 1. 새로운 사항 저장
+        const newItemPjt = this.resume.project.filter(
+          (obj) => createIdPjt.includes(obj.id),
         );
         // 2. 수정 사항
-        const changeItemPjt = newItemPjtTemp.filter(
-          (obj) => !changeIdPjt.includes(obj.id),
+        const changeItemPjtTemp = _.differenceWith(
+          this.resume.project, this.old_resume.project, _.isEqual,
+        ); // 새로운 아이템과 변경 아이템이 포함된 리스트 반환
+        const changeItemPjt = changeItemPjtTemp.filter(
+          (obj) => changeIdPjt.includes(obj.id),
         );
         // 3. 삭제된 사항
         const deletedItemPjt = this.old_resume.project.filter(
           (obj) => deletedIdPjt.includes(obj.id),
         );
         // 4. 저장
-        newItemPjt.forEach((data) => {
-          data.id = null;
-          this.$store.dispatch('projectCreate', data);
-        });
-        changeItemPjt.forEach((data) => {
-          const newData = {
-            id: data.id,
-            data,
-          };
-          newData.data.id = null;
-          this.$store.dispatch('projectUpdate', newData);
-        });
-        deletedItemPjt.forEach(
-          (data) => this.$store.dispatch('projectDelete', data.id),
-        );
-        // old_resume 갱신
-        this.$store.dispatch('resumeUpdate', 'project');
+        const savePjt = async () => {
+          const newList = newItemPjt.map(
+            async (data) => this.$store.dispatch('projectCreate', data),
+          );
+          const changeList = changeItemPjt.map(async (data) => {
+            const newData = {
+              id: data.id,
+              data,
+            };
+            return this.$store.dispatch('projectUpdate', newData);
+          });
+          const deleteList = deletedItemPjt.map(
+            async (data) => this.$store.dispatch('projectDelete', data.id),
+          );
+          const promiseList = [...newList, ...changeList, ...deleteList];
+          const res = await Promise.all(promiseList);
+          // console.log(res);
+          this.$store.dispatch('resumeUpdate', { key: 'project', res });
+        };
+        savePjt();
       }
     },
   },
