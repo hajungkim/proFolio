@@ -18,7 +18,7 @@
 
 https://k5b302.p.ssafy.io/
 
-✔ 2021년 11월 11일 : 서비스 이용 가능
+✔ 서비스 이용 가능
 
 <br>
 
@@ -96,19 +96,13 @@ https://k5b302.p.ssafy.io/
 
 <br>
 
-# 🗂 패키지 구조
+# 🗂 패키지 구조 및 공통 Response,Exception 문서
 
-📃[패키지구조](https://melodious-can-b87.notion.site/cc1c764f48a54f759fbd8e5965c742ba)
+#### 📕[Frontend](https://melodious-can-b87.notion.site/Frontend-9631e4ceab8c45eb930e285f4f177369)
 
-<details>
-  <summary>프론트엔드</summary>
+#### 📙[Backend](https://melodious-can-b87.notion.site/Backend-b26e89cc1d60412e8d472b1dd1e55879)
 
-</details>
-
-<details>
-  <summary>백엔드</summary>
-
-</details>
+#### 📗[공통 Response,Exception](https://melodious-can-b87.notion.site/Response-Exception-88fe96c63dbc4d7d8872d3329e35cbe2)
 
 <br>
 
@@ -124,7 +118,7 @@ https://k5b302.p.ssafy.io/
 <details>
   <summary>와이어프레임</summary>
 
-🖋[와이어프레임-Figma](https://www.figma.com/file/1bm6o7RuBk8LUyhs1fNV2D/자율PJT?node-id=0%3A1)
+<h2> 🖋[와이어프레임-Figma](https://www.figma.com/file/1bm6o7RuBk8LUyhs1fNV2D/자율PJT?node-id=0%3A1) </h2>
 
 ![와이어프레임1](/uploads/f034950df23c9de3df3d46acb5124283/와이어프레임1.png)
 
@@ -134,8 +128,20 @@ https://k5b302.p.ssafy.io/
 
 <details>
   <summary>기능명세서</summary>  
-  📃[기능명세서](https://melodious-can-b87.notion.site/c5c18834764a4d0bb76648103f079cb1)
+  <h2> 📝[기능명세서](https://melodious-can-b87.notion.site/c5c18834764a4d0bb76648103f079cb1) </h2>
 </details>
+
+<br>
+
+# 📄포팅매뉴얼
+
+```
+exec/포팅매뉴얼.md
+```
+
+> 소스코드 클론 이후 빌드 및 배포 방법  
+> 사용한 IDE 버전과 기술스택 정보  
+> 프로젝트에 사용된 외부 서비스
 
 <br>
 
