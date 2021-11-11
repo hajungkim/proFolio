@@ -1,17 +1,26 @@
 @font-face {
-    font-family: 'SDSamliphopangche_Outline';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Outline.woff') format('woff');
+    font-family: 'DungGeunMo';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
-.main-section1 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  /* gap: 2rem; */
-  text-align: center;
+.logo-container {
+    margin-left: 640px;
+    margin-bottom: 50px;
 }
-.main-container {
-    margin: auto;
+.logo-img {
+    width: 400px;
+}
+
+.main-section1 {
+    /* display: grid; */
+    /* grid-template-columns: repeat(2, 1fr); */
+    /* gap: 2rem; */
+    /* text-align: center; */
+}
+.post-container {
+    width: 1361.78px;
+    height: 416px;
 }
 .section1-img-box {
     margin-top: 28vh;
@@ -70,3 +79,31 @@
     text-align: center;
     font-family: 'S-CoreDream-6Bold';
 }
+
+.typing {
+    width: 1700px;
+    padding-left: 655px;
+    padding-bottom: 20px;
+}
+.typing-demo {
+    width: 24ch;
+    animation: typing 2s steps(22), blink .5s step-end infinite alternate;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid;
+    font-family: DungGeunMo;
+    font-size: 2em;
+    color: #000000;
+  }
+  
+  @keyframes typing {
+    from {
+      width: 0
+    }
+  }
+      
+  @keyframes blink {
+    50% {
+      border-color: transparent
+    }
+  }
