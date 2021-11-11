@@ -1,5 +1,5 @@
 <template>
-  <div class="them3-projects" v-if="edit || portfolio.activity.length">
+  <div class="them3-exp" v-if="edit || portfolio.project.length">
     <div class="name">Project</div>
     <AddItemButton type="project" v-if="edit"/>
     <draggable class="draggable-container-row">
