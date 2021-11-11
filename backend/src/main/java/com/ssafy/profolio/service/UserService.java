@@ -23,6 +23,7 @@ public class UserService {
     private final Long expireMin = 30L;
 
     private final UserRepository userRepository;
+    private final S3UploadService s3Service;
 
     public String createToken(UserDto userDto) {
         JwtBuilder jwtBuilder = Jwts.builder();
@@ -61,6 +62,11 @@ public class UserService {
     @Transactional
     public void updateUser(Long userId, UserDto.UserRequest request) {
         User user = userRepository.getById(userId);
-        user.updateUser(request);
+        if(request.getFile() != null) {
+            String url = s3Service.uploadS3(request.getFile());
+            user.updateUser(request, url);
+        }else{
+            user.updateUser(request);
+        }
     }
 }

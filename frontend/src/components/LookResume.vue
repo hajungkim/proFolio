@@ -3,8 +3,8 @@
     <div class="read-resume-profile">
       <div class="read-resume-box">
         <img :src="resume.user.profilePath" class="read-resume-image">
-        <div class="font-30 ml-5" style="font-weight:bold">About</div>
-        <div class="mt-10 ml-5">
+        <div class="font-30" style="font-weight:bold; margin-left:3vw;">About</div>
+        <div class="mt-10" style="margin-left:3vw;">
           <table class="read-resume-profile-table">
             <tr>
               <th>name</th>

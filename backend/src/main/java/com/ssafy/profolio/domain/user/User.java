@@ -93,4 +93,12 @@ public class User {
         this.profilePath = request.getProfilePath();
         this.description = request.getDescription();
     }
+    public void updateUser(UserDto.UserRequest request, String url) {
+        this.email = request.getEmail();
+        this.name = request.getName();
+        this.phone = request.getPhone();
+        this.githubId = request.getGithubId();
+        this.profilePath = url;
+        this.description = request.getDescription();
+    }
 }
