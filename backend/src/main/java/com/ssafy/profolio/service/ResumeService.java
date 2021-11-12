@@ -47,8 +47,8 @@ public class ResumeService {
         List<Activity> activityList = activityRepository.findByUserId(userId);
         List<ResumeDto.ActivityResponse> result = new ArrayList<>();
         for (Activity activity : activityList) {
-            result.add(new ResumeDto.ActivityResponse(activity.getId(), activity.getName(), activity.getDescription(),
-                    activity.getStartDate(), activity.getEndDate(), activity.getOrganization()));
+            result.add(new ResumeDto.ActivityResponse(activity.getId(), activity.getName(), activity.getOrganization(),
+                    activity.getStartDate(), activity.getEndDate(), activity.getDescription()));
         }
         return result;
     }
@@ -256,8 +256,8 @@ public class ResumeService {
     }
 
     @Transactional
-    public void updateEducation(Long id, ResumeDto.EducationRequest request) {
-        Education education = educationRepository.findByUserId(id);
+    public void updateEducation(Long userId, ResumeDto.EducationRequest request) {
+        Education education = educationRepository.findByUserId(userId);
         education.updateEducation(request);
     }
 
