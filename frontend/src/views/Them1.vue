@@ -22,6 +22,7 @@
           <button class="btn-hover color-9" @click="openModal">PDF변환</button>
           <!-- edit -->
           <button class="btn-hover color-9" @click="clickEdit">{{editBtn}}</button>
+          <ThemTip/>
         </div>
       </div>
       <div class="content">
@@ -66,6 +67,7 @@ import Them1Awards from '../components/Them1Awards.vue';
 import Them1Certi from '../components/Them1Certi.vue';
 import Them1Careers from '../components/Them1Careers.vue';
 import Them1Project from '../components/Them1Project.vue';
+import ThemTip from '../components/ThemTip.vue';
 import { postPortfolio } from '../store/modules/PortfolioAPI';
 
 export default {
@@ -79,6 +81,7 @@ export default {
     Them1Certi,
     Them1Careers,
     Them1Project,
+    ThemTip,
   },
   data() {
     return {
