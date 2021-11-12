@@ -62,6 +62,7 @@ export default {
   },
   computed: {
     ...mapState([
+      'isLogin',
       'userId',
       'resume',
       'old_resume',
@@ -438,9 +439,12 @@ export default {
     this.$store.commit('RESUME_COPY_RESUME');
   },
   mounted() {
-    console.log(this.old_resume);
-    console.log(this.resume);
-    console.log(Object.is(this.old_resume, this.resume));
+    // console.log(this.old_resume);
+    // console.log(this.resume);
+    // console.log(Object.is(this.old_resume, this.resume));
+    if (!this.isLogin) {
+      this.$router.push({ name: 'Login' });
+    }
   },
 };
 </script>
