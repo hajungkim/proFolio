@@ -20,9 +20,10 @@
       </ul>
       <div class="resume-btn-box">
         <div>
-          <div class="resume-save-btn" @click="save()">저장하기</div>
+          <div class="resume-save-btn" @click="save()">저장</div>
           <!-- <div class="resume-save-btn" @click="exit">완료</div> -->
-          <div class="resume-next-btn" @click="exit">완료</div>
+          <div class="resume-next-btn" @click="exit">종료</div>
+          <!-- <div>{{hasNull}}</div> -->
         </div>
       </div>
     </div>
@@ -67,9 +68,57 @@ export default {
       'resume',
       'old_resume',
     ]),
+    hasNull() {
+      // 하나라도 있으면 true, 없으면 false
+      // this.resume에 null값이 포함되어있는지 확인
+      const nullList = [null, 'null', undefined, ''];
+      const objectHasNull = (obj) => {
+        const valList = Object.values(obj);
+        const ret = valList.findIndex((v) => nullList.includes(v));
+        if (ret === -1) {
+          return false;
+        }
+        return true;
+      };
+      const listHasNull = (lst) => {
+        for (let index = 0; index < lst.length; index += 1) {
+          const itemObj = lst[index];
+          const ret = objectHasNull(itemObj);
+          if (ret) {
+            return true;
+          }
+        }
+        return false;
+      };
+      // Find return value
+      let rval = true;
+      if (this.resumePart === 0) {
+        rval = objectHasNull(this.resume.user);
+      } else if (this.resumePart === 1) {
+        const r1 = objectHasNull(this.resume.education);
+        const r2 = listHasNull(this.resume.activity);
+        const r3 = listHasNull(this.resume.career);
+        rval = r1 || r2 || r3;
+      } else if (this.resumePart === 2) {
+        const r1 = listHasNull(this.resume.foreignLang);
+        const r2 = listHasNull(this.resume.certificate);
+        const r3 = listHasNull(this.resume.awards);
+        rval = r1 || r2 || r3;
+      } else if (this.resumePart === 3) {
+        rval = listHasNull(this.resume.technologyStack);
+      } else if (this.resumePart === 4) {
+        rval = listHasNull(this.resume.project);
+      }
+      return rval;
+    },
   },
   methods: {
     stepChange(event) {
+      // null 값이 있는 경우 넘어가지 못하게
+      if (this.hasNull) {
+        alert("값을 채워주세요");
+        return;
+      }
       const Now = event.target.getAttribute('data-step') - 1;
       const stepList = document.querySelectorAll('.step-progress-item');
       for (let i = 0; i < 5; i += 1) {
@@ -80,12 +129,23 @@ export default {
       this.resumePart = Now;
     },
     exit() {
+      // null 값이 있는 경우 벗어나지 못하게
+      if (this.hasNull) {
+        alert("값을 채워주세요");
+        return;
+      }
       // 페이지 벗어나기
-      this.save();
-      console.log('exit');
+      // 컴포넌트 사라지면서 저장하니까 다시 호출할 필요없을듯
+      // this.save();
+      // console.log('exit');
       this.$router.push('mypage');
     },
     save(index = this.resumePart) {
+      // null 값이 있는 경우 저장하지 못하게
+      if (this.hasNull) {
+        alert("값을 채워주세요");
+        return;
+      }
       console.log('save', index, '=====');
       if (index === 0) {
         // 인적사항
@@ -165,7 +225,6 @@ export default {
           );
           const promiseList = [...newList, ...changeList, ...deleteList];
           const res = await Promise.all(promiseList);
-          // console.log(res);
           this.$store.dispatch('resumeUpdate', { key: 'career', res });
         };
         saveCareer();
@@ -433,15 +492,13 @@ export default {
         };
         savePjt();
       }
+      alert("저장되었습니다.");
     },
   },
   created() {
     this.$store.commit('RESUME_COPY_RESUME');
   },
   mounted() {
-    // console.log(this.old_resume);
-    // console.log(this.resume);
-    // console.log(Object.is(this.old_resume, this.resume));
     if (!this.isLogin) {
       this.$router.push({ name: 'Login' });
     }

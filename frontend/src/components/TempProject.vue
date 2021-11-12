@@ -30,6 +30,7 @@
               :value="project.memberCnt"
               name="memberCnt"
               @change="changeInput($event, project)"
+              min="1"
             />
           </td>
           <th class="pl-15">역할</th>
@@ -140,7 +141,11 @@ export default {
     },
     changeInput(event, project) {
       const { name, value } = event.target;
-      this.$store.commit('CHANGE_PROJECT_INFO', { name, value, project });
+      if (name === 'memberCnt' && value < 1) {
+        this.$store.commit('CHANGE_PROJECT_INFO', { name, value: 1, project });
+      } else {
+        this.$store.commit('CHANGE_PROJECT_INFO', { name, value, project });
+      }
     },
   },
 };
