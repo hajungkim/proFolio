@@ -8,7 +8,9 @@
       <div v-for="(lag) in portfolio.foreignLang" :key="'lang'+lag.id">
           <span>{{lag.certifiedDate}}</span>
           <span style="margin: 10%">{{lag.name}}</span>
-          <span style="margin: 10%">{{lag.score}}</span>
+          <span style="margin: 10%">{{lag.score}}
+            <span v-if=" !isNaN(lag.score) ">점</span>
+          </span>
       </div>
   </div>
 </template>
