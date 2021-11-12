@@ -16,7 +16,9 @@
             lag.certifiedDate
           }}</span>
           <span style="font-weight: bold; margin-right: 20%">{{ lag.name }}</span>
-          <span style="color: #656060">{{ lag.score }}</span>
+          <span style="color: #656060">{{ lag.score }}
+            <span v-if=" !isNaN(lag.score) ">점</span>
+          </span>
         </div>
       </div>
       <div class="ceright" v-if="portfolio.education">
