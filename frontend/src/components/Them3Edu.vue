@@ -1,5 +1,5 @@
 <template>
-  <div class="them3-edu" v-if="portfolio.education.length">
+  <div class="them3-edu" v-if="portfolio.education">
     <div class="name">Education</div>
       <div class="university">{{portfolio.education.university}}</div>
       <div class="raw">
