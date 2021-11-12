@@ -12,17 +12,6 @@ import {
 } from './modules/ResumeAPI';
 
 Vue.use(Vuex);
-const initialResume = {
-  user: {},
-  education: {},
-  awards: [],
-  activity: [],
-  career: [],
-  certificate: [],
-  foreignLang: [],
-  technologyStack: [],
-  project: [],
-};
 export default new Vuex.Store({
   plugins: [
     createPersistedState(),
@@ -168,6 +157,17 @@ export default new Vuex.Store({
         },
       ],
     },
+    initialResume: {
+      user: {},
+      education: {},
+      awards: [],
+      activity: [],
+      career: [],
+      certificate: [],
+      foreignLang: [],
+      technologyStack: [],
+      project: [],
+    },
   },
   mutations: {
     CHANGE_ISLOGIN(state, isLogin) {
@@ -272,29 +272,35 @@ export default new Vuex.Store({
       state.resume.project[index][name] = value;
     },
     RESUME_COPY_RESUME(state) {
-      // const newObject = JSON.parse(JSON.stringify(state.resume));
-      // state.old_resume = newObject;
-      const newObject = Object.assign(initialResume);
+      // Create newObject, using initial resume
+      // const newObject = Object.assign(state.initialResume);
+      const newObject = JSON.parse(JSON.stringify(state.initialResume));
       // copy resume values to newObject
       Object.entries(state.resume).forEach((item) => {
-        const [key, value] = item;
-        newObject[key] = value;
+        const [key, value] = JSON.parse(JSON.stringify(item));
+        if (value) {
+          newObject[key] = value;
+        } else if (!value && key === 'education') {
+          newObject[key] = {};
+        } else if (!value) {
+          newObject[key] = [];
+        }
       });
       // replace portfolio with newObject
       state.old_resume = newObject;
+      // state.portfolio = newObject;
     },
-    RESUME_COPY_RESUME_PART(state, payload) {
-      const { key } = payload;
-      const newObject = JSON.parse(JSON.stringify(state.resume[key]));
-      state.old_resume[key] = newObject;
+    RESUME_UPDATE(state, payload) {
+      const { key, data } = payload;
+      state.old_resume[key] = JSON.parse(JSON.stringify(data));
     },
     // ABOUT PORTFOLIO
     PORTFOLIO_COPY_RESUME(state) {
       // Create newObject, using initial resume
-      const newObject = Object.assign(initialResume);
+      const newObject = JSON.parse(JSON.stringify(state.initialResume));
       // copy resume values to newObject
       Object.entries(state.resume).forEach((item) => {
-        const [key, value] = item;
+        const [key, value] = JSON.parse(JSON.stringify(item));
         newObject[key] = value;
       });
       // replace portfolio with newObject
@@ -402,148 +408,160 @@ export default new Vuex.Store({
       });
     },
     educationCreate(context, data) {
-      postEducation(data.data)
-        .then(() => {
-          context.commit('RESUME_COPY_RESUME');
-        });
+      return postEducation(data.data).then((res) => {
+        context.dispatch('resumeUpdate', { key: 'education', res });
+      });
     },
     educationUpdate(context, data) {
-      putEducation(data.id, data.data)
-        .then(() => {
-          context.commit('RESUME_COPY_RESUME');
-        });
+      data.data.userId = context.state.userId;
+      return putEducation(data.id, data.data).then((res) => {
+        context.dispatch('resumeUpdate', { key: 'education', res });
+      });
     },
     careerCreate(context, data) {
-      postCareer(data)
-        .then(() => {
-          context.commit('RESUME_COPY_RESUME');
-        });
+      return postCareer(data);
     },
     careerUpdate(context, data) {
-      putCareer(data.id, data)
-        .then(() => {
-          context.commit('RESUME_COPY_RESUME');
-        });
+      return putCareer(data.id, data.data);
     },
     careerDelete(context, id) {
-      deleteCareer(id)
-        .then(() => {
-          context.commit('RESUME_COPY_RESUME');
-        });
+      return deleteCareer(id);
     },
     activityCreate(context, data) {
-      postActivity(data)
-        .then(() => {
-          context.commit('RESUME_COPY_RESUME');
-        });
+      return postActivity(data);
     },
     activityUpdate(context, data) {
-      putActivity(data.id, data)
-        .then(() => {
-          context.commit('RESUME_COPY_RESUME');
-        });
+      return putActivity(data.id, data.data);
     },
     activityDelete(context, id) {
-      deleteActivity(id)
-        .then(() => {
-          context.commit('RESUME_COPY_RESUME');
-        });
+      return deleteActivity(id);
     },
     languageCreate(context, data) {
-      postLanguage(data)
-        .then(() => {
-          context.commit('RESUME_COPY_RESUME');
-        });
+      return postLanguage(data);
     },
     languageUpdate(context, data) {
-      putLanguage(data.id, data)
-        .then(() => {
-          context.commit('RESUME_COPY_RESUME');
-        });
+      return putLanguage(data.id, data.data);
     },
     languageDelete(context, id) {
-      deleteLanguage(id)
-        .then(() => {
-          context.commit('RESUME_COPY_RESUME');
-        });
+      return deleteLanguage(id);
     },
     certificateCreate(context, data) {
-      postCertificate(data)
-        .then(() => {
-          context.commit('RESUME_COPY_RESUME');
-        });
+      return postCertificate(data);
     },
     certificateUpdate(context, data) {
-      putCertificate(data.id, data)
-        .then(() => {
-          context.commit('RESUME_COPY_RESUME');
-        });
+      return putCertificate(data.id, data.data);
     },
     certificateDelete(context, id) {
-      deleteCertificate(id)
-        .then(() => {
-          context.commit('RESUME_COPY_RESUME');
-        });
+      return deleteCertificate(id);
     },
     awardsCreate(context, data) {
-      postAwards(data)
-        .then(() => {
-          context.commit('RESUME_COPY_RESUME');
-        });
+      return postAwards(data);
     },
     awardsUpdate(context, data) {
-      putAwards(data.id, data)
-        .then(() => {
-          context.commit('RESUME_COPY_RESUME');
-        });
+      return putAwards(data.id, data.data);
     },
     awardsDelete(context, id) {
-      deleteAwards(id)
-        .then(() => {
-          context.commit('RESUME_COPY_RESUME');
-        });
+      return deleteAwards(id);
     },
     techStackCreate(context, data) {
-      postTech(data)
-        .then(() => {
-          context.commit('RESUME_COPY_RESUME');
-        });
+      return postTech(data);
     },
     techStackUpdate(context, data) {
-      putTech(data.id, data)
-        .then(() => {
-          context.commit('RESUME_COPY_RESUME');
-        });
+      return putTech(data.id, data.data);
     },
     techStackDelete(context, id) {
-      deleteTech(id)
-        .then(() => {
-          context.commit('RESUME_COPY_RESUME');
-        });
+      return deleteTech(id);
     },
     projectCreate(context, data) {
-      postProject(data)
-        .then(() => {
-          context.commit('RESUME_COPY_RESUME');
-        });
+      return postProject(data);
     },
     projectUpdate(context, data) {
-      putProject(data.id, data)
-        .then(() => {
-          context.commit('RESUME_COPY_RESUME');
-        });
+      return putProject(data.id, data.data);
     },
     projectDelete(context, id) {
-      deleteProject(id)
-        .then(() => {
-          context.commit('RESUME_COPY_RESUME');
-        });
+      return deleteProject(id);
     },
-    // .then(() => {
-    //   getProject(context.state.userId).then((response) => {
-    //     context.commit('PROJECT_INFO', response.data.data);
-    //   });
-    // });
+    async resumeUpdate(context, data) {
+      const { key } = data;
+      console.log('resumeUpdate', key, typeof (key));
+      switch (key) {
+        case 'education': {
+          const response = await getEducation(context.state.userId);
+          if (response.data.data === null) {
+            response.data.data = {};
+          }
+          context.commit('EDUCATION_INFO', response.data.data);
+          context.commit('RESUME_UPDATE', { key, data: response.data.data });
+          break;
+        }
+        case 'career': {
+          const response = await getCareer(context.state.userId);
+          // console.log(response);
+          if (response.data.data === null) {
+            response.data.data = [];
+          }
+          context.commit('CAREER_INFO', response.data.data);
+          context.commit('RESUME_UPDATE', { key, data: response.data.data });
+          break;
+        }
+        case 'activity': {
+          const response = await getActivity(context.state.userId);
+          if (response.data.data === null) {
+            response.data.data = [];
+          }
+          console.log(response.data.data);
+          context.commit('ACTIVITY_INFO', response.data.data);
+          context.commit('RESUME_UPDATE', { key, data: response.data.data });
+          break;
+        }
+        case 'foreignLang': {
+          const response = await getLanguage(context.state.userId);
+          if (response.data.data === null) {
+            response.data.data = [];
+          }
+          context.commit('LANGUAGE_INFO', response.data.data);
+          context.commit('RESUME_UPDATE', { key, data: response.data.data });
+          break;
+        }
+        case 'certificate': {
+          const response = await getCertificate(context.state.userId);
+          if (response.data.data === null) {
+            response.data.data = [];
+          }
+          context.commit('CERTIFICATION_INFO', response.data.data);
+          context.commit('RESUME_UPDATE', { key, data: response.data.data });
+          break;
+        }
+        case 'awards': {
+          const response = await getAwards(context.state.userId);
+          if (response.data.data === null) {
+            response.data.data = [];
+          }
+          context.commit('AWARDS_INFO', response.data.data);
+          context.commit('RESUME_UPDATE', { key, data: response.data.data });
+          break;
+        }
+        case 'technologyStack': {
+          const response = await getTech(context.state.userId);
+          if (response.data.data === null) {
+            response.data.data = [];
+          }
+          context.commit('TECHNOLOGY_INFO', response.data.data);
+          context.commit('RESUME_UPDATE', { key, data: response.data.data });
+          break;
+        }
+        case 'project': {
+          const response = await getProject(context.state.userId);
+          if (response.data.data === null) {
+            response.data.data = [];
+          }
+          context.commit('PROJECT_INFO', response.data.data);
+          context.commit('RESUME_UPDATE', { key, data: response.data.data });
+          break;
+        }
+        default:
+      }
+    },
     // ABOUT PORTFOLIO //////////////////////////
     portfolioCopySample(context) {
       context.commit('PORTFOLIO_COPY_SAMPLE');
