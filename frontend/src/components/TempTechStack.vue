@@ -101,7 +101,7 @@ export default {
         id: `${Date.now()}`,
         name: '',
         level: '',
-        kind: null,
+        kind: 1,
         userId: this.userId,
       };
       if (!this.resume.technologyStack) {
