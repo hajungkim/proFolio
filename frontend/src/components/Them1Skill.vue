@@ -1,5 +1,5 @@
 <template>
-  <div class="skill">
+  <div class="skill" v-if="portfolio.technologyStack.length">
       <div class="name">SKILLS</div>
       <div class="skill-content">
           <div class="language">

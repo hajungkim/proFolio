@@ -1,5 +1,5 @@
 <template>
-  <div class="them2-box">
+  <div class="them2-box"  v-if="portfolio.foreignLang.length || portfolio.certificate.length">
       <div class="them2-subtitle">Certificate / Language</div>
       <div class="padding">
         <div v-for="(cer) in portfolio.certificate" :key="'cert'+cer.id" style="margin: 5% 0">
@@ -9,7 +9,9 @@
         <div v-for="(lag) in portfolio.foreignLang" :key="'lang'+lag.id">
             <span class="them2-grayfont">{{lag.certifiedDate}}</span>
             <span class="them2-bluefont">{{lag.name}}</span>
-            <span class="them2-bluefont">{{lag.score}}</span>
+            <span class="them2-bluefont">{{lag.score}}
+               <span v-if=" !isNaN(lag.score) ">점</span>
+            </span>
         </div>
       </div>
   </div>
