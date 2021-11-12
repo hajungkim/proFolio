@@ -19,22 +19,22 @@ public class Education {
     @Column(name = "education_id")
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String university;
 
-    @Column
+    @Column(nullable = false)
     private String major;
 
-    @Column
+    @Column(nullable = false)
     private String minor;
 
-    @Column(name = "admission_date")
+    @Column(name = "admission_date", nullable = false)
     private String admissionDate;
 
-    @Column(name = "graduation_date")
+    @Column(name = "graduation_date", nullable = false)
     private String graduationDate;
 
-    @Column
+    @Column(nullable = false)
     private boolean graduation;
 
     @ManyToOne(fetch = FetchType.LAZY)
