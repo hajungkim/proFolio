@@ -1,5 +1,5 @@
 <template>
-  <div class="them2-box">
+  <div class="them2-box" style="margin-botton:5%;">
     <div class="them2-subtitle">About Me</div>
       <div class="them2-info-box">
           <div class="user-img">
@@ -20,17 +20,13 @@
                     <div class="line-title2">Github</div>
                     <div class="line-content2">{{portfolio.user.githubId}}</div>
                 </div>
-                <!-- <div class="line2">
-                    <div class="line-title2">Link</div>
-                    <div class="line-content2">{{portfolio.user.link}}</div>
-                </div> -->
             </div>
           </div>
       </div>
-      <div class="blue_box">Let me Introduce myself</div>
-      <div class="introduce">
-        {{portfolio.user.description}}
+        <div class="blue_box">Let me Introduce myself</div>
+        <div class="introduce" v-html="portfolio.user.description">
       </div>
+      <div class="them2-space"></div>
   </div>
 </template>
 

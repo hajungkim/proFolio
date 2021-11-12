@@ -17,7 +17,6 @@
         />
         <div class="them2-summary">
           <span>{{pro.summary}}</span>
-          <span style="float: right; font-weight:bold">{{pro.link}}</span>
         </div>
         <div class="them2-grayfont">{{pro.description}}</div>
         <div class="grid2 margin">
@@ -29,10 +28,13 @@
             <span style="color: #0014BC; margin-right: 5%">역할</span>
             <span>{{pro.role}}</span>
           </div>
-            <div style="margin-top: 5%">
+          <div style="margin-top: 4%">
             <span style="color: #0014BC; margin-right: 5%">기술스택</span>
             <span>{{pro.technologyStack}}</span>
           </div>
+        </div>
+        <div style="margin-top: 2%">
+          <span style="font-weight:bold">{{pro.link}}</span>
         </div>
       </div>
     </draggable>
