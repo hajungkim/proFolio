@@ -3,13 +3,14 @@ import VueRouter from 'vue-router';
 import Main from '../views/Main.vue';
 import Login from '../views/Login.vue';
 import MyPage from '../views/MyPage.vue';
-import Resume from '../views/Resume.vue';
+// import Resume from '../views/Resume.vue';
 import Them1 from '../views/Them1.vue';
 import Them2 from '../views/Them2.vue';
 import Them3 from '../views/Them3.vue';
 import Convert from '../views/Convert.vue';
 import SelectTheme from '../views/SelectTheme.vue';
 import ResumeTemp from '../views/ResumeTemp.vue';
+import NotFound from '../views/NotFound.vue';
 
 Vue.use(VueRouter);
 
@@ -29,14 +30,14 @@ const routes = [
     name: 'MyPage',
     component: MyPage,
   },
+  // {
+  //   path: '/resume',
+  //   name: 'Resume',
+  //   component: Resume,
+  // },
   {
     path: '/resume',
     name: 'Resume',
-    component: Resume,
-  },
-  {
-    path: '/resumetemp',
-    name: 'ResumeTemp',
     component: ResumeTemp,
   },
   {
@@ -63,6 +64,15 @@ const routes = [
     path: '/select',
     name: 'SelectTheme',
     component: SelectTheme,
+  },
+  {
+    path: '/notFound',
+    name: 'NotFound',
+    component: NotFound,
+  },
+  {
+    path: '*',
+    redirect: "/notFound",
   },
 ];
 

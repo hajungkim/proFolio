@@ -9,15 +9,15 @@
       <label for="active" class="close"></label>
       <div v-if="isLogin" class="wrapper">
         <ul>
-          <li style="margin-top: 20px"><a href="#" @click="goToConvertingPage">증명사진</a></li>
-          <li><a href="#" @click="goToMyPage">마이페이지</a></li>
-          <li><a href="#" @click="logout">로그아웃</a></li>
+          <li style="margin-top: 20px"><a @click="goToConvertingPage">증명사진</a></li>
+          <li><a @click="goToMyPage">마이페이지</a></li>
+          <li><a @click="logout">로그아웃</a></li>
         </ul>
       </div>
       <div v-else class="wrapper">
         <ul>
-          <li style="margin-top: 50px"><a href="#" @click="goToConvertingPage">증명사진</a></li>
-          <li><a href="#" @click="goToLogin">로그인</a></li>
+          <li style="margin-top: 50px"><a @click="goToConvertingPage">증명사진</a></li>
+          <li><a @click="goToLogin">로그인</a></li>
         </ul>
       </div>
     </div>
