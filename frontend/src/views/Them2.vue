@@ -22,6 +22,7 @@
         <button class="btn-hover color-9" @click="openModal">PDF변환</button>
         <!-- edit -->
         <button class="btn-hover color-9" @click="clickEdit">{{editBtn}}</button>
+        <ThemTip/>
       </div>
     </div>
     <div class="them2-content">
@@ -68,6 +69,7 @@ import Them2Careers from '../components/Them2Careers.vue';
 import Them2Info from '../components/Them2Info.vue';
 import Them2Project from '../components/Them2Project.vue';
 import Them2Skill from '../components/Them2Skill.vue';
+import ThemTip from '../components/ThemTip.vue';
 import { postPortfolio } from '../store/modules/PortfolioAPI';
 
 export default {
@@ -80,6 +82,7 @@ export default {
     Them2Awards,
     Them2Exp,
     Them2Careers,
+    ThemTip,
   },
   name: 'Them2',
   data() {
@@ -125,7 +128,11 @@ export default {
       this.closeModal();
     },
     openModal() {
-      this.isOpenModal = true;
+      if (this.edit) {
+        alert('편집을 완료해주세요.');
+      } else {
+        this.isOpenModal = true;
+      }
     },
     closeModal() {
       this.isOpenModal = false;
