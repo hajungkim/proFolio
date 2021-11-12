@@ -483,7 +483,7 @@ export default new Vuex.Store({
     },
     async resumeUpdate(context, data) {
       const { key } = data;
-      console.log('resumeUpdate', key, typeof (key));
+      // console.log('resumeUpdate', key, typeof (key));
       switch (key) {
         case 'education': {
           const response = await getEducation(context.state.userId);
@@ -496,7 +496,6 @@ export default new Vuex.Store({
         }
         case 'career': {
           const response = await getCareer(context.state.userId);
-          // console.log(response);
           if (response.data.data === null) {
             response.data.data = [];
           }
@@ -509,7 +508,6 @@ export default new Vuex.Store({
           if (response.data.data === null) {
             response.data.data = [];
           }
-          console.log(response.data.data);
           context.commit('ACTIVITY_INFO', response.data.data);
           context.commit('RESUME_UPDATE', { key, data: response.data.data });
           break;
