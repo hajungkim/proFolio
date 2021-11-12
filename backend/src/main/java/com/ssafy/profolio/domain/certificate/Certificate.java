@@ -19,10 +19,10 @@ public class Certificate {
     @Column(name = "certificate_id")
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
-    @Column(name = "certified_date")
+    @Column(name = "certified_date", nullable = false)
     private String certifiedDate;
 
     @ManyToOne(fetch = FetchType.LAZY)

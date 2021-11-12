@@ -18,13 +18,13 @@ public class TechnologyStack {
     @Column(name = "technology_stack_id")
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
-    @Column
+    @Column(nullable = false)
     private String level;
 
-    @Column
+    @Column(nullable = false)
     private int kind;       // 기술스택 종류 1:언어 2:프레임워크 3:DB
 
     @ManyToOne(fetch = FetchType.LAZY)
