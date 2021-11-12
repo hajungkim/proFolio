@@ -75,23 +75,21 @@
         </div>
       </div>
       <!-- output image -->
-      <div class="img-box">
-        <div v-if="imageLoading">
-          <v-progress-circular
-            class=""
-            :size="50"
-            color="#3c4bff"
-            indeterminate
-          />
-        </div>
-        <div v-else>
-          <img
-            class="img"
-            :src="outputImgUrl"
-            ref="output-image"
-            @error="setDefaultImage('output')"
-          />
-        </div>
+      <div class="img-box" v-if="imageLoading">
+        <v-progress-circular
+          class=""
+          :size="50"
+          color="#3c4bff"
+          indeterminate
+        />
+      </div>
+      <div class="img-box" v-else>
+        <img
+          class="img"
+          :src="outputImgUrl"
+          ref="output-image"
+          @error="setDefaultImage('output')"
+        />
       </div>
       <div
         class="download-btn"
@@ -203,7 +201,9 @@ export default {
       const link = document.createElement('a');
       link.href = this.outputImgUrl;
       link.download = 'output.jpg';
-      link.click();
+      if (this.outputLoaded) {
+        link.click();
+      }
     },
     reset() {
       this.inputImgUrl = '';
