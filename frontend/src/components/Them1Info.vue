@@ -19,8 +19,7 @@
         <div class="intro">
             <div class="name">INTRODUCE</div>
             <div class="slogan">
-                <h3>
-                  {{portfolio.user.description}}
+                <h3 v-html="portfolio.user.description">
                 </h3>
             </div>
         </div>
