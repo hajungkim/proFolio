@@ -19,7 +19,7 @@
         <div class="intro">
             <div class="name">INTRODUCE</div>
             <div class="slogan">
-                <h3 v-html="portfolio.user.description">
+                <h3 v-html="descriptionForHtml">
                 </h3>
             </div>
         </div>
@@ -43,6 +43,9 @@ export default {
     ...mapState([
       'portfolio',
     ]),
+    descriptionForHtml() {
+      return this.portfolio.user.description.replace(/(\n|\r\n)/g, '<br>');
+    },
   },
 };
 </script>
