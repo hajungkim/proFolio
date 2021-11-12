@@ -1,5 +1,5 @@
 <template>
-  <div class="them2-box">
+  <div class="them2-box"  v-if="portfolio.foreignLang.length || portfolio.certificate.length">
       <div class="them2-subtitle">Certificate / Language</div>
       <div class="padding">
         <div v-for="(cer) in portfolio.certificate" :key="'cert'+cer.id" style="margin: 5% 0">
