@@ -2,7 +2,7 @@
   <div class="them2-box"  v-if="portfolio.foreignLang.length || portfolio.certificate.length">
       <div class="them2-subtitle">Certificate / Language</div>
       <div class="padding">
-        <div v-for="(cer) in portfolio.certificate" :key="'cert'+cer.id" style="margin: 5% 0">
+        <div v-for="(cer) in portfolio.certificate" :key="'cert'+cer.id" style="margin: 3% 0">
             <span class="them2-grayfont">{{cer.certifiedDate}}</span>
             <span class="them2-bluefont">{{cer.name}}</span>
         </div>

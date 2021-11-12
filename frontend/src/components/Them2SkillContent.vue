@@ -4,7 +4,7 @@
         <div class="skill-item">
             <div v-for="(skill) in list" :key="skill.id">
             <div style="display: flex; margin: 3% 0">
-                <div style="line-height: 5vh">{{skill.name}}</div>
+                <div style="line-height:3vh;">{{skill.name}}</div>
                 <div class="level-circle"
                 :class="{
                     levelred: skill.level==5,
