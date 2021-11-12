@@ -18,6 +18,9 @@
         <img style="width:250px" src="../assets/images/them3.png" alt="">
       </div>
     </div>
+    <div class="desc">
+      <p>클릭하면 Sample을 볼 수 있습니다.</p>
+    </div>
   </div>
 </template>
 
