@@ -15,11 +15,15 @@
                 <div class="line-title">이메일</div>
                 <div>{{portfolio.user.email}}</div>
               </div>
-              <div class="line">
+              <div class="line" v-if="portfolio.user.githubId">
                 <div class="line-title">깃허브</div>
-                <div>{{portfolio.user.link}}</div>
+                <div>{{portfolio.user.githubId}}</div>
               </div>
           </div>
+        </div>
+        <div>
+          <div class="them3-intro-title">인사말</div>
+          <div class="them3-intro">{{portfolio.user.description}}</div>
         </div>
       </div>
   </div>

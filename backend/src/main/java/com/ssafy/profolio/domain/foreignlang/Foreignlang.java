@@ -19,16 +19,16 @@ public class Foreignlang {
     @Column(name = "foreign_lang_id")
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String language;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
-    @Column
+    @Column(nullable = false)
     private String score;
 
-    @Column(name = "certified_date")
+    @Column(name = "certified_date", nullable = false)
     private String certifiedDate;
 
     @ManyToOne(fetch = FetchType.LAZY)

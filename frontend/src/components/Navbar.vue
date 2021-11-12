@@ -53,9 +53,7 @@ export default {
     logout() {
       document.cookie = 'userId = ; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
       this.$store.dispatch('logout');
-      if (!window.location.pathname === '/') {
-        this.$router.push({ name: 'Main' });
-      }
+      this.$router.push("/").catch(() => {});
     },
   },
 };

@@ -1,7 +1,9 @@
 <template>
-  <div class="skill">
+  <div class="skill"
+    v-if="portfolio.certificate.length || portfolio.foreignLang.length || portfolio.education"
+  >
     <div class="certiedu">
-      <div class="celeft">
+      <div class="celeft" v-if="portfolio.certificate.length || portfolio.foreignLang.length">
         <div class="name">CERTIFICATE / LANGUAGE</div>
         <div v-for="cer in portfolio.certificate" :key="'cert'+cer.id" class="mini-card">
           <span style="color: #656060; margin-right: 5%">{{
@@ -17,7 +19,7 @@
           <span style="color: #656060">{{ lag.score }}</span>
         </div>
       </div>
-      <div class="ceright">
+      <div class="ceright" v-if="portfolio.education">
         <div class="name">EDUCATION</div>
         <div class="university">{{ portfolio.education.university }}</div>
         <div class="raw">
