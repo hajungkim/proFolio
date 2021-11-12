@@ -29,6 +29,13 @@
               </div>
             </div>
           </div>
+          <div v-if="type==='career'">
+            <div v-for="(career) in availableItem" :key="career.id">
+              <div class="card-item" @click="addItem(career)">
+                {{career.company}}: {{career.duty}}
+              </div>
+            </div>
+          </div>
           <div v-else-if="type==='awards'">
             <div v-for="(award) in availableItem" :key="award.id">
               <div class="card-item" @click="addItem(award)">
@@ -97,6 +104,9 @@ export default {
       switch (this.type) {
         case 'project':
           this.$store.dispatch('portfolioProjectAdd', item);
+          break;
+        case 'career':
+          this.$store.dispatch('portfolioCareerAdd', item);
           break;
         case 'awards':
           this.$store.dispatch('portfolioAwardsAdd', item);

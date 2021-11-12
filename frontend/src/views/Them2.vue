@@ -35,6 +35,7 @@
             <Them2Skill :edit="edit"/>
             <Them2Project :edit="edit"/>
             <Them2Exp :edit="edit"/>
+            <Them2Careers :edit="edit"/>
             <Them2Certi :edit="edit"/>
             <Them2Awards :edit="edit"/>
           </draggable>
@@ -63,6 +64,7 @@ import { mapState } from 'vuex';
 import Them2Awards from '../components/Them2Awards.vue';
 import Them2Certi from '../components/Them2Certi.vue';
 import Them2Exp from '../components/Them2Exp.vue';
+import Them2Careers from '../components/Them2Careers.vue';
 import Them2Info from '../components/Them2Info.vue';
 import Them2Project from '../components/Them2Project.vue';
 import Them2Skill from '../components/Them2Skill.vue';
@@ -77,6 +79,7 @@ export default {
     Them2Certi,
     Them2Awards,
     Them2Exp,
+    Them2Careers,
   },
   name: 'Them2',
   data() {
