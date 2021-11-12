@@ -85,7 +85,7 @@
         <tr v-for="(lang) in resume.foreignLang" :key="'lang'+lang.id">
           <th>{{ lang.certifiedDate }}</th>
           <td class="font-weight-b">{{ lang.name }}</td>
-          <td>{{ lang.score }}점</td>
+          <td>{{ lang.score }}<span v-if=" !isNaN(lang.score) ">점</span></td>
         </tr>
       </table>
     </div>
