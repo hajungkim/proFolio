@@ -2,7 +2,7 @@
   <div class="them3-exp" v-if="edit || portfolio.career.length">
     <div class="name">Career</div>
     <AddItemButton type="career" v-if="edit"/>
-    <draggable class="draggable-container-row">
+    <draggable class="draggable-container-row" ghost-class="ghost">
       <div v-for="(career) in portfolio.career" :key="career.id" class="card">
         <RemoveItemButton
           v-if="edit"
