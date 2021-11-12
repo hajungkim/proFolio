@@ -4,7 +4,7 @@
     <div class="main-section2-content">
       <h1 class="main-header2">취업사진 합성</h1>
       <div class="line-container2">
-      <h1 class="line2"></h1>
+      <h1 class="main-line2"></h1>
       </div>
       <div class="section-text2">
         <p>정장도 없고, 시간도 없고..</p>
