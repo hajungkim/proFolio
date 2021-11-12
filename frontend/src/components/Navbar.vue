@@ -51,7 +51,13 @@ export default {
       this.$router.go();
     },
     logout() {
-      document.cookie = 'userId = ; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      const cookieArr = document.cookie.split(";");
+      for (let i = 0; i < cookieArr.length; i += 1) {
+        const cookieSeg = cookieArr[i].trim();
+        const firstEq = cookieSeg.indexOf("=");
+        const name = cookieSeg.substr(0, firstEq);
+        document.cookie = `${name}  = ; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+      }
       this.$store.dispatch('logout');
       this.$router.push("/").catch(() => {});
     },
