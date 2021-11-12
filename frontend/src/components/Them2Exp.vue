@@ -1,5 +1,5 @@
 <template>
-  <div class="them2-box">
+  <div class="them2-box" v-if="portfolio.activity.length || portfolio.education.length">
       <div class="them2-subtitle">
         Education &amp; Experience
       </div><br>

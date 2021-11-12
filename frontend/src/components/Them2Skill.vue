@@ -1,6 +1,6 @@
 <template>
-  <div class="them2-box">
-    <div class="them2-subtitle" v-if="portfolio.technologyStack">Tech Stack</div>
+  <div class="them2-box" v-if="edit || portfolio.technologyStack.length">
+    <div class="them2-subtitle">Tech Stack</div>
       <div class="skill-desc">
           <div class="flex">
                 <div class="levelred level-color">5</div>
