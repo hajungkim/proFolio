@@ -1,6 +1,6 @@
 <template>
   <div class="skill"  v-if="edit || portfolio.project.length">
-    <div class="name">Projects</div>
+    <div class="name">PROJECTS</div>
     <AddItemButton type="project" v-if="edit"/>
     <draggable class="draggable-container-col">
       <div v-for="(pro) in portfolio.project" :key="pro.id" class="project-card">

@@ -1,6 +1,6 @@
 <template>
   <div class="skill" v-if="edit || portfolio.awards.length">
-    <div class="name">Awards</div>
+    <div class="name">AWARDS</div>
     <AddItemButton type="awards" v-if="edit"/>
     <draggable class="draggable-container-row">
       <div v-for="(award) in portfolio.awards" :key="award.id" class="card">

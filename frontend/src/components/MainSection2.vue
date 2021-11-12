@@ -1,6 +1,11 @@
 <template>
   <div class="main-container main-section2">
-    <img class="main-section2-img" src="../assets/images/convert.png" alt="">
+    <div class="img-container">
+      <img class="main-section2-img" src="../assets/images/convert.png" alt="">
+      <div class="container-btn">
+        <button class="btn-hover color" @click="goToConvert">START</button>
+      </div>
+    </div>
     <div class="main-section2-content">
       <h1 class="main-header2">취업사진 합성</h1>
       <div class="line-container2">
@@ -18,6 +23,11 @@
 <script>
 export default {
   name: 'MainSection2',
+  methods: {
+    goToConvert() {
+      this.$router.push({ name: 'Convert' });
+    },
+  },
 };
 
 </script>

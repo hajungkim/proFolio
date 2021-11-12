@@ -33,6 +33,7 @@
             <Them1Skill :edit="edit"/>
             <Them1Exp :edit="edit"/>
             <Them1Certi :edit="edit"/>
+            <Them1Careers :edit="edit"/>
             <Them1Awards :edit="edit"/>
             <Them1Project :edit="edit"/>
           </draggable>
@@ -63,6 +64,7 @@ import Them1Skill from '../components/Them1Skill.vue';
 import Them1Exp from '../components/Them1Exp.vue';
 import Them1Awards from '../components/Them1Awards.vue';
 import Them1Certi from '../components/Them1Certi.vue';
+import Them1Careers from '../components/Them1Careers.vue';
 import Them1Project from '../components/Them1Project.vue';
 import { postPortfolio } from '../store/modules/PortfolioAPI';
 
@@ -75,6 +77,7 @@ export default {
     Them1Exp,
     Them1Awards,
     Them1Certi,
+    Them1Careers,
     Them1Project,
   },
   data() {

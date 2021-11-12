@@ -34,6 +34,7 @@
             <Them3Edu :edit="edit"/>
             <Them3Certi :edit="edit"/>
             <Them3Exp :edit="edit"/>
+            <Them3Careers :edit="edit"/>
             <div class="draggable-container-col p-5">
               <Them3Skill :edit="edit"/>
               <Them3Awards :edit="edit"/>
@@ -66,6 +67,7 @@ import Them3Awards from '../components/Them3Awards.vue';
 import Them3Certi from '../components/Them3Certi.vue';
 import Them3Edu from '../components/Them3Edu.vue';
 import Them3Exp from '../components/Them3Exp.vue';
+import Them3Careers from '../components/Them3Careers.vue';
 import Them3Info from '../components/Them3Info.vue';
 import Them3Intro from '../components/Them3Intro.vue';
 import Them3Project from '../components/Them3Project.vue';
@@ -80,6 +82,7 @@ export default {
     Them3Edu,
     Them3Certi,
     Them3Exp,
+    Them3Careers,
     Them3Skill,
     Them3Awards,
     Them3Project,
