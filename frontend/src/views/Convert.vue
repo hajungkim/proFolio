@@ -11,8 +11,8 @@
           @mouseover="showQuestion"
           @mouseout="hideQuestion"/>
         <div id="balloon" style="display: none">
-          <div>- 앞머리를 눈썹 위로 올린 정면 사진을 올려주세요.</div>
-          <div>- 밝은 조명에서 찍은 사진을 올려주세요.</div>
+          <div class="ballon-text">- 앞머리를 눈썹 위로 올린 정면 사진을 올려주세요.</div>
+          <div class="ballon-text">- 밝은 조명에서 찍은 사진을 올려주세요.</div>
         </div>
         <!-- input image -->
         <div class="img-box">
