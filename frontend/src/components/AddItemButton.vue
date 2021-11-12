@@ -89,8 +89,15 @@ export default {
     ...mapState([
       'resume',
       'portfolio',
+      'sample',
     ]),
     availableItem() {
+      if (!this.userId) {
+        const sampleresumeItem = this.sample[this.type];
+        const sampleportfolioItem = this.portfolio[this.type];
+        const sampleArray = _.differenceWith(sampleresumeItem, sampleportfolioItem, _.isEqual);
+        return sampleArray;
+      }
       const resumeItem = this.resume[this.type];
       const portfolioItem = this.portfolio[this.type];
       const newArray = _.differenceWith(resumeItem, portfolioItem, _.isEqual);
