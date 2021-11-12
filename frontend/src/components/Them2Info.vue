@@ -24,7 +24,7 @@
           </div>
       </div>
         <div class="blue_box">Let me Introduce myself</div>
-        <div class="introduce" v-html="portfolio.user.description">
+        <div class="introduce" v-html="descriptionForHtml">
       </div>
       <div class="them2-space"></div>
   </div>
@@ -39,6 +39,9 @@ export default {
     ...mapState([
       'portfolio',
     ]),
+    descriptionForHtml() {
+      return this.portfolio.user.description.replace(/(\n|\r\n)/g, '<br>');
+    },
   },
 };
 </script>
