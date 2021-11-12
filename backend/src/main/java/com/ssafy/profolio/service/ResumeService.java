@@ -256,8 +256,8 @@ public class ResumeService {
     }
 
     @Transactional
-    public void updateEducation(Long userId, ResumeDto.EducationRequest request) {
-        Education education = educationRepository.findByUserId(userId);
+    public void updateEducation(ResumeDto.EducationRequest request) {
+        Education education = educationRepository.findByUserId(request.getUserId());
         education.updateEducation(request);
     }
 

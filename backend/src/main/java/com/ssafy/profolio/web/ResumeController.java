@@ -166,9 +166,9 @@ public class ResumeController {
     }
 
     @ApiOperation(value = "학력 수정", notes = "데이터 수정 성공 시 true 반환")
-    @PutMapping("/education/{userid}")
-    public BaseResponse<Boolean> updateEducation(@PathVariable("userid") Long userId, @RequestBody ResumeDto.EducationRequest request) {
-        resumeService.updateEducation(userId, request);
+    @PutMapping("/education")
+    public BaseResponse<Boolean> updateEducation(@RequestBody ResumeDto.EducationRequest request) {
+        resumeService.updateEducation(request);
         return new BaseResponse<>(true);
     }
 
