@@ -66,6 +66,7 @@ export default new Vuex.Store({
         {
           id: '1',
           company: '삼성전자',
+          duty: '인턴',
           description: '대규모 프로젝트를 진행하며 실무역량을 키움',
           startDate: '2020.12',
           endDate: '2020.09',
@@ -577,6 +578,16 @@ export default new Vuex.Store({
       // data === project
       const newArray = _.unionWith(this.state.portfolio.project, [data], _.isEqual);
       context.commit('PORTFOLIO_PROJECT_INFO', newArray);
+    },
+    portfolioCareerDelete(context, data) {
+      // data === career
+      const newArray = _.differenceWith(this.state.portfolio.career, [data], _.isEqual);
+      context.commit('PORTFOLIO_CAREER_INFO', newArray);
+    },
+    portfolioCareerAdd(context, data) {
+      // data === career
+      const newArray = _.unionWith(this.state.portfolio.career, [data], _.isEqual);
+      context.commit('PORTFOLIO_CAREER_INFO', newArray);
     },
     portfolioAwardsDelete(context, data) {
       // data === award

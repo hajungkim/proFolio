@@ -20,6 +20,9 @@ export default {
         case 'project':
           this.$store.dispatch('portfolioProjectDelete', this.item);
           break;
+        case 'career':
+          this.$store.dispatch('portfolioCareerDelete', this.item);
+          break;
         case 'awards':
           this.$store.dispatch('portfolioAwardsDelete', this.item);
           break;
