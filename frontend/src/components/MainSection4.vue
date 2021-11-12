@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="desc">
-      <p>클릭하면 Sample을 볼 수 있습니다.</p>
+      <p>클릭하시면 Sample을 볼 수 있습니다.</p>
     </div>
   </div>
 </template>
