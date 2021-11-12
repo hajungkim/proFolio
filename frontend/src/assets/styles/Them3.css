@@ -140,6 +140,18 @@
     grid-column: 1;
     font-weight: bold;
 }
+.them3-intro-title{
+    font-family: 'GongGothicMedium';
+    margin-left: 5%;
+    font-size: 1.5rem;
+    color: #7B61FF
+}
+.them3-intro{
+    font-family: 'GongGothicMedium';
+    margin-left: 5%;
+    margin-top: 3%;
+    font-size: 1.3rem;
+}
 .them3-edu{
     background-color: white;
     grid-column: 1;
