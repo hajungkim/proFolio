@@ -23,7 +23,7 @@
         </div>
         <div>
           <div class="them3-intro-title">인사말</div>
-          <div class="them3-intro">{{portfolio.user.description}}</div>
+          <div class="them3-intro" v-html="descriptionForHtml"></div>
         </div>
       </div>
   </div>
@@ -42,6 +42,9 @@ export default {
     ...mapState([
       'portfolio',
     ]),
+    descriptionForHtml() {
+      return this.portfolio.user.description.replace(/(\n|\r\n)/g, '<br>');
+    },
   },
 };
 </script>
