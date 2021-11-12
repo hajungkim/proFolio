@@ -34,15 +34,20 @@ export default new Vuex.Store({
     portfolio: {},
     sample: {
       user: {
-        profilePath: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-DjoQ3H0LFCWXLurl6qeHzGnbox2_cJTAmg&usqp=CAU', name: '김싸피', githubId: 'qwer@github.com', phone: '010-1234-5678', email: 'qwer@qwer.com',
+        profilePath: 'https://user-images.githubusercontent.com/36887393/141425090-c21077a0-49dc-44be-a65a-76f0c9df0db7.jpg',
+        name: '김싸피',
+        githubId: 'qwer@github.com',
+        phone: '010-1234-5678',
+        email: 'ssafykim@naver.com',
+        description: '안녕하세요👋<br>프론트엔드 개발자를 꿈꾸는 김싸피입니다.<br>React, TypeScript와 같은 JS분야에 관심이 있습니다.<br>항상 성장하기 위해 새로운 것들을 많이 접하고 배우고 있습니다.',
       },
       education: {
         university: '싸피대학교',
         graduation: '졸업',
         admissionDate: '2020.03',
         graduationDate: '2023.02',
-        major: '컴공',
-        minor: '',
+        major: '컴퓨터공학과',
+        minor: '-',
       },
       activity: [
         {
@@ -146,6 +151,18 @@ export default new Vuex.Store({
       project: [
         {
           id: '1',
+          title: '포트폴리오 만들기!',
+          summary: '개발자 준비생을 위한 포트폴리오 사이트',
+          description: '유저가 입력한 정보를 바탕으로 포트폴리오를 생성해주고 PDF로 변환해주는 서비스',
+          memberCnt: 5,
+          technologyStack: 'Java, Django, Vue, SpringBoot',
+          role: 'FE',
+          link: 'https://ssafy.com',
+          startDate: '2021.10',
+          endDate: '2021.11',
+        },
+        {
+          id: '2',
           title: '포트폴리오 만들기!',
           summary: '개발자 준비생을 위한 포트폴리오 사이트',
           description: '유저가 입력한 정보를 바탕으로 포트폴리오를 생성해주고 PDF로 변환해주는 서비스',
