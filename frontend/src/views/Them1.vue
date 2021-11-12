@@ -126,7 +126,11 @@ export default {
       this.closeModal();
     },
     openModal() {
-      this.isOpenModal = true;
+      if (this.edit) {
+        alert('편집을 완료해주세요.');
+      } else {
+        this.isOpenModal = true;
+      }
     },
     closeModal() {
       this.isOpenModal = false;
