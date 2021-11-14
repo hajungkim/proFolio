@@ -124,7 +124,7 @@ public class GithubOauth implements SocialOauth {
 
         log.info(">>>>>GITHUB social Id: " + socailId);
 
-        UserDto result = new UserDto(socailId, email, name,null,githubId,picture);
+        UserDto result = new UserDto(socailId, email, name,"",githubId,picture);
         return result;
     }
 }
