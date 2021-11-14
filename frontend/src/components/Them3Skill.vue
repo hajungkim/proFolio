@@ -3,11 +3,11 @@
       <div class="name">Skills</div>
       <div v-for="(skill) in portfolio.technologyStack" :key="skill.id" style="display: flex">
         <div class="skill-level">
-          <span v-if=" skill.level == 1">하</span>
-          <span v-else-if=" skill.level == 2">중하</span>
-          <span v-else-if=" skill.level == 3">중</span>
-          <span v-else-if=" skill.level == 4">중상</span>
-          <span v-else>상</span>
+          <div class = "skill-level-detail" v-if=" skill.level == 1">하</div>
+          <div class = "skill-level-detail" v-else-if=" skill.level == 2">중하</div>
+          <div class = "skill-level-detail" v-else-if=" skill.level == 3">중</div>
+          <div class = "skill-level-detail" v-else-if=" skill.level == 4">중상</div>
+          <div class = "skill-level-detail" v-else>상</div>
           <!-- <span>{{skill.level}}</span> -->
           </div>
         <div class="skill-name">{{skill.name}}</div>
