@@ -24,7 +24,8 @@
             </tr>
               <tr>
               <th>description</th>
-              <td>{{ resume.user.description }}</td>
+              <!-- <td>{{ resume.user.description }}</td> -->
+              <td v-html="descriptionForHtml"></td>
             </tr>
           </table>
         </div>
@@ -165,6 +166,9 @@ export default {
     ...mapState([
       'resume',
     ]),
+    descriptionForHtml() {
+      return this.resume.user.description.replace(/(\n|\r\n)/g, '<br>');
+    },
   },
   methods: {
     goToResume() {
