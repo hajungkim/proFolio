@@ -26,6 +26,7 @@ public class UserDto {
         this.phone = phone;
         this.githubId = githubId;
         this.profilePath = profilePath;
+        this.description="";
     }
 
     public UserDto(User user) {

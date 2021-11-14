@@ -142,7 +142,7 @@ public class NaverOauth implements SocialOauth {
         String phone = response.getAsJsonObject().get("mobile").getAsString();
 
         log.info(">>>>>NAVE social Id: "+socailId);
-        UserDto result = new UserDto(socailId, email,name,phone, null, picture);
+        UserDto result = new UserDto(socailId, email,name,phone, "", picture);
         return result;
     }
 

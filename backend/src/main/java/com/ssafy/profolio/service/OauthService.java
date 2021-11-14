@@ -63,6 +63,7 @@ public class OauthService {
                             .phone(userDto.getPhone())
                             .githubId(userDto.getGithubId())
                             .profilePath(userDto.getProfilePath())
+                            .description(userDto.getDescription())
                             .build();
                     userRepository.save(newUser);
                     return newUser;
