@@ -5,8 +5,9 @@
             <img :src="portfolio.user.profilePath" class="them3-profile-img"/>
         </div>
         <div class="them3-info-detail">
-          <div class="user-name">{{portfolio.user.name}}</div>
+          <!-- <div class="user-name">{{portfolio.user.name}}</div> -->
           <div class="info-detail">
+            <div class="user-name">{{portfolio.user.name}}</div>
               <div class="line">
                 <div class="line-title">연락처</div>
                 <div>{{portfolio.user.phone}}</div>
@@ -20,10 +21,10 @@
                 <div>{{portfolio.user.githubId}}</div>
               </div>
           </div>
-        </div>
-        <div>
-          <div class="them3-intro-title">인사말</div>
-          <div class="them3-intro">{{portfolio.user.description}}</div>
+          <div>
+            <!-- <div class="them3-intro-title">인사말</div> -->
+            <!-- <div class="them3-intro">{{portfolio.user.description}}</div> -->
+          </div>
         </div>
       </div>
   </div>
