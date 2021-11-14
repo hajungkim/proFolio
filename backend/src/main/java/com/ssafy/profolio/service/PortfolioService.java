@@ -22,23 +22,6 @@ public class PortfolioService {
     private final PortfolioRepository portfolioRepository;
     private final UserRepository userRepository;
 
-    public String uploadFile(MultipartFile file){
-        String fileName = createFileName(file.getOriginalFilename());
-        ObjectMetadata objectMetadata = new ObjectMetadata();
-        objectMetadata.setContentLength(file.getSize());
-        objectMetadata.setContentType(file.getContentType());
-        try(InputStream inputStream = file.getInputStream()){
-            s3Service.uploadFile(inputStream, objectMetadata, fileName);
-        }catch (IOException e){
-            throw new IllegalArgumentException(String.format("파일 변환 중 에러가 발생했습니다 (%s)", file.getOriginalFilename()));
-        }
-        return s3Service.getFileUrl(fileName);
-    }
-
-    private String createFileName(String originalFileName){
-        return UUID.randomUUID().toString().concat(originalFileName);
-    }
-
     public List<PortfolioDto> getPortfolioList(Long userId){
         List<Portfolio> portfolios = portfolioRepository.getByUser(userRepository.getById(userId));
         List<PortfolioDto> results = new ArrayList<>();
@@ -48,7 +31,8 @@ public class PortfolioService {
         return results;
     }
 
-    public PortfolioDto putPortfolio(PortfolioDto param, String url){
+    public PortfolioDto putPortfolio(PortfolioDto param){
+        String url = s3Service.uploadS3(param.getFile());
         Portfolio portfolio = portfolioRepository.save(Portfolio.builder()
             .name(param.getName()).url(url).user(userRepository.getById(param.getUserId())).build());
         return portfolio.entityToDto();

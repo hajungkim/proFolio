@@ -3,24 +3,24 @@
     <table class="resume-part2-input">
       <tr>
         <th>대학교</th>
-        <td><input type="text" :placeholder="education.university" @change="eduUniversity"></td>
+        <td><input type="text" :value="resume.education.university"></td>
         <th class="pl-15">졸업여부</th>
         <td>
           <div class="graduation">
-            <select class="select-graduation" @change="eduGraduation">
-              <option disabled selected hidden>{{graduation}}</option>
-              <option value="1">졸업</option>
-              <option value="2">졸업예정</option>
+            <select class="select-graduation" :value="resume.education.graduation">
+              <option disabled selected hidden>선택하세요</option>
+              <option value="true">졸업</option>
+              <option value="false">졸업예정</option>
             </select>
           </div></td>
       </tr>
       <tr>
         <th>전공</th>
-        <td><input type="text" :placeholder="education.major" @change="eduMajor"></td>
+        <td><input type="text" :value="resume.education.major"></td>
         <th class="pl-15">부전공</th>
-        <td><input type="text" :placeholder="education.minor" @change="eduMinor"></td>
+        <td><input type="text" :value="resume.education.minor"></td>
       </tr>
-      <tr>
+      <!-- <tr>
         <th>학점</th>
         <td>
           <input type="text" :placeholder="education.score" @change="eduScore"
@@ -29,7 +29,7 @@
           <input type="text" :placeholder="education.totalScore" @change="eduTotalScore"
           style="width: 50px;">
         </td>
-      </tr>
+      </tr> -->
       <tr>
         <th style="padding-top:10px">입학</th>
         <td>
@@ -38,15 +38,15 @@
               ref="menu1"
               v-model="menu1"
               :close-on-content-click="false"
-              :return-value.sync="educationUpdate.education.admissionDate"
+              :return-value.sync="resume.education.admissionDate"
               transition="scale-transition"
               offset-y
               min-width="auto"
             >
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
-                  v-model="educationUpdate.education.admissionDate"
-                  :label="education.admissionDate"
+                  v-model="resume.education.admissionDate"
+                  :label="resume.education.admissionDate"
                   prepend-icon="mdi-calendar"
                   readonly
                   v-bind="attrs"
@@ -54,7 +54,7 @@
                 ></v-text-field>
               </template>
               <v-date-picker
-                v-model="educationUpdate.education.admissionDate"
+                v-model="resume.education.admissionDate"
                 no-title
                 scrollable
                 type="month"
@@ -85,15 +85,15 @@
               ref="menu2"
               v-model="menu2"
               :close-on-content-click="false"
-              :return-value.sync="educationUpdate.education.graduationDate"
+              :return-value.sync="resume.education.graduationDate"
               transition="scale-transition"
               offset-y
               min-width="auto"
             >
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
-                  v-model="educationUpdate.education.graduationDate"
-                  :label="education.graduationDate"
+                  v-model="resume.education.graduationDate"
+                  :label="resume.education.graduationDate"
                   prepend-icon="mdi-calendar"
                   readonly
                   v-bind="attrs"
@@ -101,7 +101,7 @@
                 ></v-text-field>
               </template>
               <v-date-picker
-                v-model="educationUpdate.education.graduationDate"
+                v-model="resume.education.graduationDate"
                 no-title
                 scrollable
                 type="month"
@@ -131,72 +131,48 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'UpdateEducation',
-  props: {
-    education: {
-      type: Object,
-    },
+  computed: {
+    ...mapState([
+      'resume',
+    ]),
   },
   data() {
     return {
       menu1: false,
       menu2: false,
       educationUpdate: {},
-      graduation: '',
     };
   },
   methods: {
-    dataUpdate() {
-      this.educationUpdate.isUpdated = true;
-      this.$emit('updateEducation', this.educationUpdate);
-    },
     eduUniversity(event) {
-      this.educationUpdate.education.university = event.target.value;
-      this.dataUpdate();
+      this.resume.education.university = event.target.value;
     },
     eduGraduation(event) {
-      if (event.target.value === '1') {
-        this.educationUpdate.education.graduation = true;
-        this.graduation = '졸업';
+      if (event.target.value === true) {
+        this.resume.education.graduation = true;
       } else {
-        this.educationUpdate.education.graduation = false;
-        this.graduation = '졸업예정';
+        this.resume.education.graduation = false;
       }
-      this.dataUpdate();
     },
     eduMajor(event) {
-      this.educationUpdate.education.major = event.target.value;
-      this.dataUpdate();
+      this.resume.education.major = event.target.value;
     },
     eduMinor(event) {
-      this.educationUpdate.education.minor = event.target.value;
-      this.dataUpdate();
-    },
-    eduScore(event) {
-      this.educationUpdate.education.score = event.target.value;
-      this.dataUpdate();
-    },
-    eduTotalScore(event) {
-      this.educationUpdate.education.totalScore = parseFloat(event.target.value);
-      this.dataUpdate();
+      this.resume.education.minor = event.target.value;
     },
     admissionDateUpdate() {
-      this.$refs.menu1.save(this.educationUpdate.education.admissionDate);
-      this.dataUpdate();
+      this.$refs.menu1.save(this.resume.education.admissionDate);
     },
     graduationDateUpdate() {
-      this.$refs.menu2.save(this.educationUpdate.education.graduationDate);
-      this.dataUpdate();
+      this.$refs.menu2.save(this.resume.education.graduationDate);
+      // this.dataUpdate();
     },
   },
   beforeMount() {
-    this.educationUpdate.education = this.education;
-    this.educationUpdate.isCreated = this.education.isCreated;
-    this.educationUpdate.isUpdated = false;
-    delete this.educationUpdate.education.isCreated;
-    if (this.educationUpdate.education.graduation === true) this.graduation = '졸업';
-    else this.graduation = '졸업예정';
   },
 };
 </script>

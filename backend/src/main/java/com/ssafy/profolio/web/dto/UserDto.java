@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 public class UserDto {
@@ -13,19 +14,19 @@ public class UserDto {
     private String email;
     private String name;
     private String phone;
-    private String birthday;
+    private String githubId;
     private String profilePath;
-    private String accessToken;
-    private String refreshToken;
+    private String description;
 
     @Builder
-    public UserDto(String socialId, String email, String name, String phone, String birthday, String profilePath) {
+    public UserDto(String socialId, String email, String name, String phone, String githubId, String profilePath) {
         this.socialId = socialId;
         this.email = email;
         this.name = name;
         this.phone = phone;
-        this.birthday = birthday;
+        this.githubId = githubId;
         this.profilePath = profilePath;
+        this.description="";
     }
 
     public UserDto(User user) {
@@ -34,14 +35,8 @@ public class UserDto {
         this.email = user.getEmail();
         this.phone = user.getPhone();
         this.profilePath = user.getProfilePath();
-        this.birthday = user.getBirthday();
-        this.accessToken = user.getAccessToken();
-        this.refreshToken = user.getRefreshToken();
-    }
-
-    public void addToken(String accessToken, String refreshToken) {
-        this.accessToken = accessToken;
-        this.refreshToken = refreshToken;
+        this.githubId = user.getGithubId();
+        this.description=user.getDescription();
     }
 
     @Getter
@@ -64,8 +59,9 @@ public class UserDto {
         private String email;
         private String name;
         private String phone;
-        private String birthday;
+        private String githubId;
         private String profilePath;
+        private String description;
     }
 
     @Getter
@@ -75,7 +71,9 @@ public class UserDto {
         private String name;
         private String phone;
         private String profilePath;
-        private String birthday;
+        private String githubId;
+        private String description;
+        private MultipartFile file;
     }
 
 }

@@ -11,8 +11,8 @@
           @mouseover="showQuestion"
           @mouseout="hideQuestion"/>
         <div id="balloon" style="display: none">
-          <div>- 앞머리를 눈썹 위로 올린 정면 사진을 올려주세요.</div>
-          <div>- 밝은 조명에서 찍은 사진을 올려주세요.</div>
+          <div class="ballon-text">- 앞머리를 눈썹 위로 올린 정면 사진을 올려주세요.</div>
+          <div class="ballon-text">- 밝은 조명에서 찍은 사진을 올려주세요.</div>
         </div>
         <!-- input image -->
         <div class="img-box">
@@ -75,23 +75,21 @@
         </div>
       </div>
       <!-- output image -->
-      <div class="img-box">
-        <div v-if="imageLoading">
-          <v-progress-circular
-            class=""
-            :size="50"
-            color="#3c4bff"
-            indeterminate
-          />
-        </div>
-        <div v-else>
-          <img
-            class="img"
-            :src="outputImgUrl"
-            ref="output-image"
-            @error="setDefaultImage('output')"
-          />
-        </div>
+      <div class="img-box" v-if="imageLoading">
+        <v-progress-circular
+          class=""
+          :size="50"
+          color="#3c4bff"
+          indeterminate
+        />
+      </div>
+      <div class="img-box" v-else>
+        <img
+          class="img"
+          :src="outputImgUrl"
+          ref="output-image"
+          @error="setDefaultImage('output')"
+        />
       </div>
       <div
         class="download-btn"
@@ -114,6 +112,13 @@ import img3 from '../assets/images/idPhoto3.jpg';
 import img4 from '../assets/images/idPhoto4.jpg';
 import img5 from '../assets/images/idPhoto5.jpg';
 
+import img00 from '../assets/images/idPhoto00.jpg';
+import img11 from '../assets/images/idPhoto11.jpg';
+import img22 from '../assets/images/idPhoto22.jpg';
+import img33 from '../assets/images/idPhoto33.jpg';
+import img44 from '../assets/images/idPhoto44.jpg';
+import img55 from '../assets/images/idPhoto55.jpg';
+
 export default {
   name: 'Convert',
   components: {},
@@ -124,7 +129,8 @@ export default {
       outputImgUrl: '',
       imageLoading: false,
       outputLoaded: false,
-      imgArr: [img0, img1, img2, img3, img4, img5],
+      imgArr: [img0, img1, img2, img3, img4, img5], // 눈코입 없는 사진
+      imgCvtArr: [img00, img11, img22, img33, img44, img55], // 눈코입 있는 사진
       styleImgFile: '',
     };
   },
@@ -173,7 +179,8 @@ export default {
       this.outputImgUrl = defaultImage;
       this.imageLoading = true;
       this.outputLoaded = false;
-
+      // console.log(this.$refs['input-image-input'].files[0]);
+      // console.log(this.styleImgFile);
       // form data 작성 및 submit
       const formData = new FormData();
       formData.append('input_image', this.$refs['input-image-input'].files[0]);
@@ -194,7 +201,9 @@ export default {
       const link = document.createElement('a');
       link.href = this.outputImgUrl;
       link.download = 'output.jpg';
-      link.click();
+      if (this.outputLoaded) {
+        link.click();
+      }
     },
     reset() {
       this.inputImgUrl = '';
@@ -229,9 +238,21 @@ export default {
       const img = document.getElementsByClassName('sample-img')[id];
       // this.click('style');
       img.className += ' select-img';
-      console.log(this.imgArr[id]);
-      this.styleImgUrl = this.imgArr[id];
-      this.styleImgFile = this.imgArr[id];
+      this.styleImgUrl = this.imgCvtArr[id];
+      // console.log(this.imgArr[id]);
+      this.convertURLtoFile(this.imgCvtArr[id])
+        .then((res) => {
+          this.styleImgFile = res;
+          // console.log(res);
+        });
+    },
+    async convertURLtoFile(url) {
+      const response = await fetch(url);
+      const data = await response.blob();
+      const ext = url.split(".").pop();
+      const filename = url.split("/").pop();
+      const metadata = { type: `image/${ext}` };
+      return new File([data], filename, metadata);
     },
   },
   created() {

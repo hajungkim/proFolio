@@ -3,16 +3,16 @@
     <div class="read-resume-profile">
       <div class="read-resume-box">
         <img :src="resume.user.profilePath" class="read-resume-image">
-        <div class="font-30">About</div>
-        <div class="mt-15 ml-15">
+        <div class="font-30" style="font-weight:bold; margin-left:3vw;">About</div>
+        <div class="mt-10" style="margin-left:3vw;">
           <table class="read-resume-profile-table">
             <tr>
               <th>name</th>
               <td>{{ resume.user.name }}</td>
             </tr>
             <tr>
-              <th>date of birth</th>
-              <td>{{ resume.user.birthday }}</td>
+              <th>github</th>
+              <td>{{ resume.user.githubId }}</td>
             </tr>
             <tr>
               <th>contact</th>
@@ -22,15 +22,26 @@
               <th>e-mail</th>
               <td>{{ resume.user.email }}</td>
             </tr>
+              <tr>
+              <th>description</th>
+              <!-- <td>{{ resume.user.description }}</td> -->
+              <td v-html="descriptionForHtml"></td>
+            </tr>
           </table>
         </div>
       </div>
       <div class="buttons">
         <div class="resum-btn">
-          <a href="#"><button class="round-shadow rbtn1" @click="goToResume">이력서 수정</button></a>
+          <!-- <a href="#">
+            <button class="round-shadow rbtn1" @click="goToResume">이력서 수정</button>
+          </a> -->
+          <button class="round-shadow rbtn1" @click="goToResume">이력서 수정</button>
         </div>
         <div class="resum-btn">
-          <a href="#"><button class="round-shadow rbtn2" @click="goToSelect">포트폴리오 생성</button></a>
+          <!-- <a href="#">
+            <button class="round-shadow rbtn2" @click="goToSelect">포트폴리오 생성</button>
+          </a> -->
+          <button class="round-shadow rbtn2" @click="goToSelect">포트폴리오 생성</button>
         </div>
       </div>
     </div>
@@ -57,25 +68,25 @@
     <div class="hr-border-mt-50"></div>
     <div class="read-resume-exp mt-50">
       <div class="font-30 font-weight-b mb-20">Experience</div>
-      <LookExperience v-for="(act) in resume.activity" :key="act.id" :act="act" />
+      <LookExperience v-for="(act) in resume.activity" :key="'act'+act.id" :act="act" />
     </div>
     <div class="hr-border-mt-50"></div>
     <div class="read-resume-exp mt-50">
       <div class="font-30 font-weight-b mb-20">Work Experience</div>
-      <LookCareer v-for="(career) in resume.career" :key="career.id" :career="career" />
+      <LookCareer v-for="(career) in resume.career" :key="'career'+career.id" :career="career" />
     </div>
     <div class="hr-border-mt-50"></div>
     <div class="mt-50">
       <div class="font-30 font-weight-b mb-20">Certificate / Language</div>
       <table class="read-resume-table">
-        <tr v-for="(cert) in resume.certificate" :key="cert.id">
-          <th>{{ cert.certifieddate }}</th>
+        <tr v-for="(cert) in resume.certificate" :key="'cert'+cert.id">
+          <th>{{ cert.certifiedDate }}</th>
           <td class="font-weight-b">{{ cert.name }}</td>
         </tr>
-        <tr v-for="(lang) in resume.foreignLang" :key="lang.id">
-          <th>{{ lang.certifieddate }}</th>
+        <tr v-for="(lang) in resume.foreignLang" :key="'lang'+lang.id">
+          <th>{{ lang.certifiedDate }}</th>
           <td class="font-weight-b">{{ lang.name }}</td>
-          <td>{{ lang.score }}점</td>
+          <td>{{ lang.score }}<span v-if=" !isNaN(lang.score) ">점</span></td>
         </tr>
       </table>
     </div>
@@ -83,11 +94,11 @@
     <div class="mt-50">
       <div class="font-30 font-weight-b mb-20">Awards</div>
       <table class="read-resume-table">
-        <tr v-for="(award) in resume.awards" :key="award.id">
-          <th style="line-height: 250%;">{{ award.awardsdate }}</th>
+        <tr v-for="(award) in resume.awards" :key="'award'+award.id">
+          <th style="line-height: 250%;">{{ award.awardsDate }}</th>
           <td>
             <span class="font-weight-b" style="line-height: 250%;">{{ award.name }}</span>
-             {{ award.prize }}
+             <span class="ml-9">{{ award.prize }}</span>
             <br>
             <span>{{ award.description }}</span>
           </td>
@@ -100,21 +111,21 @@
       <table class="read-resume-table">
         <tr>
           <th>Language</th>
-          <td v-for="(tech) in techLanguage" :key="tech.id">
+          <td v-for="(tech) in techLanguage" :key="'techL'+tech.id">
             <span>{{ tech.name }} </span>
             <div class="lang-level">{{ tech.level }}</div>
           </td>
         </tr>
         <tr>
           <th>Management</th>
-          <td v-for="(tech) in techManagement" :key="tech.id">
+          <td v-for="(tech) in techManagement" :key="'techM'+tech.id">
             <span>{{ tech.name }} </span>
             <div class="lang-level">{{ tech.level }}</div>
           </td>
         </tr>
         <tr>
           <th>FrameWork</th>
-          <td v-for="(tech) in techFrameWork" :key="tech.id">
+          <td v-for="(tech) in techFrameWork" :key="'techF'+tech.id">
             <span>{{ tech.name }} </span>
             <div class="lang-level">{{ tech.level }}</div>
           </td>
@@ -124,7 +135,7 @@
     <div class="hr-border-mt-50"></div>
     <div class="mt-50">
       <div class="font-30 font-weight-b mb-20">Project</div>
-      <LookProject v-for="(project) in resume.project" :key="project.id" :project="project"/>
+      <LookProject v-for="(project) in resume.project" :key="'pjt'+project.id" :project="project"/>
     </div>
     <div class="hr-border-mt-50"></div>
   </div>
@@ -155,6 +166,9 @@ export default {
     ...mapState([
       'resume',
     ]),
+    descriptionForHtml() {
+      return this.resume.user.description.replace(/(\n|\r\n)/g, '<br>');
+    },
   },
   methods: {
     goToResume() {
