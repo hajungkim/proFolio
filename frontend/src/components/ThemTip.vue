@@ -1,7 +1,7 @@
 <template>
   <div class="tooltip">
     <img
-      src="../assets/images/question.png"
+      src="../assets/images/help.png"
       id="question"
     />
     <span class="tooltip-text">정보를 드래그하여 위치를 변경할 수 있어요. <br>
