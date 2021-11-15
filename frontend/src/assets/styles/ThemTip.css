@@ -1,10 +1,11 @@
 /* ----도움말--- */
 #question{
-  width: 30px;
+  width: 15px;
   margin: 5%;
   cursor: pointer;
 }
 .tooltip {
+  z-index: 9999;
   margin-top: 5%;
 }
 
