@@ -9,7 +9,9 @@
 }
 
 .tooltip-text {
+  z-index: 100;
   display: none;
+  /* display: block; */
   position: absolute;
   width: 16vw;
   border: 1px solid;
