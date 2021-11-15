@@ -1,5 +1,5 @@
 <template>
-  <div class="them3-edu" v-if="portfolio.education">
+  <div class="them3-edu" v-if="!isEmpty(portfolio.education)">
     <div class="name">Education</div>
       <div class="university">{{portfolio.education.university}}</div>
       <div class="raw">
@@ -32,6 +32,15 @@ export default {
     ...mapState([
       'portfolio',
     ]),
+  },
+  methods: {
+    isEmpty(obj) {
+      if (obj.constructor === Object
+        && Object.keys(obj).length === 0) {
+        return true;
+      }
+      return false;
+    },
   },
 };
 </script>

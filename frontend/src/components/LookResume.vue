@@ -47,7 +47,7 @@
     </div>
     <div class="read-resume-edu mt-50">
       <div class="font-30 font-weight-b mb-20">Education</div>
-      <div class="ml-15">
+      <div class="ml-15" v-if=" !isEmpty(resume.education) ">
         <div>{{ resume.education.university }}</div>
         <table class="read-resume-table">
           <tr>
@@ -181,6 +181,13 @@ export default {
     adjustHtml(strVal) {
       // console.log(strVal, typeof (strVal));
       return strVal.replace(/(\n|\r\n)/g, '<br>');
+    },
+    isEmpty(obj) {
+      if (obj.constructor === Object
+        && Object.keys(obj).length === 0) {
+        return true;
+      }
+      return false;
     },
   },
   beforeMount() {
