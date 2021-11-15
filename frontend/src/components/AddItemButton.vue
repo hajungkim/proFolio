@@ -93,7 +93,6 @@ export default {
       'userId',
     ]),
     availableItem() {
-      console.log("!userid", !this.userId, this.userId);
       if (!this.userId) {
         const sampleresumeItem = this.sample[this.type];
         const sampleportfolioItem = this.portfolio[this.type];
