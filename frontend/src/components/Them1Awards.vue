@@ -1,6 +1,6 @@
 <template>
   <div class="skill" v-if="edit || portfolio.awards.length">
-    <div class="name">Awards</div>
+    <div class="name">AWARDS</div>
     <AddItemButton type="awards" v-if="edit"/>
     <draggable class="draggable-container-row">
       <div v-for="(award) in portfolio.awards" :key="award.id" class="card">
@@ -19,7 +19,8 @@
         </div>
         <div style="display:flex">
           <div style="color: #656060; margin-right: 15px; width:100px">수상 내용</div>
-          <div>{{award.description}}</div>
+          <!-- <div>{{award.description}}</div> -->
+          <div v-html="adjustHtml(award.description)"></div>
         </div>
       </div>
     </draggable>
@@ -50,6 +51,11 @@ export default {
     ...mapState([
       'portfolio',
     ]),
+  },
+  methods: {
+    adjustHtml(strVal) {
+      return strVal.replace(/(\n|\r\n)/g, '<br>');
+    },
   },
 };
 </script>

@@ -1,0 +1,32 @@
+/* ----도움말--- */
+#question{
+  width: 15px;
+  margin: 5%;
+  cursor: pointer;
+}
+.tooltip {
+  z-index: 9999;
+  margin-top: 5%;
+}
+
+.tooltip-text {
+  z-index: 100;
+  display: none;
+  /* display: block; */
+  position: absolute;
+  width: 16vw;
+  border: 1px solid;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  background:#005ED3;
+  border-radius: 10px;
+  color: white;
+  text-align: left;
+  padding: 10%;
+}
+
+.tooltip:hover .tooltip-text {
+  /* position: relative; */
+  display: block;
+  margin-left: -40%;
+}

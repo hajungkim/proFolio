@@ -47,8 +47,8 @@ public class ResumeService {
         List<Activity> activityList = activityRepository.findByUserId(userId);
         List<ResumeDto.ActivityResponse> result = new ArrayList<>();
         for (Activity activity : activityList) {
-            result.add(new ResumeDto.ActivityResponse(activity.getId(), activity.getName(), activity.getDescription(),
-                    activity.getStartDate(), activity.getEndDate(), activity.getOrganization()));
+            result.add(new ResumeDto.ActivityResponse(activity.getId(), activity.getName(), activity.getOrganization(),
+                    activity.getStartDate(), activity.getEndDate(), activity.getDescription()));
         }
         return result;
     }
@@ -81,7 +81,7 @@ public class ResumeService {
         List<ResumeDto.CertificateResponse> result = new ArrayList<>();
         for (Certificate certificate : certificateList) {
             result.add(new ResumeDto.CertificateResponse(certificate.getId(), certificate.getName(),
-                    certificate.getOrganization(), certificate.getCertifiedDate()));
+                    certificate.getCertifiedDate()));
         }
         return result;
     }
@@ -114,8 +114,8 @@ public class ResumeService {
         List<TechnologyStack> technologyStackList = technologyStackRepository.findByUserId(userId);
         List<ResumeDto.TechnologyStackResponse> result = new ArrayList<>();
         for (TechnologyStack technologyStack : technologyStackList) {
-            result.add(new ResumeDto.TechnologyStackResponse(technologyStack.getId(), technologyStack.getName(), technologyStack.getLevel(),
-                    technologyStack.getDescription(), technologyStack.getKind()));
+            result.add(new ResumeDto.TechnologyStackResponse(technologyStack.getId(), technologyStack.getName(),
+                    technologyStack.getLevel(), technologyStack.getKind()));
         }
         return result;
     }
@@ -124,9 +124,9 @@ public class ResumeService {
     public ResumeDto.EducationResponse findEducation(Long userId) {
         Education education = educationRepository.findByUserId(userId);
         if (education == null) throw new BaseException(BaseResponseCode.DATA_IS_NULL);
-        return new ResumeDto.EducationResponse(education.getId(), education.getUniversity(), education.isMainSchool(),
+        return new ResumeDto.EducationResponse(education.getId(), education.getUniversity(),
                 education.getMajor(), education.getMinor(), education.getAdmissionDate(), education.getGraduationDate(),
-                education.isGraduation(), education.getScore(), education.getTotalScore());
+                education.isGraduation());
     }
 
     @Transactional
@@ -172,7 +172,6 @@ public class ResumeService {
         User user = userRepository.getById(request.getUserId());
         Certificate certificate = Certificate.builder()
                 .name(request.getName())
-                .organization(request.getOrganization())
                 .certifiedDate(request.getCertifiedDate())
                 .user(user).build();
         certificateRepository.save(certificate);
@@ -183,14 +182,11 @@ public class ResumeService {
         User user = userRepository.getById(request.getUserId());
         Education education = Education.builder()
                 .university(request.getUniversity())
-                .mainSchool(request.isMainSchool())
                 .major(request.getMajor())
                 .minor(request.getMinor())
                 .admissionDate(request.getAdmissionDate())
                 .graduationDate(request.getGraduationDate())
                 .graduation(request.isGraduation())
-                .score(request.getScore())
-                .totalScore(request.getTotalScore())
                 .user(user).build();
         educationRepository.save(education);
     }
@@ -230,7 +226,6 @@ public class ResumeService {
         TechnologyStack technologyStack = TechnologyStack.builder()
                 .name(request.getName())
                 .level(request.getLevel())
-                .description(request.getDescription())
                 .kind(request.getKind())
                 .user(user).build();
         technologyStackRepository.save(technologyStack);
@@ -261,8 +256,8 @@ public class ResumeService {
     }
 
     @Transactional
-    public void updateEducation(Long id, ResumeDto.EducationRequest request) {
-        Education education = educationRepository.findByUserId(id);
+    public void updateEducation(ResumeDto.EducationRequest request) {
+        Education education = educationRepository.findByUserId(request.getUserId());
         education.updateEducation(request);
     }
 

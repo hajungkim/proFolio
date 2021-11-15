@@ -5,7 +5,12 @@
     <div class="resume-part-box">
       <form enctype="multipart/form-data">
         <label for="imageInput" class="image-label">
-          <img v-if="user.profilePath" :src="user.profilePath" alt="" class="image-file-size">
+          <img
+            v-if="resume.user.profilePath"
+            :src="resume.user.profilePath"
+            alt=""
+            class="image-file-size"
+          >
           <img v-else src="../assets/images/gallery.png" alt="" class="gallery-icon">
         </label>
         <input type="file" id="imageInput" @change="loadFile">
@@ -13,19 +18,23 @@
       <table class="resume-part-table">
         <tr>
           <th><label for="name">이름</label></th>
-          <td><input type="text" :placeholder="resume.user.name" @input="userName"></td>
+          <td><input type="text" :value="resume.user.name" @change="userName"></td>
         </tr>
         <tr>
-          <th><label for="name">생년월일</label></th>
-          <td><input type="text" :placeholder="resume.user.birthday" @input="userBirth"></td>
+          <th><label for="phone">연락처</label></th>
+          <td><input type="text" :value="resume.user.phone" @change="userPhone"></td>
         </tr>
         <tr>
-          <th><label for="name">연락처</label></th>
-          <td><input type="text" :placeholder="resume.user.phone" @input="userPhone"></td>
+          <th><label for="email">이메일</label></th>
+          <td><input type="text" :value="resume.user.email" @change="userEmail"></td>
         </tr>
         <tr>
-          <th><label for="name">이메일</label></th>
-          <td><input type="text" :placeholder="resume.user.email" @input="userEmail"></td>
+          <th><label for="githubId">Github</label></th>
+          <td><input type="text" :value="resume.user.githubId" @change="userGithubId"></td>
+        </tr>
+        <tr>
+          <th><label for="description">자기소개</label></th>
+          <td><textarea :value="resume.user.description" @change="userDescription" /></td>
         </tr>
       </table>
     </div>
@@ -39,7 +48,7 @@ export default {
   name: 'ResumePart1',
   data() {
     return {
-      user: null,
+      // user: null,
     };
   },
   computed: {
@@ -50,29 +59,41 @@ export default {
   methods: {
     loadFile() {
       const fileInput = document.querySelector('#imageInput');
-      this.user.profilePath = URL.createObjectURL(fileInput.files[0]);
+      this.resume.user.profilePath = URL.createObjectURL(fileInput.files[0]);
       URL.revokeObjectURL(fileInput.files[0]);
-      this.$emit('part1Data', this.user);
     },
     userName(event) {
-      this.user.name = event.target.value;
-      this.$emit('part1Data', this.user);
+      this.resume.user.name = event.target.value;
+      this.$emit('part1Data');
     },
     userBirth(event) {
-      this.user.birthday = event.target.value;
-      this.$emit('part1Data', this.user);
+      this.resume.user.birthday = event.target.value;
+      this.$emit('part1Data');
     },
     userPhone(event) {
-      this.user.phone = event.target.value;
-      this.$emit('part1Data', this.user);
+      this.resume.user.phone = event.target.value;
+      this.$emit('part1Data');
     },
     userEmail(event) {
-      this.user.email = event.target.value;
-      this.$emit('part1Data', this.user);
+      this.resume.user.email = event.target.value;
+      this.$emit('part1Data');
+    },
+    userGithubId(event) {
+      this.resume.user.githubId = event.target.value;
+      this.$emit('part1Data');
+    },
+    userDescription(event) {
+      this.resume.user.description = event.target.value;
+      this.$emit('part1Data');
     },
   },
   beforeMount() {
-    this.user = JSON.parse(JSON.stringify(this.resume.user));
+    // this.user = JSON.parse(JSON.stringify(this.resume.user));
+    // console.log(JSON.parse(JSON.stringify(this.resume.user)).profilePath);
+    // console.log(this.resume.user.profilePath);
+  },
+  beforeDestroy() {
+    this.$emit('save');
   },
 };
 </script>

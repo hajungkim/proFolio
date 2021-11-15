@@ -3,6 +3,7 @@ package com.ssafy.profolio.web;
 import com.ssafy.profolio.domain.portfolio.Portfolio;
 import com.ssafy.profolio.exception.BaseException;
 import com.ssafy.profolio.service.PortfolioService;
+import com.ssafy.profolio.service.S3UploadService;
 import com.ssafy.profolio.web.dto.PortfolioDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +20,7 @@ public class PortfolioController {
 
     @PostMapping("/upload")
     public BaseResponse<PortfolioDto> uploadFile(PortfolioDto param){
-        String url = portfolioService.uploadFile(param.getFile());
-        PortfolioDto portfolio = portfolioService.putPortfolio(param, url);
+        PortfolioDto portfolio = portfolioService.putPortfolio(param);
         if (portfolio == null) throw new BaseException(BaseResponseCode.DATA_IS_NULL);
         return new BaseResponse<PortfolioDto>(portfolio);
     }

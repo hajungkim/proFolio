@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import LookResume from '../components/LookResume.vue';
 import LookPortFolio from '../components/LookPortFolio.vue';
 
@@ -45,6 +46,11 @@ export default {
       unclickState: 'slide',
     };
   },
+  computed: {
+    ...mapState([
+      'isLogin',
+    ]),
+  },
   methods: {
     resumeClick() {
       this.resumeActive = true;
@@ -52,6 +58,11 @@ export default {
     portFolioClick() {
       this.resumeActive = false;
     },
+  },
+  mounted() {
+    if (!this.isLogin) {
+      this.$router.push({ name: 'Login' });
+    }
   },
 };
 </script>

@@ -1,8 +1,8 @@
 <template>
   <div class="skill"  v-if="edit || portfolio.project.length">
-    <div class="name">Projects</div>
+    <div class="name">PROJECTS</div>
     <AddItemButton type="project" v-if="edit"/>
-    <draggable class="draggable-container-col">
+    <draggable class="draggable-container-col-them1-project">
       <div v-for="(pro) in portfolio.project" :key="pro.id" class="project-card">
         <RemoveItemButton
           v-if="edit"
@@ -12,7 +12,8 @@
         <div>
           <div class="name">{{pro.title}}</div>
           <div class="summary">{{pro.summary}}</div>
-          <div style="color: #656060">{{pro.description}}</div>
+          <!-- <div style="color: #656060">{{pro.description}}</div> -->
+          <div style="color: #656060" v-html="adjustHtml(pro.description)"></div>
         </div>
           <div>
             <div class="subtitle">사용한 기술스택</div>
@@ -60,6 +61,11 @@ export default {
     ...mapState([
       'portfolio',
     ]),
+  },
+  methods: {
+    adjustHtml(strVal) {
+      return strVal.replace(/(\n|\r\n)/g, '<br>');
+    },
   },
 };
 </script>

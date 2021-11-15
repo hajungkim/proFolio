@@ -23,6 +23,7 @@ public class UserService {
     private final Long expireMin = 30L;
 
     private final UserRepository userRepository;
+    private final S3UploadService s3Service;
 
     public String createToken(UserDto userDto) {
         JwtBuilder jwtBuilder = Jwts.builder();
@@ -55,12 +56,17 @@ public class UserService {
         if(user == null) throw new BaseException(BaseResponseCode.DATA_IS_NULL);
 
         return new UserDto.UserResponse(user.getId(), user.getEmail(),
-                user.getName(), user.getPhone(), user.getBirthday(), user.getProfilePath());
+                user.getName(), user.getPhone(), user.getGithubId(), user.getProfilePath(), user.getDescription());
     }
 
     @Transactional
     public void updateUser(Long userId, UserDto.UserRequest request) {
         User user = userRepository.getById(userId);
-        user.updateUser(request);
+        if(request.getFile() != null) {
+            String url = s3Service.uploadS3(request.getFile());
+            user.updateUser(request, url);
+        }else{
+            user.updateUser(request);
+        }
     }
 }

@@ -5,15 +5,15 @@
       width="500"
     >
       <template v-slot:activator="{ on, attrs }">
-        <v-btn
+        <button
           color="primary"
           dark
           v-bind="attrs"
           v-on="on"
           class="outer-btn-add"
         >
-          ADD
-        </v-btn>
+          <span class="material-icons">add_circle_outline</span>
+        </button>
       </template>
 
       <v-card>
@@ -26,6 +26,13 @@
             <div v-for="(pro) in availableItem" :key="pro.id">
               <div class="card-item" @click="addItem(pro)">
                 {{pro.title}}: {{pro.summary}}
+              </div>
+            </div>
+          </div>
+          <div v-if="type==='career'">
+            <div v-for="(career) in availableItem" :key="career.id">
+              <div class="card-item" @click="addItem(career)">
+                {{career.company}}: {{career.duty}}
               </div>
             </div>
           </div>
@@ -82,8 +89,16 @@ export default {
     ...mapState([
       'resume',
       'portfolio',
+      'sample',
+      'userId',
     ]),
     availableItem() {
+      if (!this.userId) {
+        const sampleresumeItem = this.sample[this.type];
+        const sampleportfolioItem = this.portfolio[this.type];
+        const sampleArray = _.differenceWith(sampleresumeItem, sampleportfolioItem, _.isEqual);
+        return sampleArray;
+      }
       const resumeItem = this.resume[this.type];
       const portfolioItem = this.portfolio[this.type];
       const newArray = _.differenceWith(resumeItem, portfolioItem, _.isEqual);
@@ -97,6 +112,9 @@ export default {
       switch (this.type) {
         case 'project':
           this.$store.dispatch('portfolioProjectAdd', item);
+          break;
+        case 'career':
+          this.$store.dispatch('portfolioCareerAdd', item);
           break;
         case 'awards':
           this.$store.dispatch('portfolioAwardsAdd', item);

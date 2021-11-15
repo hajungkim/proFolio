@@ -141,12 +141,8 @@ public class NaverOauth implements SocialOauth {
         String name = response.getAsJsonObject().get("name").getAsString();
         String phone = response.getAsJsonObject().get("mobile").getAsString();
 
-        String birthday = response.getAsJsonObject().get("birthyear").getAsString()
-                            + "-" + response.getAsJsonObject().get("birthday").getAsString();
-        birthday.replace("-", ".");
-
         log.info(">>>>>NAVE social Id: "+socailId);
-        UserDto result = new UserDto(socailId, email,name,phone, birthday, picture);
+        UserDto result = new UserDto(socailId, email,name,phone, "", picture);
         return result;
     }
 

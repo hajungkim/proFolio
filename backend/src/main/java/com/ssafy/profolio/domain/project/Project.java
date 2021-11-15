@@ -19,31 +19,31 @@ public class Project {
     @Column(name = "project_id")
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String title;
 
-    @Column
+    @Column(nullable = false)
     private String summary;
 
-    @Column
+    @Column(nullable = false)
     private String description;
 
-    @Column(name = "member_cnt")
+    @Column(name = "member_cnt", nullable = false)
     private Integer memberCnt;
 
-    @Column(name = "technology_stack")
+    @Column(name = "technology_stack", nullable = false)
     private String technologyStack;
 
-    @Column
+    @Column(nullable = false)
     private String role;
 
     @Column
     private String link;
 
-    @Column(name = "start_date")
+    @Column(name = "start_date", nullable = false)
     private String startDate;
 
-    @Column(name = "end_date")
+    @Column(name = "end_date", nullable = false)
     private String endDate;
 
     @ManyToOne(fetch = FetchType.LAZY)

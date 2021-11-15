@@ -12,14 +12,14 @@
     <section class="fullpage puppy">
       <MainSection1 />
     </section>
-    <section class="fullpage beige">
-      <MainSection2 />
+    <section class="fullpage pink">
+      <MainSection4 />
     </section>
     <section class="fullpage blue">
       <MainSection3 />
     </section>
-    <section class="fullpage pink">
-      <MainSection4 />
+    <section class="fullpage beige">
+      <MainSection2 />
     </section>
   </div>
 </template>
