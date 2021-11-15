@@ -8,19 +8,19 @@
           <table class="read-resume-profile-table">
             <tr>
               <th>name</th>
-              <td>{{ resume.user.name }}</td>
+              <th>{{ resume.user.name }}</th>
             </tr>
             <tr>
               <th>github</th>
-              <td>{{ resume.user.githubId }}</td>
+              <th>{{ resume.user.githubId }}</th>
             </tr>
             <tr>
               <th>contact</th>
-              <td>{{ resume.user.phone }}</td>
+              <th>{{ resume.user.phone }}</th>
             </tr>
             <tr>
               <th>e-mail</th>
-              <td>{{ resume.user.email }}</td>
+              <th>{{ resume.user.email }}</th>
             </tr>
               <tr>
               <th>description</th>
