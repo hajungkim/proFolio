@@ -18,7 +18,8 @@
         <div class="them2-summary">
           <span>{{pro.summary}}</span>
         </div>
-        <div class="them2-grayfont">{{pro.description}}</div>
+        <!-- <div class="them2-grayfont">{{pro.description}}</div> -->
+        <div class="them2-grayfont" v-html="adjustHtml(pro.description)"></div>
         <div class="grid2 margin">
           <div>
             <span style="color: #0014BC; margin-right: 5%">팀원</span>
@@ -68,6 +69,11 @@ export default {
     ...mapState([
       'portfolio',
     ]),
+  },
+  methods: {
+    adjustHtml(strVal) {
+      return strVal.replace(/(\n|\r\n)/g, '<br>');
+    },
   },
 };
 </script>

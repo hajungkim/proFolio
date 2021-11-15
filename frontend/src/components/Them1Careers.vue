@@ -20,7 +20,8 @@
         </div>
         <div>
           <span style="color: #656060; margin-right: 15px"> 내용</span>
-          {{career.description}}
+          <!-- {{career.description}} -->
+          <span v-html="adjustHtml(career.description)"></span>
         </div>
       </div>
     </draggable>
@@ -51,6 +52,11 @@ export default {
     ...mapState([
       'portfolio',
     ]),
+  },
+  methods: {
+    adjustHtml(strVal) {
+      return strVal.replace(/(\n|\r\n)/g, '<br>');
+    },
   },
 };
 </script>

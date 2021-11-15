@@ -180,7 +180,7 @@
 }
 .resume-p5-summary {
   margin: 10px;
-  width: 95%;
+  width: 95% !important;
   height: 30px;
   border-radius: 5px;
   border: 2px solid #ccc;

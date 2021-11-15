@@ -90,6 +90,7 @@ export default {
       'resume',
       'portfolio',
       'sample',
+      'userId',
     ]),
     availableItem() {
       if (!this.userId) {

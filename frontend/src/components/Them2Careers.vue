@@ -19,7 +19,8 @@
           <span>{{career.duty}}</span>
         </div>
         <div class="them2-summary">
-          <span>{{career.description}}</span>
+          <!-- <span>{{career.description}}</span> -->
+          <span v-html="adjustHtml(career.description)"></span>
         </div>
       </div>
     </draggable>
@@ -53,6 +54,11 @@ export default {
     ...mapState([
       'portfolio',
     ]),
+  },
+  methods: {
+    adjustHtml(strVal) {
+      return strVal.replace(/(\n|\r\n)/g, '<br>');
+    },
   },
 };
 </script>

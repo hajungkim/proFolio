@@ -12,7 +12,8 @@
         <div>
           <div class="name">{{pro.title}}</div>
           <div class="summary">{{pro.summary}}</div>
-          <div style="color: #656060">{{pro.description}}</div>
+          <!-- <div style="color: #656060">{{pro.description}}</div> -->
+          <div style="color: #656060" v-html="adjustHtml(pro.description)"></div>
         </div>
           <div>
             <div class="subtitle">사용한 기술스택</div>
@@ -60,6 +61,11 @@ export default {
     ...mapState([
       'portfolio',
     ]),
+  },
+  methods: {
+    adjustHtml(strVal) {
+      return strVal.replace(/(\n|\r\n)/g, '<br>');
+    },
   },
 };
 </script>

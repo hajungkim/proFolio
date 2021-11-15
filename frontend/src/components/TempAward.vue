@@ -78,10 +78,12 @@ export default {
       const newItem = {
         id: `${Date.now()}`,
         name: '',
-        certifiedDate: '',
+        awardsDate: '',
         description: '',
         userId: this.userId,
       };
+      // console.log(newItem);
+      // console.log(this.resume.awards);
       if (!this.resume.awards) {
         this.$store.commit('CHANGE_AWARDS_LIST', [newItem]);
       } else {
