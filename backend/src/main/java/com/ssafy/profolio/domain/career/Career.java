@@ -19,19 +19,19 @@ public class Career {
     @Column(name = "carrer_id")
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String company;
 
-    @Column
+    @Column(nullable = false)
     private String duty;
 
-    @Column(name = "start_date")
+    @Column(name = "start_date", nullable = false)
     private String startDate;
 
-    @Column(name = "end_date")
+    @Column(name = "end_date", nullable = false)
     private String endDate;
 
-    @Column(length = 500)
+    @Column(length = 500, nullable = false)
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)

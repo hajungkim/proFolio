@@ -19,16 +19,16 @@ public class Awards {
     @Column(name = "awards_id")
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
-    @Column
+    @Column(nullable = false)
     private String prize;
 
-    @Column(length = 500)
+    @Column(length = 500, nullable = false)
     private String description;
 
-    @Column(name = "awards_date")
+    @Column(name = "awards_date", nullable = false)
     private String awardsDate;
 
     @ManyToOne(fetch = FetchType.LAZY)

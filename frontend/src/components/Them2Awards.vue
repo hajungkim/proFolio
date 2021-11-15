@@ -12,7 +12,8 @@
           :item="award"
         />
         <div class="them2-summary">{{award.prize}}</div>
-        <div class="them2-grayfont">{{award.description}}</div>
+        <!-- <div class="them2-grayfont">{{award.description}}</div> -->
+        <div class="them2-grayfont" v-html="adjustHtml(award.description)"></div>
       </div>
     </draggable>
   </div>
@@ -44,9 +45,8 @@ export default {
     ]),
   },
   methods: {
-    remove() {
-      console.log('@this.resume: ', this.resume.awards);
-      this.resume.awards = '';
+    adjustHtml(strVal) {
+      return strVal.replace(/(\n|\r\n)/g, '<br>');
     },
   },
 };

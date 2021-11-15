@@ -9,14 +9,14 @@
       <label for="active" class="close"></label>
       <div v-if="isLogin" class="wrapper">
         <ul>
-          <li style="margin-top: 20px"><a href="#" @click="goToConvertingPage">증명사진</a></li>
+          <li style="margin-top: 20px"><a href="#" @click="goToConvertingPage">취업사진</a></li>
           <li><a href="#" @click="goToMyPage">마이페이지</a></li>
           <li><a href="#" @click="logout">로그아웃</a></li>
         </ul>
       </div>
       <div v-else class="wrapper">
         <ul>
-          <li style="margin-top: 50px"><a href="#" @click="goToConvertingPage">증명사진</a></li>
+          <li style="margin-top: 50px"><a href="#" @click="goToConvertingPage">취업사진</a></li>
           <li><a href="#" @click="goToLogin">로그인</a></li>
         </ul>
       </div>
@@ -51,9 +51,15 @@ export default {
       this.$router.go();
     },
     logout() {
-      document.cookie = 'userId = ; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      const cookieArr = document.cookie.split(";");
+      for (let i = 0; i < cookieArr.length; i += 1) {
+        const cookieSeg = cookieArr[i].trim();
+        const firstEq = cookieSeg.indexOf("=");
+        const name = cookieSeg.substr(0, firstEq);
+        document.cookie = `${name}  = ; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+      }
       this.$store.dispatch('logout');
-      this.$router.push({ name: 'Main' });
+      this.$router.push("/").catch(() => {});
     },
   },
 };

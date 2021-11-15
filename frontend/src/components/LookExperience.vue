@@ -11,7 +11,8 @@
       </tr>
       <tr>
         <th>활동 내용</th>
-        <td>{{ act.description }}</td>
+        <!-- <td>{{ act.description }}</td> -->
+        <td v-html="adjustHtml(act.description)"></td>
       </tr>
     </table>
   </div>
@@ -24,6 +25,11 @@ export default {
   props: {
     act: {
       type: Object,
+    },
+  },
+  methods: {
+    adjustHtml(strVal) {
+      return strVal.replace(/(\n|\r\n)/g, '<br>');
     },
   },
 };

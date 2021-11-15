@@ -19,13 +19,10 @@ public class Certificate {
     @Column(name = "certificate_id")
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
-    @Column
-    private String organization;
-
-    @Column(name = "certified_date")
+    @Column(name = "certified_date", nullable = false)
     private String certifiedDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -33,16 +30,14 @@ public class Certificate {
     private User user;
 
     @Builder
-    public Certificate(String name, String organization, String certifiedDate, User user) {
+    public Certificate(String name, String certifiedDate, User user) {
         this.name = name;
-        this.organization = organization;
         this.certifiedDate = certifiedDate;
         this.user = user;
     }
 
     public void updateCertificate(ResumeDto.CertificateRequest request) {
         this.name = request.getName();
-        this.organization = request.getOrganization();
         this.certifiedDate = request.getCertifiedDate();
     }
 }

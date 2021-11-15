@@ -11,7 +11,8 @@
       </tr>
       <tr>
         <th>활동 내용</th>
-        <td>{{ career.description }}</td>
+        <!-- <td>{{ career.description }}</td> -->
+        <td v-html="adjustHtml(career.description)"></td>
       </tr>
     </table>
   </div>
@@ -23,6 +24,11 @@ export default {
   props: {
     career: {
       type: Object,
+    },
+  },
+  methods: {
+    adjustHtml(strVal) {
+      return strVal.replace(/(\n|\r\n)/g, '<br>');
     },
   },
 };

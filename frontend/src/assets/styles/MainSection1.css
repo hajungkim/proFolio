@@ -1,11 +1,38 @@
-.main-section1 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 8rem;
-  text-align: center;
+@font-face {
+    font-family: 'DungGeunMo';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.logo-container {
+    margin-left: 640px;
+    margin-bottom: 50px;
+}
+.logo-img {
+    width: 400px;
 }
 
-.btn-hover {
+.main-section1 {
+    /* display: grid; */
+    /* grid-template-columns: repeat(2, 1fr); */
+    /* gap: 2rem; */
+    /* text-align: center; */
+}
+.post-container {
+    width: 1361.78px;
+    height: 416px;
+}
+.section1-img-box {
+    margin-top: 28vh;
+}
+.section1-text-box {
+    position: relative;
+    font-size: 2rem;
+    left: 40px;
+    bottom: 55vh;
+}
+
+.main-btn-hover {
     width: 200px;
     font-size: 16px;
     font-weight: 600;
@@ -23,7 +50,7 @@
     transition: all .4s ease-in-out;
 }
 
-.btn-hover:hover {
+.main-btn-hover:hover {
     background-position: 100% 0;
     /* moz-transition: all .4s ease-in-out; */
     -o-transition: all .4s ease-in-out;
@@ -31,21 +58,52 @@
     transition: all .4s ease-in-out;
 }
 
-.btn-hover:focus {
+.main-btn-hover:focus {
     outline: none;
 }
 
-.btn-hover.color-9 {
+.main-btn-hover.color-9 {
     background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
     box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
 }
 
 .main-header {
     font-size: 4rem;
+    font-family: 'SDSamliphopangche_Outline';
 }
   
 .section-text {
-    font-size: 2rem;
-    margin-top: 1rem;
-    margin-left: 5%;
+    font-size: 1.7rem;
+    margin-top: 3rem;
+    /* margin-left: 5%; */
+    text-align: center;
+    font-family: 'S-CoreDream-6Bold';
 }
+
+.typing {
+    width: 1700px;
+    padding-left: 655px;
+    padding-bottom: 20px;
+}
+.typing-demo {
+    width: 24ch;
+    animation: typing 2s steps(22), blink .5s step-end infinite alternate;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid;
+    font-family: DungGeunMo;
+    font-size: 2em;
+    color: #000000;
+  }
+  
+  @keyframes typing {
+    from {
+      width: 0
+    }
+  }
+      
+  @keyframes blink {
+    50% {
+      border-color: transparent
+    }
+  }

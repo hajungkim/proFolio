@@ -1,3 +1,9 @@
+@font-face {
+  font-family: 'paybooc-Bold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/paybooc-Bold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 .main-section3 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -5,13 +11,37 @@
   /* text-align: center; */
   /* min-height: 300px; */
 }
-
+.main-section3-content {
+  margin-top: 120px;
+}
 .sec3 {
   width: 650px;
 }
-
 .pdf-img {
   position: relative;
-  top: 3.8rem;
-  right: 8.2rem;
+  top: 2rem;
+  right: 5.2rem;
+}
+
+.pink .section-text {
+  text-align: center;
+}
+.main-header3 {
+  color: rgb(255, 255, 255);
+  font-size: 4rem;
+  font-family: 'paybooc-Bold';
+}
+.section-text3 {
+  color: rgb(255, 255, 255);
+  font-size: 1.7rem;
+  margin-top: 3rem;
+  text-align: center;
+  font-family: 'paybooc-Bold';
+}
+.line-container3 {
+  width: 150px;
+  margin-left: 230px;
+}
+.line3 {
+  border-bottom: 5px solid #ffffff;
 }

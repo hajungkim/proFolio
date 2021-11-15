@@ -3,6 +3,7 @@
   grid-template-columns: repeat(12, 1fr);
   padding-top: 8vh;
   height: 92vh;
+  font-family: 'Pretendard-Regular';
 }
 .tab-group {
   margin-top: 80px;

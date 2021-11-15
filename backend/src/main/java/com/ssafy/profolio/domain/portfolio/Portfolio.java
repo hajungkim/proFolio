@@ -16,10 +16,10 @@ public class Portfolio {
     @Column(name = "portfolio_id")
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String url;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
     @OneToOne(fetch = FetchType.LAZY)

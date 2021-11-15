@@ -1,7 +1,7 @@
 <template>
   <div class="them3">
       <div class="menu">
-          <div class="checkmark">
+          <div class="checkmark" v-if="userId">
             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
             x="0px" y="0px" viewBox="0 0 161.2 161.2" enable-background="new 0 0 161.2 161.2"
             xml:space="preserve">
@@ -17,22 +17,24 @@
               points="113,52.8 74.1,108.4 48.2,86.4 "/>
             </svg>
           </div>
-          <h4>complete</h4>
+          <h4 class="complete-text" v-if="userId">complete</h4>
           <div class="menu-buttons">
-            <button class="btn-hover color-9">저장하기</button>
             <button class="btn-hover color-9" @click="openModal">PDF변환</button>
-            <!-- edit -->
             <button class="btn-hover color-9" @click="clickEdit">{{editBtn}}</button>
+            <ThemTip/>
           </div>
       </div>
       <div class="them3-content">
         <div id="them3-pdf">
-          <draggable>
+          <draggable
+            ghost-class="ghost"
+          >
             <Them3Info :edit="edit"/>
             <Them3Intro :edit="edit"/>
             <Them3Edu :edit="edit"/>
             <Them3Certi :edit="edit"/>
             <Them3Exp :edit="edit"/>
+            <Them3Careers :edit="edit"/>
             <div class="draggable-container-col p-5">
               <Them3Skill :edit="edit"/>
               <Them3Awards :edit="edit"/>
@@ -65,10 +67,12 @@ import Them3Awards from '../components/Them3Awards.vue';
 import Them3Certi from '../components/Them3Certi.vue';
 import Them3Edu from '../components/Them3Edu.vue';
 import Them3Exp from '../components/Them3Exp.vue';
+import Them3Careers from '../components/Them3Careers.vue';
 import Them3Info from '../components/Them3Info.vue';
 import Them3Intro from '../components/Them3Intro.vue';
 import Them3Project from '../components/Them3Project.vue';
 import Them3Skill from '../components/Them3Skill.vue';
+import ThemTip from '../components/ThemTip.vue';
 import { postPortfolio } from '../store/modules/PortfolioAPI';
 
 export default {
@@ -79,10 +83,12 @@ export default {
     Them3Edu,
     Them3Certi,
     Them3Exp,
+    Them3Careers,
     Them3Skill,
     Them3Awards,
     Them3Project,
     Them3Intro,
+    ThemTip,
   },
   data() {
     return {
@@ -127,7 +133,11 @@ export default {
       this.closeModal();
     },
     openModal() {
-      this.isOpenModal = true;
+      if (this.edit) {
+        alert('편집을 완료해주세요.');
+      } else {
+        this.isOpenModal = true;
+      }
     },
     closeModal() {
       this.isOpenModal = false;
@@ -143,7 +153,11 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch('portfolioCopyResume');
+    if (!this.userId) {
+      this.$store.dispatch('portfolioCopySample');
+    } else {
+      this.$store.dispatch('portfolioCopyResume');
+    }
   },
 };
 </script>
