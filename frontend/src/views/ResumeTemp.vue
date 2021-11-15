@@ -22,7 +22,7 @@
         <div>
           <div class="resume-save-btn" @click="save()">저장</div>
           <!-- <div class="resume-save-btn" @click="exit">완료</div> -->
-          <div class="resume-next-btn" @click="exit">종료</div>
+          <div class="resume-exit-btn" @click="exit">종료</div>
           <!-- <div>{{hasNull}}</div> -->
         </div>
       </div>
