@@ -19,7 +19,8 @@
         </div>
         <div style="display:flex">
           <div style="color: #656060; margin-right: 15px; width:100px">수상 내용</div>
-          <div>{{award.description}}</div>
+          <!-- <div>{{award.description}}</div> -->
+          <div v-html="adjustHtml(award.description)"></div>
         </div>
       </div>
     </draggable>
@@ -50,6 +51,11 @@ export default {
     ...mapState([
       'portfolio',
     ]),
+  },
+  methods: {
+    adjustHtml(strVal) {
+      return strVal.replace(/(\n|\r\n)/g, '<br>');
+    },
   },
 };
 </script>

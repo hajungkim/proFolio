@@ -14,7 +14,8 @@
           <p>{{pro.link}}</p>
         </div>
         <div class="summary">{{pro.summary}}</div>
-        <div style="color: #656060">{{pro.description}}</div>
+        <!-- <div style="color: #656060">{{pro.description}}</div> -->
+        <div style="color: #656060" v-html="adjustHtml(pro.description)"></div>
         <div class="grid2">
           <div>
             <div class="subtitle">역할</div>
@@ -62,6 +63,11 @@ export default {
     ...mapState([
       'portfolio',
     ]),
+  },
+  methods: {
+    adjustHtml(strVal) {
+      return strVal.replace(/(\n|\r\n)/g, '<br>');
+    },
   },
 };
 </script>

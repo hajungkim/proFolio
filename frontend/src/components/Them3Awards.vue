@@ -15,7 +15,8 @@
             style="font-weight: bold; margin-right: 15px; color: #656060">
             {{award.prize}}
           </span>
-          <div style="color: #656060; margin: 5% 0">{{award.description}}</div>
+          <!-- <div style="color: #656060; margin: 5% 0">{{award.description}}</div> -->
+          <div style="color: #656060; margin: 5% 0" v-html="adjustHtml(award.description)"></div>
           <div style="color: #656060; margin: 5% 0">{{award.awardsDate}}</div>
         </div>
       </div>
@@ -47,6 +48,11 @@ export default {
     ...mapState([
       'portfolio',
     ]),
+  },
+  methods: {
+    adjustHtml(strVal) {
+      return strVal.replace(/(\n|\r\n)/g, '<br>');
+    },
   },
 };
 </script>
