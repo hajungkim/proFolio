@@ -184,9 +184,9 @@
 .them3-skill {
   background-color: white;
   grid-column: 1;
-  /* float: left; */
+  /* max-height: 550px; */
   padding: 5%;
-  margin: 0 5% 5% 5%;
+  /* margin: 0 0% 0% 0%; */
 }
 .them3-awards {
   background-color: white;
@@ -194,7 +194,7 @@
   /* margin-left: -10%; */
   /* float: left; */
   padding: 5%;
-  margin: 0 10% 5% 5%;
+  margin: 0 0% 0% 10%;
 }
 
 .them3-awards-card {
@@ -249,7 +249,7 @@
 }
 
 .draggable-container-col {
-  /* margin: 2% 2% 2% 2%; */
+  margin: 0 5% 5% 5%;
   display: grid;
   /* grid-template-columns: repeat(2, 1fr); */
   grid-template-columns: repeat(auto-fit, minmax(350px, auto));
