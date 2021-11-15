@@ -290,8 +290,8 @@
 }
 .draggable-container-col {
     /* margin: 5% 5% 5% 5%; */
-    /* display: grid; */
-    /* grid-template-columns: repeat(2, 1fr); */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(50%, 50%));
 }
 .draggable-container-row {
     /* margin: 5% 5% 5% 5%; */
