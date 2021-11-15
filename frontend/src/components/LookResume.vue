@@ -100,7 +100,8 @@
             <span class="font-weight-b" style="line-height: 250%;">{{ award.name }}</span>
              <span class="ml-9">{{ award.prize }}</span>
             <br>
-            <span>{{ award.description }}</span>
+            <!-- <span>{{ award.description }}</span> -->
+            <span v-html="adjustHtml(award.description)"></span>
           </td>
         </tr>
       </table>
@@ -176,6 +177,10 @@ export default {
     },
     goToSelect() {
       this.$router.push({ name: 'SelectTheme' });
+    },
+    adjustHtml(strVal) {
+      // console.log(strVal, typeof (strVal));
+      return strVal.replace(/(\n|\r\n)/g, '<br>');
     },
   },
   beforeMount() {

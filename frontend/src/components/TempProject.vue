@@ -47,7 +47,7 @@
         <tr>
           <th>요약</th>
           <td colspan="4">
-            <textarea
+            <input
               class="resume-p5-summary"
               :value="project.summary"
               name="summary"

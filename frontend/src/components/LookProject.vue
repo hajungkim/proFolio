@@ -8,7 +8,8 @@
     <table class="read-resume-table mt-5">
       <tr>
         <th>설명</th>
-        <td>{{ project.description }}</td>
+        <!-- <td>{{ project.description }}</td> -->
+        <td v-html="adjustHtml(project.description)"></td>
       </tr>
       <tr>
         <th>역할</th>
@@ -32,6 +33,11 @@ export default {
   props: {
     project: {
       type: Object,
+    },
+  },
+  methods: {
+    adjustHtml(strVal) {
+      return strVal.replace(/(\n|\r\n)/g, '<br>');
     },
   },
 };

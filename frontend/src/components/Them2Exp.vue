@@ -7,7 +7,8 @@
         <li v-for="(exp) in portfolio.activity" :key="exp.id" class="tl-item">
           <div class="timestamp">{{exp.startDate}} ~ {{exp.endDate}}</div>
           <div class="item-title">{{exp.name}}</div>
-          <div class="item-detail">{{exp.description}}</div>
+          <!-- <div class="item-detail">{{exp.description}}</div> -->
+          <div class="item-detail" v-html="adjustHtml(exp.description)"></div>
         </li>
         <li class="tl-item">
           <div class="timestamp">
@@ -36,6 +37,11 @@ export default {
     ...mapState([
       'portfolio',
     ]),
+  },
+  methods: {
+    adjustHtml(strVal) {
+      return strVal.replace(/(\n|\r\n)/g, '<br>');
+    },
   },
 };
 </script>
