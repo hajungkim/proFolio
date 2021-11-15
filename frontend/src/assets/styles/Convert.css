@@ -133,7 +133,7 @@
   position:absolute;
   margin: 50px;
   width:30vw;
-  height:10vh;
+  /* height:10vh; */
   background:#005ED3;
   border-radius: 10px;
   color: white;
@@ -141,7 +141,7 @@
   padding: 1%;
 }
 #balloon:after {
-  border-bottom:15px solid #53585f;
+  border-bottom:15px solid #005ED3;
   border-left: 15px solid transparent;
   border-right: 0px solid transparent;
   border-top: 0px solid transparent;
