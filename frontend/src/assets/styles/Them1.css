@@ -293,6 +293,11 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(50%, 50%));
 }
+.draggable-container-col-them1-project {
+    /* margin: 5% 5% 5% 5%; */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(50%, 50%));
+}
 .draggable-container-row {
     /* margin: 5% 5% 5% 5%; */
     /* display: grid; */
