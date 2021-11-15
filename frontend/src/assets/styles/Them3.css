@@ -86,9 +86,6 @@
   justify-content: center;
   align-items: center;
 }
-.menu-buttons div {
-  /* margin: 5% auto; */
-}
 .them3-box {
   position: relative;
   border-radius: 50%;
@@ -184,9 +181,9 @@
 .them3-skill {
   background-color: white;
   grid-column: 1;
-  /* float: left; */
+  /* max-height: 550px; */
   padding: 5%;
-  margin: 0 5% 5% 5%;
+  /* margin: 0 0% 0% 0%; */
 }
 .them3-awards {
   background-color: white;
@@ -194,7 +191,7 @@
   /* margin-left: -10%; */
   /* float: left; */
   padding: 5%;
-  margin: 0 10% 5% 5%;
+  margin: 0 0% 0% 10%;
 }
 
 .them3-awards-card {
@@ -219,6 +216,10 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
+.skill-line {
+  display: flex;
+  max-height: 75px;
+}
 .skill-level {
   margin: 3% 0%;
   /* width: 2.5vw; */
@@ -238,8 +239,8 @@
 }
 .skill-name {
   margin: 3% 10%;
-  height: 5vh;
-  line-height: 5vh;
+  height: 40px;
+  line-height: 40px;
 }
 .them3-intro {
   background-color: white;
@@ -249,7 +250,7 @@
 }
 
 .draggable-container-col {
-  /* margin: 2% 2% 2% 2%; */
+  margin: 0 5% 5% 5%;
   display: grid;
   /* grid-template-columns: repeat(2, 1fr); */
   grid-template-columns: repeat(auto-fit, minmax(350px, auto));
