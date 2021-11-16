@@ -7,6 +7,7 @@ import com.ssafy.profolio.domain.user.UserRepository;
 import com.ssafy.profolio.web.dto.PortfolioDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -36,5 +37,10 @@ public class PortfolioService {
         Portfolio portfolio = portfolioRepository.save(Portfolio.builder()
             .name(param.getName()).url(url).user(userRepository.getById(param.getUserId())).build());
         return portfolio.entityToDto();
+    }
+
+    @Transactional
+    public void deletePortfolio(Long id) {
+        portfolioRepository.deleteById(id);
     }
 }
