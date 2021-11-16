@@ -34,7 +34,7 @@ export default new Vuex.Store({
     portfolio: {},
     sample: {
       user: {
-        profilePath: 'https://user-images.githubusercontent.com/36887393/141425090-c21077a0-49dc-44be-a65a-76f0c9df0db7.jpg',
+        profilePath: 'https://profolio-s3.s3.ap-northeast-2.amazonaws.com/output.jpg',
         name: '김싸피',
         githubId: 'ssafykim',
         phone: '010-1234-5678',
