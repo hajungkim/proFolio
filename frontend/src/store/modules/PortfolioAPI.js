@@ -14,6 +14,9 @@ function postPortfolio(data) {
     },
   });
 }
+function deletePortfolio(id) {
+  return axiosService.delete(`portfolio/${id}`);
+}
 export {
-  getPortfolio, postPortfolio,
+  getPortfolio, postPortfolio, deletePortfolio,
 };
