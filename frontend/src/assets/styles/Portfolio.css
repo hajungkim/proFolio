@@ -29,4 +29,5 @@
     position: relative;
     top: 12%;
     left: -10%;
+    z-index: 2;
 }
