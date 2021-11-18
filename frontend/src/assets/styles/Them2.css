@@ -50,7 +50,7 @@
     grid-template-columns: repeat(3, 1fr);
 }
 .user-profile-img{
-    width: 13vw;
+    width: 13.5vw;
     border-radius: 5%;
     min-width: 160px;
     margin-left: 10px;
