@@ -6,8 +6,7 @@
             @click="removeItem(port.id)">delete_outline</div>
         <div
           @click="downloadFile(port.url)"
-          @mouseover="addPreview(port.url, port.id)"
-          @mouseout="removePreview(port.id)"  class="portfolio-card">
+          class="portfolio-card">
           <div>{{port.name}}</div>
         </div>
         <div class="preview"></div>
@@ -42,14 +41,14 @@ export default {
     downloadFile(url) {
       window.open(url, '_blank');
     },
-    addPreview(url, id) {
-      const element = document.getElementsByClassName('preview')[id - 1];
-      element.innerHTML += `<iframe src=${url} class="preview_img"/>`;
-    },
-    removePreview(id) {
-      const element = document.getElementsByClassName('preview')[id - 1];
-      element.innerHTML = '';
-    },
+    // addPreview(url, id) {
+    //   const element = document.getElementsByClassName('preview')[id - 1];
+    //   element.innerHTML += `<iframe src=${url} class="preview_img"/>`;
+    // },
+    // removePreview(id) {
+    //   const element = document.getElementsByClassName('preview')[id - 1];
+    //   element.innerHTML = '';
+    // },
     removeItem(id) {
       deletePortfolio(id)
         .then(() => {
