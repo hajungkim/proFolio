@@ -25,3 +25,8 @@
 .portfolio-item{
     display: flex;
 }
+.deleteBtn{
+    position: relative;
+    top: 12%;
+    left: -10%;
+}

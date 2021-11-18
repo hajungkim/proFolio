@@ -2,7 +2,8 @@
   <div class="them3-info">
       <div class="info-box">
         <div class="them3-box">
-            <img :src="portfolio.user.profilePath" class="them3-profile-img"/>
+<!-- <img :src="portfolio.user.profilePath" class="them3-profile-img" crossorigin="anonymous"/> -->
+          <img :src="imgSrc" class="profile-img" crossorigin="anonymous">
         </div>
         <div class="them3-info-detail">
           <!-- <div class="user-name">{{portfolio.user.name}}</div> -->
@@ -46,6 +47,10 @@ export default {
     // descriptionForHtml() {
     //   return this.portfolio.user.description.replace(/(\n|\r\n)/g, '<br>');
     // },
+    imgSrc() {
+      const ret = `${this.portfolio.user.profilePath}?timestamp=${Date.now()}`;
+      return ret;
+    },
   },
 };
 </script>

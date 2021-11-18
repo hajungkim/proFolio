@@ -32,6 +32,7 @@ export default new Vuex.Store({
     },
     old_resume: {},
     portfolio: {},
+    portfolioList: [],
     sample: {
       user: {
         profilePath: 'https://profolio-s3.s3.ap-northeast-2.amazonaws.com/output.jpg',
