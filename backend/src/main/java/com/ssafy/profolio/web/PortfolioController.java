@@ -30,4 +30,10 @@ public class PortfolioController {
         List<PortfolioDto> list = portfolioService.getPortfolioList(userId);
         return new BaseResponse<List<PortfolioDto>>(list);
     }
+
+    @DeleteMapping("/{id}")
+    public BaseResponse<Boolean> deleteCareer(@PathVariable Long id) {
+        portfolioService.deletePortfolio(id);
+        return new BaseResponse<>(true);
+    }
 }
