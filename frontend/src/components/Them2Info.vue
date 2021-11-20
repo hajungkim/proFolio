@@ -3,7 +3,8 @@
     <div class="them2-subtitle">About Me</div>
       <div class="them2-info-box">
           <div class="user-img">
-              <img :src = "portfolio.user.profilePath" class="user-profile-img">
+<!-- <img :src="portfolio.user.profilePath" class="user-profile-img" crossorigin="anonymous"> -->
+            <img :src="imgSrc" class="user-profile-img" crossorigin="anonymous">
           </div>
           <div class="them2-detail">
             <div class="them2-username">{{portfolio.user.name}}</div>
@@ -41,6 +42,10 @@ export default {
     ]),
     descriptionForHtml() {
       return this.portfolio.user.description.replace(/(\n|\r\n)/g, '<br>');
+    },
+    imgSrc() {
+      const ret = `${this.portfolio.user.profilePath}?timestamp=${Date.now()}`;
+      return ret;
     },
   },
 };

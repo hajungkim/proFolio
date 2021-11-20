@@ -86,9 +86,6 @@
   justify-content: center;
   align-items: center;
 }
-.menu-buttons div {
-  /* margin: 5% auto; */
-}
 .them3-box {
   position: relative;
   border-radius: 50%;
@@ -219,6 +216,10 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
+.skill-line {
+  display: flex;
+  max-height: 75px;
+}
 .skill-level {
   margin: 3% 0%;
   /* width: 2.5vw; */
@@ -238,8 +239,8 @@
 }
 .skill-name {
   margin: 3% 10%;
-  height: 5vh;
-  line-height: 5vh;
+  height: 40px;
+  line-height: 40px;
 }
 .them3-intro {
   background-color: white;

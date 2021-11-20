@@ -21,7 +21,7 @@
           </span>
         </div>
       </div>
-      <div class="ceright" v-if="portfolio.education">
+      <div class="ceright" v-if=" !isEmpty(portfolio.education) ">
         <div class="name">EDUCATION</div>
         <div class="university">{{ portfolio.education.university }}</div>
         <div class="raw">
@@ -57,6 +57,15 @@ export default {
   },
   computed: {
     ...mapState(['portfolio']),
+  },
+  methods: {
+    isEmpty(obj) {
+      if (obj.constructor === Object
+        && Object.keys(obj).length === 0) {
+        return true;
+      }
+      return false;
+    },
   },
 };
 </script>

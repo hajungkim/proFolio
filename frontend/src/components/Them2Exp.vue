@@ -1,5 +1,5 @@
 <template>
-  <div class="them2-box" v-if="portfolio.activity.length || portfolio.education">
+  <div class="them2-box" v-if="portfolio.activity.length || !isEmpty(portfolio.education)">
       <div class="them2-subtitle">
         Education &amp; Experience
       </div><br>
@@ -10,7 +10,7 @@
           <!-- <div class="item-detail">{{exp.description}}</div> -->
           <div class="item-detail" v-html="adjustHtml(exp.description)"></div>
         </li>
-        <li class="tl-item">
+        <li class="tl-item" v-if=" !isEmpty(portfolio.education) ">
           <div class="timestamp">
             {{portfolio.education.admissionDate}} ~
             {{portfolio.education.graduationDate}}</div>
@@ -41,6 +41,13 @@ export default {
   methods: {
     adjustHtml(strVal) {
       return strVal.replace(/(\n|\r\n)/g, '<br>');
+    },
+    isEmpty(obj) {
+      if (obj.constructor === Object
+        && Object.keys(obj).length === 0) {
+        return true;
+      }
+      return false;
     },
   },
 };

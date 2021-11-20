@@ -3,7 +3,8 @@
       <div class="left">
           <div class="title">
               <div class="them1-box">
-                <img :src = "portfolio.user.profilePath" class="profile-img">
+                <img :src="imgSrc" class="profile-img" crossorigin="anonymous">
+                <!-- <img :src = "portfolio.user.profilePath" class="profile-img"> -->
               </div>
               <div class="detail">
                 <div class="username">{{portfolio.user.name}}</div>
@@ -45,6 +46,10 @@ export default {
     ]),
     descriptionForHtml() {
       return this.portfolio.user.description.replace(/(\n|\r\n)/g, '<br>');
+    },
+    imgSrc() {
+      const ret = `${this.portfolio.user.profilePath}?timestamp=${Date.now()}`;
+      return ret;
     },
   },
 };
