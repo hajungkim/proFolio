@@ -3,8 +3,8 @@ spring:
     google:
       url: https://accounts.google.com/o/oauth2/v2/auth
       client:
-        id: 445988236737-ik5gc4cdm5j2rnd5gtphq6sk6omi29oe.apps.googleusercontent.com
-        secret: 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
+        id: {id}
+        secret: {secret}
       token:
         url: https://oauth2.googleapis.com/token
       user:
@@ -13,8 +13,8 @@ spring:
     naver:
       url: https://nid.naver.com/oauth2.0/authorize
       client:
-        id: L38_qX6vZAMo_Pi0ZMwy
-        secret: NInWYkP_59
+        id: {id}
+        secret: {secret}
       token:
         url: https://nid.naver.com/oauth2.0/token
       user:
@@ -23,8 +23,8 @@ spring:
     github:
       url: https://github.com/login/oauth/authorize
       client:
-        id: 9f084481be77266c33ce
-        secret: 13f450f9d13757bd33c9074fe621c8bb021991a0
+        id: {id}
+        secret: {secret}
       token:
         url: https://github.com/login/oauth/access_token
       user:
