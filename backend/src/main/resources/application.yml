@@ -27,7 +27,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/profolio?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
     username: root
-    password: 1231
+    password: {password}
     driver-class-name: com.mysql.cj.jdbc.Driver
   front:
     url : http://localhost:3000/
@@ -49,7 +49,7 @@ spring:
   datasource:
     url: jdbc:mysql://k5b302.p.ssafy.io:3306/profolio?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
     username: profolio
-    password: profoliossafy
+    password: {password}
     driver-class-name: com.mysql.cj.jdbc.Driver
   front:
     url: https://k5b302.p.ssafy.io/
