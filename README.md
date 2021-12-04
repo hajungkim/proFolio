@@ -252,7 +252,7 @@
 
 <details>
   <summary>와이어프레임</summary>
-  
+
 ![와이어프레임1](./exec/gif/와이어프레임1.png)
 
 ![와이어프레임2](./exec/gif/와이어프레임2.png)
@@ -260,8 +260,10 @@
 </details>
 
 <details>
-  <summary>기능명세서</summary>  
-  <h2> 📝기능명세서<https://melodious-can-b87.notion.site/c5c18834764a4d0bb76648103f079cb1> </h2>
+  <summary>기능명세서</summary>
+
+  - #### [기능명세서](https://melodious-can-b87.notion.site/c5c18834764a4d0bb76648103f079cb1)
+
 </details>
 
 <br>
