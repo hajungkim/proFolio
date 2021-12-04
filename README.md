@@ -246,24 +246,22 @@
 <details>
   <summary>ERD</summary>  
   
-  ![erd](/uploads/6b347d6b1f57b5045db470adcdc67cb6/erd.png)
+  ![erd](./exec/gif/erd.png)
 
 </details>
 
 <details>
   <summary>와이어프레임</summary>
+  
+![와이어프레임1](./exec/gif/와이어프레임1.png)
 
-<h2> 🖋[와이어프레임-Figma](https://www.figma.com/file/1bm6o7RuBk8LUyhs1fNV2D/자율PJT?node-id=0%3A1) </h2>
-
-![와이어프레임1](/uploads/f034950df23c9de3df3d46acb5124283/와이어프레임1.png)
-
-![와이어프레임2](/uploads/e8b3f4c0891021f04fd1867bf025e89e/와이어프레임2.png)
+![와이어프레임2](./exec/gif/와이어프레임2.png)
 
 </details>
 
 <details>
   <summary>기능명세서</summary>  
-  <h2> 📝[기능명세서](https://melodious-can-b87.notion.site/c5c18834764a4d0bb76648103f079cb1) </h2>
+  <h2> 📝기능명세서<https://melodious-can-b87.notion.site/c5c18834764a4d0bb76648103f079cb1> </h2>
 </details>
 
 <br>
